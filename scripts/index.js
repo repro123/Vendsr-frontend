@@ -1,0 +1,54 @@
+"use strict";
+
+// select elements that handle the mobile navigation dialog functionality.
+const mobileNavButton = document.getElementById("mobileNavButton");
+const mobileNavDialog = document.getElementById("mobileNavDialog");
+const mobileNavCloseButton = document.getElementById("mobileNavCloseButton");
+const mobileNavLinks = document.querySelectorAll("#mobileNavDialog a");
+
+if (mobileNavButton) {
+  mobileNavButton.addEventListener("click", () => {
+    mobileNavDialog.showModal();
+    document.body.classList.add("overflow-hidden");
+    mobileNavButton.setAttribute("aria-expanded", "true");
+  });
+
+  // Close the mobile nav dialog when clicking the close button
+  mobileNavCloseButton.addEventListener("click", closeMobileNav);
+
+  // Close the mobile nav dialog when clicking on a link
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", closeMobileNav);
+  });
+
+  // Close the mobile nav dialog when pressing the Escape key
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMobileNav();
+    }
+  });
+
+  // Close the mobile nav dialog when resizing the window to a width greater than 768px
+  // This is to ensure that the dialog closes when switching from mobile to desktop view
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      closeMobileNav();
+    }
+  });
+
+  // Close the mobile nav dialog when clicking outside of it
+  mobileNavDialog.addEventListener("click", (event) => {
+    if (event.target === mobileNavDialog) {
+      closeMobileNav();
+    }
+  });
+}
+
+// Function to close the mobile navigation dialog
+function closeMobileNav() {
+  if (mobileNavDialog.open) {
+    mobileNavDialog.close();
+    document.body.classList.remove("overflow-hidden");
+    mobileNavButton.setAttribute("aria-expanded", "false");
+  }
+}
