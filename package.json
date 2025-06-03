@@ -1,0 +1,25 @@
+{
+  "name": "vendsr-frontend",
+  "version": "1.0.0",
+  "description": "Vendsr Frontend Repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/repro123/Vendsr-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/repro123/Vendsr-frontend/issues"
+  },
+  "homepage": "https://github.com/repro123/Vendsr-frontend#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.8",
+    "tailwindcss": "^4.1.8"
+  }
+}

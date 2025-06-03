@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendsr Home Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/output.css" />
+  </head>
+  <body
+    class="min-h-dvh antialiased bg-bodyBackground text-paragraphColor font-inter"
+    data-page="home"
+  >
+    <header class="bg-white sticky top-0 z-50 px-4 py-3">
+      <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <a href="#" aria-label="Vendsr Home Page">
+          <img src="./assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+        </a>
+
+        <div>
+          <button
+            aria-label="Open mobile navigation"
+            aria-expanded="false"
+            aria-controls="mobileNavDialog"
+            id="mobileNavButton"
+            class="md:hidden"
+          >
+            <img src="./assets/icons/hamburger.png" alt="" />
+          </button>
+
+          <nav aria-label="Desktop Navigation" class="hidden md:block">
+            <ul class="flex items-center gap-x-6">
+              <li>
+                <a
+                  href="#"
+                  class="flex items-center gap-x-2 text-white bg-primary px-8 py-3 rounded-full hover:bg-primary/70 transition duration-300"
+                  ><span>Get Started</span>
+                  <img src="./assets/icons/arrow-right.png" alt=""
+                /></a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="px-14 py-3 rounded-full hover:bg-primary/70 transition duration-300 text-primary border border-primary"
+                  >Sign In</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <dialog
+          id="mobileNavDialog"
+          aria-labelledby="mobileNavButton"
+          class="max-h-dvh h-dvh w-full max-w-[18rem] ml-auto"
+        >
+          <div class="h-full relative pt-24 overflow-y-auto px-4">
+            <button
+              id="mobileNavCloseButton"
+              aria-label="Close Mobile Nav"
+              class="absolute top-8 right-8 text-2xl font-black text-primary focus:outline-primary focus:outline-2 rounded-full p-2 hover:bg-primary/10 cursor-pointer transition duration-300 h-12 w-12 grid place-items-center"
+            >
+              <span aria-hidden="true">X</span>
+            </button>
+
+            <nav aria-label="Mobile Navigation">
+              <ul class="flex flex-col items-center gap-y-6 *:w-full">
+                <li>
+                  <a
+                    href="#"
+                    class="bg-primary text-white justify-center py-3 rounded-full hover:bg-primary/70 transition duration-300 flex items-center gap-x-2"
+                    ><span>Get Started</span>
+                    <img src="./assets/icons/arrow-right.png" alt=""
+                  /></a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="border border-primary text-primary justify-center py-3 rounded-full hover:bg-primary/70 transition duration-300 flex items-center gap-x-2"
+                    >Sign In</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </dialog>
+      </div>
+    </header>
+
+    <main
+      class="px-4 min-h-[calc(100dvh-64px)] grid place-items-center max-md:py-12"
+    >
+      <div
+        class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
+      >
+        <div
+          class="text-center md:text-left flex flex-col items-center md:items-start gap-4 md:gap-6"
+        >
+          <h1 class="font-bold text-4xl">Sell smarter. Shop safer</h1>
+          <p>
+            Vendsr is your secure online space for buying and selling.
+            <span class="block">Fast, flexible</span>
+          </p>
+          <div
+            class="flex flex-col md:flex-row items-center gap-4 md:w-full text-center"
+          >
+            <a
+              href="#"
+              class="flex items-center gap-x-2 text-white whitespace-nowrap bg-primary px-8 py-3 rounded-full hover:bg-primary/70 transition duration-300 w-full"
+              ><span>Get Started</span>
+              <img src="./assets/icons/arrow-right.png" alt=""
+            /></a>
+            <a
+              href="#"
+              class="px-14 py-3 rounded-full transition duration-300 whitespace-nowrap text-primary border border-primary w-full hover:bg-primary hover:text-white"
+              >Sign In</a
+            >
+          </div>
+        </div>
+
+        <div class="max-md:-mt-24">
+          <picture>
+            <source
+              srcset="./assets/images/hero-desktop.png"
+              media="(min-width: 768px)"
+            />
+            <img
+              src="./assets/images/hero-mobile.png"
+              alt="Happy shoppers buying new clothes via Vendsr"
+            />
+          </picture>
+        </div>
+      </div>
+
+      <button
+        class="fixed bottom-6 right-6 md:bottom-12 md:right-12 bg-primary p-2 rounded-full grid place-items-center shadow-lg hover:bg-primary/70 transition duration-300 cursor-pointer"
+        title="Help"
+      >
+        <span class="sr-only">Help</span>
+        <img src="./assets/icons/question.png" alt="" />
+      </button>
+    </main>
+
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
