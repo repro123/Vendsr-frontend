@@ -12,67 +12,34 @@ No additional frameworks or libraries are required. This approach ensures a ligh
 
 ## Getting Started
 
-Ensure you have the latest version of Tailwind CSS installed to properly render the styles.
-
 ### Installation Process
 
-We are going to be installing tailwind css via the Tailwind CSS CLI. See the [Tailwind DOCS here for the installation guide](https://tailwindcss.com/docs/installation/tailwind-cli) or follow these steps:
+This process ensures that everyone uses the same version of tailwind css
 
-First, create the following directory structure:
+After cloning this repository,
+**_Ensure you have node installed on your system, as that is a prerequisite to complete the installation_**
 
-```
-vendsr-frontend/
-├
-│   ├── src/
-│   │   ├── input.css
-│   ├── js/
-│   │   └── main.js
-│   └── index.html
+- Run:
 
+```bash
+npm i
 ```
 
-This structure organizes your source files into logical directories:
+- Run the CLI build process:
 
-- `src/`: Contains all source files
-- `js/`: For JavaScript files
+```bash
+npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch
+```
 
-1. Initialize your project with npm:
-
-   ```bash
-   npm init -y
-   ```
-
-2. Install Tailwind CSS:
-
-   ```bash
-   npm install tailwindcss @tailwindcss/cli
-   ```
-
-3. Import tailwind into your main CSS file:
-
-   ```css
-   @import "tailwindcss";
-   ```
-
-4. Start the tailwind CLI build process:
-
-   ```bash
-   npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch
-
-   ```
-
-5. Link the output CSS in your HTML:
-   ```html
-   <link href="/output.css" rel="stylesheet" />
-   ```
+- Start using the tailwind CSS styles.
 
 ## Folder and files naming.
 
 Please note the following important things, to ensure smooth work around.
 
-- Please add your `node_modules` folder and `package-lock.json` files to your `.gitignore` file.
+- Please add your `node_modules` folder files to your `.gitignore` file.
 - Please you should not have an index.html file. Everyone should name their html files with the name of the page they are buiding. e.g `signup.html`, `signin.html`, etc.
-- Also, anem your javascript files the same way as your html file.
+- Also, name your javascript files the same way as your html file.
 
 ## Assets
 
