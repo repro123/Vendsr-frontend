@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendsr Home Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../src/output.css" />
+  </head>
+
+  <body
+    class="min-h-dvh antialiased bg-bodyBackground text-paragraphColor font-inter"
+    data-page="otp"
+  >
+    <header class="bg-white sticky top-0 z-50 px-4 py-3 hidden md:block">
+      <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <a href="../index.html" aria-label="Vendsr Home Page">
+          <img src="../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+        </a>
+      </div>
+    </header>
+
+    <main
+      class="h-screen md:h-[calc(100vh-3.5rem)] sm:grid sm:place-items-center sm:p-4"
+    >
+      <div
+        class="w-full mx-auto flex flex-col gap-6 h-full bg-white p-4 sm:h-auto sm:max-w-2xl sm:p-8 sm:rounded-2xl md:px-32"
+      >
+        <header class="text-center py-4 relative">
+          <h1 class="font-semibold text-xl">Verification</h1>
+          <a
+            href=""
+            aria-label="Back to previous page"
+            class="absolute left-0 top-1/2 -translate-y-1/2"
+            ><img src="../assets/icons/arrow-back.png" alt=""
+          /></a>
+        </header>
+
+        <section class="flex flex-col sm:items-center sm:text-center gap-4">
+          <p class="text-2xl font-bold">Enter the code</p>
+          <p>
+            We sent a verification code to
+            <span id="userMobileNumber">+234 8012345678</span>
+          </p>
+
+          <form id="otp-form" class="mt-6 flex flex-col gap-6">
+            <div class="otp-container grid gap-4 grid-cols-6">
+              <input
+                type="text"
+                class="otp-input border border-primary/10 shadow-lg rounded-lg text-2xl p-2 text-center focus:border-primary focus:ring-1 focus:ring-primary focus:outline-primary"
+                maxlength="1"
+                data-index="0"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                name="otp"
+                id="otp-1"
+                aria-label="digit 1 of 6"
+                autofocus
+              />
+              <input
+                type="text"
+                class="otp-input border border-primary/10 shadow-lg rounded-lg text-2xl p-2 text-center focus:border-primary focus:ring-1 focus:ring-primary focus:outline-primary"
+                maxlength="1"
+                data-index="1"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                name="otp"
+                aria-label="digit 2 of 6"
+                id="otp-2"
+              />
+              <input
+                type="text"
+                class="otp-input border border-primary/10 shadow-lg rounded-lg text-2xl p-2 text-center focus:border-primary focus:ring-1 focus:ring-primary focus:outline-primary"
+                maxlength="1"
+                data-index="2"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                name="otp"
+                aria-label="digit 3 of 6"
+                id="otp-3"
+              />
+              <input
+                type="text"
+                class="otp-input border border-primary/10 shadow-lg rounded-lg text-2xl p-2 text-center focus:border-primary focus:ring-1 focus:ring-primary focus:outline-primary"
+                maxlength="1"
+                data-index="3"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                name="otp"
+                aria-label="digit 4 of 6"
+                id="otp-4"
+              />
+              <input
+                type="text"
+                class="otp-input border border-primary/10 shadow-lg rounded-lg text-2xl p-2 text-center focus:border-primary focus:ring-1 focus:ring-primary focus:outline-primary"
+                maxlength="1"
+                data-index="4"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                name="otp"
+                aria-label="digit 5 of 6"
+                id="otp-5"
+              />
+              <input
+                type="text"
+                class="otp-input border border-primary/10 shadow-lg rounded-lg text-2xl p-2 text-center focus:border-primary focus:ring-1 focus:ring-primary focus:outline-primary"
+                maxlength="1"
+                data-index="5"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                name="otp"
+                aria-label="digit 6 of 6"
+                id="otp-6"
+              />
+            </div>
+            <input type="hidden" name="full_otp" id="full-otp" />
+            <p id="errorMessage"></p>
+            <button
+              type="submit"
+              class="rounded-full bg-primary text-white tracking-wider font-semibold cursor-pointer w-full py-3 hover:bg-primary/80"
+            >
+              Verify
+            </button>
+          </form>
+        </section>
+
+        <section class="mt-auto sm:mt-8 flex justify-between items-center">
+          <button class="cursor-pointer" id="resendOTP">Resend Code</button>
+          <span id="otpCountdown">00:50</span>
+        </section>
+      </div>
+    </main>
+
+    <script src="../scripts/otp.js"></script>
+  </body>
+</html>
