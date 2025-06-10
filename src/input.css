@@ -12,3 +12,17 @@
   --font-inter: "Inter", sans-serif;
   --font-poppins: "Poppins", sans-serif;
 }
+
+@layer components {
+  .form-input {
+    /* bg-inputBackground w-full p-4 rounded-lg focus:border-primary focus:outline-primary */
+    background-color: var(--color-inputBackground);
+    width: 100%;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    &:focus {
+      outline-color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+  }
+}
