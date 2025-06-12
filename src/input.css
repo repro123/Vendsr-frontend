@@ -24,5 +24,8 @@
       outline-color: var(--color-primary);
       border-color: var(--color-primary);
     }
+    &[data-invalid="true"] {
+      border-color: red;
+    }
   }
 }
