@@ -2,6 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("signup");
+  let validationTimers = {};
 
   // Add active state to radio buttons
   const accountTypeRadios = document.querySelectorAll(
@@ -17,15 +18,45 @@ document.addEventListener("DOMContentLoaded", function () {
           label.classList.remove("has-checked");
         }
       });
+      validateAccountType();
     });
   });
 
-  // Form validation on submit
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    let isValid = true;
+  // Setup validation with delay for all fields
+  const validationFields = [
+    "fullName",
+    "username",
+    "phoneNumber",
+    "email",
+    "password",
+    "confirmPassword",
+  ];
 
-    // Full Name validation (min 3 characters, only letters and spaces)
+  validationFields.forEach((field) => {
+    const input = document.getElementById(field);
+
+    // Input event with delay
+    input.addEventListener("input", function () {
+      clearTimeout(validationTimers[field]);
+      validationTimers[field] = setTimeout(() => {
+        validateField(field);
+      }, 800);
+    });
+
+    // Blur event (immediate)
+    input.addEventListener("blur", function () {
+      clearTimeout(validationTimers[field]);
+      validateField(field);
+
+      // Special case: validate password match on confirmPassword blur
+      if (field === "password") {
+        validateField("confirmPassword");
+      }
+    });
+  });
+
+  // Field validation functions
+  function validateFullName() {
     const fullName = document.getElementById("fullName").value.trim();
     const fullNameError = document.getElementById("fullNameError");
     if (
@@ -34,12 +65,13 @@ document.addEventListener("DOMContentLoaded", function () {
       !/^[a-zA-Z\s]{3,}$/.test(fullName)
     ) {
       fullNameError.textContent = "Full name must be at least 3 letters";
-      isValid = false;
-    } else {
-      fullNameError.textContent = "";
+      return false;
     }
+    fullNameError.textContent = "";
+    return true;
+  }
 
-    // Username validation (4-20 characters, alphanumeric + underscore)
+  function validateUsername() {
     const username = document.getElementById("username").value.trim();
     const usernameError = document.getElementById("usernameError");
     if (
@@ -49,12 +81,13 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       usernameError.textContent =
         "4-20 characters (letters, numbers, underscores)";
-      isValid = false;
-    } else {
-      usernameError.textContent = "";
+      return false;
     }
+    usernameError.textContent = "";
+    return true;
+  }
 
-    // Phone validation (10 digits minimum)
+  function validatePhoneNumber() {
     const phone = document
       .getElementById("phoneNumber")
       .value.replace(/\D/g, "");
@@ -62,35 +95,38 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!phone || phone.length < 10) {
       phoneError.textContent =
         "Please enter a valid phone number (min 10 digits)";
-      isValid = false;
-    } else {
-      phoneError.textContent = "";
+      return false;
     }
+    phoneError.textContent = "";
+    return true;
+  }
 
-    // Email validation
+  function validateEmail() {
     const email = document.getElementById("email").value.trim();
     const emailError = document.getElementById("emailError");
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       emailError.textContent = "Please enter a valid email address";
-      isValid = false;
-    } else {
-      emailError.textContent = "";
+      return false;
     }
+    emailError.textContent = "";
+    return true;
+  }
 
-    // Account type validation
+  function validateAccountType() {
     const accountType = document.querySelector(
       'input[name="accountType"]:checked'
     );
     const accountTypeError = document.getElementById("accountTypeError");
     if (!accountType) {
       accountTypeError.textContent = "Please select an account type";
-      isValid = false;
-    } else {
-      accountTypeError.textContent = "";
+      return false;
     }
+    accountTypeError.textContent = "";
+    return true;
+  }
 
-    // Password validation (min 8 chars with complexity)
+  function validatePassword() {
     const password = document.getElementById("password").value;
     const passwordError = document.getElementById("passwordError");
     if (
@@ -99,22 +135,59 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       passwordError.textContent =
         "Min 8 characters with uppercase, lowercase, number & symbol";
-      isValid = false;
-    } else {
-      passwordError.textContent = "";
+      return false;
     }
+    passwordError.textContent = "";
+    return true;
+  }
 
-    // Confirm password validation
+  function validateConfirmPassword() {
+    const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
     const confirmPasswordError = document.getElementById(
       "confirmPasswordError"
     );
     if (password !== confirmPassword) {
       confirmPasswordError.textContent = "Passwords do not match";
-      isValid = false;
-    } else {
-      confirmPasswordError.textContent = "";
+      return false;
     }
+    confirmPasswordError.textContent = "";
+    return true;
+  }
+
+  // Master validation function
+  function validateField(field) {
+    switch (field) {
+      case "fullName":
+        return validateFullName();
+      case "username":
+        return validateUsername();
+      case "phoneNumber":
+        return validatePhoneNumber();
+      case "email":
+        return validateEmail();
+      case "password":
+        return validatePassword();
+      case "confirmPassword":
+        return validateConfirmPassword();
+      default:
+        return true;
+    }
+  }
+
+  // Form validation on submit
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let isValid = true;
+
+    // Validate all fields
+    isValid &= validateFullName();
+    isValid &= validateUsername();
+    isValid &= validatePhoneNumber();
+    isValid &= validateEmail();
+    isValid &= validateAccountType();
+    isValid &= validatePassword();
+    isValid &= validateConfirmPassword();
 
     // If form is valid, navigate to OTP page
     if (isValid) {
@@ -122,17 +195,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Real-time password matching
-  const confirmPasswordInput = document.getElementById("confirmPassword");
-  confirmPasswordInput.addEventListener("input", function () {
-    const password = document.getElementById("password").value;
-    const confirmPassword = this.value;
-    const errorElement = document.getElementById("confirmPasswordError");
-
-    if (password !== confirmPassword) {
-      errorElement.textContent = "Passwords do not match";
-    } else {
-      errorElement.textContent = "";
-    }
+  // Real-time password matching (without delay)
+  document.getElementById("password").addEventListener("input", function () {
+    validateConfirmPassword();
   });
 });
