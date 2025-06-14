@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // If all validations pass
     if (results.every((valid) => valid)) {
-      window.location.href = "../cac/";
+      window.location.href = "../CAC_verification/";
     }
   });
 });
