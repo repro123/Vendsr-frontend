@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendsr Sign-up Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../src/output.css">
+  </head>
+  <body class="min-h-dvh antialiased bg-bodyBackground text-paragraphColor font-inter" data-page="Sign_up">
+    
+    <header class="bg-white sticky top-0 z-50 px-4 py-3 hidden md:block">
+      <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <a href="#" aria-label="Vendsr Sign Up Page">
+          <img src="../assets/icons/vendsr-logo.png" alt="Vendsr Logo">
+        </a>
+      </div>
+    </header>
+
+    <dialog id="mobileNavDialog" aria-labelledby="mobileNavButton" class="max-h-dvh h-dvh w-full max-w-[18rem] ml-auto">
+      <div class="h-full relative pt-24 overflow-y-auto px-4">
+        <button id="mobileNavCloseButton" aria-label="Close Mobile Nav" 
+          class="absolute top-8 right-8 text-2xl font-black text-primary focus:outline-primary focus:outline-2 rounded-full p-2 hover:bg-primary/10 cursor-pointer transition duration-300 h-12 w-12 grid place-items-center">
+          <span aria-hidden="true">X</span>
+        </button>
+      </div>
+    </dialog>
+
+    <main class="md:p-2 min-h-[calc(100dvh-64px)] md:flex justify-center items-center">
+      <div class="bg-white md:px-14 box-border px-4 md:py-5 device-width md:rounded-[calc(9px+1vw)]">
+        <form id="form">
+          
+          <div class="flex justify-between md:items-start w-full mb-3 md:mb-6 md:pt-0 pt-4">
+            <a href="#">
+              <img src="../assets/icons/arrow-back.png" alt="back-button">
+            </a>
+            <div class="flex flex-1 items-center justify-center">
+              <div class="flex flex-col">
+                <h2 class="font-bold text-center md:py-0 flex-1">Business Verification (CAC)</h2>
+                <h3 class="text-center py-4 flex-1">Verify your business to build trust</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex md:flex-row flex-col justify-between md:gap-24 gap-10">
+            <div class="md:w-1/2 flex flex-row items-center">
+              <div class="flex flex-col md:gap-3 gap-4">
+                <div class="flex flex-col">
+                  <input id = "CAC_Number" class="placeholder-[#5E4F96] bg-inputBackground rounded-md p-3 text-gray-500 border-gray-100 w-80 w-calc[100%-2rem] focus:border-primary focus:outline-none border-2"
+                    type="text" placeholder="CAC Number" name="CAC_Number"  required>
+                </div>
+
+                <div class="flex flex-col">
+                  <input id = "Business_name" class="placeholder-[#5E4F96] bg-inputBackground rounded-md p-3 text-gray-500 border-gray-100 md:w-80 w-calc[100%-2rem] focus:border-primary focus:outline-none border-2"
+                    type="text" placeholder="Business Name" name="Business_name" required>
+                </div>
+
+                <div class="flex flex-col">
+                  <input id="Business_Owner_Name" class="placeholder-[#5E4F96] bg-inputBackground rounded-md p-3 text-gray-500 border-gray-100 md:w-80 w-calc[100%-2rem] focus:border-primary focus:outline-none border-2"
+                    type="text" placeholder="Business Owner Name" name="Business_Owner_Name" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col justify-center gap-4">
+              <label class="h-full cursor-pointer" for="cac">
+                <div class="flex flex-col border border-dashed rounded-md border-[#D6D1E8] border-2 h-full">
+                  <div class="flex flex-col items-center h-full justify-center p-13 whitespace-nowrap">
+                    <h2 class="font-bold text-center">Upload CAC Certificate</h2>
+                    <h3 class="text-center text-[14px] p-1">PDF or photo</h3>
+                    <h3 class="bg-bodyBackground px-8 py-1 rounded-full mt-2">+</h3>
+                    <input id="cac" class="hidden rounded-md p-3 text-gray-500 h-full" type="file" name="cac" accept="image/*,application/pdf" required>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="flex flex-row justify-center py-9">
+            <button class="bg-primary border rounded-full text-white py-3 md:w-80 w-full cursor-pointer hover:bg-bodyBackground hover:text-black" 
+              type="submit" aria-label="submit form">Submit</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script  src="../scripts/CAC_Verification.js"></script>
+
+  </body>
+</html>
