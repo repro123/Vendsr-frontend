@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/src/output.css" rel="stylesheet" />
+  </head>
+
+  <body
+    class="min-h-dvh md:h-dvh md:overflow-hidden md:flex md:flex-col antialiased bg-bodyBackground text-paragraphColor font-inter"
+    data-page="user-dashboard"
+  >
+    <header class="bg-white sticky top-0 z-50 px-4 py-3 hidden md:block">
+      <div class="flex items-center justify-between container mx-auto">
+        <a href="/" aria-label="Vendsr Home Page">
+          <img src="/assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+        </a>
+      </div>
+    </header>
+
+    <main class="md:mt-4 md:flex-1 md:overflow-hidden px-4">
+      <div
+        class="md:grid md:grid-cols-[auto_1fr] md:container md:mx-auto md:gap-4 h-full"
+      >
+        <nav
+          class="bg-white max-md:fixed max-md:bottom-0 max-md:left-0 max-md:right-0 z-50 md:h-fit md:p-3 md:rounded-md"
+        >
+          <ul class="flex justify-around items-center md:flex-col md:gap-16">
+            <li>
+              <a
+                href=""
+                class="flex flex-col items-center gap-1 py-2 hover:text-primary"
+                ><img src="/assets/icons/shop.png" alt="" />
+                <span>Shop</span></a
+              >
+            </li>
+            <li>
+              <a
+                href=""
+                class="flex flex-col items-center gap-1 py-2 hover:text-primary"
+                ><img src="/assets/icons/saved.png" alt="" />
+                <span>Wishlist</span></a
+              >
+            </li>
+            <li>
+              <a
+                href=""
+                class="flex flex-col items-center gap-1 py-2 hover:text-primary"
+                ><img src="/assets/icons/notification.png" alt="" />
+                <span>Notification</span></a
+              >
+            </li>
+            <li>
+              <a
+                href=""
+                class="flex flex-col items-center gap-1 py-2 hover:text-primary"
+                ><img src="/assets/icons/profile-icon.png" alt="" />
+                <span>Profile</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <section class="md:overflow-y-auto md:h-full scrollbar-hidden">
+          <header>
+            <div>
+              <picture>
+                <source
+                  srcset="/assets/images/dashboard-header-image-desktop.png"
+                  type="image/png"
+                  media="(min-width: 768px)"
+                />
+                <img
+                  src="/assets/images/dashboard-header-image-mobile.png"
+                  alt="Felicity Jewelry Banner"
+                  class="w-full"
+                />
+              </picture>
+
+              <div class="px-4 -mt-4">
+                <div class="flex items-center gap-4">
+                  <img
+                    src="/assets/images/Felicity.png"
+                    alt="Felicity"
+                    class="w-28 h-28 rounded-full border-4 border-white shadow-lg md:w-32 md:h-32 md:border-8 md:shadow-xl"
+                  />
+
+                  <div>
+                    <p class="text-2xl font-semibold">
+                      Felicity Jewelry
+                      <span class="inline-block ml-1 align-middle"
+                        ><img
+                          src="/assets/icons/Verified.png"
+                          alt=""
+                          class="w-4 h-4"
+                      /></span>
+                    </p>
+                    <p class="text-profileDescriptionColor">@feliciasmiles</p>
+                  </div>
+                </div>
+
+                <p class="text-profileDescriptionColor">Handmade goods</p>
+              </div>
+            </div>
+          </header>
+
+          <section class="pt-6">
+            <div>
+              <div
+                class="border-b border-profileDescriptionColor px-4 flex items-end justify-between"
+              >
+                <ul class="flex items-center gap-4">
+                  <li>
+                    <button
+                      class="pb-2 cursor-pointer hover:text-primary"
+                      id="activityBtn"
+                    >
+                      Activity
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      class="pb-2 cursor-pointer hover:text-primary"
+                      id="productsBtn"
+                    >
+                      Products
+                    </button>
+                  </li>
+                </ul>
+
+                <button
+                  id="addProductItemDesktop"
+                  class="hidden text-white bg-primary rounded-md p-2 cursor-pointer border border-primary hover:bg-white hover:text-primary"
+                >
+                  <span aria-hidden="true">+</span> Add Items
+                </button>
+              </div>
+
+              <div
+                id="productsContainer"
+                class="p-4 relative min-h-[40vh] hidden"
+              >
+                <h2 class="font-extrabold text-xl">Items</h2>
+                <button
+                  id="addProductItemMobile"
+                  class="text-white bg-primary rounded-md p-2 pt-8 cursor-pointer border border-primary hover:bg-white hover:text-primary absolute right-4 bottom-20"
+                >
+                  <span aria-hidden="true">+</span> Add Items
+                </button>
+                <div id="products"></div>
+              </div>
+
+              <div
+                id="activitiesContainer"
+                class="p-4 relative min-h-[40vh] hidden"
+              >
+                <h2 class="font-extrabold text-xl">Activities</h2>
+                <div id="activities"></div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+
+      <div id="forAbiolaKehinde"></div>
+
+      <div id="forArfoEzekiel"></div>
+    </main>
+
+    <script src="/scripts/user-dashboard-profile.js"></script>
+  </body>
+</html>
