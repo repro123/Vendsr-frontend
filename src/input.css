@@ -5,6 +5,7 @@
   --color-primary: #522e9a;
   --color-paragraphColor: #121417;
   --color-headingsColor: #231f20;
+  --color-profileDescriptionColor: #757575;
   --color-bodyBackground: #d6d1e8;
   --color-inputBackground: #ebe8f2;
 
@@ -27,5 +28,19 @@
     &[data-invalid="true"] {
       border-color: red;
     }
+  }
+
+  .activeProfileContentButton {
+    border-bottom: 4px solid var(--color-primary);
+    font-weight: 800;
+  }
+
+  /* Hide scrollbar but keep scrolling */
+  .scrollbar-hidden {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
   }
 }
