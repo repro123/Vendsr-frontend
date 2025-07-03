@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link href="/src/output.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
   </head>
 
   <body
@@ -20,7 +20,7 @@
     <header class="bg-white sticky top-0 z-50 px-4 py-3 hidden md:block">
       <div class="flex items-center justify-between container mx-auto">
         <a href="/" aria-label="Vendsr Home Page">
-          <img src="/assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+          <img src="../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
         </a>
       </div>
     </header>
@@ -37,7 +37,7 @@
               <a
                 href=""
                 class="flex flex-col items-center gap-1 py-2 hover:text-primary"
-                ><img src="/assets/icons/shop.png" alt="" />
+                ><img src="..../assets/icons/shop.png" alt="" />
                 <span>Shop</span></a
               >
             </li>
@@ -45,7 +45,7 @@
               <a
                 href=""
                 class="flex flex-col items-center gap-1 py-2 hover:text-primary"
-                ><img src="/assets/icons/saved.png" alt="" />
+                ><img src="../assets/icons/saved.png" alt="" />
                 <span>Wishlist</span></a
               >
             </li>
@@ -53,7 +53,7 @@
               <a
                 href=""
                 class="flex flex-col items-center gap-1 py-2 hover:text-primary"
-                ><img src="/assets/icons/notification.png" alt="" />
+                ><img src="../assets/icons/notification.png" alt="" />
                 <span>Notification</span></a
               >
             </li>
@@ -61,7 +61,7 @@
               <a
                 href=""
                 class="flex flex-col items-center gap-1 py-2 hover:text-primary"
-                ><img src="/assets/icons/profile-icon.png" alt="" />
+                ><img src="../assets/icons/profile-icon.png" alt="" />
                 <span>Profile</span></a
               >
             </li>
@@ -73,12 +73,12 @@
             <div>
               <picture>
                 <source
-                  srcset="/assets/images/dashboard-header-image-desktop.png"
+                  srcset="../assets/images/dashboard-header-image-desktop.png"
                   type="image/png"
                   media="(min-width: 768px)"
                 />
                 <img
-                  src="/assets/images/dashboard-header-image-mobile.png"
+                  src="../assets/images/dashboard-header-image-mobile.png"
                   alt="Felicity Jewelry Banner"
                   class="w-full"
                 />
@@ -87,7 +87,7 @@
               <div class="px-4 -mt-4">
                 <div class="flex items-center gap-4">
                   <img
-                    src="/assets/images/Felicity.png"
+                    src="../assets/images/Felicity.png"
                     alt="Felicity"
                     class="w-28 h-28 rounded-full border-4 border-white shadow-lg md:w-32 md:h-32 md:border-8 md:shadow-xl"
                   />
@@ -97,7 +97,7 @@
                       Felicity Jewelry
                       <span class="inline-block ml-1 align-middle"
                         ><img
-                          src="/assets/icons/Verified.png"
+                          src="../assets/icons/Verified.png"
                           alt=""
                           class="w-4 h-4"
                       /></span>
@@ -145,7 +145,7 @@
 
               <div
                 id="productsContainer"
-                class="p-4 relative min-h-[40vh] hidden"
+                class="p-4 relative min-h-[40vh]"
               >
                 <h2 class="font-extrabold text-xl">Items</h2>
                 <button
@@ -155,6 +155,58 @@
                   <span aria-hidden="true">+</span> Add Items
                 </button>
                 <div id="products"></div>
+
+                <div id="forArfoEzekiel" class="flex justify-center">
+                  <div class = 'bg-white rounded-[30px] md:p-14 px-4 py-4  md:w-[878px] w-full relative'>
+                    <!--- "x" close icon only for PC-->
+                    <div class=" hidden md:block absolute top-[3%] left-[3%] cursor-pointer text-2xl"><h3>X</h3></div>
+                    <form class="">
+                        <div class="flex md:flex-row flex-col gap-6">
+                            <!--- "x" close icon only for mobile-->
+                            <div class=" md:hidden block py-4"><img src="../assets/icons/arrow-back.png" alt="back-button"></div>
+                            <div class="md:w-1/2 flex flex-col justify-between md:gap-0 gap-4">
+                                <p class="bg-primary text-4xl text-white rounded-full w-12 h-12 flex items-center justify-center font m-0 cursor-pointer">+</p>
+                                <h3 class="text-[]">Add new product</h3>
+
+                                <div class="flex flex-col gap-4">
+                                    <input class = "bg-[#EEECEC] rounded-[20px] pb-4 px-4 h-[58px] w-full flex flex-col items-start text-[10px] text-[#868686] focus:border-primary outline-none border-3 border-transparent" type="text" name="product-name" placeholder="Name of new product*">
+                                    <input class = "bg-[#EEECEC] rounded-[20px] pb-4 px-4 h-[58px] w-full flex flex-col items-start text-[10px] text-[#868686] focus:border-primary outline-none border-3 border-transparent" type="text" name="product-name" placeholder="Price of product *">
+                                    <textarea class = "bg-[#EEECEC] rounded-[20px] pb-14 pt-2 px-4 h-[109px] w-full flex flex-col items-start text-[10px] text-[#868686] scrollbar-hidden focus:border-primary outline-none border-3 border-transparent" type="text" name="product-name" placeholder="Discribe product *"></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="md:w-1/2">
+                                <div class="flex flex-col gap-4">
+                                    <input class = "bg-[#EEECEC] rounded-[20px] pb-4 px-4 h-[58px] w-full flex flex-col items-start text-[10px] text-[#868686] focus:border-primary outline-none border-3 border-transparent" type="text" name="product-name" placeholder="Stock Quantity">
+                                    <select class = "bg-[#EEECEC] rounded-[20px] px-4 pt-4 h-[58px] w-full flex flex-col justify-center text-2xl text-[#868686] focus:border-primary outline-none border-3 border-transparent" type="text" name="product-name" placeholder="Select Category">
+                                        <option class = 'hidden selected disabled'>Select Category</option>
+                                        <option>Electronics</option>
+                                        <option>Clothings</option>
+                                        <option>Handmade</option>
+                                    </select>
+
+                                    <label class = "bg-[#EEECEC] rounded-[20px]  px-4 h-[123px] w-full flex flex-col items-center justify-center text-[10px] " type="text" for = 'picture-of-product' placeholder="Discribe product *">
+                                        <input id = 'picture-of-product' class="hidden" name = 'picture-of-product' type="file" >
+                                        <img src="../assets/icons/shop.png">
+                                        <p class="text-[15px] p-4 text-[#868686]">Take a picture of Product</p>
+                                    </label>
+
+                                    <label class = "bg-[#EEECEC] rounded-[20px]  px-4 h-[123px] w-full flex flex-col items-center justify-center text-[10px] " type="text" for = 'picture-of-product' placeholder="Discribe product *">
+                                        <input id = 'picture-of-product' class="hidden" name = 'picture-of-product' type="file" >
+                                        <img src="../assets/icons/shop.png">
+                                        <p class="text-[15px] p-4 text-[#868686]">Add images from gallery</p>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full flex justify-center">
+                            <button class="bg-primary text-white w-[321px] p-4 mt-8 mb-2 rounded-full" type="submit">Add product to shop</button>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+
               </div>
 
               <div
@@ -171,9 +223,11 @@
 
       <div id="forAbiolaKehinde"></div>
 
-      <div id="forArfoEzekiel"></div>
+      
     </main>
 
     <script src="/scripts/user-dashboard-profile.js"></script>
+    <script src="../scripts/Arfo's_part.js"></script>
+
   </body>
 </html>
