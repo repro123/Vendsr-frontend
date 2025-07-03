@@ -189,9 +189,42 @@ document.addEventListener("DOMContentLoaded", function () {
     isValid &= validatePassword();
     isValid &= validateConfirmPassword();
 
-    // If form is valid, navigate to OTP page
+    // If form is valid, send to backend
     if (isValid) {
-      window.location.href = "../otp/";
+      const formData = {
+        fullName: document.getElementById("fullName").value.trim(),
+        username: document.getElementById("username").value.trim(),
+        phoneNumber: document.getElementById("phoneNumber").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value,
+        accountType: document.querySelector('input[name="accountType"]:checked')
+          ?.value,
+      };
+
+      fetch("http://localhost:5001/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to register. Please try again.");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Success:", data);
+          // Redirect to OTP page
+          window.location.href = "../otp/";
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert(
+            "Registration failed. Please check your input or try again later."
+          );
+        });
     }
   });
 

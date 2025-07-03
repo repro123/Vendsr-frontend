@@ -143,10 +143,7 @@
                 </button>
               </div>
 
-              <div
-                id="productsContainer"
-                class="p-4 relative min-h-[40vh]"
-              >
+              <div id="productsContainer" class="p-4 relative min-h-[40vh]">
                 <h2 class="font-extrabold text-xl">Items</h2>
                 <button
                   id="addProductItemMobile"
@@ -156,57 +153,128 @@
                 </button>
                 <div id="products"></div>
 
-                <div id="forArfoEzekiel" class="flex justify-center">
-                  <div class = 'bg-white rounded-[30px] md:p-14 px-4 py-4  md:w-[878px] w-full relative'>
+                <div id="forArfoEzekiel" class="justify-center hidden">
+                  <div
+                    class="bg-white rounded-[30px] md:p-14 px-4 py-4 md:w-[878px] w-full relative"
+                  >
                     <!--- "x" close icon only for PC-->
-                    <div class=" hidden md:block absolute top-[3%] left-[3%] cursor-pointer text-2xl"><h3>X</h3></div>
+                    <div
+                      class="hidden md:block absolute top-[3%] left-[3%] cursor-pointer text-2xl"
+                    >
+                      <h3>X</h3>
+                    </div>
                     <form class="">
-                        <div class="flex md:flex-row flex-col gap-6">
-                            <!--- "x" close icon only for mobile-->
-                            <div class=" md:hidden block py-4"><img src="../assets/icons/arrow-back.png" alt="back-button"></div>
-                            <div class="md:w-1/2 flex flex-col justify-between md:gap-0 gap-4">
-                                <p class="bg-primary text-4xl text-white rounded-full w-12 h-12 flex items-center justify-center font m-0 cursor-pointer">+</p>
-                                <h3 class="text-[]">Add new product</h3>
-
-                                <div class="flex flex-col gap-4">
-                                    <input class = "bg-[#EEECEC] rounded-[20px] pb-4 px-4 h-[58px] w-full flex flex-col items-start text-[10px] text-[#868686] focus:border-primary outline-none border-3 border-transparent" type="text" name="product-name" placeholder="Name of new product*">
-                                    <input class = "bg-[#EEECEC] rounded-[20px] pb-4 px-4 h-[58px] w-full flex flex-col items-start text-[10px] text-[#868686] focus:border-primary outline-none border-3 border-transparent" type="text" name="product-name" placeholder="Price of product *">
-                                    <textarea class = "bg-[#EEECEC] rounded-[20px] pb-14 pt-2 px-4 h-[109px] w-full flex flex-col items-start text-[10px] text-[#868686] scrollbar-hidden focus:border-primary outline-none border-3 border-transparent" type="text" name="product-name" placeholder="Discribe product *"></textarea>
-                                </div>
-
-                            </div>
-
-                            <div class="md:w-1/2">
-                                <div class="flex flex-col gap-4">
-                                    <input class = "bg-[#EEECEC] rounded-[20px] pb-4 px-4 h-[58px] w-full flex flex-col items-start text-[10px] text-[#868686] focus:border-primary outline-none border-3 border-transparent" type="text" name="product-name" placeholder="Stock Quantity">
-                                    <select class = "bg-[#EEECEC] rounded-[20px] px-4 pt-4 h-[58px] w-full flex flex-col justify-center text-2xl text-[#868686] focus:border-primary outline-none border-3 border-transparent" type="text" name="product-name" placeholder="Select Category">
-                                        <option class = 'hidden selected disabled'>Select Category</option>
-                                        <option>Electronics</option>
-                                        <option>Clothings</option>
-                                        <option>Handmade</option>
-                                    </select>
-
-                                    <label class = "bg-[#EEECEC] rounded-[20px]  px-4 h-[123px] w-full flex flex-col items-center justify-center text-[10px] " type="text" for = 'picture-of-product' placeholder="Discribe product *">
-                                        <input id = 'picture-of-product' class="hidden" name = 'picture-of-product' type="file" >
-                                        <img src="../assets/icons/shop.png">
-                                        <p class="text-[15px] p-4 text-[#868686]">Take a picture of Product</p>
-                                    </label>
-
-                                    <label class = "bg-[#EEECEC] rounded-[20px]  px-4 h-[123px] w-full flex flex-col items-center justify-center text-[10px] " type="text" for = 'picture-of-product' placeholder="Discribe product *">
-                                        <input id = 'picture-of-product' class="hidden" name = 'picture-of-product' type="file" >
-                                        <img src="../assets/icons/shop.png">
-                                        <p class="text-[15px] p-4 text-[#868686]">Add images from gallery</p>
-                                    </label>
-                                </div>
-                            </div>
+                      <div class="flex md:flex-row flex-col gap-6">
+                        <!--- "x" close icon only for mobile-->
+                        <div class="md:hidden block py-4">
+                          <img
+                            src="../assets/icons/arrow-back.png"
+                            alt="back-button"
+                          />
                         </div>
-                        <div class="w-full flex justify-center">
-                            <button class="bg-primary text-white w-[321px] p-4 mt-8 mb-2 rounded-full" type="submit">Add product to shop</button>
+                        <div
+                          class="md:w-1/2 flex flex-col justify-between md:gap-0 gap-4"
+                        >
+                          <p
+                            class="bg-primary text-4xl text-white rounded-full w-12 h-12 flex items-center justify-center font m-0 cursor-pointer"
+                          >
+                            +
+                          </p>
+                          <h3 class="text-[]">Add new product</h3>
+
+                          <div class="flex flex-col gap-4">
+                            <input
+                              class="bg-[#EEECEC] rounded-[20px] pb-4 px-4 h-[58px] w-full flex flex-col items-start text-[10px] text-[#868686] focus:border-primary outline-none border-3 border-transparent"
+                              type="text"
+                              name="product-name"
+                              placeholder="Name of new product*"
+                            />
+                            <input
+                              class="bg-[#EEECEC] rounded-[20px] pb-4 px-4 h-[58px] w-full flex flex-col items-start text-[10px] text-[#868686] focus:border-primary outline-none border-3 border-transparent"
+                              type="text"
+                              name="product-name"
+                              placeholder="Price of product *"
+                            />
+                            <textarea
+                              class="bg-[#EEECEC] rounded-[20px] pb-14 pt-2 px-4 h-[109px] w-full flex flex-col items-start text-[10px] text-[#868686] scrollbar-hidden focus:border-primary outline-none border-3 border-transparent"
+                              type="text"
+                              name="product-name"
+                              placeholder="Discribe product *"
+                            ></textarea>
+                          </div>
                         </div>
+
+                        <div class="md:w-1/2">
+                          <div class="flex flex-col gap-4">
+                            <input
+                              class="bg-[#EEECEC] rounded-[20px] pb-4 px-4 h-[58px] w-full flex flex-col items-start text-[10px] text-[#868686] focus:border-primary outline-none border-3 border-transparent"
+                              type="text"
+                              name="product-name"
+                              placeholder="Stock Quantity"
+                            />
+                            <select
+                              class="bg-[#EEECEC] rounded-[20px] px-4 pt-4 h-[58px] w-full flex flex-col justify-center text-2xl text-[#868686] focus:border-primary outline-none border-3 border-transparent"
+                              type="text"
+                              name="product-name"
+                              placeholder="Select Category"
+                            >
+                              <option class="hidden selected disabled">
+                                Select Category
+                              </option>
+                              <option>Electronics</option>
+                              <option>Clothings</option>
+                              <option>Handmade</option>
+                            </select>
+
+                            <label
+                              class="bg-[#EEECEC] rounded-[20px] px-4 h-[123px] w-full flex flex-col items-center justify-center text-[10px]"
+                              type="text"
+                              for="picture-of-product"
+                              placeholder="Discribe product *"
+                            >
+                              <input
+                                id="picture-of-product"
+                                class="hidden"
+                                name="picture-of-product"
+                                type="file"
+                              />
+                              <img src="../assets/icons/shop.png" />
+                              <p class="text-[15px] p-4 text-[#868686]">
+                                Take a picture of Product
+                              </p>
+                            </label>
+
+                            <label
+                              class="bg-[#EEECEC] rounded-[20px] px-4 h-[123px] w-full flex flex-col items-center justify-center text-[10px]"
+                              type="text"
+                              for="picture-of-product"
+                              placeholder="Discribe product *"
+                            >
+                              <input
+                                id="picture-of-product"
+                                class="hidden"
+                                name="picture-of-product"
+                                type="file"
+                              />
+                              <img src="../assets/icons/shop.png" />
+                              <p class="text-[15px] p-4 text-[#868686]">
+                                Add images from gallery
+                              </p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w-full flex justify-center">
+                        <button
+                          class="bg-primary text-white w-[321px] p-4 mt-8 mb-2 rounded-full"
+                          type="submit"
+                        >
+                          Add product to shop
+                        </button>
+                      </div>
                     </form>
                   </div>
                 </div>
-
               </div>
 
               <div
@@ -222,12 +290,9 @@
       </div>
 
       <div id="forAbiolaKehinde"></div>
-
-      
     </main>
 
     <script src="/scripts/user-dashboard-profile.js"></script>
     <script src="../scripts/Arfo's_part.js"></script>
-
   </body>
 </html>

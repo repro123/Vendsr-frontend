@@ -61,18 +61,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // Submit if valid
     if (isValid) {
       try {
-        // For demo purposes - will be replaced with actual fetch later
-        console.log("Submitting:", { username, password });
+        const response = await fetch("http://localhost:5001/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        });
 
-        // Simulate API call
-        await simulateAPICall();
+        if (!response.ok) {
+          const errorData = await response.json();
+          const errorMessage = errorData.message || "Invalid credentials";
+          showError(usernameInput, usernameError, errorMessage, true);
+          showError(passwordInput, passwordError, errorMessage, true);
+          throw new Error(errorMessage);
+        }
 
-        // On successful authentication:
-        // window.location.href = '/dashboard';
+        const data = await response.json();
+        console.log("Login successful:", data);
+        // window.location.href = "/dashboard";
       } catch (error) {
-        // Handle server errors
-        showError(usernameInput, usernameError, "Invalid credentials", true);
-        showError(passwordInput, passwordError, "Invalid credentials", true);
         console.error("Login failed:", error.message);
       }
     }
