@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
           ?.value,
       };
 
-      fetch("http://localhost:5001/api/auth/register", {
+      fetch("https://vendsr-backend.onrender.com/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

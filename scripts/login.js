@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Regular expressions for validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^\+?[0-9]{8,15}$/;
+  const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
   // Form submission handler
   loginForm.addEventListener("submit", async (e) => {
@@ -56,18 +57,28 @@ document.addEventListener("DOMContentLoaded", () => {
         "Password must be at least 8 characters"
       );
       isValid = false;
+    } else if (!strongPasswordRegex.test(password)) {
+      showError(
+        passwordInput,
+        passwordError,
+        "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+      );
+      isValid = false;
     }
 
     // Submit if valid
     if (isValid) {
       try {
-        const response = await fetch("http://localhost:5001/api/auth/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-        });
+        const response = await fetch(
+          "https://vendsr-backend.onrender.com/api/auth/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          }
+        );
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -126,17 +137,5 @@ document.addEventListener("DOMContentLoaded", () => {
       // For server-side errors
       errorElement.textContent = message;
     }
-  }
-
-  // Simulate API call (to be replaced with actual fetch)
-  function simulateAPICall() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // Simulate 70% success rate
-        Math.random() > 0.3
-          ? resolve()
-          : reject(new Error("Authentication failed"));
-      }, 1000);
-    });
   }
 });
