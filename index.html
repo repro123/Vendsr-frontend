@@ -17,7 +17,7 @@
     data-page="home"
   >
     <header class="bg-white sticky top-0 z-50 px-4 py-3">
-      <div class="flex items-center justify-between max-w-7xl mx-auto">
+      <div class="flex items-center justify-between max-w-6xl mx-auto">
         <a href="#" aria-label="Vendsr Home Page">
           <img src="./assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
         </a>
@@ -37,7 +37,7 @@
             <ul class="flex items-center gap-x-6">
               <li>
                 <a
-                  href="#"
+                  href="./signup/"
                   class="flex items-center gap-x-2 text-white bg-primary px-8 py-3 rounded-full hover:bg-primary/70 transition duration-300"
                   ><span>Get Started</span>
                   <img src="./assets/icons/arrow-right.png" alt=""
@@ -45,8 +45,8 @@
               </li>
               <li>
                 <a
-                  href="#"
-                  class="px-14 py-3 rounded-full hover:bg-primary/70 transition duration-300 text-primary border border-primary"
+                  href="./login/"
+                  class="px-14 py-3 rounded-full hover:bg-primary/70 hover:text-white transition duration-300 text-primary border border-primary"
                   >Sign In</a
                 >
               </li>
@@ -72,7 +72,7 @@
               <ul class="flex flex-col items-center gap-y-6 *:w-full">
                 <li>
                   <a
-                    href="#"
+                    href="./signup/"
                     class="bg-primary text-white justify-center py-3 rounded-full hover:bg-primary/70 transition duration-300 flex items-center gap-x-2"
                     ><span>Get Started</span>
                     <img src="./assets/icons/arrow-right.png" alt=""
@@ -80,7 +80,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="./login/"
                     class="border border-primary text-primary justify-center py-3 rounded-full hover:bg-primary/70 transition duration-300 flex items-center gap-x-2"
                     >Sign In</a
                   >
@@ -96,10 +96,10 @@
       class="px-4 min-h-[calc(100dvh-64px)] grid place-items-center max-md:py-12"
     >
       <div
-        class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
+        class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full"
       >
         <div
-          class="text-center md:text-left flex flex-col items-center md:items-start gap-4 md:gap-6"
+          class="text-center md:text-left flex flex-col items-center md:items-start gap-4 md:gap-6 md:w-2/3"
         >
           <h1 class="font-bold text-4xl">Sell smarter. Shop safer</h1>
           <p>
@@ -107,31 +107,44 @@
             <span class="block">Fast, flexible</span>
           </p>
           <div
-            class="flex flex-col md:flex-row items-center gap-4 md:w-full text-center"
+            class="flex flex-col md:flex-row items-center gap-4 md:w-fit text-center"
           >
             <a
-              href="#"
-              class="flex items-center gap-x-2 text-white whitespace-nowrap bg-primary px-8 py-3 rounded-full hover:bg-primary/70 transition duration-300 w-full"
+              href="./signup/"
+              class="flex items-center gap-x-2 text-white whitespace-nowrap bg-primary px-8 py-3 rounded-full hover:bg-primary/70 transition duration-300"
               ><span>Get Started</span>
               <img src="./assets/icons/arrow-right.png" alt=""
             /></a>
             <a
-              href="#"
-              class="px-14 py-3 rounded-full transition duration-300 whitespace-nowrap text-primary border border-primary w-full hover:bg-primary hover:text-white"
+              href="./login/"
+              class="px-14 py-3 rounded-full transition duration-300 whitespace-nowrap text-primary border border-primary hover:bg-primary hover:text-white"
               >Sign In</a
             >
           </div>
         </div>
 
-        <div class="max-md:-mt-24">
+        <div class="relative">
+          <img
+            src="./assets/images/hero-cart-mobile.png"
+            alt="Shopping cart"
+            class="absolute top-0 left-0 md:hidden w-20"
+          />
+          <img
+            src="./assets/images/hero-cart-desktop.png"
+            alt="Shopping cart"
+            class="absolute top-0 -left-1/4 hidden md:block w-28 xl:w-auto xl:-left-1/2 max-w-full"
+          />
+
           <picture>
             <source
-              srcset="./assets/images/hero-desktop.png"
+              srcset="./assets/images/updated-hero-desktop.png"
               media="(min-width: 768px)"
             />
             <img
-              src="./assets/images/hero-mobile.png"
+              src="./assets/images/updated-hero-mobile.png"
               alt="Happy shoppers buying new clothes via Vendsr"
+              loading="lazy"
+              class="mx-auto mt-10 md:mt-12"
             />
           </picture>
         </div>
