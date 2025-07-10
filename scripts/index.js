@@ -31,7 +31,7 @@ if (mobileNavButton) {
   // Close the mobile nav dialog when resizing the window to a width greater than 768px
   // This is to ensure that the dialog closes when switching from mobile to desktop view
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1024) {
       closeMobileNav();
     }
   });
