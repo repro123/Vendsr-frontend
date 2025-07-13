@@ -9,6 +9,8 @@
   --color-bodyBackground: #d6d1e8;
   --color-inputBackground: #ebe8f2;
   --color-lightWhite: #fafafa;
+  --color-btnText: #b8b8b8;
+  --color-footerLinksHeadingText: #a0a0a0;
 
   /* font families */
   --font-inter: "Inter", sans-serif;
@@ -49,5 +51,29 @@
   }
   .scrollbar-hidden::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Edge */
+  }
+
+  .FAQDivBtn {
+    /* font-poppins cursor-pointer text-btnText font-bold */
+    font-family: var(--font-poppins);
+    cursor: pointer;
+    color: var(--color-btnText);
+    font-weight: 700;
+    padding: 1rem;
+  }
+
+  .activeBtn {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+  }
+
+  .fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
   }
 }
