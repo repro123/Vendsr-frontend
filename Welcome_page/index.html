@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendsr Welcome Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../src/output.css" />
+  </head>
+  <body
+    class="min-h-dvh antialiased bg-white text-paragraphColor font-inter"
+    data-page="home"
+  >
+    <header class="bg-white sticky top-0 z-50 shadow-md px-4">
+      <div
+        class="container max-w-7xl mx-auto flex justify-between items-center py-3"
+      >
+        <a href="#" aria-label="Vendsr Home Page">
+          <img src="../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+        </a>
+
+        <nav aria-label="Desktop Navigation" class="hidden lg:block">
+          <ul class="flex items-center gap-x-6">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">How It Works</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+          </ul>
+        </nav>
+
+        <ul class="hidden lg:flex items-center gap-x-4">
+          <li>
+            <a
+              href="./signup/"
+              class="flex items-center gap-x-2 text-white bg-primary px-8 py-3 rounded-full hover:bg-primary/70 transition duration-300"
+              ><span>Get Started</span>
+              <img src="../assets/icons/arrow-right.png" alt=""
+            /></a>
+          </li>
+          <li>
+            <a
+              href="./login/"
+              class="px-14 py-3 rounded-full hover:bg-primary/70 hover:text-white transition duration-300 text-primary border border-primary"
+              >Sign In</a
+            >
+          </li>
+        </ul>
+
+        <button
+          aria-label="Open mobile navigation"
+          aria-expanded="false"
+          aria-controls="mobileNavDialog"
+          id="mobileNavButton"
+          class="lg:hidden"
+        >
+          <img src="../assets/icons/hamburger.png" alt="" />
+        </button>
+
+        <dialog
+          id="mobileNavDialog"
+          aria-labelledby="mobileNavButton"
+          class="max-h-dvh h-dvh w-full max-w-[18rem] sm:max-w-96 ml-auto"
+        >
+          <div
+            class="h-full relative pt-24 overflow-y-auto px-4 flex flex-col gap-y-6"
+          >
+            <button
+              id="mobileNavCloseButton"
+              aria-label="Close Mobile Nav"
+              class="absolute top-6 right-6 text-2xl font-bold text-primary focus:outline-primary focus:outline-2 rounded-full p-2 hover:bg-primary/10 cursor-pointer transition duration-300 h-12 w-12 grid place-items-center"
+            >
+              <span aria-hidden="true">X</span>
+            </button>
+
+            <nav aria-label="Mobile Navigation">
+              <ul class="flex flex-col gap-y-6 w-full">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">How It Works</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+              </ul>
+            </nav>
+
+            <ul
+              class="flex flex-col items-center gap-y-6 w-full *:w-full text-center"
+            >
+              <li>
+                <a
+                  href="./signup/"
+                  class="flex items-center gap-x-2 text-white bg-primary px-8 py-3 rounded-full hover:bg-primary/70 transition duration-300 w-full justify-center"
+                  ><span>Get Started</span>
+                  <img src="../assets/icons/arrow-right.png" alt=""
+                /></a>
+              </li>
+              <li>
+                <a
+                  href="./login/"
+                  class="px-14 py-3 rounded-full hover:bg-primary/70 hover:text-white transition duration-300 text-primary border border-primary w-full block"
+                  >Sign In</a
+                >
+              </li>
+            </ul>
+          </div>
+        </dialog>
+      </div>
+    </header>
+
+    <main class="box-border w-full">
+      <div class="flex flex-col items-center justify-center md:h-[40vw]">
+        <form id = 'welcome' >
+          <div class=" md:border md:border-2 rounded-2xl border-gray-200 py-8 md:px-14 px-4 relative">
+            <a class=" hidden md:block absolute top-10 cursor-pointer"><img src = '../assets/icons/arrow-back.png'></a>
+            <div class="flex items-center justify-center flex-col gap-2">
+              <h2 class="font-bold text-4xl text-center">Welcome to Vendsr</h2>
+              <h3>What would you like to do?</h3>
+            </div>
+            <div class="flex md:flex-row flex-col items-center justify-center gap-8 py-14">
+
+              <label for="merchant" class=" flex flex-col items-center justify-start gap-1 md:gap-0 border border-2 border-gray-200 rounded pb-4 md:w-[20vw] w-full  py-6 md:py-0 md:h-[170px]">
+                <input class="hidden" type="radio" name="category" value="merchant">
+                <img class="p-4" src = "../assets/images/user.png" alt="a merchant icon">
+                <h3 class="font-poppins font-bold text-xl">I want to sell</h3>
+                <p class="text-xl text-gray-500 ">Register as a Merchant</p>
+              </label>
+
+
+              <label for="merchant" class=" flex flex-col items-center justify-start gap-1 md:gap-0 border border-2 border-gray-200 rounded pb-4 md:w-[20vw] w-full  py-6 md:py-0 md:h-[170px]">
+                <input class="hidden" type="radio" name="category" value="customer">
+                <img class="p-4" src = "../assets/images/user.png" alt="a customer icon">
+                <h3 class="font-poppins font-bold text-xl">I want to shop</h3>
+                <p class="text-xl text-gray-500 ">Continue as a customer</p>
+              </label>
+
+            </div>
+            <div class="flex flex-row justify-center">
+              <button class="bg-[#522E9A33] text-black font-bold cursor-pointer md:w-[50%] w-full rounded-full p-4 text-center hover:bg-primary hover:text-white" type = 'submit'>Continue</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+    </main>
+
+    <footer class="bg-primary px-4 py-16 pb-8 text-white mt-16">
+      <div class="container mx-auto max-w-7xl">
+        <div>
+          <div
+            class="flex flex-col lg:grid grid-cols-[1fr_1fr] gap-8 lg:gap-16"
+          >
+            <div>
+              <span class="grid place-items-center bg-white p-2 w-fit">
+                <img src="../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+              </span>
+
+              <p class="mt-4">
+                Powering Nigeria’s everyday entrepreneurs — from street hustlers
+                to rising brands. Create your online store, share your link, and
+                sell with ease
+              </p>
+            </div>
+
+            <div
+              class="flex max-lg:justify-between lg:flex-row gap-8 lg:gap-16"
+            >
+              <div class="flex flex-col gap-4">
+                <p class="text-footerLinksHeadingText">Links</p>
+
+                <ul class="flex flex-col gap-2">
+                  <li>
+                    <a href="#" class="underline hover:no-underline">Home</a>
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline"
+                      >Features</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline"
+                      >How it Works</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline"
+                      >Create Store</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline"
+                      >Browse Stores</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline"
+                      >Contact Us</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline"
+                      >About Us</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline">FAQs</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="flex flex-col gap-4">
+                <p class="text-footerLinksHeadingText">Socials</p>
+
+                <ul class="flex flex-col gap-2">
+                  <li>
+                    <a href="#" class="underline hover:no-underline">Twitter</a>
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline"
+                      >LinkedIn</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline"
+                      >Instagram</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline"
+                      >Facebook</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <div class="flex flex-col gap-4">
+                <p class="text-footerLinksHeadingText">Legal</p>
+
+                <ul class="flex flex-col gap-2">
+                  <li>
+                    <a href="#" class="underline hover:no-underline">Terms</a>
+                  </li>
+                  <li>
+                    <a href="#" class="underline hover:no-underline"
+                      >Privacy Policy</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 lg:flex lg:justify-end">
+            <div class="w-1/2">
+              <p>Stay updated</p>
+              <p>
+                Be the first to know about new features, seller tips, success
+                stories, and exclusive updates from the Vendsr community.
+              </p>
+
+              <div class="mt-4">
+                <form
+                  action=""
+                  class="flex flex-col gap-4 rounded-lg relative overflow-hidden"
+                >
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    required
+                    autocomplete="email"
+                    class="bg-white rounded-lg placeholder:text-gray-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary transition duration-300 text-black"
+                  />
+                  <button
+                    type="submit"
+                    class="bg-black text-white px-4 py-2 rounded-lg cursor-pointer transition duration-300 md:absolute md:right-0 md:top-0 hover:bg-gray-800 focus:bg-gray-800 focus:outline-none"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-6 lg:flex-row lg:justify-center mt-12">
+          <p>
+            &copy; 2023 Vendsr. All rights reserved. Built for Nigerian
+            businesses
+          </p>
+          <p><a href="#" class="underline">Privacy Policy</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../scripts/index.js"></script>
+    <script src="../scripts/welcome_page"></script>
+  </body>
+</html>
