@@ -58,7 +58,7 @@
     --color-footerLinksHeadingText: #a0a0a0;
     --font-inter: "Inter", sans-serif;
     --font-poppins: "Poppins", sans-serif;
-    --text-primaryHeading: clamp(2.5rem, 2.071rem + 2.143vw, 4rem);
+    --text-primaryHeading: clamp(2rem, 1.286rem + 1.905vw, 3rem);
     --text-secondaryHeading: clamp(2rem, 1.571rem + 2.143vw, 3.5rem);
     --text-tertiaryHeading: clamp(1.5rem, 1.357rem + 0.714vw, 2rem);
     --text-quatenaryHeading: clamp(1.25rem, 1.179rem + 0.357vw, 1.5rem);
