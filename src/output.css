@@ -210,9 +210,6 @@
   }
 }
 @layer utilities {
-  .visible {
-    visibility: visible;
-  }
   .sr-only {
     position: absolute;
     width: 1px;
@@ -353,9 +350,6 @@
   .hidden {
     display: none;
   }
-  .inline {
-    display: inline;
-  }
   .inline-block {
     display: inline-block;
   }
@@ -423,6 +417,9 @@
   }
   .w-28 {
     width: calc(var(--spacing) * 28);
+  }
+  .w-\[80\%\] {
+    width: 80%;
   }
   .w-\[321px\] {
     width: 321px;
@@ -1309,6 +1306,11 @@
       width: fit-content;
     }
   }
+  .md\:min-w-1\/2 {
+    @media (width >= 48rem) {
+      min-width: calc(1/2 * 100%);
+    }
+  }
   .md\:flex-1 {
     @media (width >= 48rem) {
       flex: 1;
@@ -1486,6 +1488,11 @@
   .lg\:p-16 {
     @media (width >= 64rem) {
       padding: calc(var(--spacing) * 16);
+    }
+  }
+  .lg\:px-12 {
+    @media (width >= 64rem) {
+      padding-inline: calc(var(--spacing) * 12);
     }
   }
   .lg\:text-left {

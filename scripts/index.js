@@ -53,7 +53,7 @@ function closeMobileNav() {
   }
 }
 
-//  FAQ sectiondocument.addEventListener("DOMContentLoaded", () => {
+//  FAQ section
 // Toggle FAQ Sections
 const merchantsBtn = document.getElementById("merchantsFAQDivBtn");
 const shoppersBtn = document.getElementById("shoppersFAQDivBtn");
@@ -90,46 +90,6 @@ accordionButtons.forEach((button) => {
     button.setAttribute("aria-expanded", !expanded);
     panel.setAttribute("aria-hidden", expanded);
   });
-});
-
-const container = document.getElementById("testimonialContainer");
-const radios = document.querySelectorAll("#testimonialRadios .radio");
-const items = container.querySelectorAll("div.testimonial");
-
-// Helper to update active radio
-function updateActiveRadio(index) {
-  radios.forEach((radio, i) => {
-    radio.classList.toggle("bg-primary", i === index);
-    radio.classList.toggle("bg-gray-400", i !== index);
-  });
-}
-
-// Scroll listener to track visible testimonial
-container.addEventListener("scroll", () => {
-  const scrollLeft = container.scrollLeft;
-  const width = container.clientWidth;
-  const index = Math.round(scrollLeft / width);
-  updateActiveRadio(index);
-});
-
-// Radio click handler
-radios.forEach((radio, index) => {
-  radio.addEventListener("click", () => {
-    items[index].scrollIntoView({ behavior: "smooth", inline: "start" });
-  });
-});
-
-// Left/Right Arrow Key Navigation
-container.addEventListener("keydown", (e) => {
-  const width = container.clientWidth;
-  const scrollLeft = container.scrollLeft;
-  const index = Math.round(scrollLeft / width);
-
-  if (e.key === "ArrowRight" && index < items.length - 1) {
-    items[index + 1].scrollIntoView({ behavior: "smooth", inline: "start" });
-  } else if (e.key === "ArrowLeft" && index > 0) {
-    items[index - 1].scrollIntoView({ behavior: "smooth", inline: "start" });
-  }
 });
 
 // HERO SECTION ANIMATION
@@ -196,3 +156,5 @@ updateHeroContent();
 
 // Repeat every 4 seconds
 setInterval(updateHeroContent, 4000);
+
+// testimonials slider
