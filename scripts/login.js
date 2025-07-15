@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
       isValid = false;
     }
 
-    shafted;
     // Password validation
     if (!password) {
       showError(passwordInput, passwordError, "Password is required");

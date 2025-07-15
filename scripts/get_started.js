@@ -91,8 +91,8 @@ form.addEventListener("submit", (e) => {
   const role = selected.value;
 
   if (role === "merchant") {
-    window.location.href = "./merchant/sign-up";
+    window.location.href = "../merchant/sign-up";
   } else if (role === "customer") {
-    window.location.href = "./shopper/sign-up";
+    window.location.href = "../shopper/sign-up";
   }
 });

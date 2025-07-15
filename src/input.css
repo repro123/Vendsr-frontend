@@ -18,8 +18,8 @@
 
   /* font sizes */
   --text-primaryHeading: clamp(2rem, 1.286rem + 1.905vw, 3rem);
-  --text-secondaryHeading: clamp(2rem, 1.571rem + 2.143vw, 3.5rem);
-  --text-tertiaryHeading: clamp(1.5rem, 1.357rem + 0.714vw, 2rem);
+  --text-secondaryHeading: clamp(1.5rem, 0.786rem + 1.905vw, 2.5rem);
+  --text-tertiaryHeading: clamp(1.25rem, 0.714rem + 1.429vw, 2rem);
   --text-quatenaryHeading: clamp(1.25rem, 1.179rem + 0.357vw, 1.5rem);
 }
 

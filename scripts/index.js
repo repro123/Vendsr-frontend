@@ -57,7 +57,6 @@ function closeMobileNav() {
 // Toggle FAQ Sections
 const merchantsBtn = document.getElementById("merchantsFAQDivBtn");
 const shoppersBtn = document.getElementById("shoppersFAQDivBtn");
-
 const merchantsDiv = document.getElementById("merchantsFAQDiv");
 const shoppersDiv = document.getElementById("shoppersFAQDiv");
 
@@ -213,3 +212,21 @@ container.addEventListener("mouseleave", resumeScroll);
 // Event listeners for touch
 container.addEventListener("touchstart", pauseScroll);
 container.addEventListener("touchend", resumeScroll);
+
+// see more buttons
+document.querySelectorAll(".seeMoreBtn").forEach((button) => {
+  button.addEventListener("click", () => {
+    const targetId = button.getAttribute("aria-controls");
+    const targetDiv = document.getElementById(targetId);
+    const spanText = button.querySelector("span");
+
+    const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+    // Toggle the hidden class
+    targetDiv.classList.toggle("hidden", isExpanded);
+
+    // Update button text and attributes
+    spanText.textContent = isExpanded ? "See More" : "See Less";
+    button.setAttribute("aria-expanded", (!isExpanded).toString());
+  });
+});
