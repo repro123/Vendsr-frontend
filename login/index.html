@@ -25,7 +25,7 @@
     </header>
 
     <main
-      class="min-h-screen md:min-h-[calc(100vh-3.5rem)] sm:grid sm:place-items-center sm:p-4"
+      class="min-h-screen md:min-h-[calc(100vh-3.5rem)] sm:grid sm:place-items-center sm:p-4 max-md:bg-white"
     >
       <div
         class="w-full mx-auto flex flex-col gap-6 h-full bg-white p-4 sm:h-auto sm:max-w-xl sm:p-8 sm:rounded-2xl md:px-8"
@@ -66,14 +66,28 @@
 
               <div class="flex flex-col gap-2">
                 <label for="password" class="font-semibold">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  required
-                  name="password"
-                  placeholder="Enter your password"
-                  class="form-input"
-                />
+                <div class="relative">
+                  <input
+                    type="password"
+                    id="password"
+                    required
+                    name="password"
+                    placeholder="Enter your password"
+                    class="form-input"
+                  />
+                  <button
+                    type="button"
+                    aria-label="Toggle password visibility"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer flex items-center justify-center group"
+                    data-state="hidden"
+                  >
+                    <img
+                      src="../assets/icons/passwordeye.png"
+                      alt="Show password"
+                      class="group-data-[state='visible']:rotate-180 duration-300"
+                    />
+                  </button>
+                </div>
                 <p
                   id="passwordError"
                   class="text-red-500"
@@ -96,6 +110,10 @@
               Sign in
             </button>
           </form>
+          <p>
+            Don't have an account?
+            <a href="../Get_Started/" class="font-bold mt-2">Sign Up</a>
+          </p>
         </section>
       </div>
     </main>
