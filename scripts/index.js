@@ -158,3 +158,58 @@ updateHeroContent();
 setInterval(updateHeroContent, 4000);
 
 // testimonials slider
+const container = document.getElementById("testimonialContainer");
+const testimonials = container.querySelectorAll(".testimonial");
+let scrollInterval;
+let isPaused = false;
+
+// Clone testimonials for infinite scroll
+const cloneTestimonials = () => {
+  testimonials.forEach((testimonial) => {
+    const clone = testimonial.cloneNode(true);
+    container.appendChild(clone);
+  });
+  container.style.overflowX = "auto";
+  container.style.scrollSnapType = "none";
+};
+
+// Scroll function
+const startScrolling = () => {
+  scrollInterval = setInterval(() => {
+    if (!isPaused) {
+      const scrollWidth = container.scrollWidth;
+      const currentScroll = container.scrollLeft;
+      const originalContentWidth = scrollWidth / 2; // Since content is doubled
+      const viewportWidth = container.offsetWidth;
+
+      // Check if we've scrolled past the original content
+      if (currentScroll >= originalContentWidth) {
+        // Reset to the start of the original testimonials
+        container.scrollLeft = currentScroll - originalContentWidth;
+      } else {
+        container.scrollLeft += 0.5; // Slow scroll speed
+      }
+    }
+  }, 16); // 60fps for smooth animation
+};
+
+// Pause on hover/touch
+const pauseScroll = () => {
+  isPaused = true;
+};
+
+const resumeScroll = () => {
+  isPaused = false;
+};
+
+// Initialize
+cloneTestimonials();
+startScrolling();
+
+// Event listeners for hover
+container.addEventListener("mouseenter", pauseScroll);
+container.addEventListener("mouseleave", resumeScroll);
+
+// Event listeners for touch
+container.addEventListener("touchstart", pauseScroll);
+container.addEventListener("touchend", resumeScroll);

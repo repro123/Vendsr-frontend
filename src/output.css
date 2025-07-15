@@ -418,9 +418,6 @@
   .w-28 {
     width: calc(var(--spacing) * 28);
   }
-  .w-\[80\%\] {
-    width: 80%;
-  }
   .w-\[321px\] {
     width: 321px;
   }
