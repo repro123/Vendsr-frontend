@@ -16,7 +16,7 @@
     class="min-h-dvh antialiased bg-white text-paragraphColor font-inter"
     data-page="home"
   >
-    <header class="bg-white sticky top-0 z-50 shadow-md px-4">
+    <header class="bg-white sticky top-0 z-50 shadow-md px-4 md:px-8 lg:px-12">
       <div
         class="container max-w-7xl mx-auto flex justify-between items-center py-3"
       >
@@ -44,7 +44,7 @@
           </li>
           <li>
             <a
-              href="./login/"
+              href="./Get_Started/"
               class="px-14 py-3 rounded-full hover:bg-primary/70 hover:text-white transition duration-300 text-primary border border-primary"
               >Sign In</a
             >
@@ -99,7 +99,7 @@
               </li>
               <li>
                 <a
-                  href="./login/"
+                  href="./Get_Started/"
                   class="px-14 py-3 rounded-full hover:bg-primary/70 hover:text-white transition duration-300 text-primary border border-primary w-full block"
                   >Sign In</a
                 >
@@ -111,7 +111,7 @@
     </header>
 
     <main>
-      <section class="hero px-4 py-16">
+      <section class="hero px-4 py-16 md:px-8 lg:px-12">
         <div
           class="container max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center text-center lg:text-left"
         >
@@ -163,7 +163,7 @@
         </div>
       </section>
 
-      <section class="stats px-4 py-16 bg-primary">
+      <section class="stats px-4 md:px-8 lg:px-12 py-16 bg-primary">
         <div class="container max-w-7xl mx-auto">
           <ul
             class="flex flex-col gap-12 items-center lg:flex-row lg:justify-between"
@@ -199,7 +199,7 @@
         </div>
       </section>
 
-      <section class="whyVendsr px-4 py-16">
+      <section class="whyVendsr px-4 md:px-8 lg:px-12 py-16">
         <div class="container max-w-7xl mx-auto">
           <h2
             class="font-poppins text-secondaryHeading leading-tight text-center font-bold"
@@ -207,91 +207,173 @@
             Why Vendsr? A Powerful Yet Simple Tool for Merchants and Shoppers
           </h2>
 
-          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12 mt-12">
-            <div class="flex flex-col gap-6">
-              <img
-                src="./assets/images/cart.png"
-                alt="Cart"
-                class="w-12 h-12"
-                loading="lazy"
-              />
-              <h3 class="font-poppins text-tertiaryHeading font-semibold">
-                Create Your Own Online Store – In Minutes
-              </h3>
-              <p>
-                You don’t need a website. You don’t need a developer. With
-                Vendsr, you can set up a beautiful online store directly from
-                your phone. Upload your product photos, enter the names, prices,
-                and descriptions, and boom, your store is live with a unique
-                link you can share anywhere. Whether you're selling Ankara,
-                pastries, perfumes, or soft drinks, you’ll have a store that’s
-                ready to receive orders 24/7.
-              </p>
+          <div class="mt-12">
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+            >
+              <div
+                class="flex flex-col items-center gap-4 text-center w-full border-2 rounded-lg p-6 border-btnText"
+              >
+                <img
+                  src="./assets/images/cart.png"
+                  alt="cart"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <p class="capitalize">create your own store in minutes</p>
+              </div>
+
+              <div
+                class="flex flex-col items-center gap-4 text-center w-full border-2 rounded-lg p-6 border-btnText"
+              >
+                <img
+                  src="./assets/images/package.png"
+                  alt="package"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <p class="capitalize">manage orders like a pro</p>
+              </div>
+
+              <div
+                class="flex flex-col items-center gap-4 text-center w-full border-2 rounded-lg p-6 border-btnText"
+              >
+                <img
+                  src="./assets/images/analytics.png"
+                  alt="analytics"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <p class="capitalize">analytics to help you grow</p>
+              </div>
+
+              <div
+                class="flex flex-col items-center gap-4 text-center w-full border-2 rounded-lg p-6 border-btnText"
+              >
+                <img
+                  src="./assets/images/user.png"
+                  alt="shoppper"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <p class="capitalize">shopper-friendly shopping experience</p>
+              </div>
             </div>
 
-            <div class="flex flex-col gap-6">
-              <img
-                src="./assets/images/package.png"
-                alt="Package"
-                class="w-12 h-12"
-                loading="lazy"
-              />
-              <h3 class="font-poppins text-tertiaryHeading font-semibold">
-                Manage Orders Like a Pro
-              </h3>
-              <p>
-                Every order your customers place is tracked in your dashboard.
-                You’ll see what’s pending, what’s paid for, and what’s
-                delivered. You can update the status of orders in real-time so
-                your customers stay informed and confident. Whether it’s one
-                order a day or fifty, you’ll stay organized and in control.
-              </p>
-            </div>
+            <button
+              aria-expanded="false"
+              class="seeMoreBtn mt-8 flex items-center gap-2 justify-center text-primary font-semibold hover:text-primary/70 transition duration-300 cursor-pointer max-md:mx-auto md:ml-auto"
+              aria-controls="why-vendsr"
+            >
+              <span>See More</span>
+              <img src="./assets/icons/see-more.png" alt="" />
+            </button>
+          </div>
 
-            <div class="flex flex-col gap-6">
-              <img
-                src="./assets/images/analytics.png"
-                alt="Analytics"
-                class="w-12 h-12"
-                loading="lazy"
-              />
-              <h3 class="font-poppins text-tertiaryHeading font-semibold">
-                Analytics to Help You Grow
-              </h3>
-              <p>
-                Vendsr doesn’t just help you sell - it helps you grow. Get
-                simple, clear insights into how your business is doing. Which
-                products are selling the most? What days are your customers most
-                active? How much have you earned this month? Our built-in
-                analytics give you all the answers, so you can make smarter
-                decisions without stress.
-              </p>
-            </div>
+          <div id="why-vendsr" class="mt-12 hidden">
+            <h3
+              class="font-poppins text-secondaryHeading leading-tight text-center font-bold"
+            >
+              Simple Tool for Merchants and Shoppers
+            </h3>
+            <p class="text-center mt-4 max-w-prose mx-auto">
+              Vendsr is more than just a platform; it’s a digital launchpad for
+              Nigeria’s small businesses, side hustlers, informal vendors, and
+              everyday shoppers. Whether you sell food from your kitchen, run a
+              fashion brand on WhatsApp, or manage a mini store at your street
+              corner, Vendsr gives you the tools to go digital without the
+              stress, cost, or technical headache.
+            </p>
+            <p class="mt-4 font-bold">
+              Here's a full look at what Vendsr offers you:
+            </p>
 
-            <div class="flex flex-col gap-6">
-              <img
-                src="./assets/images/user.png"
-                alt="User"
-                class="w-12 h-12"
-                loading="lazy"
-              />
-              <h3 class="font-poppins text-tertiaryHeading font-semibold">
-                Friendly Shopping Experience
-              </h3>
-              <p>
-                We didn’t just think of the seller; we also made things easy for
-                the buyer. Your customers don’t need to download an app or
-                create an account. They just click your link, view your
-                products, pay securely, and receive updates. No confusion. No
-                hidden fees. Just smooth, stress-free shopping — the way it
-                should be.
-              </p>
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12 mt-12">
+              <div class="flex flex-col gap-6">
+                <img
+                  src="./assets/images/cart.png"
+                  alt="Cart"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <h3 class="font-poppins text-tertiaryHeading font-semibold">
+                  Create Your Own Online Store – In Minutes
+                </h3>
+                <p>
+                  You don’t need a website. You don’t need a developer. With
+                  Vendsr, you can set up a beautiful online store directly from
+                  your phone. Upload your product photos, enter the names,
+                  prices, and descriptions, and boom, your store is live with a
+                  unique link you can share anywhere. Whether you're selling
+                  Ankara, pastries, perfumes, or soft drinks, you’ll have a
+                  store that’s ready to receive orders 24/7.
+                </p>
+              </div>
+
+              <div class="flex flex-col gap-6">
+                <img
+                  src="./assets/images/package.png"
+                  alt="Package"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <h3 class="font-poppins text-tertiaryHeading font-semibold">
+                  Manage Orders Like a Pro
+                </h3>
+                <p>
+                  Every order your customers place is tracked in your dashboard.
+                  You’ll see what’s pending, what’s paid for, and what’s
+                  delivered. You can update the status of orders in real-time so
+                  your customers stay informed and confident. Whether it’s one
+                  order a day or fifty, you’ll stay organized and in control.
+                </p>
+              </div>
+
+              <div class="flex flex-col gap-6">
+                <img
+                  src="./assets/images/analytics.png"
+                  alt="Analytics"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <h3 class="font-poppins text-tertiaryHeading font-semibold">
+                  Analytics to Help You Grow
+                </h3>
+                <p>
+                  Vendsr doesn’t just help you sell - it helps you grow. Get
+                  simple, clear insights into how your business is doing. Which
+                  products are selling the most? What days are your customers
+                  most active? How much have you earned this month? Our built-in
+                  analytics give you all the answers, so you can make smarter
+                  decisions without stress.
+                </p>
+              </div>
+
+              <div class="flex flex-col gap-6">
+                <img
+                  src="./assets/images/user.png"
+                  alt="User"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <h3 class="font-poppins text-tertiaryHeading font-semibold">
+                  Friendly Shopping Experience
+                </h3>
+                <p>
+                  We didn’t just think of the seller; we also made things easy
+                  for the buyer. Your customers don’t need to download an app or
+                  create an account. They just click your link, view your
+                  products, pay securely, and receive updates. No confusion. No
+                  hidden fees. Just smooth, stress-free shopping — the way it
+                  should be.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="workflow px-4 py-16">
+      <section class="workflow px-4 md:px-8 lg:px-12 py-16">
         <div class="container max-w-7xl mx-auto">
           <h2
             class="font-poppins text-secondaryHeading leading-tight text-center font-bold"
@@ -423,7 +505,7 @@
         </div>
       </section>
 
-      <section class="px-4">
+      <section class="px-4 md:px-8 lg:px-12">
         <div
           class="container max-w-7xl mx-auto bg-bodyBackground rounded-2xl p-8 md:p-12 lg:p-16 grid place-items-center text-center gap-8"
         >
@@ -445,7 +527,7 @@
         </div>
       </section>
 
-      <section class="socialMediaIntegration px-4 py-16">
+      <section class="socialMediaIntegration px-4 md:px-8 lg:px-12 py-16">
         <div class="container max-w-7xl mx-auto">
           <h2
             class="font-poppins text-secondaryHeading leading-tight text-center font-bold"
@@ -465,99 +547,165 @@
             safer.
           </p>
 
-          <ul class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <li class="flex flex-col gap-6">
-              <img
-                src="./assets/images/WhatsApp.png"
-                alt="Whatsapp"
-                class="size-12"
-                loading="lazy"
-              />
-              <h3 class="font-poppins text-tertiaryHeading font-semibold">
-                Whatsapp Integration
-              </h3>
-              <p>
-                Vendsr works seamlessly with WhatsApp, where most Nigerian
-                sellers already run their business.
-              </p>
-              <p>
-                Just create your store once, then share your store link in
-                personal chats, group chats, broadcast lists, your whatsApp
-                status
-              </p>
-            </li>
+          <div class="mt-12">
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+            >
+              <div
+                class="flex flex-col items-center gap-4 text-center w-full border-2 rounded-lg p-6 border-btnText"
+              >
+                <img
+                  src="./assets/images/WhatsApp.png"
+                  alt="whatsapp"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <p class="capitalize">whatsapp integration</p>
+              </div>
 
-            <li class="flex flex-col gap-6">
-              <img
-                src="./assets/images/Instagram.png"
-                alt="Instagram"
-                class="size-12"
-                loading="lazy"
-              />
-              <h3 class="font-poppins text-tertiaryHeading font-semibold">
-                Instagram Integration
-              </h3>
-              <p>
-                Instagram is perfect for showing off your products — but likes
-                and DMs don’t always turn into sales. Vendsr helps you bridge
-                that gap.
-              </p>
-              <p>
-                Once your store is live, simply add the link to your bio, story
-                stickers (for swipe-up or link buttons) and post captions.
-              </p>
-            </li>
+              <div
+                class="flex flex-col items-center gap-4 text-center w-full border-2 rounded-lg p-6 border-btnText"
+              >
+                <img
+                  src="./assets/images/Instagram.png"
+                  alt="instagram"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <p class="capitalize">instagram integration</p>
+              </div>
 
-            <li class="flex flex-col gap-6">
-              <img
-                src="./assets/images/Facebook.png"
-                alt="Instagram"
-                class="size-12"
-                loading="lazy"
-              />
-              <h3 class="font-poppins text-tertiaryHeading font-semibold">
-                Facebook Integration
-              </h3>
-              <p>
-                Still selling on Facebook pages or local market groups? Perfect.
-                Vendsr lets you drop your store link directly in your posts. Pin
-                your store link to your business page, Drop it in group posts
-                with full descriptions, and Use Facebook Ads to send traffic
-                directly to your product page
-              </p>
-              <p>
-                You keep doing what you’re already doing but now it’s organized,
-                trackable, and secure.
-              </p>
-            </li>
+              <div
+                class="flex flex-col items-center gap-4 text-center w-full border-2 rounded-lg p-6 border-btnText"
+              >
+                <img
+                  src="./assets/images/Facebook.png"
+                  alt="facebook"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <p class="capitalize">facebook integration</p>
+              </div>
 
-            <li class="flex flex-col gap-6">
-              <img
-                src="./assets/images/TikTok.png"
-                alt="TikTok"
-                class="size-12"
-                loading="lazy"
-              />
-              <h3 class="font-poppins text-tertiaryHeading font-semibold">
-                Tiktok Integration
-              </h3>
-              <p>
-                Your business videos on TikTok shouldn’t just go viral — they
-                should make you money. Add your Vendsr link to your TikTok bio,
-                mention it in your video captions, Use it with influencer
-                shoutouts or product demos, include custom affiliate codes for
-                creators (coming soon).
-              </p>
-              <p>
-                Now your followers can click and buy your product instantly. Let
-                your content sell for you even while you sleep.
-              </p>
-            </li>
-          </ul>
+              <div
+                class="flex flex-col items-center gap-4 text-center w-full border-2 rounded-lg p-6 border-btnText"
+              >
+                <img
+                  src="./assets/images/TikTok.png"
+                  alt="Tiktok"
+                  class="w-12 h-12"
+                  loading="lazy"
+                />
+                <p class="capitalize">tiktok integration</p>
+              </div>
+            </div>
+
+            <button
+              aria-expanded="false"
+              class="seeMoreBtn mt-8 flex items-center gap-2 justify-center text-primary font-semibold hover:text-primary/70 transition duration-300 cursor-pointer max-md:mx-auto md:ml-auto"
+              aria-controls="socialMediaIntegration"
+            >
+              <span>See More</span>
+              <img src="./assets/icons/see-more.png" alt="" />
+            </button>
+          </div>
+
+          <div class="hidden mt-12" id="socialMediaIntegration">
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <li class="flex flex-col gap-6">
+                <img
+                  src="./assets/images/WhatsApp.png"
+                  alt="Whatsapp"
+                  class="size-12"
+                  loading="lazy"
+                />
+                <h3 class="font-poppins text-tertiaryHeading font-semibold">
+                  Whatsapp Integration
+                </h3>
+                <p>
+                  Vendsr works seamlessly with WhatsApp, where most Nigerian
+                  sellers already run their business.
+                </p>
+                <p>
+                  Just create your store once, then share your store link in
+                  personal chats, group chats, broadcast lists, your whatsApp
+                  status
+                </p>
+              </li>
+
+              <li class="flex flex-col gap-6">
+                <img
+                  src="./assets/images/Instagram.png"
+                  alt="Instagram"
+                  class="size-12"
+                  loading="lazy"
+                />
+                <h3 class="font-poppins text-tertiaryHeading font-semibold">
+                  Instagram Integration
+                </h3>
+                <p>
+                  Instagram is perfect for showing off your products — but likes
+                  and DMs don’t always turn into sales. Vendsr helps you bridge
+                  that gap.
+                </p>
+                <p>
+                  Once your store is live, simply add the link to your bio,
+                  story stickers (for swipe-up or link buttons) and post
+                  captions.
+                </p>
+              </li>
+
+              <li class="flex flex-col gap-6">
+                <img
+                  src="./assets/images/Facebook.png"
+                  alt="Instagram"
+                  class="size-12"
+                  loading="lazy"
+                />
+                <h3 class="font-poppins text-tertiaryHeading font-semibold">
+                  Facebook Integration
+                </h3>
+                <p>
+                  Still selling on Facebook pages or local market groups?
+                  Perfect. Vendsr lets you drop your store link directly in your
+                  posts. Pin your store link to your business page, Drop it in
+                  group posts with full descriptions, and Use Facebook Ads to
+                  send traffic directly to your product page
+                </p>
+                <p>
+                  You keep doing what you’re already doing but now it’s
+                  organized, trackable, and secure.
+                </p>
+              </li>
+
+              <li class="flex flex-col gap-6">
+                <img
+                  src="./assets/images/TikTok.png"
+                  alt="TikTok"
+                  class="size-12"
+                  loading="lazy"
+                />
+                <h3 class="font-poppins text-tertiaryHeading font-semibold">
+                  Tiktok Integration
+                </h3>
+                <p>
+                  Your business videos on TikTok shouldn’t just go viral — they
+                  should make you money. Add your Vendsr link to your TikTok
+                  bio, mention it in your video captions, Use it with influencer
+                  shoutouts or product demos, include custom affiliate codes for
+                  creators (coming soon).
+                </p>
+                <p>
+                  Now your followers can click and buy your product instantly.
+                  Let your content sell for you even while you sleep.
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      <section class="FAQ px-4 py-16">
+      <section class="FAQ px-4 md:px-8 lg:px-12 py-16">
         <div class="container max-w-7xl mx-auto">
           <h2
             class="font-poppins text-secondaryHeading leading-tight text-center font-bold"
@@ -583,9 +731,7 @@
 
           <div id="merchantsFAQDiv" class="mt-12">
             <ul class="flex flex-col w-full gap-6 overflow-hidden">
-              <li
-                class="flex flex-col gap-2 border border-btnText shadow-lg rounded-lg"
-              >
+              <li class="flex flex-col gap-2 border border-btnText rounded-lg">
                 <h3>
                   <button
                     type="button"
@@ -621,9 +767,7 @@
                 </div>
               </li>
 
-              <li
-                class="flex flex-col gap-2 border border-btnText shadow-lg rounded-lg"
-              >
+              <li class="flex flex-col gap-2 border border-btnText rounded-lg">
                 <h3>
                   <button
                     type="button"
@@ -659,9 +803,7 @@
                 </div>
               </li>
 
-              <li
-                class="flex flex-col gap-2 border border-btnText shadow-lg rounded-lg"
-              >
+              <li class="flex flex-col gap-2 border border-btnText rounded-lg">
                 <h3>
                   <button
                     type="button"
@@ -699,9 +841,7 @@
                 </div>
               </li>
 
-              <li
-                class="flex flex-col gap-2 border border-btnText shadow-lg rounded-lg"
-              >
+              <li class="flex flex-col gap-2 border border-btnText rounded-lg">
                 <h3>
                   <button
                     type="button"
@@ -738,9 +878,7 @@
                 </div>
               </li>
 
-              <li
-                class="flex flex-col gap-2 border border-btnText shadow-lg rounded-lg"
-              >
+              <li class="flex flex-col gap-2 border border-btnText rounded-lg">
                 <h3>
                   <button
                     type="button"
@@ -781,9 +919,7 @@
 
           <div id="shoppersFAQDiv" class="hidden mt-12">
             <ul class="flex flex-col w-full gap-6 overflow-hidden">
-              <li
-                class="flex flex-col gap-2 border border-btnText shadow-lg rounded-lg"
-              >
+              <li class="flex flex-col gap-2 border border-btnText rounded-lg">
                 <h3>
                   <button
                     type="button"
@@ -821,9 +957,7 @@
                 </div>
               </li>
 
-              <li
-                class="flex flex-col gap-2 border border-btnText shadow-lg rounded-lg"
-              >
+              <li class="flex flex-col gap-2 border border-btnText rounded-lg">
                 <h3>
                   <button
                     type="button"
@@ -861,9 +995,7 @@
                 </div>
               </li>
 
-              <li
-                class="flex flex-col gap-2 border border-btnText shadow-lg rounded-lg"
-              >
+              <li class="flex flex-col gap-2 border border-btnText rounded-lg">
                 <h3>
                   <button
                     type="button"
@@ -899,9 +1031,7 @@
                 </div>
               </li>
 
-              <li
-                class="flex flex-col gap-2 border border-btnText shadow-lg rounded-lg"
-              >
+              <li class="flex flex-col gap-2 border border-btnText rounded-lg">
                 <h3>
                   <button
                     type="button"
@@ -939,9 +1069,7 @@
                 </div>
               </li>
 
-              <li
-                class="flex flex-col gap-2 border border-btnText shadow-lg rounded-lg"
-              >
+              <li class="flex flex-col gap-2 border border-btnText rounded-lg">
                 <h3>
                   <button
                     type="button"
@@ -983,28 +1111,30 @@
         </div>
       </section>
 
-      <section class="startSelling px-4 py-8 bg-primary text-white font-bold">
+      <section
+        class="startSelling px-4 md:px-8 lg:px-12 py-8 bg-primary text-white font-bold"
+      >
         <div class="max-w-7xl container mx-auto text-center text-2xl">
           <p>Start selling or shopping with ease today.</p>
         </div>
       </section>
 
-      <section class="testimonials px-4 py-16">
+      <section class="testimonials px-4 md:px-8 lg:px-12 py-16">
         <div class="container max-w-7xl mx-auto">
           <h2
             class="font-poppins text-secondaryHeading leading-tight text-center font-bold"
           >
             What people are saying about Vendsr
           </h2>
-
+          <!-- Testimonials Slider -->
           <div class="w-full overflow-hidden px-4 py-12">
             <div
-              class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-8 scrollbar-hidden"
+              class="flex overflow-x-auto gap-8 scrollbar-hidden"
               id="testimonialContainer"
               tabindex="0"
             >
               <div
-                class="min-w-[80%] testimonial snap-center p-6 bg-white rounded-lg shadow grid place-items-center text-center"
+                class="min-w-[80%] md:min-w-1/2 testimonial p-6 bg-white rounded-lg shadow grid place-items-center text-center"
               >
                 <img
                   src="./assets/images/mamazee.png"
@@ -1021,7 +1151,7 @@
                 </p>
               </div>
               <div
-                class="min-w-[80%] testimonial snap-center p-6 bg-white rounded-lg shadow grid place-items-center text-center"
+                class="min-w-[80%] md:min-w-1/2 testimonial p-6 bg-white rounded-lg shadow grid place-items-center text-center"
               >
                 <img
                   src="./assets/images/zainab.png"
@@ -1038,7 +1168,7 @@
                 </p>
               </div>
               <div
-                class="min-w-[80%] testimonial snap-center p-6 bg-white rounded-lg shadow grid place-items-center text-center"
+                class="min-w-[80%] md:min-w-1/2 testimonial p-6 bg-white rounded-lg shadow grid place-items-center text-center"
               >
                 <img
                   src="./assets/images/mamazee.png"
@@ -1054,10 +1184,26 @@
                   organized. Payment drops, I deliver. Easy life
                 </p>
               </div>
+              <div
+                class="min-w-[80%] md:min-w-1/2 testimonial p-6 bg-white rounded-lg shadow grid place-items-center text-center"
+              >
+                <img
+                  src="./assets/images/mamazee.png"
+                  alt="Mamazee"
+                  class="w-16 h-16 rounded-full"
+                />
+                <p class="font-bold">PapaZee</p>
+                <p class="font-bold">Husband, Lagos</p>
+
+                <p class="mt-8">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repellendus ab officiis tempore molestias ipsa recusandae?
+                  Lorem ipsum dolor sit, amet consectetur adipisicing.
+                </p>
+              </div>
             </div>
 
-            <!-- Radio Navigation -->
-            <div class="flex justify-center gap-3 mt-6" id="testimonialRadios">
+            <!-- <div class="flex justify-center gap-3 mt-6" id="testimonialRadios">
               <button
                 class="radio w-3 h-3 rounded-full bg-primary cursor-pointer"
               ></button>
@@ -1067,12 +1213,15 @@
               <button
                 class="radio w-3 h-3 rounded-full bg-gray-400 cursor-pointer"
               ></button>
-            </div>
+              <button
+                class="radio w-3 h-3 rounded-full bg-gray-400 cursor-pointer"
+              ></button>
+            </div> -->
           </div>
         </div>
       </section>
 
-      <section class="px-4">
+      <section class="px-4 md:px-8 lg:px-12">
         <div
           class="container max-w-7xl mx-auto bg-bodyBackground rounded-2xl p-8 md:p-12 lg:p-16 grid place-items-center text-center gap-8"
         >
@@ -1095,7 +1244,9 @@
       </section>
     </main>
 
-    <footer class="bg-primary px-4 py-16 pb-8 text-white mt-16">
+    <footer
+      class="bg-primary px-4 py-16 pb-8 text-white mt-16 md:px-8 lg:px-12"
+    >
       <div class="container mx-auto max-w-7xl">
         <div>
           <div

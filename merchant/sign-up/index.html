@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../src/output.css" />
+    <link rel="stylesheet" href="../../src/output.css" />
   </head>
 
   <body
@@ -20,7 +20,7 @@
     <header class="bg-white sticky top-0 z-50 px-4 py-3 hidden md:block">
       <div class="flex items-center justify-between max-w-7xl mx-auto">
         <a href="../" aria-label="Vendsr Home Page">
-          <img src="../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+          <img src="../../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
         </a>
       </div>
     </header>
@@ -37,7 +37,7 @@
             href="../"
             aria-label="Back to previous page"
             class="absolute left-0 top-1/2 -translate-y-1/2"
-            ><img src="../assets/icons/arrow-back.png" alt=""
+            ><img src="../../assets/icons/arrow-back.png" alt=""
           /></a>
         </header>
 
@@ -122,85 +122,89 @@
               </div>
 
               <div class="flex flex-col gap-6">
-                <div>
-                  <p class="font-semibold">Account Type</p>
-
-                  <div class="flex items-center gap-4 mt-4">
-                    <label
-                      class="border rounded-md p-2 cursor-pointer has-checked:bg-primary has-checked:text-white has-checked:border-primary"
+                <div class="flex flex-col gap-2">
+                  <label for="password" class="font-semibold"
+                    >Create Password</label
+                  >
+                  <div class="relative">
+                    <input
+                      type="password"
+                      id="password"
+                      required
+                      name="password"
+                      placeholder="Enter your password"
+                      class="form-input pl-10"
+                    />
+                    <img
+                      src="../../assets/icons/padlock.png"
+                      alt=""
+                      class="absolute left-3 top-1/2 -translate-y-1/2"
+                    />
+                    <button
+                      type="button"
+                      aria-label="Toggle password visibility"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer flex items-center justify-center group"
+                      data-state="hidden"
                     >
-                      <input
-                        type="radio"
-                        name="accountType"
-                        id="shopper"
-                        value="shopper"
-                        class="hidden"
+                      <img
+                        src="../../assets/icons/passwordeye.png"
+                        alt="Show password"
+                        class="group-data-[state='visible']:rotate-180 duration-300"
                       />
-                      <span>Shopper</span>
-                    </label>
-
-                    <label
-                      class="border rounded-md p-2 cursor-pointer has-checked:bg-primary has-checked:text-white has-checked:border-primary"
-                    >
-                      <input
-                        type="radio"
-                        name="accountType"
-                        id="merchant"
-                        value="merchant"
-                        class="hidden"
-                      />
-                      <span>Merchant</span>
-                    </label>
+                    </button>
                   </div>
 
                   <p
-                    id="accountTypeError"
                     class="text-red-500"
-                    aria-live="polite"
-                  ></p>
-                </div>
-
-                <div>
-                  <label for="password">Create Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Create a password"
-                    required
-                    class="form-input"
-                    data-invalid="false"
-                  />
-                  <p
                     id="passwordError"
-                    class="text-red-500"
                     aria-live="polite"
                   ></p>
                 </div>
 
-                <div>
-                  <label for="confirmPassword">Confirm Password</label>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    placeholder="Confirm your password"
-                    required
-                    class="form-input"
-                    data-invalid="false"
-                  />
-                  <p
-                    id="confirmPasswordError"
+                <div class="flex flex-col gap-2">
+                  <label for="confirmPassword" class="font-semibold"
+                    >Confirm Password</label
+                  >
+                  <div class="relative">
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      required
+                      name="confirmPassword"
+                      placeholder="Enter your password"
+                      class="form-input pl-10"
+                    />
+                    <img
+                      src="../../assets/icons/padlock.png"
+                      alt=""
+                      class="absolute left-3 top-1/2 -translate-y-1/2"
+                    />
+                    <button
+                      type="button"
+                      aria-label="Toggle password visibility"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer flex items-center justify-center group"
+                      data-state="hidden"
+                    >
+                      <img
+                        src="../../assets/icons/passwordeye.png"
+                        alt="Show password"
+                        class="group-data-[state='visible']:rotate-180 duration-300"
+                      />
+                    </button>
+                  </div>
+                  <span
                     class="text-red-500"
+                    id="confirmPasswordError"
                     aria-live="polite"
-                  ></p>
+                  ></span>
                 </div>
               </div>
             </div>
 
             <button
               type="submit"
-              class="bg-primary text-white py-3 rounded-full w-full text-center mt-6 block cursor-pointer hover:bg-primary/80 md:w-fit mx-auto md:px-36 whitespace-nowrap"
+              disabled
+              class="bg-disabledBtn text-white py-3 rounded-full w-full text-center mt-6 block md:w-fit mx-auto md:px-36 whitespace-nowrap cursor-not-allowed"
             >
               Sign Up
             </button>
@@ -217,6 +221,6 @@
       </div>
     </main>
 
-    <script src="../scripts/signup.js"></script>
+    <script src="../../scripts/signup.js"></script>
   </body>
 </html>

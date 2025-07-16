@@ -53,11 +53,10 @@ function closeMobileNav() {
   }
 }
 
-//  FAQ sectiondocument.addEventListener("DOMContentLoaded", () => {
+//  FAQ section
 // Toggle FAQ Sections
 const merchantsBtn = document.getElementById("merchantsFAQDivBtn");
 const shoppersBtn = document.getElementById("shoppersFAQDivBtn");
-
 const merchantsDiv = document.getElementById("merchantsFAQDiv");
 const shoppersDiv = document.getElementById("shoppersFAQDiv");
 
@@ -90,46 +89,6 @@ accordionButtons.forEach((button) => {
     button.setAttribute("aria-expanded", !expanded);
     panel.setAttribute("aria-hidden", expanded);
   });
-});
-
-const container = document.getElementById("testimonialContainer");
-const radios = document.querySelectorAll("#testimonialRadios .radio");
-const items = container.querySelectorAll("div.testimonial");
-
-// Helper to update active radio
-function updateActiveRadio(index) {
-  radios.forEach((radio, i) => {
-    radio.classList.toggle("bg-primary", i === index);
-    radio.classList.toggle("bg-gray-400", i !== index);
-  });
-}
-
-// Scroll listener to track visible testimonial
-container.addEventListener("scroll", () => {
-  const scrollLeft = container.scrollLeft;
-  const width = container.clientWidth;
-  const index = Math.round(scrollLeft / width);
-  updateActiveRadio(index);
-});
-
-// Radio click handler
-radios.forEach((radio, index) => {
-  radio.addEventListener("click", () => {
-    items[index].scrollIntoView({ behavior: "smooth", inline: "start" });
-  });
-});
-
-// Left/Right Arrow Key Navigation
-container.addEventListener("keydown", (e) => {
-  const width = container.clientWidth;
-  const scrollLeft = container.scrollLeft;
-  const index = Math.round(scrollLeft / width);
-
-  if (e.key === "ArrowRight" && index < items.length - 1) {
-    items[index + 1].scrollIntoView({ behavior: "smooth", inline: "start" });
-  } else if (e.key === "ArrowLeft" && index > 0) {
-    items[index - 1].scrollIntoView({ behavior: "smooth", inline: "start" });
-  }
 });
 
 // HERO SECTION ANIMATION
@@ -196,3 +155,78 @@ updateHeroContent();
 
 // Repeat every 4 seconds
 setInterval(updateHeroContent, 4000);
+
+// testimonials slider
+const container = document.getElementById("testimonialContainer");
+const testimonials = container.querySelectorAll(".testimonial");
+let scrollInterval;
+let isPaused = false;
+
+// Clone testimonials for infinite scroll
+const cloneTestimonials = () => {
+  testimonials.forEach((testimonial) => {
+    const clone = testimonial.cloneNode(true);
+    container.appendChild(clone);
+  });
+  container.style.overflowX = "auto";
+  container.style.scrollSnapType = "none";
+};
+
+// Scroll function
+const startScrolling = () => {
+  scrollInterval = setInterval(() => {
+    if (!isPaused) {
+      const scrollWidth = container.scrollWidth;
+      const currentScroll = container.scrollLeft;
+      const originalContentWidth = scrollWidth / 2; // Since content is doubled
+      const viewportWidth = container.offsetWidth;
+
+      // Check if we've scrolled past the original content
+      if (currentScroll >= originalContentWidth) {
+        // Reset to the start of the original testimonials
+        container.scrollLeft = currentScroll - originalContentWidth;
+      } else {
+        container.scrollLeft += 0.5; // Slow scroll speed
+      }
+    }
+  }, 16); // 60fps for smooth animation
+};
+
+// Pause on hover/touch
+const pauseScroll = () => {
+  isPaused = true;
+};
+
+const resumeScroll = () => {
+  isPaused = false;
+};
+
+// Initialize
+cloneTestimonials();
+startScrolling();
+
+// Event listeners for hover
+container.addEventListener("mouseenter", pauseScroll);
+container.addEventListener("mouseleave", resumeScroll);
+
+// Event listeners for touch
+container.addEventListener("touchstart", pauseScroll);
+container.addEventListener("touchend", resumeScroll);
+
+// see more buttons
+document.querySelectorAll(".seeMoreBtn").forEach((button) => {
+  button.addEventListener("click", () => {
+    const targetId = button.getAttribute("aria-controls");
+    const targetDiv = document.getElementById(targetId);
+    const spanText = button.querySelector("span");
+
+    const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+    // Toggle the hidden class
+    targetDiv.classList.toggle("hidden", isExpanded);
+
+    // Update button text and attributes
+    spanText.textContent = isExpanded ? "See More" : "See Less";
+    button.setAttribute("aria-expanded", (!isExpanded).toString());
+  });
+});
