@@ -29,7 +29,7 @@
       class="min-h-screen md:min-h-[calc(100vh-3.5rem)] sm:grid sm:place-items-center sm:p-4"
     >
       <div
-        class="w-full mx-auto flex flex-col gap-6 h-full bg-white p-4 sm:h-auto sm:max-w-2xl sm:p-8 sm:rounded-2xl md:px-32"
+        class="w-full mx-auto flex flex-col gap-6 min-h-screen bg-white p-4 sm:h-auto sm:max-w-2xl sm:p-8 sm:rounded-2xl md:px-32"
       >
         <header class="text-center py-4 relative">
           <h1 class="font-semibold text-xl">Verification</h1>
@@ -131,12 +131,14 @@
         </section>
 
         <section class="mt-auto sm:mt-8 flex justify-between items-center">
-          <button class="cursor-pointer" id="resendOTP">Resend Code</button>
+          <button class="cursor-not-allowed disabled" id="resendOTP">
+            Resend Code
+          </button>
           <span id="otpCountdown">10:00</span>
         </section>
       </div>
     </main>
 
-    <script src="../scripts/otp.js"></script>
+    <script src="../../scripts/otp.js"></script>
   </body>
 </html>

@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cleanPhoneNumber = formData.phoneNumber.replace(/\s/g, "");
         console.time("otpRequest"); // Debug: Measure OTP API time
         const otpResponse = await fetch(
-          "http://localhost:5001/api/verify/phone/send-otp",
+          "https://vendsr-backend.onrender.com/api/verify/phone/send-otp",
           {
             method: "POST",
             headers: {
