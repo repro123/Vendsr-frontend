@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = button.closest(".relative").querySelector("input");
     const icon = button.querySelector("img");
     button.addEventListener("click", () => {
+      console.log("Password toggle clicked"); // Debug
       const isHidden = input.type === "password";
       input.type = isHidden ? "text" : "password";
       button.setAttribute("data-state", isHidden ? "visible" : "hidden");
@@ -170,12 +171,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update submit button
     if (isValid) {
       submitButton.disabled = false;
-      submitButton.classList.remove("bg-[#757575]", "cursor-not-allowed");
+      submitButton.classList.remove("bg-disabledBtn", "cursor-not-allowed");
       submitButton.classList.add("bg-primary", "cursor-pointer");
     } else {
       submitButton.disabled = true;
       submitButton.classList.remove("bg-primary", "cursor-pointer");
-      submitButton.classList.add("bg-[#757575]", "cursor-not-allowed");
+      submitButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
     }
   }
 
@@ -188,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Form submission handler
   signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    console.log("Form submitted"); // Debug
     validateForm();
 
     const isValid = ![
@@ -211,7 +213,8 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         submitButton.disabled = true;
         submitButton.textContent = "Signing up...";
-        const response = await fetch(
+        console.time("registerRequest"); // Debug: Measure registration API time
+        const registerResponse = await fetch(
           "https://vendsr-backend.onrender.com/api/auth/register",
           {
             method: "POST",
@@ -221,21 +224,56 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(formData),
           }
         );
+        console.timeEnd("registerRequest"); // Debug
 
-        if (!response.ok) {
-          const errorData = await response.json();
+        if (!registerResponse.ok) {
+          const errorData = await registerResponse.json();
           throw new Error(
             errorData.message || "Failed to register. Please try again."
           );
         }
 
-        const data = await response.json();
-        console.log("Success:", data);
-        window.location.href = "../otp/";
+        const registerData = await registerResponse.json();
+        console.log("Registration success:", registerData); // Debug
+
+        // Clean phone number for OTP API (remove spaces, keep optional +)
+        const cleanPhoneNumber = formData.phoneNumber.replace(/\s/g, "");
+        console.time("otpRequest"); // Debug: Measure OTP API time
+        const otpResponse = await fetch(
+          "http://localhost:5001/api/verify/phone/send-otp",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ phoneNumber: cleanPhoneNumber }),
+          }
+        );
+        console.timeEnd("otpRequest"); // Debug
+
+        if (!otpResponse.ok) {
+          const otpErrorData = await otpResponse.json();
+          throw new Error(
+            otpErrorData.message || "Failed to send OTP. Please try again."
+          );
+        }
+
+        const otpData = await otpResponse.json();
+        console.log("OTP sent successfully:", otpData); // Debug
+
+        // Store phone number in sessionStorage
+        sessionStorage.setItem("phoneNumber", formData.phoneNumber);
+        console.log(
+          "Stored phoneNumber in sessionStorage:",
+          formData.phoneNumber
+        ); // Debug
+
+        // Redirect to OTP page
+        window.location.href = "../merchant/otp/";
       } catch (error) {
         console.error("Error:", error.message);
         submitButton.classList.remove("bg-primary", "cursor-pointer");
-        submitButton.classList.add("bg-[#757575]", "cursor-not-allowed");
+        submitButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
         alert("Registration failed: " + error.message);
       } finally {
         submitButton.disabled = false;

@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vendsr Home Page</title>
+    <title>Verify OTP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../src/output.css" />
+    <link rel="stylesheet" href="../../src/output.css" />
   </head>
 
   <body
@@ -20,7 +20,7 @@
     <header class="bg-white sticky top-0 z-50 px-4 py-3 hidden md:block">
       <div class="flex items-center justify-between max-w-7xl mx-auto">
         <a href="../index.html" aria-label="Vendsr Home Page">
-          <img src="../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+          <img src="../../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
         </a>
       </div>
     </header>
@@ -34,10 +34,10 @@
         <header class="text-center py-4 relative">
           <h1 class="font-semibold text-xl">Verification</h1>
           <a
-            href="../signup/"
+            href="#"
             aria-label="Back to previous page"
             class="absolute left-0 top-1/2 -translate-y-1/2"
-            ><img src="../assets/icons/arrow-back.png" alt=""
+            ><img src="../../assets/icons/arrow-back.png" alt=""
           /></a>
         </header>
 
@@ -45,7 +45,7 @@
           <p class="text-2xl font-bold">Enter the code</p>
           <p>
             We sent a verification code to
-            <span id="userMobileNumber">+234 8012345678</span>
+            <span id="userMobileNumber"></span>
           </p>
 
           <form id="otp-form" class="mt-6 flex flex-col gap-6">
@@ -122,7 +122,8 @@
             <p id="errorMessage" class="text-red-500" aria-live="polite"></p>
             <button
               type="submit"
-              class="rounded-full bg-primary text-white tracking-wider font-semibold cursor-pointer w-full py-3 hover:bg-primary/80"
+              disabled
+              class="rounded-full bg-disabledBtn cursor-not-allowed text-white tracking-wider font-semibold w-full py-3"
             >
               Verify
             </button>
@@ -131,7 +132,7 @@
 
         <section class="mt-auto sm:mt-8 flex justify-between items-center">
           <button class="cursor-pointer" id="resendOTP">Resend Code</button>
-          <span id="otpCountdown">00:50</span>
+          <span id="otpCountdown">10:00</span>
         </section>
       </div>
     </main>
