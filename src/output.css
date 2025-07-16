@@ -57,6 +57,7 @@
     --color-lightWhite: #fafafa;
     --color-btnText: #b8b8b8;
     --color-footerLinksHeadingText: #a0a0a0;
+    --color-disabledBtn: #757575;
     --font-inter: "Inter", sans-serif;
     --font-poppins: "Poppins", sans-serif;
     --text-primaryHeading: clamp(2rem, 1.286rem + 1.905vw, 3rem);
@@ -481,6 +482,9 @@
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .cursor-not-allowed {
+    cursor: not-allowed;
+  }
   .cursor-pointer {
     cursor: pointer;
   }
@@ -676,6 +680,9 @@
   .bg-bodyBackground {
     background-color: var(--color-bodyBackground);
   }
+  .bg-disabledBtn {
+    background-color: var(--color-disabledBtn);
+  }
   .bg-gray-400 {
     background-color: var(--color-gray-400);
   }
@@ -769,14 +776,8 @@
   .pl-6 {
     padding-left: calc(var(--spacing) * 6);
   }
-  .pl-8 {
-    padding-left: calc(var(--spacing) * 8);
-  }
   .pl-10 {
     padding-left: calc(var(--spacing) * 10);
-  }
-  .pl-12 {
-    padding-left: calc(var(--spacing) * 12);
   }
   .text-center {
     text-align: center;
@@ -1126,21 +1127,6 @@
     &:focus {
       --tw-outline-style: none;
       outline-style: none;
-    }
-  }
-  .has-checked\:border-primary {
-    &:has(*:checked) {
-      border-color: var(--color-primary);
-    }
-  }
-  .has-checked\:bg-primary {
-    &:has(*:checked) {
-      background-color: var(--color-primary);
-    }
-  }
-  .has-checked\:text-white {
-    &:has(*:checked) {
-      color: var(--color-white);
     }
   }
   .aria-hidden\:hidden {
