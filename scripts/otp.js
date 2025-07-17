@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Clear sessionStorage after successful verification
         sessionStorage.removeItem("phoneNumber");
         // Redirect to dashboard (adjust URL as needed)
-        window.location.href = "../../CAC_verification/";
+        window.location.href = "../merchant/business_verification/";
       } catch (error) {
         console.error("Error:", error.message);
         showError(error.message);

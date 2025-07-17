@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CAC Verification</title>
+    <title>Business Verification</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="../src/output.css" />
+    <link rel="stylesheet" href="../../src/output.css" />
   </head>
   <body
     class="min-h-dvh antialiased bg-bodyBackground text-paragraphColor font-inter"
-    data-page="cac-verification"
+    data-page="business-verification"
   >
     <header class="bg-white sticky top-0 z-50 px-4 py-3 hidden md:block">
       <div class="flex items-center justify-between max-w-7xl mx-auto">
         <a href="../" aria-label="Vendsr Home Page">
-          <img src="../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+          <img src="../../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
         </a>
       </div>
     </header>
@@ -24,15 +24,15 @@
       class="min-h-screen md:min-h-[calc(100vh-3.5rem)] sm:grid sm:place-items-center sm:p-4"
     >
       <div
-        class="w-full mx-auto flex flex-col gap-6 h-full bg-white p-4 sm:h-auto sm:max-w-5xl sm:p-8 sm:rounded-2xl md:px-8"
+        class="w-full mx-auto flex flex-col gap-6 min-h-screen bg-white p-4 sm:h-auto sm:max-w-5xl sm:p-8 sm:rounded-2xl md:px-8"
       >
         <header class="text-center py-4 relative">
           <h1 class="font-semibold text-xl">Business Verification (CAC)</h1>
           <a
-            href="../store-setup/"
+            href="#"
             aria-label="Back to previous page"
             class="absolute left-0 top-1/2 -translate-y-1/2"
-            ><img src="../assets/icons/arrow-back.png" alt=""
+            ><img src="../../assets/icons/arrow-back.png" alt=""
           /></a>
         </header>
 
@@ -44,7 +44,7 @@
           <form
             id="cacVerificationForm"
             enctype="multipart/form-data"
-            class="flex flex-col gap-6"
+            class="flex flex-col gap-6 mt-6"
             novalidate
           >
             <div class="grid gap-6 md:grid-cols-2 md:gap-16">
@@ -129,17 +129,29 @@
               </div>
             </div>
 
-            <button
-              type="submit"
-              class="bg-primary text-white py-3 rounded-full w-full text-center mt-6 block cursor-pointer hover:bg-primary/80 md:w-fit mx-auto md:px-36 whitespace-nowrap"
+            <div
+              class="flex flex-col gap-6 md:flex-row w-full items-center mt-6"
             >
-              Submit
-            </button>
+              <button
+                type="submit"
+                disabled
+                class="bg-disabledBtn text-white py-3 rounded-full w-full text-center block cursor-pointer whitespace-nowrap"
+              >
+                Submit
+              </button>
+
+              <a
+                href="../profile-setup/"
+                class="w-full border border-primary text-primary py-3 rounded-full text-center hover:bg-primary/10"
+              >
+                Skip
+              </a>
+            </div>
           </form>
         </section>
       </div>
     </main>
 
-    <script src="../scripts/CAC_Verification.js"></script>
+    <script src="../../scripts/business_verification.js"></script>
   </body>
 </html>
