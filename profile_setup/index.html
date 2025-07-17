@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Setup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="../src/output.css" />
+  </head>
+  <body
+    class="min-h-dvh antialiased bg-bodyBackground text-paragraphColor font-inter"
+    data-page="cac-verification"
+  >
+    <header class="bg-white sticky top-0 z-50 px-4 py-3 hidden md:block">
+      <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <a href="../" aria-label="Vendsr Home Page">
+          <img src="../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+        </a>
+      </div>
+    </header>
+
+    <main>
+        <form id="store-form" class="min-h-screen md:min-h-[calc(100vh-3.5rem)] sm:grid sm:place-items-center sm:p-8">
+          <div class="bg-white mx-auto md:w-[70%] md:px-22 md:py-8 relative rounded-[10px]">
+      
+            <!-- Cover Photo -->
+            <div class="bg-[#EBE8F2] relative md:aspect-[2/1] aspect-[2.3/1] flex flex-col items-center justify-center 
+                        rounded-b-lg shadow-[0_4px_8px_rgba(0,0,0,0.31)] md:rounded-none md:shadow-none">
+              <img class="mt-14 object-contain" src="../assets/icons/shop.png" alt="Cover Placeholder" />
+              <p class="text-gray-400 md:text-lg text-sm">Upload cover photo</p>
+            </div>
+      
+            <!-- Profile Image Upload -->
+            <label for="profile-image"
+                   class="absolute md:left-23 md:top-120 left-1 top-36 transform -translate-y-1/2 md:w-[178px] md:h-[178px] w-20 h-20 
+                          bg-gray-300 rounded-full flex flex-col items-center justify-center border-2 border-white cursor-pointer">
+              <img class="w-[20px] md:pt-8" src="../assets/icons/shop.png" alt="Profile upload icon" />
+              <p class="md:text-sm text-[8px] text-gray-500">Upload Profile Photo</p>
+              <input type="file" id="profile-image" name="profile_image" accept="image/*" class="hidden" aria-label="Upload profile image" />
+            </label>
+      
+            <!-- Form Fields -->
+            <div class="md:mt-16 flex flex-col space-y-6 md:text-gray-500 text-[#757575] px-4 md:px-0 md:pt-24 pt-16 pb-24">
+      
+              <!-- Store Name -->
+              <div class="flex flex-col">
+                <label class="m-1" for="store_name">Store Name</label>
+                <input
+                  id="store_name"
+                  name="store_name"
+                  type="text"
+                  class="bg-[#EBE8F2] border border-gray-300 p-3 text-gray-500 rounded-md 
+                         focus:border-[#5E4F96] focus:outline-none transition-colors duration-300"
+                  aria-label="Enter store name"
+                />
+              </div>
+      
+              <!-- Username -->
+              <div class="flex flex-col">
+                <label class="m-1" for="username">Username</label>
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  class="bg-[#EBE8F2] border border-gray-300 p-3 text-gray-500 rounded-md 
+                         focus:border-[#5E4F96] focus:outline-none transition-colors duration-300"
+                  aria-label="Enter your username"
+                />
+              </div>
+      
+              <!-- Category Dropdown -->
+              <div class="flex flex-col relative">
+                <label class="m-1" for="custom-category">Category</label>
+      
+                <div id="custom-category" tabindex="0"
+                     class="bg-[#EBE8F2] border border-gray-300 rounded-md px-4 py-3 text-[#5E4F96] 
+                            flex items-center justify-between cursor-pointer select-none 
+                            focus:border-[#5E4F96] focus:outline-none transition-colors duration-300"
+                     aria-label="Select category">
+                  <span class="h-6" id="selected-category"></span>
+                  <img src="../assets/icons/arrow-back.png" class="w-4 h-4 ml-2" alt="Dropdown arrow icon" />
+                </div>
+      
+                <ul id="category-options" class="bg-[#EBE8F2] mt-[0.2rem] rounded-md border border-gray-300 hidden" aria-label="Category options">
+                  <li class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer">Apparel & Accessories</li>
+                  <li class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer">Groceries</li>
+                  <li class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer">Electronics</li>
+                  <li class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer">Beauty & Personal care</li>
+                  <li class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer">Home goods</li>
+                  <li class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer">Others</li>
+                </ul>
+      
+                <input type="hidden" name="category" id="category-value" />
+              </div>
+      
+              <!-- Description -->
+              <div class="flex flex-col">
+                <label class="m-1" for="description">Description</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  class="bg-[#EBE8F2] h-[100px] border border-gray-300 p-3 text-gray-500 rounded-md resize-none 
+                         focus:border-[#5E4F96] focus:outline-none transition-colors duration-300"
+                  aria-label="Enter store description"
+                ></textarea>
+              </div>
+      
+              <!-- Store Color Picker -->
+              <div class="flex flex-col">
+                <label class="m-1" for="store_color">Set Store Color</label>
+      
+                <div id="color-trigger" tabindex="0"
+                     class="bg-[#EBE8F2] border border-gray-300 rounded-md px-4 py-3 text-white 
+                            flex items-center justify-between cursor-pointer transition-colors duration-300 
+                            focus:border-[#5E4F96] focus:outline-none"
+                     aria-label="Select store color">
+                  <span class="p-3" id="selected-color-label"></span>
+                  <img src="../assets/icons/shop.png" class="w-4 h-4" alt="Color picker icon" />
+                </div>
+      
+                <div id="color-options" class="flex flex-wrap gap-2 mt-2 hidden" aria-label="Store color options">
+                  <div data-color="#FF0000" class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300" style="background-color:#FF0000" aria-label="Red"></div>
+                  <div data-color="#FFFC9E" class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300" style="background-color:#FFFC9E" aria-label="Light Yellow"></div>
+                  <div data-color="#2F4AFF" class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300" style="background-color:#2F4AFF" aria-label="Blue"></div>
+                  <div data-color="#F052BC" class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300" style="background-color:#F052BC" aria-label="Pink"></div>
+                  <div data-color="#00BA86" class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300" style="background-color:#00BA86" aria-label="Green"></div>
+                  <div data-color="#040000" class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300" style="background-color:#040000" aria-label="Black"></div>
+                  <div data-color="#FFFFFF" class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300" style="background-color:#FFFFFF" aria-label="White"></div>
+                  <div data-color="#A87878" class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300" style="background-color:#A87878" aria-label="Muted Mauve"></div>
+                </div>
+      
+                <input type="hidden" name="store_color" id="store_color" />
+              </div>
+      
+              <!-- Store URL -->
+              <div class="flex flex-col">
+                <label class="m-1" for="store_url">Choose Store URL</label>
+                <input
+                  id="store_url"
+                  name="store_url"
+                  type="text"
+                  class="bg-[#EBE8F2] border border-gray-300 p-3 text-gray-500 rounded-md px-10 
+                         focus:border-[#5E4F96] focus:outline-none transition-colors duration-300"
+                  placeholder="mystore.vendsr.com"
+                  aria-label="Enter store URL"
+                />
+              </div>
+      
+            </div>
+          </div>
+        </form>
+      </main>
+      
+    <script src="../scripts/profile_setup.js"></script>
+  </body>
+</html>
