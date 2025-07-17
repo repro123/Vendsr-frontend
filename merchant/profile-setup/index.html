@@ -6,21 +6,64 @@
     <title>Profile Setup</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="../src/output.css" />
+    <link rel="stylesheet" href="../../src/output.css" />
   </head>
   <body
     class="min-h-dvh antialiased bg-bodyBackground text-paragraphColor font-inter"
     data-page="profile-setup"
   >
-    <header class="text-center py-4 relative">
-      <h1 class="font-semibold text-xl">Setup Your Profile</h1>
-      <a
-        href="../"
-        aria-label="Back to previous page"
-        class="absolute left-0 top-1/2 -translate-y-1/2"
-        ><img src="../../assets/icons/arrow-back.png" alt=""
-      /></a>
+    <header class="bg-white sticky top-0 z-50 px-4 py-3 hidden md:block">
+      <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <a href="../" aria-label="Vendsr Home Page">
+          <img src="../../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
+        </a>
+      </div>
     </header>
+
+    <main
+      class="min-h-screen md:min-h-[calc(100vh-3.5rem)] sm:grid sm:place-items-center sm:p-4"
+    >
+      <div
+        class="w-full mx-auto flex flex-col gap-6 min-h-screen bg-white p-4 sm:h-auto sm:max-w-5xl sm:p-8 sm:rounded-2xl md:px-8"
+      >
+        <form
+          method="post"
+          novalidate
+          id="profileSetup"
+          enctype="multipart/form-data"
+        >
+          <div
+            class="relative h-[200px] md:h-[300px] bg-cover bg-center rounded-lg"
+          >
+            <label
+              for="coverPhoto"
+              class="cursor-pointer flex flex-col items-center justify-center gap-4 w-full h-full bg-inputBackground rounded-lg p-4 text-center text-gray-500"
+            >
+              <input
+                type="file"
+                id="coverPhoto"
+                name="cover_photo"
+                accept="image/*"
+                class="hidden"
+                aria-label="Upload cover photo"
+              />
+              <img
+                src="../../assets/icons/upload-photo.png"
+                alt="Upload cover photo"
+              />
+              <span class="capitalize">upload cover image</span>
+            </label>
+          </div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </form>
+      </div>
+    </main>
 
     <main>
       <form
@@ -255,6 +298,6 @@
       </form>
     </main>
 
-    <script src="../scripts/profile_setup.js"></script>
+    <script src="../../scripts/profile_setup.js"></script>
   </body>
 </html>
