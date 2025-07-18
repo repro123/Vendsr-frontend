@@ -1,138 +1,316 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('store-form');
-  
-    const fields = [
-      { id: 'store_name', name: 'Store Name' },
-      { id: 'username', name: 'Username' },
-      { id: 'category-value', name: 'Category' },
-      { id: 'description', name: 'Description' },
-      { id: 'store_color', name: 'Store Color' },
-      { id: 'store_url', name: 'Store URL' },
-      { id: 'profile-image', name: 'Profile Image', isFile: true }
-    ];
-  
-    // Show error below input
-    function showError(id, message) {
-      removeError(id);
-      const el = document.getElementById(id);
-      const error = document.createElement('p');
-      error.className = 'text-sm text-red-600 mt-2';
-      error.innerText = message;
-      el.insertAdjacentElement('afterend', error);
-    }
-  
-    // Remove any existing error
-    function removeError(id) {
-      const el = document.getElementById(id);
-      const next = el.nextElementSibling;
-      if (next && next.classList.contains('text-red-600')) {
-        next.remove();
-      }
-    }
-  
-    // Real-time validation when field is blurred or changed
-    fields.forEach(({ id, name, isFile }) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-  
-      const validate = () => {
-        const value = isFile ? el.files[0] : el.value.trim();
-        if (!value) {
-          showError(id, `${name} can’t be left empty`);
-        } else {
-          removeError(id);
-        }
-      };
-  
-      el.addEventListener('blur', validate);
-      el.addEventListener('change', validate);
-    });
-  
-    // Custom Category Dropdown
-    const trigger = document.getElementById('custom-category');
-    const menu = document.getElementById('category-options');
-    const selectedText = document.getElementById('selected-category');
-    const hiddenInput = document.getElementById('category-value');
-  
-    trigger.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
-  
-    menu.querySelectorAll('li').forEach(option => {
-      option.addEventListener('click', () => {
-        const value = option.textContent;
-        selectedText.textContent = value;
-        hiddenInput.value = value;
-        menu.classList.add('hidden');
-  
-        if (value.trim()) {
-          removeError('category-value');
-        } else {
-          showError('category-value', 'Category can’t be left empty');
-        }
-      });
-    });
-  
-    // Custom Color Picker
-    const colorTrigger = document.getElementById('color-trigger');
-    const colorOptions = document.getElementById('color-options');
-    const colorInput = document.getElementById('store_color');
-    const selectedLabel = document.getElementById('selected-color-label');
-  
-    colorTrigger.addEventListener('click', () => {
-      colorOptions.classList.toggle('hidden');
-    });
-  
-    colorOptions.querySelectorAll('[data-color]').forEach(block => {
-      block.addEventListener('click', () => {
-        const color = block.getAttribute('data-color');
-        colorInput.value = color;
-        colorTrigger.style.backgroundColor = color;
-        selectedLabel.textContent = "";
-        selectedLabel.style.color = ["#FFFFFF", "#FFFC9E"].includes(color) ? "#1F1F1F" : "#FFFFFF";
-        colorOptions.classList.add('hidden');
-  
-        if (color.trim()) {
-          removeError('store_color');
-        } else {
-          showError('store_color', 'Store Color can’t be left empty');
-        }
-      });
-    });
-  
-    // Form submission
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-  
-      let valid = true;
-      const formData = new FormData();
-  
-      fields.forEach(({ id, name, isFile }) => {
-        const el = document.getElementById(id);
-        const value = isFile ? el.files[0] : el.value.trim();
-  
-        if (!value) {
-          showError(id, `${name} can’t be left empty`);
-          valid = false;
-        } else {
-          removeError(id);
-          formData.append(el.name || id, value);
-        }
-      });
-  
-      if (!valid) return;
-  
-      try {
-        const response = await fetch('/your-endpoint-url', {
-          method: 'POST',
-          body: formData
-        });
-  
-        if (!response.ok) throw new Error('Server responded with an error');
-        console.log('Form submitted successfully!');
-      } catch (err) {
-        console.error('Submission failed:', err);
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("profileSetup.js loaded"); // Debug: Confirm script loads
+  const profileForm = document.getElementById("profileSetup");
+  const coverPhotoInput = document.getElementById("coverPhoto");
+  const profilePictureInput = document.getElementById("profilePicture");
+  const storeNameInput = document.getElementById("storeName");
+  const usernameInput = document.getElementById("username");
+  const categoryInput = document.getElementById("category");
+  const descriptionInput = document.getElementById("description");
+  const storeColorInputs = document.querySelectorAll(
+    'input[name="storeColor"]'
+  );
+  const storeUrlInput = document.getElementById("storeUrl");
+  const colorPickerButton = document.getElementById("colorPicker");
+  const storeNameError = document.getElementById("storeNameError");
+  const usernameError = document.getElementById("usernameError");
+  const categoryError = document.getElementById("categoryError");
+  const descriptionError = document.getElementById("descriptionError");
+  const storeColorError = document.getElementById("storeUrlError"); // Note: Reusing storeUrlError for storeColor
+  const storeUrlError = document.getElementById("storeUrlError");
+  const submitButton = profileForm.querySelector('button[type="submit"]');
+  const confirmationDialog = document.getElementById("createStoreConfirmation");
+  const goToStoreButton = document.getElementById("goToStore");
+
+  // Check for phoneNumber in sessionStorage
+  // const phoneNumber = sessionStorage.getItem("phoneNumber");
+  // if (!phoneNumber) {
+  //   console.warn("No phone number in sessionStorage, redirecting to signup"); // Debug
+  //   window.location.href = "../signup/";
+  //   return;
+  // }
+  // console.log("Phone number from sessionStorage:", phoneNumber); // Debug
+
+  // Regular expressions for validation
+  const rules = {
+    storeName: /^[a-zA-Z\s-]{2,}$/,
+    username: /^[a-zA-Z0-9_]{3,}$/,
+    storeUrl: /^[a-zA-Z0-9-]+\.vendsr\.com$/,
+    description: /^.{0,500}$/, // Optional, max 500 characters
+    fileSize: 5 * 1024 * 1024, // 5MB max
+  };
+
+  // Debounce function for real-time validation
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  // Update color picker button background
+  storeColorInputs.forEach((input) => {
+    input.addEventListener("change", () => {
+      if (input.checked) {
+        colorPickerButton.style.backgroundColor = input.value;
+        console.log("Selected store color:", input.value); // Debug
+        validateForm();
       }
     });
   });
-  
+
+  // Validate form
+  function validateForm() {
+    console.log("Validating profile setup form"); // Debug
+    const coverPhoto = coverPhotoInput.files[0];
+    const profilePicture = profilePictureInput.files[0];
+    const storeName = storeNameInput.value.trim();
+    const username = usernameInput.value.trim();
+    const category = categoryInput.value;
+    const description = descriptionInput.value.trim();
+    const storeColor = document.querySelector(
+      'input[name="storeColor"]:checked'
+    )?.value;
+    const storeUrl = storeUrlInput.value.trim();
+
+    // Reset error states
+    [
+      coverPhotoInput,
+      profilePictureInput,
+      storeNameInput,
+      usernameInput,
+      categoryInput,
+      descriptionInput,
+      ...storeColorInputs,
+      storeUrlInput,
+    ].forEach((input) => {
+      input.setAttribute("data-invalid", "false");
+      input.classList.remove("border-red-500");
+    });
+    [
+      storeNameError,
+      usernameError,
+      categoryError,
+      descriptionError,
+      storeColorError,
+      storeUrlError,
+    ].forEach((error) => {
+      error.textContent = "";
+    });
+
+    let isValid = true;
+
+    // Cover Photo
+    if (!coverPhoto) {
+      showError(coverPhotoInput, storeNameError, "Cover photo is required");
+      isValid = false;
+    } else if (coverPhoto.size > rules.fileSize) {
+      showError(
+        coverPhotoInput,
+        storeNameError,
+        "Cover photo must be under 5MB"
+      );
+      isValid = false;
+    } else if (!coverPhoto.type.match(/^image\/.*$/)) {
+      showError(
+        coverPhotoInput,
+        storeNameError,
+        "Cover photo must be an image"
+      );
+      isValid = false;
+    }
+
+    // Profile Picture
+    if (!profilePicture) {
+      showError(
+        profilePictureInput,
+        storeNameError,
+        "Profile picture is required"
+      );
+      isValid = false;
+    } else if (profilePicture.size > rules.fileSize) {
+      showError(
+        profilePictureInput,
+        storeNameError,
+        "Profile picture must be under 5MB"
+      );
+      isValid = false;
+    } else if (!profilePicture.type.match(/^image\/.*$/)) {
+      showError(
+        profilePictureInput,
+        storeNameError,
+        "Profile picture must be an image"
+      );
+      isValid = false;
+    }
+
+    // Store Name
+    if (!storeName) {
+      showError(storeNameInput, storeNameError, "Store Name is required");
+      isValid = false;
+    } else if (!rules.storeName.test(storeName)) {
+      showError(
+        storeNameInput,
+        storeNameError,
+        "Store Name must be at least 2 characters, letters, spaces, or hyphens"
+      );
+      isValid = false;
+    }
+
+    // Username
+    if (!username) {
+      showError(usernameInput, usernameError, "Username is required");
+      isValid = false;
+    } else if (!rules.username.test(username)) {
+      showError(
+        usernameInput,
+        usernameError,
+        "Username must be at least 3 characters, alphanumeric or underscores"
+      );
+      isValid = false;
+    }
+
+    // Category
+    if (!category) {
+      showError(categoryInput, categoryError, "Category is required");
+      isValid = false;
+    }
+
+    // Description (optional)
+    if (description && !rules.description.test(description)) {
+      showError(
+        descriptionInput,
+        descriptionError,
+        "Description must be 500 characters or less"
+      );
+      isValid = false;
+    }
+
+    // Store Color
+    if (!storeColor) {
+      showError(colorPickerButton, storeColorError, "Store color is required");
+      isValid = false;
+    }
+
+    // Store URL
+    if (!storeUrl) {
+      showError(storeUrlInput, storeUrlError, "Store URL is required");
+      isValid = false;
+    } else if (!rules.storeUrl.test(storeUrl)) {
+      showError(
+        storeUrlInput,
+        storeUrlError,
+        "Store URL must be in the format: mystore.vendsr.com"
+      );
+      isValid = false;
+    }
+
+    // Update submit button
+    if (isValid) {
+      submitButton.disabled = false;
+      submitButton.classList.remove("bg-disabledBtn", "cursor-not-allowed");
+      submitButton.classList.add("bg-primary", "cursor-pointer");
+    } else {
+      submitButton.disabled = true;
+      submitButton.classList.remove("bg-primary", "cursor-pointer");
+      submitButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
+    }
+
+    console.log("Form validation result:", isValid); // Debug
+  }
+
+  function showError(input, errorElement, message) {
+    input.setAttribute("data-invalid", "true");
+    input.classList.add("border-red-500");
+    errorElement.textContent = message;
+  }
+
+  // Form submission handler
+  profileForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log("Profile setup form submitted"); // Debug
+    validateForm();
+
+    const isValid = ![
+      coverPhotoInput,
+      profilePictureInput,
+      storeNameInput,
+      usernameInput,
+      categoryInput,
+      ...storeColorInputs,
+      storeUrlInput,
+    ].some((input) => input.getAttribute("data-invalid") === "true");
+
+    if (isValid) {
+      const formData = new FormData();
+      formData.append("cover_photo", coverPhotoInput.files[0]);
+      formData.append("profile_picture", profilePictureInput.files[0]);
+      formData.append("store_name", storeNameInput.value.trim());
+      formData.append("username", usernameInput.value.trim());
+      formData.append("category", categoryInput.value);
+      formData.append("description", descriptionInput.value.trim());
+      formData.append(
+        "storeColor",
+        document.querySelector('input[name="storeColor"]:checked').value
+      );
+      formData.append("store_url", storeUrlInput.value.trim());
+      formData.append("phoneNumber", phoneNumber.replace(/\s/g, ""));
+
+      try {
+        submitButton.disabled = true;
+        submitButton.textContent = "Creating Store...";
+        console.time("profileSetupRequest"); // Debug: Measure API time
+        const response = await fetch("API_ENDPOINT_PLACEHOLDER", {
+          method: "POST",
+          body: formData,
+        });
+        console.timeEnd("profileSetupRequest"); // Debug
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(
+            errorData.message || "Failed to create store. Please try again."
+          );
+        }
+
+        const data = await response.json();
+        console.log("Store creation success:", data); // Debug
+        // Clear sessionStorage
+        sessionStorage.removeItem("phoneNumber");
+        // Show confirmation dialog
+        confirmationDialog.showModal();
+      } catch (error) {
+        console.error("Error:", error.message);
+        showError(storeUrlInput, storeUrlError, error.message);
+        submitButton.classList.remove("bg-primary", "cursor-pointer");
+        submitButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Create Store";
+      }
+    }
+  });
+
+  // Go to store handler
+  goToStoreButton.addEventListener("click", () => {
+    console.log("Go to Store clicked"); // Debug
+    window.location.href = "./dashboard/";
+  });
+
+  // Real-time validation with debounce
+  [
+    coverPhotoInput,
+    profilePictureInput,
+    storeNameInput,
+    usernameInput,
+    categoryInput,
+    descriptionInput,
+    ...storeColorInputs,
+    storeUrlInput,
+  ].forEach((input) => {
+    input.addEventListener("input", debounce(validateForm, 300));
+  });
+});
