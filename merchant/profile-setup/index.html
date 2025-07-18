@@ -37,7 +37,7 @@
           >
             <label
               for="coverPhoto"
-              class="cursor-pointer flex flex-col items-center justify-center gap-4 w-full h-full bg-inputBackground rounded-lg p-4 text-center text-gray-500"
+              class="cursor-pointer flex flex-col items-center justify-center gap-2 w-full h-full bg-inputBackground rounded-lg p-4 text-center text-gray-500"
             >
               <input
                 type="file"
@@ -50,17 +50,91 @@
               <img
                 src="../../assets/icons/upload-photo.png"
                 alt="Upload cover photo"
+                class="w-12 h-12"
               />
               <span class="capitalize">upload cover image</span>
             </label>
+
+            <label
+              for="profilePicture"
+              class="cursor-pointer flex flex-col items-center justify-center gap-2 bg-btnText rounded-full p-2 w-28 h-28 md:w-40 md:h-40 border-4 border-white absolute left-0 -bottom-1/2 -translate-y-1/2"
+            >
+              <input
+                type="file"
+                id="profilePicture"
+                name="profile_picture"
+                accept="image/*"
+                class="hidden"
+                aria-label="Upload profile picture"
+              />
+              <img
+                src="../../assets/icons/upload-photo.png"
+                alt="Upload profile picture"
+                class="w-6 h-6"
+              />
+              <span class="capitalize text-xs md:text-sm text-center"
+                >upload profile image</span
+              >
+            </label>
           </div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+
+          <div class="mt-20 md:mt-24 flex flex-col space-y-6">
+            <div class="grid gap-2">
+              <label for="storeName">Store Name</label>
+              <input
+                type="text"
+                id="storeName"
+                name="store_name"
+                required
+                placeholder="Enter your store name"
+                class="form-input"
+                data-invalid="false"
+              />
+              <p
+                class="text-red-500"
+                aria-live="polite"
+                id="storeNameError"
+              ></p>
+            </div>
+
+            <div class="grid gap-2">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                required
+                placeholder="Enter your username"
+                class="form-input"
+                data-invalid="false"
+              />
+              <p class="text-red-500" aria-live="polite" id="usernameError"></p>
+            </div>
+
+            <div class="grid gap-2">
+              <label for="category">Category</label>
+              <select
+                name="category"
+                id="category"
+                class="form-input no-arrow"
+                required
+                data-invalid="false"
+              >
+                <option value="" disabled selected>Select category</option>
+                <option value="apparel">Apparel & Accessories</option>
+                <option value="groceries">Groceries</option>
+                <option value="electronics">Electronics</option>
+                <option value="beauty">Beauty and personal care</option>
+                <option value="homegoods">Home goods</option>
+                <option value="others">Others</option>
+              </select>
+              <p class="text-red-500" aria-live="polite" id="categoryError"></p>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </form>
       </div>
     </main>
@@ -73,41 +147,6 @@
         <div
           class="bg-white mx-auto md:w-[70%] md:px-22 md:py-8 relative rounded-[10px]"
         >
-          <!-- Cover Photo -->
-          <div
-            class="bg-[#EBE8F2] relative md:aspect-[2/1] aspect-[2.3/1] flex flex-col items-center justify-center rounded-b-lg shadow-[0_4px_8px_rgba(0,0,0,0.31)] md:rounded-none md:shadow-none"
-          >
-            <img
-              class="mt-14 object-contain"
-              src="../assets/icons/shop.png"
-              alt="Cover Placeholder"
-            />
-            <p class="text-gray-400 md:text-lg text-sm">Upload cover photo</p>
-          </div>
-
-          <!-- Profile Image Upload -->
-          <label
-            for="profile-image"
-            class="absolute md:left-23 md:top-120 left-1 top-36 transform -translate-y-1/2 md:w-[178px] md:h-[178px] w-20 h-20 bg-gray-300 rounded-full flex flex-col items-center justify-center border-2 border-white cursor-pointer"
-          >
-            <img
-              class="w-[20px] md:pt-8"
-              src="../assets/icons/shop.png"
-              alt="Profile upload icon"
-            />
-            <p class="md:text-sm text-[8px] text-gray-500">
-              Upload Profile Photo
-            </p>
-            <input
-              type="file"
-              id="profile-image"
-              name="profile_image"
-              accept="image/*"
-              class="hidden"
-              aria-label="Upload profile image"
-            />
-          </label>
-
           <!-- Form Fields -->
           <div
             class="md:mt-16 flex flex-col space-y-6 md:text-gray-500 text-[#757575] px-4 md:px-0 md:pt-24 pt-16 pb-24"
