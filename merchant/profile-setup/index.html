@@ -24,7 +24,7 @@
       class="min-h-screen md:min-h-[calc(100vh-3.5rem)] sm:grid sm:place-items-center sm:p-4"
     >
       <div
-        class="w-full mx-auto flex flex-col gap-6 min-h-screen bg-white p-4 sm:h-auto sm:max-w-5xl sm:p-8 sm:rounded-2xl md:px-8"
+        class="w-full mx-auto flex flex-col gap-6 min-h-screen bg-white sm:h-auto sm:max-w-5xl sm:p-8 sm:rounded-2xl md:px-8"
       >
         <form
           method="post"
@@ -37,7 +37,7 @@
           >
             <label
               for="coverPhoto"
-              class="cursor-pointer flex flex-col items-center justify-center gap-4 w-full h-full bg-inputBackground rounded-lg p-4 text-center text-gray-500"
+              class="cursor-pointer flex flex-col items-center justify-center gap-2 w-full h-full bg-inputBackground rounded-lg p-4 text-center text-gray-500"
             >
               <input
                 type="file"
@@ -50,252 +50,306 @@
               <img
                 src="../../assets/icons/upload-photo.png"
                 alt="Upload cover photo"
+                class="w-12 h-12"
               />
               <span class="capitalize">upload cover image</span>
             </label>
-          </div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </form>
-      </div>
-    </main>
 
-    <main>
-      <form
-        id="store-form"
-        class="min-h-screen md:min-h-[calc(100vh-3.5rem)] sm:grid sm:place-items-center sm:p-8"
-      >
-        <div
-          class="bg-white mx-auto md:w-[70%] md:px-22 md:py-8 relative rounded-[10px]"
-        >
-          <!-- Cover Photo -->
-          <div
-            class="bg-[#EBE8F2] relative md:aspect-[2/1] aspect-[2.3/1] flex flex-col items-center justify-center rounded-b-lg shadow-[0_4px_8px_rgba(0,0,0,0.31)] md:rounded-none md:shadow-none"
-          >
-            <img
-              class="mt-14 object-contain"
-              src="../assets/icons/shop.png"
-              alt="Cover Placeholder"
-            />
-            <p class="text-gray-400 md:text-lg text-sm">Upload cover photo</p>
-          </div>
-
-          <!-- Profile Image Upload -->
-          <label
-            for="profile-image"
-            class="absolute md:left-23 md:top-120 left-1 top-36 transform -translate-y-1/2 md:w-[178px] md:h-[178px] w-20 h-20 bg-gray-300 rounded-full flex flex-col items-center justify-center border-2 border-white cursor-pointer"
-          >
-            <img
-              class="w-[20px] md:pt-8"
-              src="../assets/icons/shop.png"
-              alt="Profile upload icon"
-            />
-            <p class="md:text-sm text-[8px] text-gray-500">
-              Upload Profile Photo
-            </p>
-            <input
-              type="file"
-              id="profile-image"
-              name="profile_image"
-              accept="image/*"
-              class="hidden"
-              aria-label="Upload profile image"
-            />
-          </label>
-
-          <!-- Form Fields -->
-          <div
-            class="md:mt-16 flex flex-col space-y-6 md:text-gray-500 text-[#757575] px-4 md:px-0 md:pt-24 pt-16 pb-24"
-          >
-            <!-- Store Name -->
-            <div class="flex flex-col">
-              <label class="m-1" for="store_name">Store Name</label>
+            <label
+              for="profilePicture"
+              class="cursor-pointer flex flex-col items-center justify-center gap-2 bg-btnText rounded-full p-2 w-28 h-28 md:w-40 md:h-40 border-4 border-white absolute left-0 -bottom-1/2 -translate-y-1/2"
+            >
               <input
-                id="store_name"
-                name="store_name"
-                type="text"
-                class="bg-[#EBE8F2] border border-gray-300 p-3 text-gray-500 rounded-md focus:border-[#5E4F96] focus:outline-none transition-colors duration-300"
-                aria-label="Enter store name"
+                type="file"
+                id="profilePicture"
+                name="profile_picture"
+                accept="image/*"
+                class="hidden"
+                aria-label="Upload profile picture"
               />
+              <img
+                src="../../assets/icons/upload-photo.png"
+                alt="Upload profile picture"
+                class="w-6 h-6"
+              />
+              <span class="capitalize text-xs md:text-sm text-center"
+                >upload profile image</span
+              >
+            </label>
+          </div>
+
+          <div class="mt-20 md:mt-24 flex flex-col space-y-6 max-sm:px-6">
+            <div class="grid gap-2">
+              <label for="storeName">Store Name</label>
+              <input
+                type="text"
+                id="storeName"
+                name="store_name"
+                required
+                placeholder="Enter your store name"
+                class="form-input"
+                data-invalid="false"
+              />
+              <p
+                class="text-red-500"
+                aria-live="polite"
+                id="storeNameError"
+              ></p>
             </div>
 
-            <!-- Username -->
-            <div class="flex flex-col">
-              <label class="m-1" for="username">Username</label>
+            <div class="grid gap-2">
+              <label for="username">Username</label>
               <input
+                type="text"
                 id="username"
                 name="username"
-                type="text"
-                class="bg-[#EBE8F2] border border-gray-300 p-3 text-gray-500 rounded-md focus:border-[#5E4F96] focus:outline-none transition-colors duration-300"
-                aria-label="Enter your username"
+                required
+                placeholder="Enter your username"
+                class="form-input"
+                data-invalid="false"
               />
+              <p class="text-red-500" aria-live="polite" id="usernameError"></p>
             </div>
 
-            <!-- Category Dropdown -->
-            <div class="flex flex-col relative">
-              <label class="m-1" for="custom-category">Category</label>
-
-              <div
-                id="custom-category"
-                tabindex="0"
-                class="bg-[#EBE8F2] border border-gray-300 rounded-md px-4 py-3 text-[#5E4F96] flex items-center justify-between cursor-pointer select-none focus:border-[#5E4F96] focus:outline-none transition-colors duration-300"
-                aria-label="Select category"
-              >
-                <span class="h-6" id="selected-category"></span>
+            <div class="grid gap-2">
+              <label for="category">Category</label>
+              <div class="relative">
+                <select
+                  name="category"
+                  id="category"
+                  class="form-input no-arrow text-primary"
+                  required
+                  data-invalid="false"
+                >
+                  <option value="" disabled selected>Select category</option>
+                  <option value="apparel">Apparel & Accessories</option>
+                  <option value="groceries">Groceries</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="beauty">Beauty and personal care</option>
+                  <option value="homegoods">Home goods</option>
+                  <option value="others">Others</option>
+                </select>
                 <img
-                  src="../assets/icons/arrow-back.png"
-                  class="w-4 h-4 ml-2"
-                  alt="Dropdown arrow icon"
+                  src="../../assets/icons/arrow-down.png"
+                  alt="Dropdown arrow"
+                  class="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none"
                 />
               </div>
-
-              <ul
-                id="category-options"
-                class="bg-[#EBE8F2] mt-[0.2rem] rounded-md border border-gray-300 hidden"
-                aria-label="Category options"
-              >
-                <li
-                  class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer"
-                >
-                  Apparel & Accessories
-                </li>
-                <li
-                  class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer"
-                >
-                  Groceries
-                </li>
-                <li
-                  class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer"
-                >
-                  Electronics
-                </li>
-                <li
-                  class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer"
-                >
-                  Beauty & Personal care
-                </li>
-                <li
-                  class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer"
-                >
-                  Home goods
-                </li>
-                <li
-                  class="px-4 py-1 text-[#5E4F96] hover:bg-[#d5d1e2] cursor-pointer"
-                >
-                  Others
-                </li>
-              </ul>
-
-              <input type="hidden" name="category" id="category-value" />
+              <p class="text-red-500" aria-live="polite" id="categoryError"></p>
             </div>
 
-            <!-- Description -->
-            <div class="flex flex-col">
-              <label class="m-1" for="description">Description</label>
+            <div class="grid gap-2">
+              <label for="description">Description</label>
               <textarea
                 id="description"
                 name="description"
-                class="bg-[#EBE8F2] h-[100px] border border-gray-300 p-3 text-gray-500 rounded-md resize-none focus:border-[#5E4F96] focus:outline-none transition-colors duration-300"
-                aria-label="Enter store description"
+                placeholder="Enter a brief description of your store"
+                class="form-input h-32 resize-none"
+                data-invalid="false"
               ></textarea>
+              <p
+                class="text-red-500"
+                aria-live="polite"
+                id="descriptionError"
+              ></p>
             </div>
 
-            <!-- Store Color Picker -->
-            <div class="flex flex-col">
-              <label class="m-1" for="store_color">Set Store Color</label>
-
-              <div
-                id="color-trigger"
-                tabindex="0"
-                class="bg-[#EBE8F2] border border-gray-300 rounded-md px-4 py-3 text-white flex items-center justify-between cursor-pointer transition-colors duration-300 focus:border-[#5E4F96] focus:outline-none"
+            <div class="grid gap-2">
+              <p>Set store colors</p>
+              <button
+                class="form-input active:border-primary cursor-pointer h-12 relative"
+                type="button"
+                id="colorPicker"
                 aria-label="Select store color"
+                data-color-picker="true"
+                data-invalid="false"
               >
-                <span class="p-3" id="selected-color-label"></span>
                 <img
-                  src="../assets/icons/shop.png"
-                  class="w-4 h-4"
-                  alt="Color picker icon"
+                  src="../../assets/icons/eyedropper.png"
+                  alt=""
+                  class="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none"
                 />
-              </div>
+              </button>
 
               <div
-                id="color-options"
-                class="flex flex-wrap gap-2 mt-2 hidden"
-                aria-label="Store color options"
+                class="flex items-center form-input h-12 p-1 gap-2 overflow-x-auto"
               >
-                <div
-                  data-color="#FF0000"
-                  class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300"
-                  style="background-color: #ff0000"
-                  aria-label="Red"
-                ></div>
-                <div
-                  data-color="#FFFC9E"
-                  class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300"
-                  style="background-color: #fffc9e"
-                  aria-label="Light Yellow"
-                ></div>
-                <div
-                  data-color="#2F4AFF"
-                  class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300"
-                  style="background-color: #2f4aff"
-                  aria-label="Blue"
-                ></div>
-                <div
-                  data-color="#F052BC"
-                  class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300"
-                  style="background-color: #f052bc"
-                  aria-label="Pink"
-                ></div>
-                <div
-                  data-color="#00BA86"
-                  class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300"
-                  style="background-color: #00ba86"
-                  aria-label="Green"
-                ></div>
-                <div
-                  data-color="#040000"
-                  class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300"
-                  style="background-color: #040000"
-                  aria-label="Black"
-                ></div>
-                <div
-                  data-color="#FFFFFF"
-                  class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300"
-                  style="background-color: #ffffff"
-                  aria-label="White"
-                ></div>
-                <div
-                  data-color="#A87878"
-                  class="md:w-12 md:h-12 w-6 h-6 cursor-pointer border border-gray-300"
-                  style="background-color: #a87878"
-                  aria-label="Muted Mauve"
-                ></div>
+                <label
+                  for="red"
+                  class="bg-[#FF0000] rounded-md h-full w-full cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="storeColor"
+                    id="red"
+                    value="#FF0000"
+                    class="hidden"
+                    required
+                    data-invalid="false"
+                  />
+                </label>
+
+                <label
+                  for="yellow"
+                  class="bg-[#FFFC9E] rounded-md h-full w-full cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="storeColor"
+                    id="yellow"
+                    value="#FFFC9E"
+                    class="hidden"
+                    required
+                    data-invalid="false"
+                  />
+                </label>
+
+                <label
+                  for="blue"
+                  class="bg-[#2F4AFF] rounded-md h-full w-full cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="storeColor"
+                    id="blue"
+                    value="#2F4AFF"
+                    class="hidden"
+                    required
+                    data-invalid="false"
+                  />
+                </label>
+
+                <label
+                  for="pink"
+                  class="bg-[#F052BC] rounded-md h-full w-full cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="storeColor"
+                    id="pink"
+                    value="#F052BC"
+                    class="hidden"
+                    required
+                    data-invalid="false"
+                  />
+                </label>
+
+                <label
+                  for="green"
+                  class="bg-[#00BA86] rounded-md h-full w-full cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="storeColor"
+                    id="green"
+                    value="#00BA86"
+                    class="hidden"
+                    required
+                    data-invalid="false"
+                  />
+                </label>
+
+                <label
+                  for="black"
+                  class="bg-[#040000] rounded-md h-full w-full cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="storeColor"
+                    id="black"
+                    value="#040000"
+                    class="hidden"
+                    required
+                    data-invalid="false"
+                  />
+                </label>
+
+                <label
+                  for="white"
+                  class="bg-[#FFFFFF] rounded-md h-full w-full cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="storeColor"
+                    id="white"
+                    value="#FFFFFF"
+                    class="hidden"
+                    required
+                    data-invalid="false"
+                  />
+                </label>
+
+                <label
+                  for="brown"
+                  class="bg-[#A87878] rounded-md h-full w-full cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="storeColor"
+                    id="brown"
+                    value="#A87878"
+                    class="hidden"
+                    required
+                    data-invalid="false"
+                  />
+                </label>
               </div>
-
-              <input type="hidden" name="store_color" id="store_color" />
+              <p
+                class="text-red-500"
+                aria-live="polite"
+                id="storeColorError"
+              ></p>
             </div>
 
-            <!-- Store URL -->
-            <div class="flex flex-col">
-              <label class="m-1" for="store_url">Choose Store URL</label>
+            <div class="grid gap-2">
+              <label for="storeUrl">Store URL</label>
               <input
-                id="store_url"
-                name="store_url"
                 type="text"
-                class="bg-[#EBE8F2] border border-gray-300 p-3 text-gray-500 rounded-md px-10 focus:border-[#5E4F96] focus:outline-none transition-colors duration-300"
-                placeholder="mystore.vendsr.com"
-                aria-label="Enter store URL"
+                id="storeUrl"
+                name="store_url"
+                required
+                placeholder="Enter your store URL - e.g., mystore.vendsr.com"
+                class="form-input"
+                data-invalid="false"
               />
+              <p class="text-red-500" aria-live="polite" id="storeUrlError"></p>
             </div>
+
+            <button
+              type="submit"
+              disabled
+              class="bg-disabledBtn text-white py-3 rounded-full w-full text-center mt-6 block md:w-fit mx-auto md:px-36 whitespace-nowrap cursor-not-allowed"
+            >
+              Create Store
+            </button>
           </div>
+        </form>
+      </div>
+
+      <dialog
+        id="createStoreConfirmation"
+        class="m-auto rounded-2xl border-2 border-primary w-full max-w-80 md:max-w-96 [&::backdrop]:backdrop-blur-sm [&::backdrop]:bg-primary/10"
+      >
+        <div
+          class="flex flex-col items-center gap-4 p-12 text-center w-full h-full"
+        >
+          <img
+            src="../../assets/icons/completed.png"
+            alt=""
+            class="mx-auto w-12 h-12"
+          />
+          <p>Your store is ready!</p>
+          <p>You have successfully created your merchant account</p>
+
+          <button
+            id="goToStore"
+            class="bg-primary text-white py-3 rounded-full w-full text-center mt-16 block whitespace-nowrap cursor-pointer"
+          >
+            Go To Store
+          </button>
+          <a href="#">Go back</a>
         </div>
-      </form>
+      </dialog>
     </main>
 
     <script src="../../scripts/profile_setup.js"></script>

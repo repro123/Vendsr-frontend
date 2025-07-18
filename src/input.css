@@ -39,6 +39,15 @@
     }
   }
 
+  .no-arrow {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .no-arrow::-ms-expand {
+    display: none;
+  }
+
   .activeProfileContentButton {
     border-bottom: 4px solid var(--color-primary);
     font-weight: 800;
