@@ -7,24 +7,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const fullOtpInput = document.getElementById("full-otp");
   const errorMessage = document.getElementById("errorMessage");
   const verifyButton = otpForm.querySelector('button[type="submit"]');
-  const userMobileNumber = document.getElementById("userMobileNumber");
+  const userEmail = document.getElementById("userEmail");
   const resendButton = document.getElementById("resendOTP");
   const countdownElement = document.getElementById("otpCountdown");
 
-  // Retrieve phone number from sessionStorage
-  const phoneNumber = sessionStorage.getItem("phoneNumber");
-  if (phoneNumber) {
-    userMobileNumber.textContent = phoneNumber;
-    console.log("Phone number from sessionStorage:", phoneNumber); // Debug
-  } else {
-    userMobileNumber.textContent = "No phone number provided";
+  // Retrieve email and reference from sessionStorage
+  const email = sessionStorage.getItem("email");
+  const otpReference = sessionStorage.getItem("otpReference");
+  if (!email) {
+    userEmail.textContent = "No email provided";
     errorMessage.textContent = "Please sign up again to receive an OTP.";
     verifyButton.disabled = true;
     verifyButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
     resendButton.classList.add("cursor-not-allowed", "disabled");
-    console.warn("No phone number in sessionStorage"); // Debug
+    console.warn("No email in sessionStorage, redirecting to sign-up"); // Debug
+    window.location.href = "../sign-up/";
     return;
   }
+  userEmail.textContent = email;
+  console.log("Email from sessionStorage:", email, "Reference:", otpReference); // Debug
 
   // 10-minute countdown timer
   let countdownSeconds = 10 * 60; // 10 minutes
@@ -122,15 +123,16 @@ document.addEventListener("DOMContentLoaded", () => {
         verifyButton.textContent = "Verifying...";
         console.time("verifyOtpRequest"); // Debug: Measure API time
         const response = await fetch(
-          "https://vendsr-backend.onrender.com/api/verify/phone/verify-otp",
+          "https://vendsr-backend.onrender.com/api/verify/otp/verify",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              phoneNumber: phoneNumber.replace(/\s/g, ""),
+              contact: email,
               otp: fullOtp,
+              reference: otpReference || "",
             }),
           }
         );
@@ -145,9 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await response.json();
         console.log("OTP verification success:", data); // Debug
-        // Clear sessionStorage after successful verification
-        sessionStorage.removeItem("phoneNumber");
-        // Redirect to dashboard (adjust URL as needed)
+        // Clear only otpReference from sessionStorage
+        sessionStorage.removeItem("otpReference");
+        // Redirect to Business verification
         window.location.href = "../merchant/business_verification/";
       } catch (error) {
         console.error("Error:", error.message);
@@ -175,15 +177,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.time("resendOtpRequest"); // Debug: Measure API time
         const response = await fetch(
-          "https://vendsr-backend.onrender.com/api/verify/phone/send-otp",
+          "https://vendsr-backend.onrender.com/api/verify/email/send-otp",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              phoneNumber: phoneNumber.replace(/\s/g, ""),
-            }),
+            body: JSON.stringify({ contact: email, type: "email" }),
           }
         );
         console.timeEnd("resendOtpRequest"); // Debug
@@ -197,6 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await response.json();
         console.log("OTP resent successfully:", data); // Debug
+        // Update OTP reference
+        sessionStorage.setItem("otpReference", data.reference || "");
         // Clear previous OTP inputs
         otpInputs.forEach((input) => {
           input.value = "";
