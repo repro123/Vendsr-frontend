@@ -10,6 +10,7 @@
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-green-500: oklch(72.3% 0.219 149.579);
+    --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-500: oklch(55.1% 0.027 264.364);
@@ -662,6 +663,9 @@
   .border-btnText {
     border-color: var(--color-btnText);
   }
+  .border-gray-100 {
+    border-color: var(--color-gray-100);
+  }
   .border-gray-200 {
     border-color: var(--color-gray-200);
   }
@@ -691,9 +695,6 @@
   }
   .bg-\[\#2F4AFF\] {
     background-color: #2F4AFF;
-  }
-  .bg-\[\#522E9A33\] {
-    background-color: #522E9A33;
   }
   .bg-\[\#040000\] {
     background-color: #040000;
@@ -1446,9 +1447,9 @@
       width: calc(var(--spacing) * 40);
     }
   }
-  .md\:w-\[50\%\] {
+  .md\:w-\[80\%\] {
     @media (width >= 48rem) {
-      width: 50%;
+      width: 80%;
     }
   }
   .md\:w-\[878px\] {

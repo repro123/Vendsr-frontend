@@ -559,7 +559,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ); // Debug
 
         // Redirect to OTP page
-        window.location.href = "../merchant/otp/";
+        window.location.href = "../otp/";
       } catch (error) {
         console.error("Error:", error.message);
         submitButton.classList.remove("bg-primary", "cursor-pointer");

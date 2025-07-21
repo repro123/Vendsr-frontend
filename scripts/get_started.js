@@ -58,6 +58,7 @@ const radioInputs = document.querySelectorAll("input[name='category']");
 const labels = document.querySelectorAll(
   "label[for='merchant'], label[for='shopper']"
 );
+const continueButton = document.getElementById("continueButton");
 
 // Handle label border toggle
 radioInputs.forEach((input) => {
@@ -66,6 +67,9 @@ radioInputs.forEach((input) => {
       label.classList.remove("border-primary");
       label.classList.add("border-gray-200");
     });
+    continueButton.disabled = false;
+    continueButton.classList.remove("bg-disabledBtn", "cursor-not-allowed");
+    continueButton.classList.add("bg-primary", "cursor-pointer", "text-white");
 
     const selectedLabel = document.querySelector(`label[for="${input.id}"]`);
     selectedLabel.classList.add("border-primary");
