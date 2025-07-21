@@ -18,26 +18,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const usernameError = document.getElementById("usernameError");
   const categoryError = document.getElementById("categoryError");
   const descriptionError = document.getElementById("descriptionError");
-  const storeColorError = document.getElementById("storeUrlError"); // Note: Reusing storeUrlError for storeColor
+  const storeColorError = document.getElementById("storeUrlError"); // Reusing for storeColor
   const storeUrlError = document.getElementById("storeUrlError");
   const submitButton = profileForm.querySelector('button[type="submit"]');
   const confirmationDialog = document.getElementById("createStoreConfirmation");
   const goToStoreButton = document.getElementById("goToStore");
 
-  // Check for phoneNumber in sessionStorage
-  // const phoneNumber = sessionStorage.getItem("phoneNumber");
-  // if (!phoneNumber) {
-  //   console.warn("No phone number in sessionStorage, redirecting to signup"); // Debug
-  //   window.location.href = "../signup/";
-  //   return;
-  // }
-  // console.log("Phone number from sessionStorage:", phoneNumber); // Debug
+  // Check for email in sessionStorage
+  const email = sessionStorage.getItem("email");
+  if (!email) {
+    console.warn("No email in sessionStorage, redirecting to signup"); // Debug
+    window.location.href = "../sign-up/";
+    return;
+  }
+  console.log("Email from sessionStorage:", email); // Debug
 
   // Regular expressions for validation
   const rules = {
-    storeName: /^[a-zA-Z\s-]{2,}$/,
-    username: /^[a-zA-Z0-9_]{3,}$/,
-    storeUrl: /^[a-zA-Z0-9-]+\.vendsr\.com$/,
+    storeName: /^[a-zA-Z\s-]{2,50}$/,
+    username: /^[a-zA-Z0-9_]{3,50}$/,
+    storeUrl: /^[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.vendsr\.com$/, // Allow subdomains
     description: /^.{0,500}$/, // Optional, max 500 characters
     fileSize: 5 * 1024 * 1024, // 5MB max
   };
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showError(
         storeNameInput,
         storeNameError,
-        "Store Name must be at least 2 characters, letters, spaces, or hyphens"
+        "Store Name must be 2–50 characters, letters, spaces, or hyphens"
       );
       isValid = false;
     }
@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showError(
         usernameInput,
         usernameError,
-        "Username must be at least 3 characters, alphanumeric or underscores"
+        "Username must be 3–50 characters, alphanumeric or underscores"
       );
       isValid = false;
     }
@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showError(
         storeUrlInput,
         storeUrlError,
-        "Store URL must be in the format: mystore.vendsr.com"
+        "Store URL must be in the format: mystore.vendsr.com or mystore.sub.vendsr.com"
       );
       isValid = false;
     }
@@ -257,16 +257,19 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('input[name="storeColor"]:checked').value
       );
       formData.append("store_url", storeUrlInput.value.trim());
-      formData.append("phoneNumber", phoneNumber.replace(/\s/g, ""));
+      formData.append("email", email);
 
       try {
         submitButton.disabled = true;
         submitButton.textContent = "Creating Store...";
         console.time("profileSetupRequest"); // Debug: Measure API time
-        const response = await fetch("API_ENDPOINT_PLACEHOLDER", {
-          method: "POST",
-          body: formData,
-        });
+        const response = await fetch(
+          "https://vendsr-backend.onrender.com/api/store/create",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
         console.timeEnd("profileSetupRequest"); // Debug
 
         if (!response.ok) {
@@ -279,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
         console.log("Store creation success:", data); // Debug
         // Clear sessionStorage
-        sessionStorage.removeItem("phoneNumber");
+        sessionStorage.removeItem("email");
         // Show confirmation dialog
         confirmationDialog.showModal();
       } catch (error) {
