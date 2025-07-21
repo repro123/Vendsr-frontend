@@ -1,7 +1,7 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("signup.js loaded"); // Debug: Confirm script loads
+  console.log("shopper signup.js loaded"); // Debug: Confirm script loads
   const signupForm = document.getElementById("signup");
   const fullNameInput = document.getElementById("fullName");
   const usernameInput = document.getElementById("username");
@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
         submitButton.textContent = "Signing up...";
         console.time("registerRequest"); // Debug: Measure registration API time
         const registerResponse = await fetch(
-          "https://vendsr-backend.onrender.com/api/auth/register-merchant",
+          "https://vendsr-backend.onrender.com/api/auth/register-shopper",
           {
             method: "POST",
             headers: {
@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ); // Debug
 
         // Redirect to OTP page
-        window.location.href = "../merchant/otp/";
+        window.location.href = "../shopper/otp/";
       } catch (error) {
         console.error("Error:", error.message);
         submitButton.classList.remove("bg-primary", "cursor-pointer");
