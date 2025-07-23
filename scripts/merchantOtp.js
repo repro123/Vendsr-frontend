@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, otp: fullOtp }),
+            body: JSON.stringify({ email, code: fullOtp }),
           }),
           timeoutPromise,
         ]);
