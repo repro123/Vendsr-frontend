@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Go to store handler
   goToStoreButton.addEventListener("click", () => {
     console.log("Go to Store clicked"); // Debug
-    window.location.href = "./dashboard/";
+    window.location.href = "../../user-dashboard-profile/";
   });
 
   // Real-time validation with debounce

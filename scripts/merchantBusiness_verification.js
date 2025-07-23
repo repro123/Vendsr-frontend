@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Clear sessionStorage after successful verification
         sessionStorage.removeItem("otpReference");
         // Navigate to profile setup
-        window.location.href = "../merchant/profile-setup/";
+        window.location.href = "../profile-setup/";
       } catch (error) {
         console.error("Error:", error.message);
         showError(cacCertificateInput, businessOwnerNameError, error.message);
