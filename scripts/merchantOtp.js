@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const timeoutPromise = new Promise((_, reject) => {
           setTimeout(
             () => reject(new Error("Request timed out. Please try again.")),
-            10000
+            60000
           );
         });
 
