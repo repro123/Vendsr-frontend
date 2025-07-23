@@ -7,25 +7,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const fullOtpInput = document.getElementById("full-otp");
   const errorMessage = document.getElementById("errorMessage");
   const verifyButton = otpForm.querySelector('button[type="submit"]');
-  const userEmail = document.getElementById("userEmail");
+  const emailElement = document.getElementById("emailDisplay");
   const resendButton = document.getElementById("resendOTP");
   const countdownElement = document.getElementById("otpCountdown");
 
-  // Retrieve email and reference from sessionStorage
+  // Retrieve email from sessionStorage
   const email = sessionStorage.getItem("email");
-  const otpReference = sessionStorage.getItem("otpReference");
   if (!email) {
-    userEmail.textContent = "No email provided";
+    emailElement.textContent = "No email provided";
     errorMessage.textContent = "Please sign up again to receive an OTP.";
     verifyButton.disabled = true;
     verifyButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
     resendButton.classList.add("cursor-not-allowed", "disabled");
-    console.warn("No email in sessionStorage, redirecting to sign-up"); // Debug
-    window.location.href = "../sign-up/";
+    resendButton.disabled = true;
+    console.warn("Missing email in sessionStorage"); // Debug
+    setTimeout(() => {
+      window.location.href = "../sign-up/";
+    }, 2000);
     return;
   }
-  userEmail.textContent = email;
-  console.log("Email from sessionStorage:", email, "Reference:", otpReference); // Debug
+  emailElement.textContent = email;
+  console.log("SessionStorage email:", email); // Debug
 
   // 10-minute countdown timer
   let countdownSeconds = 10 * 60; // 10 minutes
@@ -110,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     otpInputs.forEach((input) => input.classList.add("border-red-500"));
   }
 
-  // Form submission handler
+  // Form submission handler with timeout
   otpForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     console.log("OTP form submitted"); // Debug
@@ -122,20 +124,26 @@ document.addEventListener("DOMContentLoaded", () => {
         verifyButton.disabled = true;
         verifyButton.textContent = "Verifying...";
         console.time("verifyOtpRequest"); // Debug: Measure API time
-        const response = await fetch(
-          "https://vendsr-backend.onrender.com/api/verify/otp/verify",
-          {
+
+        // Create a timeout promise
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(
+            () => reject(new Error("Request timed out. Please try again.")),
+            10000
+          );
+        });
+
+        // API call with timeout
+        const response = await Promise.race([
+          fetch("https://vendsr-backend.onrender.com/api/verify/otp/verify", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              contact: email,
-              otp: fullOtp,
-              reference: otpReference || "",
-            }),
-          }
-        );
+            body: JSON.stringify({ email, otp: fullOtp }),
+          }),
+          timeoutPromise,
+        ]);
         console.timeEnd("verifyOtpRequest"); // Debug
 
         if (!response.ok) {
@@ -147,10 +155,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await response.json();
         console.log("OTP verification success:", data); // Debug
-        // Clear only otpReference from sessionStorage
-        sessionStorage.removeItem("otpReference");
+        // Clear sessionStorage
+        // sessionStorage.removeItem("email");
+        // sessionStorage.removeItem("userId");
         // Redirect to Business verification
-        window.location.href = "../merchant/business_verification/";
+        window.location.href = "../business_verification/";
       } catch (error) {
         console.error("Error:", error.message);
         showError(error.message);
@@ -183,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ contact: email, type: "email" }),
+            body: JSON.stringify({ email }),
           }
         );
         console.timeEnd("resendOtpRequest"); // Debug
@@ -197,8 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await response.json();
         console.log("OTP resent successfully:", data); // Debug
-        // Update OTP reference
-        sessionStorage.setItem("otpReference", data.reference || "");
         // Clear previous OTP inputs
         otpInputs.forEach((input) => {
           input.value = "";

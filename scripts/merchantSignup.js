@@ -1,225 +1,281 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("otp.js loaded"); // Debug: Confirm script loads
-  const otpForm = document.getElementById("otp-form");
-  const otpInputs = document.querySelectorAll(".otp-input");
-  const fullOtpInput = document.getElementById("full-otp");
-  const errorMessage = document.getElementById("errorMessage");
-  const verifyButton = otpForm.querySelector('button[type="submit"]');
-  const emailElement = document.getElementById("emailDisplay");
-  const resendButton = document.getElementById("resendOTP");
-  const countdownElement = document.getElementById("otpCountdown");
+  console.log("MERCHANTSignup.js loaded"); // Debug: Confirm script loads
+  const signupForm = document.getElementById("signup");
+  const fullNameInput = document.getElementById("fullName");
+  const usernameInput = document.getElementById("username");
+  const phoneNumberInput = document.getElementById("phoneNumber");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  const confirmPasswordInput = document.getElementById("confirmPassword");
+  const fullNameError = document.getElementById("fullNameError");
+  const usernameError = document.getElementById("usernameError");
+  const phoneNumberError = document.getElementById("phoneNumberError");
+  const emailError = document.getElementById("emailError");
+  const passwordError = document.getElementById("passwordError");
+  const confirmPasswordError = document.getElementById("confirmPasswordError");
+  const submitButton = signupForm.querySelector('button[type="submit"]');
+  const togglePasswordButtons = signupForm.querySelectorAll(
+    'button[aria-label="Toggle password visibility"]'
+  );
 
-  // Retrieve email from sessionStorage
-  const email = sessionStorage.getItem("email");
-  if (!email) {
-    emailElement.textContent = "No email provided";
-    errorMessage.textContent = "Please sign up again to receive an OTP.";
-    verifyButton.disabled = true;
-    verifyButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
-    resendButton.classList.add("cursor-not-allowed", "disabled");
-    resendButton.disabled = true;
-    console.warn("Missing email in sessionStorage"); // Debug
-    setTimeout(() => {
-      window.location.href = "../sign-up/";
-    }, 2000);
-    return;
+  // Regular expressions for validation (aligned with registerSchema)
+  const rules = {
+    fullName: /^[a-zA-Z\s-]{2,50}$/,
+    username: /^[a-zA-Z0-9_]{2,50}$/,
+    phoneNumber: /^\+?[0-9]{8,15}$/,
+    email: /^[^\s@]{1,100}@[^\s@]+\.[^\s@]+$/,
+    password:
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,50}$/,
+  };
+
+  // Debounce function for real-time validation
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
   }
-  emailElement.textContent = email;
-  console.log("SessionStorage email:", email); // Debug
 
-  // 10-minute countdown timer
-  let countdownSeconds = 10 * 60; // 10 minutes
-  function updateCountdown() {
-    const minutes = Math.floor(countdownSeconds / 60);
-    const seconds = countdownSeconds % 60;
-    countdownElement.textContent = `${minutes}:${seconds
-      .toString()
-      .padStart(2, "0")}`;
-    if (countdownSeconds <= 0) {
-      clearInterval(countdownInterval);
-      resendButton.classList.remove("cursor-not-allowed", "disabled");
-      resendButton.disabled = false;
-      countdownElement.textContent = "Expired";
-      console.log("Countdown expired, resend enabled"); // Debug
-    }
-    countdownSeconds--;
-  }
-  const countdownInterval = setInterval(updateCountdown, 1000);
-
-  // OTP input handling
-  otpInputs.forEach((input, index) => {
-    input.addEventListener("input", (e) => {
-      console.log(`OTP input ${index + 1}: ${e.target.value}`); // Debug
-      const value = e.target.value;
-      if (value && !/^[0-9]$/.test(value)) {
-        e.target.value = "";
-        showError("Enter a single digit (0-9)");
-        return;
-      }
-      if (value && index < otpInputs.length - 1) {
-        otpInputs[index + 1].focus();
-      }
-      validateOtp();
-    });
-
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Backspace" && !input.value && index > 0) {
-        otpInputs[index - 1].focus();
-      }
-    });
-
-    input.addEventListener("paste", (e) => {
-      e.preventDefault();
-      const pastedData = e.clipboardData.getData("text").trim();
-      if (/^[0-9]{6}$/.test(pastedData)) {
-        pastedData.split("").forEach((char, i) => {
-          if (otpInputs[i]) otpInputs[i].value = char;
-        });
-        otpInputs[otpInputs.length - 1].focus();
-        validateOtp();
-      } else {
-        showError("Pasted OTP must be 6 digits");
-      }
+  // Password visibility toggle
+  togglePasswordButtons.forEach((button) => {
+    const input = button.closest(".relative").querySelector("input");
+    const icon = button.querySelector("img");
+    button.addEventListener("click", () => {
+      console.log("Password toggle clicked"); // Debug
+      const isHidden = input.type === "password";
+      input.type = isHidden ? "text" : "password";
+      button.setAttribute("data-state", isHidden ? "visible" : "hidden");
+      icon.alt = isHidden ? "Hide password" : "Show password";
+      button.setAttribute(
+        "aria-label",
+        isHidden ? "Hide password" : "Toggle password visibility"
+      );
     });
   });
 
-  // Validate OTP inputs
-  function validateOtp() {
-    console.log("Validating OTP"); // Debug
-    const otpValues = Array.from(otpInputs).map((input) => input.value);
-    const isValid = otpValues.every((value) => /^[0-9]$/.test(value));
-    const fullOtp = otpValues.join("");
-    fullOtpInput.value = fullOtp;
+  // Validate all inputs
+  function validateForm() {
+    console.log("Validating signup form"); // Debug
+    const fullName = fullNameInput.value.trim();
+    const username = usernameInput.value.trim();
+    const phoneNumber = phoneNumberInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    // Reset error states
+    [
+      fullNameInput,
+      usernameInput,
+      phoneNumberInput,
+      emailInput,
+      passwordInput,
+      confirmPasswordInput,
+    ].forEach((input) => {
+      input.setAttribute("data-invalid", "false");
+      input.classList.remove("border-red-500");
+    });
+    [
+      fullNameError,
+      usernameError,
+      phoneNumberError,
+      emailError,
+      passwordError,
+      confirmPasswordError,
+    ].forEach((error) => {
+      error.textContent = "";
+    });
+
+    let isValid = true;
+
+    // Full Name
+    if (!fullName) {
+      showError(fullNameInput, fullNameError, "Full name is required");
+      isValid = false;
+    } else if (!rules.fullName.test(fullName)) {
+      showError(
+        fullNameInput,
+        fullNameError,
+        "Full name must be 2–50 characters, letters, spaces, or hyphens only"
+      );
+      isValid = false;
+    }
+
+    // Username
+    if (!username) {
+      showError(usernameInput, usernameError, "Username is required");
+      isValid = false;
+    } else if (!rules.username.test(username)) {
+      showError(
+        usernameInput,
+        usernameError,
+        "Username must be 2–50 characters, alphanumeric or underscores"
+      );
+      isValid = false;
+    }
+
+    // Phone Number
+    if (!phoneNumber) {
+      showError(phoneNumberInput, phoneNumberError, "Phone number is required");
+      isValid = false;
+    } else if (!rules.phoneNumber.test(phoneNumber)) {
+      showError(
+        phoneNumberInput,
+        phoneNumberError,
+        "Phone number must be 8–15 digits, optional +"
+      );
+      isValid = false;
+    }
+
+    // Email
+    if (!email) {
+      showError(emailInput, emailError, "Email is required");
+      isValid = false;
+    } else if (!rules.email.test(email)) {
+      showError(
+        emailInput,
+        emailError,
+        "Enter a valid email address (max 100 characters)"
+      );
+      isValid = false;
+    }
+
+    // Password
+    if (!password) {
+      showError(passwordInput, passwordError, "Password is required");
+      isValid = false;
+    } else if (!rules.password.test(password)) {
+      showError(
+        passwordInput,
+        passwordError,
+        "Password must be 6–50 characters, with one uppercase, one lowercase, one number, and one special character"
+      );
+      isValid = false;
+    }
+
+    // Confirm Password
+    if (!confirmPassword) {
+      showError(
+        confirmPasswordInput,
+        confirmPasswordError,
+        "Confirm password is required"
+      );
+      isValid = false;
+    } else if (password !== confirmPassword) {
+      showError(
+        confirmPasswordInput,
+        confirmPasswordError,
+        "Passwords do not match"
+      );
+      isValid = false;
+    }
+
+    // Update submit button
+    if (isValid) {
+      submitButton.disabled = false;
+      submitButton.classList.remove("bg-disabledBtn", "cursor-not-allowed");
+      submitButton.classList.add("bg-primary", "cursor-pointer");
+    } else {
+      submitButton.disabled = true;
+      submitButton.classList.remove("bg-primary", "cursor-pointer");
+      submitButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
+    }
+
+    console.log("Form validation result:", isValid); // Debug
+  }
+
+  function showError(input, errorElement, message) {
+    input.setAttribute("data-invalid", "true");
+    input.classList.add("border-red-500");
+    errorElement.textContent = message;
+  }
+
+  // Form submission handler
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log("Form submitted"); // Debug
+    validateForm();
+
+    const isValid = ![
+      fullNameInput,
+      usernameInput,
+      phoneNumberInput,
+      emailInput,
+      passwordInput,
+      confirmPasswordInput,
+    ].some((input) => input.getAttribute("data-invalid") === "true");
 
     if (isValid) {
-      errorMessage.textContent = "";
-      otpInputs.forEach((input) => input.classList.remove("border-red-500"));
-      verifyButton.disabled = false;
-      verifyButton.classList.remove("bg-disabledBtn", "cursor-not-allowed");
-      verifyButton.classList.add("bg-primary", "cursor-pointer");
-    } else {
-      showError("Enter all 6 digits");
-      verifyButton.disabled = true;
-      verifyButton.classList.remove("bg-primary", "cursor-pointer");
-      verifyButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
-    }
-  }
+      const formData = {
+        fullName: fullNameInput.value.trim(),
+        username: usernameInput.value.trim(),
+        phoneNumber: phoneNumberInput.value.trim(),
+        email: emailInput.value.trim(),
+        password: passwordInput.value,
+      };
 
-  function showError(message) {
-    errorMessage.textContent = message;
-    otpInputs.forEach((input) => input.classList.add("border-red-500"));
-  }
-
-  // Form submission handler with timeout
-  otpForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    console.log("OTP form submitted"); // Debug
-    validateOtp();
-
-    const fullOtp = fullOtpInput.value;
-    if (fullOtp.length === 6) {
       try {
-        verifyButton.disabled = true;
-        verifyButton.textContent = "Verifying...";
-        console.time("verifyOtpRequest"); // Debug: Measure API time
-
-        // Create a timeout promise
-        const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(
-            () => reject(new Error("Request timed out. Please try again.")),
-            10000
-          );
-        });
-
-        // API call with timeout
-        const response = await Promise.race([
-          fetch("https://vendsr-backend.onrender.com/api/verify/otp/verify", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, otp: fullOtp }),
-          }),
-          timeoutPromise,
-        ]);
-        console.timeEnd("verifyOtpRequest"); // Debug
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(
-            errorData.message || "Failed to verify OTP. Please try again."
-          );
-        }
-
-        const data = await response.json();
-        console.log("OTP verification success:", data); // Debug
-        // Clear sessionStorage
-        // sessionStorage.removeItem("email");
-        // sessionStorage.removeItem("userId");
-        // Redirect to Business verification
-        window.location.href = "../business_verification/";
-      } catch (error) {
-        console.error("Error:", error.message);
-        showError(error.message);
-        verifyButton.classList.remove("bg-primary", "cursor-pointer");
-        verifyButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
-      } finally {
-        verifyButton.disabled = false;
-        verifyButton.textContent = "Verify";
-      }
-    }
-  });
-
-  // Resend OTP handler
-  resendButton.addEventListener("click", async () => {
-    if (!resendButton.disabled) {
-      console.log("Resend OTP clicked"); // Debug
-      try {
-        resendButton.disabled = true;
-        resendButton.classList.add("cursor-not-allowed", "disabled");
-        countdownSeconds = 10 * 60; // Reset to 10 minutes
-        updateCountdown();
-        clearInterval(countdownInterval);
-        const newCountdown = setInterval(updateCountdown, 1000);
-
-        console.time("resendOtpRequest"); // Debug: Measure API time
-        const response = await fetch(
-          "https://vendsr-backend.onrender.com/api/verify/email/send-otp",
+        submitButton.disabled = true;
+        submitButton.textContent = "Signing up...";
+        console.time("registerRequest"); // Debug: Measure registration API time
+        const registerResponse = await fetch(
+          "https://vendsr-backend.onrender.com/api/auth/register-merchant",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email }),
+            body: JSON.stringify(formData),
           }
         );
-        console.timeEnd("resendOtpRequest"); // Debug
+        console.timeEnd("registerRequest"); // Debug
 
-        if (!response.ok) {
-          const errorData = await response.json();
+        if (!registerResponse.ok) {
+          const errorData = await registerResponse.json();
           throw new Error(
-            errorData.message || "Failed to resend OTP. Please try again."
+            errorData.message || "Failed to register. Please try again."
           );
         }
 
-        const data = await response.json();
-        console.log("OTP resent successfully:", data); // Debug
-        // Clear previous OTP inputs
-        otpInputs.forEach((input) => {
-          input.value = "";
-          input.classList.remove("border-red-500");
-        });
-        fullOtpInput.value = "";
-        errorMessage.textContent = "";
-        otpInputs[0].focus();
+        const registerData = await registerResponse.json();
+        console.log("Registration success:", registerData); // Debug
+
+        // Store email and userId in sessionStorage
+        sessionStorage.setItem("email", formData.email);
+        sessionStorage.setItem("userId", registerData.userId || "");
+        console.log(
+          "Stored in sessionStorage: email =",
+          formData.email,
+          ", userId =",
+          registerData.userId || "none"
+        ); // Debug
+
+        // Redirect to OTP page
+        window.location.href = "../otp/";
       } catch (error) {
         console.error("Error:", error.message);
-        showError(error.message);
-        resendButton.disabled = false;
-        resendButton.classList.remove("cursor-not-allowed", "disabled");
+        submitButton.classList.remove("bg-primary", "cursor-pointer");
+        submitButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
+        alert("Registration failed: " + error.message);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Sign Up";
       }
     }
+  });
+
+  // Real-time validation with debounce
+  [
+    fullNameInput,
+    usernameInput,
+    phoneNumberInput,
+    emailInput,
+    passwordInput,
+    confirmPasswordInput,
+  ].forEach((input) => {
+    input.addEventListener("input", debounce(validateForm, 300));
   });
 });
