@@ -126,12 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
         console.time("verifyOtpRequest"); // Debug: Measure API time
 
         // Create a timeout promise
-        // const timeoutPromise = new Promise((_, reject) => {
-        //   setTimeout(
-        //     () => reject(new Error("Request timed out. Please try again.")),
-        //     60000
-        //   );
-        // });
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(
+            () => reject(new Error("Request timed out. Please try again.")),
+            600000
+          );
+        });
 
         // API call with timeout
         const response = await Promise.race([
