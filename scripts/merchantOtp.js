@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const timeoutPromise = new Promise((_, reject) => {
           setTimeout(
             () => reject(new Error("Request timed out. Please try again.")),
-            600000
+            600000 // 10 minutes
           );
         });
 
@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.time("resendOtpRequest"); // Debug: Measure API time
         const response = await fetch(
-          "https://vendsr-backend.onrender.com/api/verify/email/send-otp",
+          "https://vendsr-backend.onrender.com/api/verify/otp/send2",
           {
             method: "POST",
             headers: {
