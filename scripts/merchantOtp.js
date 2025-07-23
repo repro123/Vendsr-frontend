@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fullOtpInput = document.getElementById("full-otp");
   const errorMessage = document.getElementById("errorMessage");
   const verifyButton = otpForm.querySelector('button[type="submit"]');
-  const emailElement = document.getElementById("emailDisplay");
+  const emailElement = document.getElementById("userEmail");
   const resendButton = document.getElementById("resendOTP");
   const countdownElement = document.getElementById("otpCountdown");
 
