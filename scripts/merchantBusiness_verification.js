@@ -390,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const formData = new FormData();
       formData.append("rcNumber", cacNumberInput.value.trim().toUpperCase());
       formData.append("businessName", businessNameInput.value.trim());
-      // formData.append("cacCertificate", cacCertificateInput.files[0]);
+      formData.append("cacCertificate", cacCertificateInput.files[0]);
 
       try {
         submitButton.disabled = true;
