@@ -253,7 +253,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Validation rules (aligned with cacVerificationSchema)
   const rules = {
-    cacNumber: /^[A-Z0-9]{6,20}$/, // 6–20 alphanumeric
+    // cacNumber: /^[A-Z0-9]{6,20}$/, // 6–20 alphanumeric
+    cacNumber: /^[a-zA-Z0-9]{6,20}$/, // 6–20 alphanumeric, case-insensitive
     businessName: /^[a-zA-Z\s-]{2,}$/, // 2+ letters, spaces, hyphens
     businessOwnerName: /^[a-zA-Z\s-]{2,}$/, // Optional, same as businessName
     fileSize: 5 * 1024 * 1024, // 5MB max
@@ -387,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!submitButton.disabled) {
       const formData = new FormData();
-      formData.append("rcNumber", cacNumberInput.value.trim());
+      formData.append("rcNumber", cacNumberInput.value.trim().toUpperCase());
       formData.append("businessName", businessNameInput.value.trim());
       // formData.append("cacCertificate", cacCertificateInput.files[0]);
 
