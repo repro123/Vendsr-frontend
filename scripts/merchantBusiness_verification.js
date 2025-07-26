@@ -239,6 +239,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const cacCertificateError = document.getElementById("cacCertificateError");
   const submitButton = cacForm.querySelector('button[type="submit"]');
 
+  // Remove required attribute for cacCertificate if present
+  cacCertificateInput.removeAttribute("required");
+
   // Check for email in sessionStorage
   const email = sessionStorage.getItem("email");
   if (!email) {
@@ -253,10 +256,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Validation rules (aligned with cacVerificationSchema)
   const rules = {
-    // cacNumber: /^[A-Z0-9]{6,20}$/, // 6–20 alphanumeric
-    cacNumber: /^[a-zA-Z0-9]{6,20}$/, // 6–20 alphanumeric, case-insensitive
-    businessName: /^[a-zA-Z\s-]{2,}$/, // 2+ letters, spaces, hyphens
-    businessOwnerName: /^[a-zA-Z\s-]{2,}$/, // Optional, same as businessName
+    cacNumber: /^.{6,20}$/, // 6–20 any characters
+    businessName: /^.{2,}$/, // 2+ any characters
+    businessOwnerName: /^.{2,50}$/, // 2–50 any characters
     fileSize: 5 * 1024 * 1024, // 5MB max
     fileType: /^(application\/pdf|image\/.*)$/, // PDF or image
   };
@@ -306,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showError(
         cacNumberInput,
         cacNumberError,
-        "CAC Number must be 6–20 alphanumeric characters"
+        "CAC Number must be 6–20 characters"
       );
       isValid = false;
     }
@@ -323,22 +325,29 @@ document.addEventListener("DOMContentLoaded", () => {
       showError(
         businessNameInput,
         businessNameError,
-        "Business Name must be at least 2 characters (letters, spaces, hyphens)"
+        "Business Name must be at least 2 characters"
       );
       isValid = false;
     }
 
-    // Business Owner Name (optional)
-    if (businessOwnerName && !rules.businessOwnerName.test(businessOwnerName)) {
+    // Business Owner Name (required)
+    if (!businessOwnerName) {
       showError(
         businessOwnerNameInput,
         businessOwnerNameError,
-        "Business Owner Name must be at least 2 characters (letters, spaces, hyphens)"
+        "Business Owner Name is required"
+      );
+      isValid = false;
+    } else if (!rules.businessOwnerName.test(businessOwnerName)) {
+      showError(
+        businessOwnerNameInput,
+        businessOwnerNameError,
+        "Business Owner Name must be 2–50 characters"
       );
       isValid = false;
     }
 
-    // CAC Certificate
+    // CAC Certificate (required)
     if (!cacCertificate) {
       showError(
         cacCertificateInput,
@@ -388,8 +397,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!submitButton.disabled) {
       const formData = new FormData();
-      formData.append("rcNumber", cacNumberInput.value.trim().toUpperCase());
+      formData.append("rcNumber", cacNumberInput.value.trim());
       formData.append("businessName", businessNameInput.value.trim());
+      formData.append("businessOwnerName", businessOwnerNameInput.value.trim());
       formData.append("cacCertificate", cacCertificateInput.files[0]);
 
       try {
