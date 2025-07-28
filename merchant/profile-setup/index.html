@@ -46,6 +46,7 @@
                 accept="image/*"
                 class="hidden"
                 aria-label="Upload cover photo"
+                required
               />
               <img
                 src="../../assets/icons/upload-photo.png"
@@ -53,6 +54,11 @@
                 class="w-12 h-12"
               />
               <span class="capitalize">upload cover image</span>
+              <p
+                class="text-red-500"
+                aria-live="polite"
+                id="coverPhotoError"
+              ></p>
             </label>
 
             <label
@@ -75,6 +81,11 @@
               <span class="capitalize text-xs md:text-sm text-center"
                 >upload profile image</span
               >
+              <p
+                class="text-red-500"
+                aria-live="polite"
+                id="profilePictureError"
+              ></p>
             </label>
           </div>
 

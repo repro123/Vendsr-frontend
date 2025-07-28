@@ -747,7 +747,7 @@ document.addEventListener("DOMContentLoaded", () => {
       storeColorError,
       storeUrlError,
     ].forEach((error) => {
-      error.textContent = "";
+      error.textContent = ""; // line 750
     });
 
     let isValid = true;
