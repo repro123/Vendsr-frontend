@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/output.css" />
+  </head>
+  <body>
+    <section id="addProductsContainer" class="p-4 lg:p-8">
+      <div aria-hidden="true" class="flex items-centre gap-2">
+        <span class="hidden lg:block">Product</span>
+        <span class="hidden lg:block">></span>
+        <span class="font-medium">Add product</span>
+      </div>
+      <h2 class="capitalize font-bold text-secondaryHeading mt-8">
+        add new product
+      </h2>
+      <form
+        novalidate
+        id="addProductsForm"
+        class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
+      >
+        <div class="flex flex-col gap-8">
+          <div class="grid gap-2">
+            <label for="addProductName">Product Name *</label>
+            <input
+              type="text"
+              id="addProductName"
+              name="addProductName"
+              autocomplete="name"
+              placeholder="Enter your produt name"
+              required
+              class="form-input"
+              data-invalid="false"
+            />
+            <p
+              id="addProductNameError"
+              class="text-red-500"
+              aria-live="polite"
+            ></p>
+          </div>
+
+          <div class="grid gap-2">
+            <label for="addProductCategory">Product Category *</label>
+            <div class="relative">
+              <select
+                name="addProductCategory"
+                id="addProductCategory"
+                class="form-input no-arrow text-primary"
+                required
+                data-invalid="false"
+              >
+                <option value="" disabled selected>
+                  Select your product category
+                </option>
+                <option value="Apparel & Accessories">
+                  Apparel &amp; Accessories
+                </option>
+                <option value="Fashion">Fashion</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Health Beauty">Health &amp; Beauty</option>
+                <option value="Home Living">Home Living</option>
+                <option value="Grocery">Groceries</option>
+                <option value="Home & Kitchen">Home &amp; kitchen</option>
+                <option value="Beauty & Personal Care">
+                  Beauty &amp; Personal Care
+                </option>
+                <option value="Toys & Games">Toys &amp; Games</option>
+                <option value="Baby & Kids">Baby &amp; Kids</option>
+                <option value="Books & Media">Books &amp; Media</option>
+                <option value="Sports & Outdoors">Sports &amp; Outdoors</option>
+              </select>
+              <img
+                src="../../assets/icons/arrow-down.png"
+                alt="Dropdown arrow"
+                class="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none"
+              />
+            </div>
+            <p class="text-red-500" aria-live="polite" id="categoryError"></p>
+          </div>
+
+          <div class="grid gap-2">
+            <label for="addProductPrice">Product Price *</label>
+            <input
+              type="text"
+              id="addProductPrice"
+              name="addProductPrice"
+              autocomplete="name"
+              placeholder="Add your product price"
+              required
+              class="form-input"
+              data-invalid="false"
+            />
+            <p
+              id="addProductPriceError"
+              class="text-red-500"
+              aria-live="polite"
+            ></p>
+          </div>
+
+          <div class="grid gap-2">
+            <label for="addProductQuantity">Product Quantity *</label>
+            <input
+              type="text"
+              id="addProductQuantity"
+              name="addProductQuantity"
+              autocomplete="name"
+              placeholder="Enter product quantity"
+              required
+              class="form-input"
+              data-invalid="false"
+            />
+            <p
+              id="addProductQuantityError"
+              class="text-red-500"
+              aria-live="polite"
+            ></p>
+          </div>
+
+          <div class="grid gap-2">
+            <label for="addProductDescription"
+              >Product Description
+              <span class="ml-1" aria-hidden="true">*</span></label
+            >
+            <textarea
+              id="addProductDescription"
+              name="addProductDescription"
+              placeholder="Enter a brief description of your product"
+              class="form-input h-32 resize-none"
+              data-invalid="false"
+            ></textarea>
+            <p
+              class="text-red-500"
+              aria-live="polite"
+              id="addProductDescriptionError"
+            ></p>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-8">
+          <div>
+            <div
+              class="grid place-items-center rounded-xl min-h-80 bg-[#EEECEC]"
+            >
+              <div class="text-center flex flex-col items-center gap-2">
+                <label
+                  class="mt-2 cursor-pointer flex flex-col items-center gap-2"
+                >
+                  <img src="./assets/icons/uploadProductImage.png" alt="" />
+                  <span>Upload image here</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    required
+                    id="addProductMainImage"
+                    name="addProductMainImage"
+                    class="hidden"
+                  />
+                </label>
+                <p
+                  id="addProductMainImageError"
+                  aria-live="polite"
+                  class="text-red-500"
+                ></p>
+              </div>
+            </div>
+            <p class="text-center mt-2">Image should be less than 3mb</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <div
+                class="grid place-items-center rounded-xl border border-dashed py-16"
+              >
+                <div class="text-center flex flex-col items-center gap-2">
+                  <label class="mt-2 cursor-pointer flex items-center gap-2">
+                    <span
+                      class="bg-black text-white font-semibold rounded-full h-4 w-4 grid place-items-center"
+                      aria-hidden="true"
+                      ><span class="text-[0.5rem]">+</span></span
+                    >
+                    <span>Add more</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      required
+                      id="addProductSecondImage"
+                      name="addProductSecondImage"
+                      class="hidden"
+                    />
+                  </label>
+                  <p
+                    id="addProductSecondImageError"
+                    aria-live="polite"
+                    class="text-red-500"
+                  ></p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div
+                class="grid place-items-center rounded-xl border border-dashed py-16"
+              >
+                <div class="text-center flex flex-col items-center gap-2">
+                  <label class="mt-2 cursor-pointer flex items-center gap-2">
+                    <span
+                      class="bg-black text-white font-semibold rounded-full h-4 w-4 grid place-items-center"
+                      aria-hidden="true"
+                      ><span class="text-[0.5rem]">+</span></span
+                    >
+                    <span>Add more</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      required
+                      id="addProductThirdImage"
+                      name="addProductThirdImage"
+                      class="hidden"
+                    />
+                  </label>
+                  <p
+                    id="addProductThirdImageError"
+                    aria-live="polite"
+                    class="text-red-500"
+                  ></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            id="addProductBtn"
+            disabled
+            class="bg-disabledBtn text-white py-3 rounded-full w-full text-center block cursor-pointer whitespace-nowrap mt-auto"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
