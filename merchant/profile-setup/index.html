@@ -14,7 +14,7 @@
   >
     <header class="bg-white sticky top-0 z-50 px-4 py-3 hidden md:block">
       <div class="flex items-center justify-between max-w-7xl mx-auto">
-        <a href="../" aria-label="Vendsr Home Page">
+        <a href="../../" aria-label="Vendsr Home Page">
           <img src="../../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
         </a>
       </div>
@@ -46,6 +46,7 @@
                 accept="image/*"
                 class="hidden"
                 aria-label="Upload cover photo"
+                required
               />
               <img
                 src="../../assets/icons/upload-photo.png"
@@ -53,6 +54,11 @@
                 class="w-12 h-12"
               />
               <span class="capitalize">upload cover image</span>
+              <p
+                class="text-red-500"
+                aria-live="polite"
+                id="coverPhotoError"
+              ></p>
             </label>
 
             <label
@@ -75,12 +81,20 @@
               <span class="capitalize text-xs md:text-sm text-center"
                 >upload profile image</span
               >
+              <p
+                class="text-red-500 absolute top-full left-0 w-[200%]"
+                aria-live="polite"
+                id="profilePictureError"
+              ></p>
             </label>
           </div>
 
           <div class="mt-20 md:mt-24 flex flex-col space-y-6 max-sm:px-6">
             <div class="grid gap-2">
-              <label for="storeName">Store Name</label>
+              <label for="storeName"
+                >Store Name
+                <span class="ml-1" aria-hidden="true">*</span></label
+              >
               <input
                 type="text"
                 id="storeName"
@@ -98,7 +112,9 @@
             </div>
 
             <div class="grid gap-2">
-              <label for="username">Username</label>
+              <label for="username"
+                >Username <span class="ml-1" aria-hidden="true">*</span></label
+              >
               <input
                 type="text"
                 id="username"
@@ -112,34 +128,10 @@
             </div>
 
             <div class="grid gap-2">
-              <label for="category">Category</label>
-              <div class="relative">
-                <select
-                  name="category"
-                  id="category"
-                  class="form-input no-arrow text-primary"
-                  required
-                  data-invalid="false"
-                >
-                  <option value="" disabled selected>Select category</option>
-                  <option value="apparel">Apparel & Accessories</option>
-                  <option value="groceries">Groceries</option>
-                  <option value="electronics">Electronics</option>
-                  <option value="beauty">Beauty and personal care</option>
-                  <option value="homegoods">Home goods</option>
-                  <option value="others">Others</option>
-                </select>
-                <img
-                  src="../../assets/icons/arrow-down.png"
-                  alt="Dropdown arrow"
-                  class="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none"
-                />
-              </div>
-              <p class="text-red-500" aria-live="polite" id="categoryError"></p>
-            </div>
-
-            <div class="grid gap-2">
-              <label for="description">Description</label>
+              <label for="description"
+                >Description
+                <span class="ml-1" aria-hidden="true">*</span></label
+              >
               <textarea
                 id="description"
                 name="description"
@@ -155,7 +147,9 @@
             </div>
 
             <div class="grid gap-2">
-              <p>Set store colors</p>
+              <p>
+                Set store colors <span class="ml-1" aria-hidden="true">*</span>
+              </p>
               <button
                 class="form-input active:border-primary cursor-pointer h-12 relative"
                 type="button"
@@ -302,7 +296,9 @@
             </div>
 
             <div class="grid gap-2">
-              <label for="storeUrl">Store URL</label>
+              <label for="storeUrl"
+                >Store URL <span class="ml-1" aria-hidden="true">*</span></label
+              >
               <input
                 type="text"
                 id="storeUrl"
@@ -352,6 +348,6 @@
       </dialog>
     </main>
 
-    <script src="../../scripts/profile_setup.js"></script>
+    <script src="../../scripts/merchantProfile_setup.js"></script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("shopper signup.js loaded"); // Debug: Confirm script loads
   const signupForm = document.getElementById("signup");
   const fullNameInput = document.getElementById("fullName");
   const usernameInput = document.getElementById("username");
@@ -19,14 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
     'button[aria-label="Toggle password visibility"]'
   );
 
-  // Regular expressions for validation
+  // Regular expressions for validation (aligned with backend)
   const rules = {
-    fullName: /^[a-zA-Z\s-]{2,}$/,
-    username: /^[a-zA-Z0-9_]{3,}$/,
+    fullName: /^[a-zA-Z\s-]{2,50}$/,
+    username: /^[a-zA-Z0-9_]{2,50}$/,
     phoneNumber: /^\+?[0-9]{8,15}$/,
-    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    email: /^[^\s@]{1,100}@[^\s@]+\.[^\s@]+$/,
     password:
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,50}$/,
   };
 
   // Debounce function for real-time validation
@@ -57,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Validate all inputs
   function validateForm() {
+    console.log("Validating signup form"); // Debug
     const fullName = fullNameInput.value.trim();
     const username = usernameInput.value.trim();
     const phoneNumber = phoneNumberInput.value.trim();
@@ -87,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
       error.textContent = "";
     });
 
-    // Validation flags
     let isValid = true;
 
     // Full Name
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showError(
         fullNameInput,
         fullNameError,
-        "Full name must be at least 2 characters, letters, spaces, or hyphens only"
+        "Full name must be 2–50 characters, letters, spaces, or hyphens only"
       );
       isValid = false;
     }
@@ -111,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showError(
         usernameInput,
         usernameError,
-        "Username must be at least 3 characters, alphanumeric or underscores"
+        "Username must be 2–50 characters, alphanumeric or underscores"
       );
       isValid = false;
     }
@@ -124,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showError(
         phoneNumberInput,
         phoneNumberError,
-        "Enter a valid phone number (8-15 digits, optional +)"
+        "Phone number must be 8–15 digits, optional +"
       );
       isValid = false;
     }
@@ -134,7 +135,11 @@ document.addEventListener("DOMContentLoaded", () => {
       showError(emailInput, emailError, "Email is required");
       isValid = false;
     } else if (!rules.email.test(email)) {
-      showError(emailInput, emailError, "Enter a valid email address");
+      showError(
+        emailInput,
+        emailError,
+        "Enter a valid email address (max 100 characters)"
+      );
       isValid = false;
     }
 
@@ -146,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showError(
         passwordInput,
         passwordError,
-        "Password must be at least 8 characters, with one uppercase, one lowercase, one number, and one special character"
+        "Password must be 6–50 characters, with one uppercase, one lowercase, one number, and one special character"
       );
       isValid = false;
     }
@@ -178,6 +183,8 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.classList.remove("bg-primary", "cursor-pointer");
       submitButton.classList.add("bg-disabledBtn", "cursor-not-allowed");
     }
+
+    console.log("Form validation result:", isValid); // Debug
   }
 
   function showError(input, errorElement, message) {
@@ -215,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
         submitButton.textContent = "Signing up...";
         console.time("registerRequest"); // Debug: Measure registration API time
         const registerResponse = await fetch(
-          "https://vendsr-backend.onrender.com/api/auth/register",
+          "https://vendsr-backend.onrender.com/api/auth/register-shopper",
           {
             method: "POST",
             headers: {
@@ -236,17 +243,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const registerData = await registerResponse.json();
         console.log("Registration success:", registerData); // Debug
 
-        // Clean phone number for OTP API (remove spaces, keep optional +)
-        const cleanPhoneNumber = formData.phoneNumber.replace(/\s/g, "");
+        // Send OTP to email
         console.time("otpRequest"); // Debug: Measure OTP API time
         const otpResponse = await fetch(
-          "https://vendsr-backend.onrender.com/api/verify/phone/send-otp",
+          "https://vendsr-backend.onrender.com/api/verify/email/send-otp",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ phoneNumber: cleanPhoneNumber }),
+            body: JSON.stringify({ contact: formData.email, type: "email" }),
           }
         );
         console.timeEnd("otpRequest"); // Debug
@@ -254,22 +260,26 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!otpResponse.ok) {
           const otpErrorData = await otpResponse.json();
           throw new Error(
-            otpErrorData.message || "Failed to send OTP. Please try again."
+            otpErrorData.message ||
+              "Failed to send OTP to email. Please try again."
           );
         }
 
         const otpData = await otpResponse.json();
-        console.log("OTP sent successfully:", otpData); // Debug
+        console.log("OTP sent successfully to email:", otpData); // Debug
 
-        // Store phone number in sessionStorage
-        sessionStorage.setItem("phoneNumber", formData.phoneNumber);
+        // Store email and OTP reference in sessionStorage
+        sessionStorage.setItem("email", formData.email);
+        sessionStorage.setItem("otpReference", otpData.reference || "");
         console.log(
-          "Stored phoneNumber in sessionStorage:",
-          formData.phoneNumber
+          "Stored in sessionStorage: email =",
+          formData.email,
+          ", otpReference =",
+          otpData.reference || "none"
         ); // Debug
 
         // Redirect to OTP page
-        window.location.href = "../merchant/otp/";
+        window.location.href = "../shopper/otp/";
       } catch (error) {
         console.error("Error:", error.message);
         submitButton.classList.remove("bg-primary", "cursor-pointer");

@@ -20,7 +20,7 @@
       <div
         class="container max-w-7xl mx-auto flex justify-between items-center py-3"
       >
-        <a href="#" aria-label="Vendsr Home Page">
+        <a href="../" aria-label="Vendsr Home Page">
           <img src="../assets/icons/vendsr-logo.png" alt="Vendsr Logo" />
         </a>
 
@@ -36,7 +36,7 @@
         <ul class="hidden lg:flex items-center gap-x-4">
           <li>
             <a
-              href="./signup/"
+              href="#"
               class="flex items-center gap-x-2 text-white bg-primary px-8 py-3 rounded-full hover:bg-primary/70 transition duration-300"
               ><span>Get Started</span>
               <img src="../assets/icons/arrow-right.png" alt=""
@@ -44,7 +44,7 @@
           </li>
           <li>
             <a
-              href="./login/"
+              href="#"
               class="px-14 py-3 rounded-full hover:bg-primary/70 hover:text-white transition duration-300 text-primary border border-primary"
               >Sign In</a
             >
@@ -91,7 +91,7 @@
             >
               <li>
                 <a
-                  href="./signup/"
+                  href="#"
                   class="flex items-center gap-x-2 text-white bg-primary px-8 py-3 rounded-full hover:bg-primary/70 transition duration-300 w-full justify-center"
                   ><span>Get Started</span>
                   <img src="../assets/icons/arrow-right.png" alt=""
@@ -99,7 +99,7 @@
               </li>
               <li>
                 <a
-                  href="./login/"
+                  href="#"
                   class="px-14 py-3 rounded-full hover:bg-primary/70 hover:text-white transition duration-300 text-primary border border-primary w-full block"
                   >Sign In</a
                 >
@@ -114,11 +114,9 @@
       <div class="flex flex-col items-center justify-center">
         <form id="welcome w-full" novalidate>
           <div
-            class="md:border rounded-2xl border-gray-200 py-8 md:px-8 px-4 relative"
+            class="md:border rounded-2xl border-gray-100 py-8 md:px-8 px-4 relative"
           >
-            <a
-              href="../index.html"
-              class="hidden md:block absolute top-10 cursor-pointer"
+            <a href="../" class="hidden md:block absolute top-10 cursor-pointer"
               ><img src="../assets/icons/arrow-back.png"
             /></a>
             <div class="flex items-center justify-center flex-col gap-2">
@@ -144,7 +142,9 @@
                   alt="a merchant"
                 />
                 <p class="font-poppins font-bold text-xl">I want to sell</p>
-                <p class="text-gray-500 text-sm">Register as a Merchant</p>
+                <p class="text-gray-500 text-sm">
+                  Register or sign-in as a Merchant
+                </p>
               </label>
 
               <label
@@ -170,7 +170,9 @@
             </div>
             <div class="flex justify-center">
               <button
-                class="bg-[#522E9A33] text-black font-bold cursor-pointer md:w-[50%] w-full rounded-full p-4 text-center hover:bg-primary hover:text-white"
+                id="continueButton"
+                disabled
+                class="bg-disabledBtn text-black font-bold md:w-[80%] w-full rounded-full p-4 text-center cursor-not-allowed"
                 type="submit"
               >
                 Continue

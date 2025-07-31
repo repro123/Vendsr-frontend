@@ -1,6 +1,7 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("login.js loaded"); // Debug: Confirm script loads
   const loginForm = document.getElementById("login-form");
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
@@ -44,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Form submission handler
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    console.log("Login form submitted"); // Debug
 
     // Reset errors
     usernameError.textContent = "";
@@ -100,30 +102,57 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         submitButton.disabled = true;
         submitButton.textContent = "Signing in...";
-        const response = await fetch(
-          "https://vendsr-backend.onrender.com/api/auth/login",
-          {
+        console.time("loginRequest"); // Debug
+
+        // Prepare payload based on username input
+        const payload = { password };
+        if (emailRegex.test(username)) {
+          payload.email = username;
+        } else if (phoneRegex.test(username)) {
+          payload.phoneNumber = username;
+        }
+
+        // Timeout promise (60 seconds)
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(
+            () => reject(new Error("Request timed out. Please try again.")),
+            60000
+          );
+        });
+
+        // API call without Authorization header
+        const response = await Promise.race([
+          fetch("https://vendsr-backend.onrender.com/api/auth/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ username, password }),
-          }
-        );
+            body: JSON.stringify(payload),
+          }),
+          timeoutPromise,
+        ]);
+        console.timeEnd("loginRequest"); // Debug
 
         if (!response.ok) {
           const errorData = await response.json();
           const errorMessage = errorData.message || "Invalid credentials";
-          showError(usernameInput, usernameError, errorMessage);
-          showError(passwordInput, passwordError, errorMessage);
           throw new Error(errorMessage);
         }
 
         const data = await response.json();
-        console.log("Login successful:", data);
-        // window.location.href = "/dashboard";
+        console.log("Login successful:", data); // Debug
+
+        // Store email, userId, and token in sessionStorage
+        sessionStorage.setItem("email", data.email || username); // Use username if email not returned
+        sessionStorage.setItem("userId", data.userId);
+        sessionStorage.setItem("token", data.accessToken);
+
+        // Redirect to dashboard
+        window.location.href = "../../user-dashboard-profile/";
       } catch (error) {
         console.error("Login failed:", error.message);
+        showError(usernameInput, usernameError, error.message);
+        showError(passwordInput, passwordError, error.message);
       } finally {
         submitButton.disabled = false;
         submitButton.textContent = "Sign in";
@@ -170,7 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showError(input, errorElement, message) {
-    errorElement.textContent = message;
-    input.classList.add("border-red-500");
+    if (input && errorElement) {
+      errorElement.textContent = message;
+      input.classList.add("border-red-500");
+    }
   }
 });

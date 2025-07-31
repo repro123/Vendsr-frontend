@@ -128,12 +128,12 @@
             <div class="flex flex-col sm:flex-row items-center gap-4">
               <a
                 href="./merchant/sign-up/"
-                class="px-14 py-3 rounded-full transition duration-300 whitespace-nowrap text-white border border-primary bg-primary hover:text-primary hover:bg-white w-full justify-center text-center"
+                class="px-14 py-3 rounded-full transition duration-300 whitespace-nowrap text-white border border-primary bg-primary hover:bg-primary/70 w-full justify-center text-center"
                 >Create Store</a
               >
               <a
                 href="./shopper/sign-up/"
-                class="px-14 py-3 rounded-full transition duration-300 whitespace-nowrap text-primary border border-primary hover:bg-primary hover:text-white w-full justify-center text-center"
+                class="px-14 py-3 rounded-full transition duration-300 whitespace-nowrap text-primary border border-primary hover:bg-primary/70 hover:text-white w-full justify-center text-center"
                 >Start Shopping</a
               >
             </div>
@@ -372,19 +372,31 @@
           <h2
             class="font-poppins text-secondaryHeading leading-tight text-center font-bold"
           >
-            How It Works: A Simple, Secure, and Fast Process for Merchants and
-            Shoppers
+            How It Works
           </h2>
 
           <div class="mt-12 grid grid-cols-1 gap-12">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
               <div>
-                <img
+                <!-- <img
                   src="./assets/images/smiley-african-woman-working-market.png"
                   alt="Woman smiling in the market"
                   loading="lazy"
                   class="w-full"
-                />
+                /> -->
+                <picture>
+                  <source
+                    srcset="./assets/images/merchanthowitworksdesktop.png"
+                    media="(min-width: 1024px)"
+                    type="image/png"
+                  />
+                  <img
+                    src="./assets/images/merchanthowitworksmobile.png"
+                    alt="happy merchant taking orders"
+                    loading="lazy"
+                    class="w-full"
+                  />
+                </picture>
               </div>
               <div class="flex flex-col gap-6 xl:gap-10">
                 <h3
@@ -400,11 +412,11 @@
                     >
                       Create your free store
                     </h4>
-                    <p>
+                    <!-- <p>
                       Sign up in minutes using your phone number or email. Enter
                       your business name, add your store link, and you’re good
                       to go.
-                    </p>
+                    </p> -->
                   </li>
 
                   <li class="flex flex-col gap-2 pl-6">
@@ -413,11 +425,11 @@
                     >
                       add your product
                     </h4>
-                    <p>
+                    <!-- <p>
                       Upload photos, enter names, descriptions, and prices. Add
                       variations like sizes or colors if needed. Everything is
                       clean, simple, and mobile-friendly.
-                    </p>
+                    </p> -->
                   </li>
 
                   <li class="flex flex-col gap-2 pl-6">
@@ -426,12 +438,12 @@
                     >
                       share & sell
                     </h4>
-                    <p>
+                    <!-- <p>
                       Share your Vendsr store link on WhatsApp, Instagram,
                       Facebook, or SMS. Once customers order, you get real-time
                       notifications and can manage everything from your
                       dashboard.
-                    </p>
+                    </p> -->
                   </li>
                 </ul>
               </div>
@@ -452,10 +464,10 @@
                     >
                       tap the store link
                     </h4>
-                    <p>
+                    <!-- <p>
                       Click on the seller’s Vendsr link (shared on WhatsApp, IG
                       bio, or anywhere). You don’t need an account to shop.
-                    </p>
+                    </p> -->
                   </li>
 
                   <li class="flex flex-col gap-2 pl-6">
@@ -464,11 +476,11 @@
                     >
                       browse and order
                     </h4>
-                    <p>
+                    <!-- <p>
                       View the products with photos, prices, and clear
                       descriptions. Add items to cart and proceed to checkout
                       with ease.
-                    </p>
+                    </p> -->
                   </li>
 
                   <li class="flex flex-col gap-2 pl-6">
@@ -477,22 +489,35 @@
                     >
                       pay securely & relax
                     </h4>
-                    <p>
+                    <!-- <p>
                       Choose your payment method (card, transfer, USSD). Once
                       you pay, the seller gets your order instantly, and you’ll
                       get updates on your order status.
-                    </p>
+                    </p> -->
                   </li>
                 </ul>
               </div>
 
               <div>
-                <img
+                <!-- <img
                   src="./assets/images/portrait-happy-woman-holding-her-shopping-bags.png"
                   alt="Woman smiling with shopping bags"
                   loading="lazy"
                   class="w-full"
-                />
+                /> -->
+                <picture>
+                  <source
+                    srcset="./assets/images/shopperhowitworksdesktop.png"
+                    media="(min-width: 1024px)"
+                    type="image/png"
+                  />
+                  <img
+                    src="./assets/images/shopperhowitworksmobile.png"
+                    alt="happy shopper carrying shopping bags"
+                    loading="lazy"
+                    class="w-full"
+                  />
+                </picture>
               </div>
             </div>
           </div>
@@ -514,7 +539,7 @@
             >
             <a
               href="./shopper/sign-up/"
-              class="px-8 py-3 rounded-full transition duration-300 whitespace-nowrap text-primary border border-primary hover:bg-primary hover:text-white"
+              class="px-8 py-3 rounded-full transition duration-300 whitespace-nowrap text-primary border border-primary hover:bg-primary/70 hover:text-white"
               >Start Shopping</a
             >
           </div>
