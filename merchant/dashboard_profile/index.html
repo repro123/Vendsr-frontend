@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../src/output.css" />
+  </head>
+  <body
+    class="min-h-dvh antialiased bg-bodyBackground text-paragraphColor font-inter"
+    data-page="merchantProfile"
+  >
+    <header
+      class="bg-white sticky top-0 z-50 px-6 py-3 flex items-center justify-between"
+    >
+      <div
+        class="flex items-center gap-8 w-full mx-auto flex-row justify-between"
+      >
+        <div class="flex items-center gap-4">
+          <!-- Hamburger toggle for mobile --->
+          <div class="flex flex-col justify-center md:hidden">
+            <img
+              src="../../assets/icons/hamburger.png"
+              class="h-4 w-4 object-cover cursor-pointer"
+              id="mobileMenuToggle"
+            />
+          </div>
+          <!-- Logo -->
+          <a href="../../" aria-label="Vendsr Home Page" class="flex-shrink-0">
+            <img
+              src="../../assets/icons/vendsr-logo.png"
+              alt="Vendsr Logo"
+              class="h-8"
+            />
+          </a>
+        </div>
+
+        <div class="flex flex-row gap-8">
+          <!-- Search with icon -->
+          <!-- desktop variant -->
+          <div class="relative flex-1 max-w-md hidden md:block w-[50vw]">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <img
+                src="../../assets/icons/searchIcon.png"
+                alt="Search"
+                class="h-4 w-4"
+              />
+            </div>
+            <input
+              type="text"
+              placeholder="Search"
+              id="searchInputDesktop"
+              class="block w-full pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
+            />
+          </div>
+
+          <!-- mobile variant -->
+          <div class="md:hidden flex items-center justify-end gap-2">
+            <label for="searchInputMobile" class="cursor-pointer">
+              <img
+                src="../../assets/icons/searchIcon.png"
+                id="mobileSearchIcon"
+                class="w-4 h-4"
+                alt=""
+            /></label>
+            <input
+              type="text"
+              placeholder="Search"
+              id="searchInputMobile"
+              class="hidden w-1/2 pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary absolute"
+            />
+          </div>
+
+          <div class="flex flex-col justify-center">
+            <button type="button" class="relative" id="notificationsBtn">
+              <img
+                src="../../assets/icons/notification.png"
+                class="h-4 w-4"
+                alt="notifications"
+              />
+              <span
+                id="isNotificationsUnread"
+                class="absolute top-0 right-0 bg-red-500 rounded-full h-1 w-1"
+              ></span>
+            </button>
+          </div>
+
+          <!-- User profile -->
+          <button
+            type="button"
+            id="userProfileDetailsBtn"
+            aria-expanded="false"
+            class="flex items-center gap-1"
+          >
+            <span>
+              <img
+                src="../../assets/images/Felicity.png"
+                alt="User"
+                id="userProfilePicture"
+                class="w-8 h-8 rounded-full object-cover"
+              />
+            </span>
+            <div class="flex flex-row">
+              <div class="flex-col items-start hidden md:flex">
+                <span class="text-xs font-semibold" id="userEmailPrefix"
+                  >aishat</span
+                >
+                <span class="text-xs text-gray-700" id="userEmailSuffix"
+                  >@gmail.com</span
+                >
+              </div>
+              <div class="md:flex flex-col hidden justify-center">
+                <img src="../../assets/icons/arrow-down.png" class="h-4 w-4" />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex flex-row gap-4 w-full">
+      <!-- Mobile Sidebar Overlay -->
+      <div
+        class="fixed inset-0 bg-white/40 z-[51] hidden transition-opacity duration-300"
+        id="overlay"
+      ></div>
+
+      <!-- Mobile Sidebar -->
+      <aside
+        class="fixed top-0 left-0 w-full max-w-64 h-full bg-white z-[52] shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+        id="mobile-sidebar"
+      >
+        <div class="flex flex-col justify-between h-full p-6 overflow-y-auto">
+          <div>
+            <div class="flex justify-between items-center mb-8">
+              <a
+                href="../../"
+                aria-label="Vendsr Home Page"
+                class="flex-shrink-0"
+              >
+                <img
+                  src="../../assets/icons/vendsr-logo.png"
+                  alt="Vendsr Logo"
+                  class="h-8"
+                />
+              </a>
+              <button id="close-mobile-menu" aria-label="close navigation bar">
+                <img
+                  src="../../assets/icons/arrow-back.png"
+                  class="h-4 w-4"
+                  alt="close navigation bar"
+                />
+              </button>
+            </div>
+            <nav class="space-y-4">
+              <ul class="space-y-2">
+                <li
+                  class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/homeIcon.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Home
+                  </p>
+                </li>
+
+                <li
+                  class="bg-primary text-white p-3 rounded flex items-center gap-2 cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/shop.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Product
+                  </p>
+                </li>
+
+                <li
+                  class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/exportIcon.png"
+                    class="w-4 h-4"
+                    alt=""
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Order
+                  </p>
+                </li>
+
+                <li
+                  class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/settingsIcon.png"
+                    class="w-4 h-4"
+                    alt=""
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Settings
+                  </p>
+                </li>
+
+                <li
+                  class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/helpCenterIcon.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Help Center
+                  </p>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="text-sm text-gray-500 flex flex-col gap-4 pt-4">
+            <a href="#" class="hover:text-primary">Terms and conditions</a>
+            <a href="#" class="hover:text-primary">Privacy Policy</a>
+            <a
+              class="flex items-center gap-4 bg-gray-50 rounded-lg hover:text-primary"
+            >
+              <img
+                src="../../assets/icons/logoutmain.png"
+                alt=""
+                class="w-4 h-4"
+              />
+              <p
+                class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+              >
+                Log out
+              </p>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Page Container -->
+      <div class="flex w-full bg-white font-sans text-gray-800 md:pr-8">
+        <!-- Sticky Sidebar -->
+        <aside
+          class="w-[20%] bg-white border-1 border-gray-100 sticky top-16 h-[calc(100vh_-_4rem)] hidden md:block"
+        >
+          <div
+            class="flex flex-col justify-between h-full px-4 py-2 overflow-y-auto"
+          >
+            <nav class="space-y-4" aria-label="desktop navigation">
+              <ul class="space-y-2">
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/homeIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Home</span></a
+                  >
+                </li>
+
+                <li class="bg-primary text-white rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/shop.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Products</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/exportIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Order</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/settingsIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Settings</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/helpCenterIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Help Center</span></a
+                  >
+                </li>
+              </ul>
+            </nav>
+            <div class="text-sm text-gray-500 flex flex-col gap-4">
+              <a href="#" class="hover:text-primary">Terms and conditions</a>
+              <a href="#" class="hover:text-primary">Privacy Policy</a>
+              <a href="" class="flex items-center gap-2 bg-gray-50 rounded-lg">
+                <img src="../../assets/icons/logoutmain.png" class="w-4 h-4" />
+                <span> Log out </span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <section
+          class="md:w-[80%] p-6 overflow-y-auto"
+          id="productPageMainContent"
+        >
+          <!-- Welcome Message -->
+          <div class="mb-8 md:flex justify-between items-center">
+            <div>
+              <h1 class="text-primaryHeading font-bold">
+                Welcome <span id="userStoreName">Chiq Boutique</span>!
+              </h1>
+              <p>Upload your product, start selling fast with Vendsr.</p>
+            </div>
+            <button
+              id="openAddProductFormDesktop"
+              aria-expanded="false"
+              class="px-4 py-2 bg-primary text-white rounded-xl hidden md:block cursor-pointer hover:bg-primary/80"
+            >
+              <span> <span aria-hidden="true">+</span> Add Product</span>
+            </button>
+          </div>
+
+          <div class="mb-8 flex justify-between items-center md:hidden">
+            <button
+              id="openAddProductFormMobile"
+              aria-expanded="false"
+              class="px-4 py-2 bg-primary text-white rounded-xl md:hidden cursor-pointer hover:bg-primary/80"
+            >
+              <span><span aria-hidden="true">+</span> Add Product</span>
+            </button>
+            <button
+              id="selectAllProductsBtnMobile"
+              aria-expanded="false"
+              class="p-2 border-1 border-gray-300 rounded-lg flex items-center gap-2 group cursor-pointer hover:bg-white/80 aria-expanded:border-primary"
+            >
+              <span
+                class="h-2 w-2 rounded-full border block group-aria-expanded:hidden"
+              ></span>
+              <span
+                class="h-2 w-2 rounded-full border bg-primary hidden group-aria-expanded:block"
+              ></span>
+              <span>Select all</span>
+            </button>
+          </div>
+
+          <!-- Filters + Add Product -->
+          <div
+            class="flex flex-col gap-4 mb-6 md:flex md:items-center md:justify-between md:flex-row"
+          >
+            <!-- Mobile Buttons Row -->
+            <div
+              class="flex flex-wrap justify-between items-center gap-2 w-full md:w-auto"
+            >
+              <button
+                id="filterProductsByName"
+                aria-expanded="false"
+                class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary"
+              >
+                <img
+                  src="../../assets/icons/filterIcon.png"
+                  class="h-4 w-4"
+                  alt=""
+                />
+                <span class="text-sm">Filter by Name</span>
+              </button>
+              <button
+                id="filterByPrice"
+                aria-expanded="false"
+                class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary"
+              >
+                <img
+                  src="../../assets/icons/filterIcon.png"
+                  alt=""
+                  class="h-4 w-4"
+                />
+                <span class="text-sm">Filter by Price</span>
+              </button>
+              <button
+                id="filterByInStock"
+                aria-expanded="false"
+                class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded cursor-pointer aria-expanded:border-primary whitespace-nowrap"
+              >
+                <img
+                  src="../../assets/icons/filterIcon.png"
+                  alt=""
+                  class="h-4 w-4"
+                />
+                <span class="text-sm">Sort by In Stock</span>
+              </button>
+            </div>
+
+            <!-- PC-only Select Button -->
+            <div class="hidden md:flex items-center gap-4">
+              <button
+                id="selectAllProductsBtnDesktop"
+                aria-expanded="false"
+                class="p-2 border-1 border-gray-300 rounded-lg flex items-center gap-2 group cursor-pointer hover:bg-white/80 aria-expanded:border-primary"
+              >
+                <span
+                  class="h-2 w-2 rounded-full border block group-aria-expanded:hidden"
+                ></span>
+                <span
+                  class="h-2 w-2 rounded-full border bg-primary hidden group-aria-expanded:block"
+                ></span>
+                <span>Select all</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Sub Filters -->
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <div class="flex gap-2 items-center">
+              <p class="font-bold">Product Uploaded</p>
+              <span aria-hidden="true">></span>
+            </div>
+
+            <p class="text-sm text-gray-500">
+              Showing <span id="numberOfCurrentProductsShown">1–20</span> of
+              <span id="totalNumberOfProducts">5000</span> products
+            </p>
+          </div>
+
+          <!-- Product Grid -->
+          <section
+            id="productDisplayContainer"
+            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+          >
+            <!-- Row 1 -->
+            <div class="rounded-lg text-sm">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                id="productImageDisplay"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex items-start justify-between">
+                <p class="" id="productNameDisplay">Wireless Headphones</p>
+                <button id="viewMoreProductActions" class="cursor-pointer">
+                  <img
+                    src="../../assets/icons/vertical-dots-menu.png"
+                    class="w-4 h-4"
+                  />
+                </button>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span id="productPriceDisplay" class="text-gray-400 mb-2"
+                  >₦12,379</span
+                >
+                <div class="flex flex-row gap-1 items-center">
+                  <span
+                    id="inStockColorDispay"
+                    class="w-2 h-2 rounded-full bg-green-500"
+                  ></span>
+                  <p id="inStockStatusDisplay" class="text-gray-500">
+                    In stock
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-lg text-sm">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                id="productImageDisplay"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex items-start justify-between">
+                <p class="" id="productNameDisplay">Wireless Headphones</p>
+                <button id="viewMoreProductActions" class="cursor-pointer">
+                  <img
+                    src="../../assets/icons/vertical-dots-menu.png"
+                    class="w-4 h-4"
+                  />
+                </button>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span id="productPriceDisplay" class="text-gray-400 mb-2"
+                  >₦12,379</span
+                >
+                <div class="flex flex-row gap-1 items-center">
+                  <span
+                    id="inStockColorDispay"
+                    class="w-2 h-2 rounded-full bg-green-500"
+                  ></span>
+                  <p id="inStockStatusDisplay" class="text-gray-500">
+                    In stock
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-lg text-sm">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                id="productImageDisplay"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex items-start justify-between">
+                <p class="" id="productNameDisplay">Wireless Headphones</p>
+                <button id="viewMoreProductActions" class="cursor-pointer">
+                  <img
+                    src="../../assets/icons/vertical-dots-menu.png"
+                    class="w-4 h-4"
+                  />
+                </button>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span id="productPriceDisplay" class="text-gray-400 mb-2"
+                  >₦12,379</span
+                >
+                <div class="flex flex-row gap-1 items-center">
+                  <span
+                    id="inStockColorDispay"
+                    class="w-2 h-2 rounded-full bg-green-500"
+                  ></span>
+                  <p id="inStockStatusDisplay" class="text-gray-500">
+                    In stock
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-lg text-sm">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                id="productImageDisplay"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex items-start justify-between">
+                <p class="" id="productNameDisplay">Wireless Headphones</p>
+                <button id="viewMoreProductActions" class="cursor-pointer">
+                  <img
+                    src="../../assets/icons/vertical-dots-menu.png"
+                    class="w-4 h-4"
+                  />
+                </button>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span id="productPriceDisplay" class="text-gray-400 mb-2"
+                  >₦12,379</span
+                >
+                <div class="flex flex-row gap-1 items-center">
+                  <span
+                    id="inStockColorDispay"
+                    class="w-2 h-2 rounded-full bg-green-500"
+                  ></span>
+                  <p id="inStockStatusDisplay" class="text-gray-500">
+                    In stock
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-lg text-sm">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                id="productImageDisplay"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex items-start justify-between">
+                <p class="" id="productNameDisplay">Wireless Headphones</p>
+                <button id="viewMoreProductActions" class="cursor-pointer">
+                  <img
+                    src="../../assets/icons/vertical-dots-menu.png"
+                    class="w-4 h-4"
+                  />
+                </button>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span id="productPriceDisplay" class="text-gray-400 mb-2"
+                  >₦12,379</span
+                >
+                <div class="flex flex-row gap-1 items-center">
+                  <span
+                    id="inStockColorDispay"
+                    class="w-2 h-2 rounded-full bg-green-500"
+                  ></span>
+                  <p id="inStockStatusDisplay" class="text-gray-500">
+                    In stock
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="rounded-lg text-sm">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                id="productImageDisplay"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex items-start justify-between">
+                <p class="" id="productNameDisplay">Wireless Headphones</p>
+                <button id="viewMoreProductActions" class="cursor-pointer">
+                  <img
+                    src="../../assets/icons/vertical-dots-menu.png"
+                    class="w-4 h-4"
+                  />
+                </button>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span id="productPriceDisplay" class="text-gray-400 mb-2"
+                  >₦12,379</span
+                >
+                <div class="flex flex-row gap-1 items-center">
+                  <span
+                    id="inStockColorDispay"
+                    class="w-2 h-2 rounded-full bg-green-500"
+                  ></span>
+                  <p id="inStockStatusDisplay" class="text-gray-500">
+                    In stock
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-lg text-sm">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                id="productImageDisplay"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex items-start justify-between">
+                <p class="" id="productNameDisplay">Wireless Headphones</p>
+                <button id="viewMoreProductActions" class="cursor-pointer">
+                  <img
+                    src="../../assets/icons/vertical-dots-menu.png"
+                    class="w-4 h-4"
+                  />
+                </button>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span id="productPriceDisplay" class="text-gray-400 mb-2"
+                  >₦12,379</span
+                >
+                <div class="flex flex-row gap-1 items-center">
+                  <span
+                    id="inStockColorDispay"
+                    class="w-2 h-2 rounded-full bg-green-500"
+                  ></span>
+                  <p id="inStockStatusDisplay" class="text-gray-500">
+                    In stock
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-lg text-sm">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                id="productImageDisplay"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex items-start justify-between">
+                <p class="" id="productNameDisplay">Wireless Headphones</p>
+                <button id="viewMoreProductActions" class="cursor-pointer">
+                  <img
+                    src="../../assets/icons/vertical-dots-menu.png"
+                    class="w-4 h-4"
+                  />
+                </button>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span id="productPriceDisplay" class="text-gray-400 mb-2"
+                  >₦12,379</span
+                >
+                <div class="flex flex-row gap-1 items-center">
+                  <span
+                    id="inStockColorDispay"
+                    class="w-2 h-2 rounded-full bg-green-500"
+                  ></span>
+                  <p id="inStockStatusDisplay" class="text-gray-500">
+                    In stock
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-lg text-sm">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                id="productImageDisplay"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex items-start justify-between">
+                <p class="" id="productNameDisplay">Wireless Headphones</p>
+                <button id="viewMoreProductActions" class="cursor-pointer">
+                  <img
+                    src="../../assets/icons/vertical-dots-menu.png"
+                    class="w-4 h-4"
+                  />
+                </button>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span id="productPriceDisplay" class="text-gray-400 mb-2"
+                  >₦12,379</span
+                >
+                <div class="flex flex-row gap-1 items-center">
+                  <span
+                    id="inStockColorDispay"
+                    class="w-2 h-2 rounded-full bg-green-500"
+                  ></span>
+                  <p id="inStockStatusDisplay" class="text-gray-500">
+                    In stock
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-lg text-sm">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                id="productImageDisplay"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex items-start justify-between">
+                <p class="" id="productNameDisplay">Wireless Headphones</p>
+                <button id="viewMoreProductActions" class="cursor-pointer">
+                  <img
+                    src="../../assets/icons/vertical-dots-menu.png"
+                    class="w-4 h-4"
+                  />
+                </button>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span id="productPriceDisplay" class="text-gray-400 mb-2"
+                  >₦12,379</span
+                >
+                <div class="flex flex-row gap-1 items-center">
+                  <span
+                    id="inStockColorDispay"
+                    class="w-2 h-2 rounded-full bg-green-500"
+                  ></span>
+                  <p id="inStockStatusDisplay" class="text-gray-500">
+                    In stock
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="p-4 rounded-lg">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex flex-row justify-between">
+                <p class="text-base">Wireless Headphones</p>
+                <img src="../../assets/icons/vertical-dots-menu.png" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-gray-400 mb-2">₦12,379</p>
+                <div class="flex flex-row gap-1 items-center text-sm">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p class="text-gray-500">In stock</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex flex-row justify-between">
+                <p class="text-base">Leather Backpack</p>
+                <img src="../../assets/icons/vertical-dots-menu.png" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-gray-400 mb-2">₦12,379</p>
+                <div class="flex flex-row gap-1 items-center text-sm">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p class="text-gray-500">In stock</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex flex-row justify-between">
+                <p class="text-base">Cozy Throw Blanket</p>
+                <img src="../../assets/icons/vertical-dots-menu.png" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-gray-400 mb-2">₦12,379</p>
+                <div class="flex flex-row gap-1 items-center text-sm">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p class="text-gray-500">In stock</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex flex-row justify-between">
+                <p class="text-base">Leather Backpack</p>
+                <img src="../../assets/icons/vertical-dots-menu.png" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-gray-400 mb-2">₦12,379</p>
+                <div class="flex flex-row gap-1 items-center text-sm">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p class="text-gray-500">In stock</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex flex-row justify-between">
+                <p class="text-base">Wireless Headphones</p>
+                <img src="../../assets/icons/vertical-dots-menu.png" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-gray-400 mb-2">₦12,379</p>
+                <div class="flex flex-row gap-1 items-center text-sm">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p class="text-gray-500">In stock</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="p-4 rounded-lg">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex flex-row justify-between">
+                <p class="text-base">Wireless Headphones</p>
+                <img src="../../assets/icons/vertical-dots-menu.png" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-gray-400 mb-2">₦12,379</p>
+                <div class="flex flex-row gap-1 items-center text-sm">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p class="text-gray-500">In stock</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex flex-row justify-between">
+                <p class="text-base">Leather Backpack</p>
+                <img src="../../assets/icons/vertical-dots-menu.png" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-gray-400 mb-2">₦12,379</p>
+                <div class="flex flex-row gap-1 items-center text-sm">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p class="text-gray-500">In stock</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex flex-row justify-between">
+                <p class="text-base">Cozy Throw Blanket</p>
+                <img src="../../assets/icons/vertical-dots-menu.png" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-gray-400 mb-2">₦12,379</p>
+                <div class="flex flex-row gap-1 items-center text-sm">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p class="text-gray-500">In stock</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex flex-row justify-between">
+                <p class="text-base">Leather Backpack</p>
+                <img src="../../assets/icons/vertical-dots-menu.png" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-gray-400 mb-2">₦12,379</p>
+                <div class="flex flex-row gap-1 items-center text-sm">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p class="text-gray-500">In stock</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg">
+              <img
+                src="../../assets/images/smiley-african-woman-working-market.png"
+                alt="Product"
+                class="rounded-lg mb-4 w-full aspect-square object-cover"
+              />
+              <div class="flex flex-row justify-between">
+                <p class="text-base">Wireless Headphones</p>
+                <img src="../../assets/icons/vertical-dots-menu.png" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-gray-400 mb-2">₦12,379</p>
+                <div class="flex flex-row gap-1 items-center text-sm">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p class="text-gray-500">In stock</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section id="addProductsContainer" class="p-4 lg:p-8 w-full hidden">
+          <div aria-hidden="true" class="flex items-centre gap-2">
+            <span class="hidden lg:block">Product</span>
+            <span aria-hidden="true">></span>
+            <span class="font-medium">Add product</span>
+          </div>
+          <h2 class="capitalize font-bold text-secondaryHeading mt-8">
+            add new product
+          </h2>
+          <form
+            novalidate
+            id="addProductsForm"
+            class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
+          >
+            <div class="flex flex-col gap-8">
+              <div class="grid gap-2">
+                <label for="addProductName">Product Name *</label>
+                <input
+                  type="text"
+                  id="addProductName"
+                  name="addProductName"
+                  autocomplete="name"
+                  placeholder="Enter your produt name"
+                  required
+                  class="form-input"
+                  data-invalid="false"
+                />
+                <p
+                  id="addProductNameError"
+                  class="text-red-500"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <div class="grid gap-2">
+                <label for="addProductCategory">Product Category *</label>
+                <div class="relative">
+                  <select
+                    name="addProductCategory"
+                    id="addProductCategory"
+                    class="form-input no-arrow text-primary"
+                    required
+                    data-invalid="false"
+                  >
+                    <option value="" disabled selected>
+                      Select your product category
+                    </option>
+                    <option value="Apparel & Accessories">
+                      Apparel &amp; Accessories
+                    </option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Health Beauty">Health &amp; Beauty</option>
+                    <option value="Home Living">Home Living</option>
+                    <option value="Grocery">Groceries</option>
+                    <option value="Home & Kitchen">Home &amp; kitchen</option>
+                    <option value="Beauty & Personal Care">
+                      Beauty &amp; Personal Care
+                    </option>
+                    <option value="Toys & Games">Toys &amp; Games</option>
+                    <option value="Baby & Kids">Baby &amp; Kids</option>
+                    <option value="Books & Media">Books &amp; Media</option>
+                    <option value="Sports & Outdoors">
+                      Sports &amp; Outdoors
+                    </option>
+                  </select>
+                  <img
+                    src="../../assets/icons/arrow-down.png"
+                    alt="Dropdown arrow"
+                    class="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none"
+                  />
+                </div>
+                <p
+                  class="text-red-500"
+                  aria-live="polite"
+                  id="categoryError"
+                ></p>
+              </div>
+
+              <div class="grid gap-2">
+                <label for="addProductPrice">Product Price *</label>
+                <input
+                  type="text"
+                  id="addProductPrice"
+                  name="addProductPrice"
+                  autocomplete="name"
+                  placeholder="Add your product price"
+                  required
+                  class="form-input"
+                  data-invalid="false"
+                />
+                <p
+                  id="addProductPriceError"
+                  class="text-red-500"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <div class="grid gap-2">
+                <label for="addProductQuantity">Product Quantity *</label>
+                <input
+                  type="text"
+                  id="addProductQuantity"
+                  name="addProductQuantity"
+                  autocomplete="name"
+                  placeholder="Enter product quantity"
+                  required
+                  class="form-input"
+                  data-invalid="false"
+                />
+                <p
+                  id="addProductQuantityError"
+                  class="text-red-500"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <div class="grid gap-2">
+                <label for="addProductDescription"
+                  >Product Description
+                  <span class="ml-1" aria-hidden="true">*</span></label
+                >
+                <textarea
+                  id="addProductDescription"
+                  name="addProductDescription"
+                  placeholder="Enter a brief description of your product"
+                  class="form-input h-32 resize-none"
+                  data-invalid="false"
+                ></textarea>
+                <p
+                  class="text-red-500"
+                  aria-live="polite"
+                  id="addProductDescriptionError"
+                ></p>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-8">
+              <div>
+                <div
+                  class="grid place-items-center rounded-xl min-h-80 bg-[#EEECEC]"
+                >
+                  <div class="text-center flex flex-col items-center gap-2">
+                    <label
+                      class="mt-2 cursor-pointer flex flex-col items-center gap-2"
+                    >
+                      <img
+                        src="../../assets/icons/uploadProductImage.png"
+                        alt=""
+                      />
+                      <span>Upload image here</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        required
+                        id="addProductMainImage"
+                        name="addProductMainImage"
+                        class="hidden"
+                      />
+                    </label>
+                    <p
+                      id="addProductMainImageError"
+                      aria-live="polite"
+                      class="text-red-500"
+                    ></p>
+                  </div>
+                </div>
+                <p class="text-center mt-2">Image should be less than 3mb</p>
+              </div>
+
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <div
+                    class="grid place-items-center rounded-xl border border-dashed py-16"
+                  >
+                    <div class="text-center flex flex-col items-center gap-2">
+                      <label
+                        class="mt-2 cursor-pointer flex items-center gap-2"
+                      >
+                        <span
+                          class="bg-black text-white font-semibold rounded-full h-4 w-4 grid place-items-center"
+                          aria-hidden="true"
+                          ><span class="text-[0.5rem]">+</span></span
+                        >
+                        <span>Add more</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          required
+                          id="addProductSecondImage"
+                          name="addProductSecondImage"
+                          class="hidden"
+                        />
+                      </label>
+                      <p
+                        id="addProductSecondImageError"
+                        aria-live="polite"
+                        class="text-red-500"
+                      ></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div
+                    class="grid place-items-center rounded-xl border border-dashed py-16"
+                  >
+                    <div class="text-center flex flex-col items-center gap-2">
+                      <label
+                        class="mt-2 cursor-pointer flex items-center gap-2"
+                      >
+                        <span
+                          class="bg-black text-white font-semibold rounded-full h-4 w-4 grid place-items-center"
+                          aria-hidden="true"
+                          ><span class="text-[0.5rem]">+</span></span
+                        >
+                        <span>Add more</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          required
+                          id="addProductThirdImage"
+                          name="addProductThirdImage"
+                          class="hidden"
+                        />
+                      </label>
+                      <p
+                        id="addProductThirdImageError"
+                        aria-live="polite"
+                        class="text-red-500"
+                      ></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                id="addProductBtn"
+                disabled
+                class="bg-disabledBtn text-white py-3 rounded-full w-full text-center block cursor-pointer whitespace-nowrap mt-auto"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <script src="../../scripts/merchantProductDashboard.js"></script>
+  </body>
+</html>

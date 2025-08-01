@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStorage.setItem("token", data.accessToken);
 
         // Redirect to dashboard
-        window.location.href = "../../user-dashboard-profile/";
+        window.location.href = "../dashboard_profile/";
       } catch (error) {
         console.error("Login failed:", error.message);
         showError(usernameInput, usernameError, error.message);
