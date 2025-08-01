@@ -239,17 +239,23 @@
               </ul>
             </nav>
           </div>
-          <div class="text-sm text-gray-500 space-y-2 pt-4">
-            <div>Terms and conditions</div>
-            <div>Privacy Policy</div>
-            <li class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3">
-              <img src="../../assets/icons/shop.png" />
+          <div class="text-sm text-gray-500 flex flex-col gap-4 pt-4">
+            <a href="#" class="hover:text-primary">Terms and conditions</a>
+            <a href="#" class="hover:text-primary">Privacy Policy</a>
+            <a
+              class="flex items-center gap-4 bg-gray-50 rounded-lg hover:text-primary"
+            >
+              <img
+                src="../../assets/icons/logoutmain.png"
+                alt=""
+                class="w-4 h-4"
+              />
               <p
                 class="hover:text-blue-500 cursor-pointer font-semibold text-base"
               >
                 Log out
               </p>
-            </li>
+            </a>
           </div>
         </div>
       </aside>
@@ -258,106 +264,137 @@
       <div class="flex w-full bg-white font-sans text-gray-800 md:pr-8">
         <!-- Sticky Sidebar -->
         <aside
-          class="w-[20%] bg-white border border-1 border-gray-100 flex flex-col sticky top-0 h-screen hidden md:block"
+          class="w-[20%] bg-white border-1 border-gray-100 sticky top-16 h-[calc(100vh_-_4rem)] hidden md:block"
         >
-          <div class="flex flex-col justify-between h-full p-6 overflow-y-auto">
-            <nav class="space-y-4">
+          <div
+            class="flex flex-col justify-between h-full px-4 py-2 overflow-y-auto"
+          >
+            <nav class="space-y-4" aria-label="desktop navigation">
               <ul class="space-y-2">
-                <li class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3">
-                  <img src="../../assets/icons/shop.png" />
-                  <p
-                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
                   >
-                    Home
-                  </p>
+                    <img
+                      src="../../assets/icons/homeIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Home</span></a
+                  >
                 </li>
 
-                <li
-                  class="bg-primary text-white p-3 rounded flex items-center gap-2"
-                >
-                  <img src="../../assets/icons/shop.png" />
-                  <p
-                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                <li class="bg-primary text-white rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center font-semibold"
                   >
-                    Product
-                  </p>
+                    <img
+                      src="../../assets/icons/shop.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Products</span></a
+                  >
                 </li>
 
-                <li class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3">
-                  <img src="../../assets/icons/shop.png" />
-                  <p
-                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
                   >
-                    Order
-                  </p>
+                    <img
+                      src="../../assets/icons/exportIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Order</span></a
+                  >
                 </li>
 
-                <li class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3">
-                  <img src="../../assets/icons/shop.png" />
-                  <p
-                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
                   >
-                    Settings
-                  </p>
+                    <img
+                      src="../../assets/icons/settingsIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Settings</span></a
+                  >
                 </li>
 
-                <li class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3">
-                  <img src="../../assets/icons/shop.png" />
-                  <p
-                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
                   >
-                    Help Center
-                  </p>
+                    <img
+                      src="../../assets/icons/helpCenterIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Help Center</span></a
+                  >
                 </li>
               </ul>
             </nav>
-            <div class="text-sm text-gray-500 space-y-2 pt-4">
-              <div>Terms and conditions</div>
-              <div>Privacy Policy</div>
-              <li class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3">
-                <img src="../../assets/icons/shop.png" />
-                <p
-                  class="hover:text-blue-500 cursor-pointer font-semibold text-base"
-                >
-                  Log out
-                </p>
-              </li>
+            <div class="text-sm text-gray-500 flex flex-col gap-4">
+              <a href="#" class="hover:text-primary">Terms and conditions</a>
+              <a href="#" class="hover:text-primary">Privacy Policy</a>
+              <a href="" class="flex items-center gap-2 bg-gray-50 rounded-lg">
+                <img src="../../assets/icons/logoutmain.png" class="w-4 h-4" />
+                <span> Log out </span>
+              </a>
             </div>
           </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="md:w-[80%] p-6 overflow-y-auto">
+        <section
+          class="md:w-[80%] p-6 overflow-y-auto"
+          id="productPageMainContent"
+        >
           <!-- Welcome Message -->
-          <div class="mb-8 md:flex flex-row justify-between">
+          <div class="mb-8 md:flex justify-between items-center">
             <div>
-              <h1 class="md:text-4xl text-3xl font-bold">
-                Welcome Chic Boutique!
+              <h1 class="text-primaryHeading font-bold">
+                Welcome <span id="userStoreName">Chiq Boutique</span>!
               </h1>
-              <p class="text-gray-600 md:text-base text-sm">
-                Upload your product, start selling fast with Vendr.
-              </p>
+              <p>Upload your product, start selling fast with Vendsr.</p>
             </div>
             <button
-              class="px-4 py-2 bg-primary text-white rounded-[13px] h-fit hidden md:block"
+              id="openAddProductFormDesktop"
+              aria-expanded="false"
+              class="px-4 py-2 bg-primary text-white rounded-xl hidden md:block cursor-pointer hover:bg-primary/80"
             >
-              <h3>+ Add Product</h3>
+              <span> <span aria-hidden="true">+</span> Add Product</span>
             </button>
           </div>
 
-          <div
-            class="mb-8 flex flex-row justify-between items-center md:hidden"
-          >
+          <div class="mb-8 flex justify-between items-center md:hidden">
             <button
-              class="px-4 py-2 bg-primary text-white rounded-[13px] h-fit"
+              id="openAddProductFormMobile"
+              aria-expanded="false"
+              class="px-4 py-2 bg-primary text-white rounded-xl md:hidden cursor-pointer hover:bg-primary/80"
             >
-              <h3>+ Add Product</h3>
+              <span><span aria-hidden="true">+</span> Add Product</span>
             </button>
             <button
-              class="px-2 py- border-1 border-gray-300 rounded-lg flex flex-row items-center gap-2 h-8"
+              id="selectAllProductsBtnMobile"
+              aria-expanded="false"
+              class="p-2 border-1 border-gray-300 rounded-lg flex items-center gap-2 group cursor-pointer hover:bg-white/80 aria-expanded:border-primary"
             >
-              <img src="../../assets/icons/arrow-back.png" />
-              <p>Select all</p>
+              <span
+                class="h-2 w-2 rounded-full border block group-aria-expanded:hidden"
+              ></span>
+              <span
+                class="h-2 w-2 rounded-full border bg-primary hidden group-aria-expanded:block"
+              ></span>
+              <span>Select all</span>
             </button>
           </div>
 
@@ -799,7 +836,7 @@
               </div>
             </div>
           </section>
-        </main>
+        </section>
       </div>
     </main>
 
