@@ -355,8 +355,8 @@
 
         <!-- Main Content -->
         <section
-          class="md:w-[80%] p-6 overflow-y-auto"
           id="productPageMainContent"
+          class="md:w-[80%] p-6 overflow-y-auto hidden"
         >
           <!-- Welcome Message -->
           <div class="mb-8 md:flex justify-between items-center">
@@ -752,14 +752,117 @@
 
               <button
                 type="submit"
-                id="addProductBtn"
+                id="previewProductBtn"
                 disabled
                 class="bg-disabledBtn text-white py-3 rounded-full w-full text-center block cursor-pointer whitespace-nowrap mt-auto"
               >
-                Submit
+                Preview Product
               </button>
             </div>
           </form>
+        </section>
+
+        <section id="previewAddedProducts" class="p-4 lg:p-8 w-full">
+          <div>
+            <div aria-hidden="true" class="flex items-centre gap-2">
+              <span class="hidden lg:block">Product</span>
+              <span aria-hidden="true" class="hidden lg:block">></span>
+              <span class="hidden lg:block">Add product</span>
+              <span aria-hidden="true">></span>
+              <span class="font-medium">Preview product</span>
+            </div>
+
+            <h2 class="text-secondaryHeading font-semibold mt-8">
+              Preview product
+            </h2>
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 mt-8">
+              <!-- Image Section -->
+              <div>
+                <img
+                  src="../../assets/images/merchanthowitworksmobile.png"
+                  alt=""
+                  class="rounded w-full h-96 max-w-full object-contain"
+                />
+              </div>
+
+              <!-- Details Section -->
+              <div>
+                <p class="mb-4 space-y-8">Details</p>
+                <ul class="space-y-4">
+                  <li class="flex justify-between">
+                    <span class="text-gray-500">Product Name:</span>
+                    <span id="previewAddedProductName"></span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span class="text-gray-500">Product Quantity:</span>
+                    <span id="previewAddedProductQuantity"></span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span class="text-gray-500">Product Categories:</span>
+                    <span id="previewAddedProductCategory"></span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span class="text-gray-500">Product Price:</span>
+                    <span>₦<span id="previewAddedProductPrice"></span></span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span class="text-gray-500">Product Description:</span>
+                    <span
+                      id="previewAddedProductDescription"
+                      class="max-w-[30ch] text-pretty"
+                    >
+                    </span>
+                  </li>
+                </ul>
+
+                <!-- Action Button -->
+                <div class="mt-12">
+                  <button
+                    id="uploadPreviewedProduct"
+                    class="bg-primary text-white font-semibold md:py-2 py-4 px-8 w-full cursor-pointer rounded-full hover:bg-purple-700 transition-colors duration-200"
+                  >
+                    Upload product
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <dialog
+            id="productUploadedConfirmation"
+            class="m-auto rounded-2xl w-full max-md:min-w-screen max-md:min-h-screen md:max-w-96 [&::backdrop]:backdrop-blur-sm [&::backdrop]:bg-primary/10"
+          >
+            <div
+              class="flex flex-col items-center gap-4 p-12 text-center w-full h-full"
+            >
+              <img
+                src="../../assets/icons/completed.png"
+                alt=""
+                class="mx-auto w-12 h-12"
+              />
+              <p class="font-bold">Product Uploaded!</p>
+              <p>
+                <span id="confirmedProductName"></span> has been successfully
+                uploaded to <span id="confirmedProductCategory"></span>
+              </p>
+
+              <div class="flex flex-col md:flex-row gap-4 mt-16 text-center">
+                <button
+                  id="addNewProduct"
+                  class="bg-primary text-white py-3 rounded-full w-full whitespace-nowrap cursor-pointer hover:bg-purple-700"
+                >
+                  Add new product
+                </button>
+                <button
+                  id="navigateToProductList"
+                  class="border border-primary text-primary cursor-pointer hover:text-purple-700 w-full whitespace-nowrap py-3 rounded-full"
+                >
+                  Product List
+                </button>
+              </div>
+            </div>
+          </dialog>
         </section>
       </div>
     </main>
