@@ -911,13 +911,13 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
     if (addProductMainImage.files[0]) {
-      formData.append("image", addProductMainImage.files[0]);
+      formData.append("productImage", addProductMainImage.files[0]);
     }
     if (addProductSecondImage.files[0]) {
-      formData.append("secondImage", addProductSecondImage.files[0]);
+      formData.append("productImage", addProductSecondImage.files[0]);
     }
     if (addProductThirdImage.files[0]) {
-      formData.append("thirdImage", addProductThirdImage.files[0]);
+      formData.append("productImage", addProductThirdImage.files[0]);
     }
 
     try {
