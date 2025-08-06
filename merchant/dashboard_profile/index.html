@@ -356,7 +356,7 @@
         <!-- Main Content -->
         <section
           id="productPageMainContent"
-          class="md:w-[80%] p-6 overflow-y-auto hidden"
+          class="md:w-[80%] p-6 overflow-y-auto"
         >
           <!-- Welcome Message -->
           <div class="mb-8 md:flex justify-between items-center">
@@ -515,7 +515,7 @@
         </section>
 
         <section id="addProductsContainer" class="p-4 lg:p-8 w-full hidden">
-          <div aria-hidden="true" class="flex items-centre gap-2">
+          <div aria-hidden="true" class="flex items-center gap-2">
             <span class="hidden lg:block">Product</span>
             <span aria-hidden="true">></span>
             <span class="font-medium">Add product</span>
@@ -523,7 +523,9 @@
           <h2 class="capitalize font-bold text-secondaryHeading mt-8">
             add new product
           </h2>
+          <p>Confirm your product details before you submit the form!</p>
           <form
+            enctype="multipart/form-data"
             novalidate
             id="addProductsForm"
             class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
@@ -535,8 +537,7 @@
                   type="text"
                   id="addProductName"
                   name="addProductName"
-                  autocomplete="name"
-                  placeholder="Enter your produt name"
+                  placeholder="Enter your product name"
                   required
                   class="form-input"
                   data-invalid="false"
@@ -599,7 +600,6 @@
                   type="text"
                   id="addProductPrice"
                   name="addProductPrice"
-                  autocomplete="name"
                   placeholder="Add your product price"
                   required
                   class="form-input"
@@ -618,7 +618,6 @@
                   type="text"
                   id="addProductQuantity"
                   name="addProductQuantity"
-                  autocomplete="name"
                   placeholder="Enter product quantity"
                   required
                   class="form-input"
@@ -702,7 +701,6 @@
                         <input
                           type="file"
                           accept="image/*"
-                          required
                           id="addProductSecondImage"
                           name="addProductSecondImage"
                           class="hidden"
@@ -734,7 +732,6 @@
                         <input
                           type="file"
                           accept="image/*"
-                          required
                           id="addProductThirdImage"
                           name="addProductThirdImage"
                           class="hidden"
@@ -750,21 +747,30 @@
                 </div>
               </div>
 
-              <button
-                type="submit"
-                id="previewProductBtn"
-                disabled
-                class="bg-disabledBtn text-white py-3 rounded-full w-full text-center block cursor-pointer whitespace-nowrap mt-auto"
-              >
-                Preview Product
-              </button>
+              <div class="flex items-center gap-4">
+                <button
+                  type="submit"
+                  id="previewProductBtn"
+                  disabled
+                  class="bg-disabledBtn text-white py-3 rounded-full w-full text-center cursor-not-allowed whitespace-nowrap"
+                >
+                  Preview Product
+                </button>
+                <button
+                  type="button"
+                  id="cancelAddingProductBtn"
+                  class="text-primary py-3 rounded-full w-full text-center border border-primary cursor-pointer whitespace-nowrap hover:text-purple-700 hover:border-purple-700 hover:bg-gray-200"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </form>
         </section>
 
-        <section id="previewAddedProducts" class="p-4 lg:p-8 w-full">
+        <section id="previewAddedProducts" class="p-4 lg:p-8 w-full hidden">
           <div>
-            <div aria-hidden="true" class="flex items-centre gap-2">
+            <div aria-hidden="true" class="flex items-center gap-2">
               <span class="hidden lg:block">Product</span>
               <span aria-hidden="true" class="hidden lg:block">></span>
               <span class="hidden lg:block">Add product</span>
@@ -780,8 +786,9 @@
               <!-- Image Section -->
               <div>
                 <img
-                  src="../../assets/images/merchanthowitworksmobile.png"
+                  src=""
                   alt=""
+                  id="previewAddedImage"
                   class="rounded w-full h-96 max-w-full object-contain"
                 />
               </div>
@@ -844,7 +851,7 @@
               <p class="font-bold">Product Uploaded!</p>
               <p>
                 <span id="confirmedProductName"></span> has been successfully
-                uploaded to <span id="confirmedProductCategory"></span>
+                uploaded to <span id="confirmedProductCategory"></span> category
               </p>
 
               <div class="flex flex-col md:flex-row gap-4 mt-16 text-center">
