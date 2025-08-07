@@ -937,9 +937,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await Promise.race([
         fetch("https://vendsr-backend.onrender.com/api/product/create", {
           method: "POST",
-          // headers: {
-          //   Authorization: `Bearer ${token}`,
-          // },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
           body: formData,
         }),
         timeoutPromise,
