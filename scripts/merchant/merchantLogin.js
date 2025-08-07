@@ -208,6 +208,8 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("login.js loaded"); // Debug: Confirm script loads
+  sessionStorage.removeItem("token");
+  console.log(sessionStorage);
   const loginForm = document.getElementById("login-form");
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
