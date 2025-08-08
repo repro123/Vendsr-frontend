@@ -134,6 +134,22 @@
 //     "navigateToProductList"
 //   );
 
+//   // Product Grid Elements
+//   const productGrid = document.getElementById(
+//     "productDisplayContainerOfMaximumTwentyProducts"
+//   );
+//   const numberOfCurrentProductsShown = document.getElementById(
+//     "numberOfCurrentProductsShown"
+//   );
+//   const totalNumberOfProducts = document.getElementById(
+//     "totalNumberOfProducts"
+//   );
+
+//   // Filter Buttons
+//   const filterByNameBtn = document.getElementById("filterProductsByName");
+//   const filterByPriceBtn = document.getElementById("filterByPrice");
+//   const filterByInStockBtn = document.getElementById("filterByInStock");
+
 //   // Valid product categories
 //   const validCategories = [
 //     "Apparel & Accessories",
@@ -160,6 +176,9 @@
 //     fileType: /^image\/.*$/,
 //   };
 
+//   // Product list state
+//   let products = JSON.parse(sessionStorage.getItem("products")) || [];
+
 //   // Debounce function for real-time validation
 //   function debounce(func, wait) {
 //     let timeout;
@@ -168,6 +187,116 @@
 //       timeout = setTimeout(() => func.apply(this, args), wait);
 //     };
 //   }
+
+//   // Render product grid
+//   function renderProducts(productList = products) {
+//     productGrid.innerHTML = ""; // Clear grid
+//     const displayProducts = productList.slice(0, 20); // Limit to 20
+//     displayProducts.forEach((product) => {
+//       const productDiv = document.createElement("div");
+//       productDiv.className = "rounded-lg text-sm";
+//       productDiv.innerHTML = `
+//         <img src="${product.imageUrl[0] || ""}" alt="${
+//         product.name
+//       }" class="rounded-lg mb-4 w-full aspect-square object-cover" />
+//         <div class="flex items-start justify-between">
+//           <p>${product.name}</p>
+//           <button class="cursor-pointer">
+//             <img src="../../assets/icons/vertical-dots-menu.png" class="w-4 h-4" />
+//           </button>
+//         </div>
+//         <div class="flex flex-col mt-2">
+//           <span>₦<span class="text-gray-400 mb-2">${product.price.toFixed(
+//             2
+//           )}</span></span>
+//           <div class="flex flex-row gap-1 items-center">
+//             <span class="w-2 h-2 rounded-full ${
+//               product.stock > 0 ? "bg-green-500" : "bg-red-500"
+//             }"></span>
+//             <p class="text-gray-500">${product.stock} in stock</p>
+//           </div>
+//         </div>
+//       `;
+//       productGrid.appendChild(productDiv);
+//     });
+
+//     // Update counts
+//     const shownCount = displayProducts.length;
+//     numberOfCurrentProductsShown.textContent = `1–${shownCount}`;
+//     totalNumberOfProducts.textContent = productList.length;
+//   }
+
+//   // Fetch products from placeholder API
+//   async function fetchProducts() {
+//     try {
+//       console.time("fetchProductsRequest"); // Debug
+//       const response = await fetch(
+//         "https://jsonplaceholder.typicode.com/posts?_limit=5"
+//       );
+//       if (!response.ok) throw new Error("Failed to fetch products");
+//       const posts = await response.json();
+//       // Transform posts to mimic product structure
+//       products = posts.map((post, index) => ({
+//         _id: post.id.toString(),
+//         name: `Product ${post.id}`,
+//         category: validCategories[index % validCategories.length],
+//         price: parseFloat((Math.random() * 100 + 10).toFixed(2)),
+//         stock: Math.floor(Math.random() * 50),
+//         imageUrl: [`https://picsum.photos/200/200?random=${post.id}`],
+//         description: post.body.slice(0, 100),
+//         vendorId: "placeholder_vendor",
+//         store: "placeholder_store",
+//         createdAt: new Date().toISOString(),
+//         updatedAt: new Date().toISOString(),
+//       }));
+//       sessionStorage.setItem("products", JSON.stringify(products));
+//       renderProducts();
+//       console.log("Fetched products:", products); // Debug
+//     } catch (error) {
+//       console.error("Fetch products failed:", error.message);
+//       if (addProductNameError) {
+//         addProductNameError.textContent =
+//           "Failed to load products. Please try again.";
+//       }
+//     } finally {
+//       console.timeEnd("fetchProductsRequest"); // Debug
+//     }
+//   }
+
+//   // Sort products by filter
+//   function sortProducts(criterion) {
+//     const sortedProducts = [...products];
+//     if (criterion === "name") {
+//       sortedProducts.sort((a, b) => b.name.localeCompare(a.name)); // Z–A
+//     } else if (criterion === "price") {
+//       sortedProducts.sort((b, a) => a.price - b.price); // High–low
+//     } else if (criterion === "stock") {
+//       sortedProducts.sort((b, a) => a.stock - b.stock); // High–low
+//     }
+//     renderProducts(sortedProducts);
+//   }
+
+//   // Filter button handlers
+//   filterByNameBtn.addEventListener("click", () => {
+//     filterByNameBtn.setAttribute("aria-expanded", "true");
+//     filterByPriceBtn.setAttribute("aria-expanded", "false");
+//     filterByInStockBtn.setAttribute("aria-expanded", "false");
+//     sortProducts("name");
+//   });
+
+//   filterByPriceBtn.addEventListener("click", () => {
+//     filterByNameBtn.setAttribute("aria-expanded", "false");
+//     filterByPriceBtn.setAttribute("aria-expanded", "true");
+//     filterByInStockBtn.setAttribute("aria-expanded", "false");
+//     sortProducts("price");
+//   });
+
+//   filterByInStockBtn.addEventListener("click", () => {
+//     filterByNameBtn.setAttribute("aria-expanded", "false");
+//     filterByPriceBtn.setAttribute("aria-expanded", "false");
+//     filterByInStockBtn.setAttribute("aria-expanded", "true");
+//     sortProducts("stock");
+//   });
 
 //   // Enable/disable preview button based on required fields
 //   function updatePreviewButtonState() {
@@ -530,6 +659,11 @@
 //       const data = await response.json();
 //       console.log("Product upload success:", data); // Debug
 
+//       // Add new product to list
+//       products.unshift(data.product);
+//       sessionStorage.setItem("products", JSON.stringify(products));
+//       renderProducts();
+
 //       // Show confirmation dialog
 //       confirmedProductName.textContent =
 //         sessionStorage.getItem("productName") || "";
@@ -586,6 +720,13 @@
 //     openAddProductFormDesktop.setAttribute("aria-expanded", "false");
 //     openAddProductFormMobile.setAttribute("aria-expanded", "false");
 //   });
+
+//   // Initialize product grid
+//   if (products.length === 0) {
+//     fetchProducts();
+//   } else {
+//     renderProducts();
+//   }
 // });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -814,37 +955,46 @@ document.addEventListener("DOMContentLoaded", () => {
     totalNumberOfProducts.textContent = productList.length;
   }
 
-  // Fetch products from placeholder API
+  // Fetch products from backend API
   async function fetchProducts() {
     try {
       console.time("fetchProductsRequest"); // Debug
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts?_limit=5"
-      );
-      if (!response.ok) throw new Error("Failed to fetch products");
-      const posts = await response.json();
-      // Transform posts to mimic product structure
-      products = posts.map((post, index) => ({
-        _id: post.id.toString(),
-        name: `Product ${post.id}`,
-        category: validCategories[index % validCategories.length],
-        price: parseFloat((Math.random() * 100 + 10).toFixed(2)),
-        stock: Math.floor(Math.random() * 50),
-        imageUrl: [`https://picsum.photos/200/200?random=${post.id}`],
-        description: post.body.slice(0, 100),
-        vendorId: "placeholder_vendor",
-        store: "placeholder_store",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      }));
+      // Timeout promise (60 seconds)
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(
+          () => reject(new Error("Request timed out. Please try again.")),
+          60000
+        );
+      });
+      const response = await Promise.race([
+        fetch("https://vendsr-backend.onrender.com/api/stores/my-store", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+        timeoutPromise,
+      ]);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to fetch products");
+      }
+      const data = await response.json();
+      products = data.store.products || [];
       sessionStorage.setItem("products", JSON.stringify(products));
       renderProducts();
       console.log("Fetched products:", products); // Debug
     } catch (error) {
-      console.error("Fetch products failed:", error.message);
+      console.error("Fetch products failed:", error.message); // Debug
       if (addProductNameError) {
-        addProductNameError.textContent =
-          "Failed to load products. Please try again.";
+        addProductNameError.textContent = error.message.includes("token")
+          ? "Authentication failed. Please sign up or log in."
+          : "Failed to load products. Please try again.";
+      }
+      if (error.message.includes("token")) {
+        setTimeout(() => {
+          window.location.href = "../sign-up/";
+        }, 2000);
       }
     } finally {
       console.timeEnd("fetchProductsRequest"); // Debug
