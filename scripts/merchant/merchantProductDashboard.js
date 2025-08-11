@@ -226,37 +226,46 @@
 //     totalNumberOfProducts.textContent = productList.length;
 //   }
 
-//   // Fetch products from placeholder API
+//   // Fetch products from backend API
 //   async function fetchProducts() {
 //     try {
 //       console.time("fetchProductsRequest"); // Debug
-//       const response = await fetch(
-//         "https://jsonplaceholder.typicode.com/posts?_limit=5"
-//       );
-//       if (!response.ok) throw new Error("Failed to fetch products");
-//       const posts = await response.json();
-//       // Transform posts to mimic product structure
-//       products = posts.map((post, index) => ({
-//         _id: post.id.toString(),
-//         name: `Product ${post.id}`,
-//         category: validCategories[index % validCategories.length],
-//         price: parseFloat((Math.random() * 100 + 10).toFixed(2)),
-//         stock: Math.floor(Math.random() * 50),
-//         imageUrl: [`https://picsum.photos/200/200?random=${post.id}`],
-//         description: post.body.slice(0, 100),
-//         vendorId: "placeholder_vendor",
-//         store: "placeholder_store",
-//         createdAt: new Date().toISOString(),
-//         updatedAt: new Date().toISOString(),
-//       }));
+//       // Timeout promise (60 seconds)
+//       const timeoutPromise = new Promise((_, reject) => {
+//         setTimeout(
+//           () => reject(new Error("Request timed out. Please try again.")),
+//           60000
+//         );
+//       });
+//       const response = await Promise.race([
+//         fetch("https://vendsr-backend.onrender.com/api/stores/my-store", {
+//           method: "GET",
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//         }),
+//         timeoutPromise,
+//       ]);
+//       if (!response.ok) {
+//         const errorData = await response.json();
+//         throw new Error(errorData.message || "Failed to fetch products");
+//       }
+//       const data = await response.json();
+//       products = data.store.products || [];
 //       sessionStorage.setItem("products", JSON.stringify(products));
 //       renderProducts();
 //       console.log("Fetched products:", products); // Debug
 //     } catch (error) {
-//       console.error("Fetch products failed:", error.message);
+//       console.error("Fetch products failed:", error.message); // Debug
 //       if (addProductNameError) {
-//         addProductNameError.textContent =
-//           "Failed to load products. Please try again.";
+//         addProductNameError.textContent = error.message.includes("token")
+//           ? "Authentication failed. Please sign up or log in."
+//           : "Failed to load products. Please try again.";
+//       }
+//       if (error.message.includes("token")) {
+//         setTimeout(() => {
+//           window.location.href = "../sign-up/";
+//         }, 2000);
 //       }
 //     } finally {
 //       console.timeEnd("fetchProductsRequest"); // Debug
@@ -735,7 +744,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // Check for email and token in sessionStorage
   const email = sessionStorage.getItem("email");
   const token = sessionStorage.getItem("token");
+  const storeName = sessionStorage.getItem("storeName");
   const addProductNameError = document.getElementById("addProductNameError");
+  const userStoreName = document.getElementById("userStoreName");
+
+  // Populate userStoreName
+  if (userStoreName) {
+    userStoreName.textContent = storeName || "Unknown Store";
+    console.log("Store name from sessionStorage:", storeName); // Debug
+  } else {
+    console.warn("Element with id 'userStoreName' not found in DOM"); // Debug
+  }
+
   if (!email || !token) {
     console.warn(
       "Missing email or token in sessionStorage, redirecting to signup"
