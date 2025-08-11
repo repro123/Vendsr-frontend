@@ -752,6 +752,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (userStoreName) {
     userStoreName.textContent = storeName || "Unknown Store";
     console.log("Store name from sessionStorage:", storeName); // Debug
+    if (userStoreName.scrollWidth > userStoreName.clientWidth) {
+      userStoreName.title = storeName;
+    } else {
+      userStoreName.removeAttribute("title");
+    }
   } else {
     console.warn("Element with id 'userStoreName' not found in DOM"); // Debug
   }
