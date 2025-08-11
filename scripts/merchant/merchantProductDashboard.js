@@ -6,7 +6,23 @@
 //   // Check for email and token in sessionStorage
 //   const email = sessionStorage.getItem("email");
 //   const token = sessionStorage.getItem("token");
+//   const storeName = sessionStorage.getItem("storeName");
 //   const addProductNameError = document.getElementById("addProductNameError");
+//   const userStoreName = document.getElementById("userStoreName");
+
+//   // Populate userStoreName
+//   if (userStoreName) {
+//     userStoreName.textContent = storeName || "Unknown Store";
+//     console.log("Store name from sessionStorage:", storeName); // Debug
+//     if (userStoreName.scrollWidth > userStoreName.clientWidth) {
+//       userStoreName.title = storeName;
+//     } else {
+//       userStoreName.removeAttribute("title");
+//     }
+//   } else {
+//     console.warn("Element with id 'userStoreName' not found in DOM"); // Debug
+//   }
+
 //   if (!email || !token) {
 //     console.warn(
 //       "Missing email or token in sessionStorage, redirecting to signup"
@@ -273,15 +289,37 @@
 //   }
 
 //   // Sort products by filter
+//   // function sortProducts(criterion) {
+//   //   const sortedProducts = [...products];
+//   //   if (criterion === "name") {
+//   //     sortedProducts.sort((a, b) => b.name.localeCompare(a.name)); // Z–A
+//   //   } else if (criterion === "price") {
+//   //     sortedProducts.sort((b, a) => a.price - b.price); // High–low
+//   //   } else if (criterion === "stock") {
+//   //     sortedProducts.sort((b, a) => a.stock - b.stock); // High–low
+//   //   }
+//   //   renderProducts(sortedProducts);
+//   // }
+//   // Store last sort directions
+//   const sortDirections = { name: true, price: true, stock: true };
+//   let lastCriterion = null;
+
 //   function sortProducts(criterion) {
 //     const sortedProducts = [...products];
-//     if (criterion === "name") {
-//       sortedProducts.sort((a, b) => b.name.localeCompare(a.name)); // Z–A
-//     } else if (criterion === "price") {
-//       sortedProducts.sort((b, a) => a.price - b.price); // High–low
-//     } else if (criterion === "stock") {
-//       sortedProducts.sort((b, a) => a.stock - b.stock); // High–low
+
+//     // Reset direction to ascending if new criterion
+//     if (criterion !== lastCriterion) {
+//       sortDirections[criterion] = true;
 //     }
+
+//     sortedProducts.sort((a, b) => {
+//       const asc = sortDirections[criterion] ? 1 : -1;
+//       if (criterion === "name") return asc * a.name.localeCompare(b.name);
+//       return asc * (a[criterion] - b[criterion]);
+//     });
+
+//     sortDirections[criterion] = !sortDirections[criterion]; // toggle for next time
+//     lastCriterion = criterion;
 //     renderProducts(sortedProducts);
 //   }
 
@@ -747,6 +785,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const storeName = sessionStorage.getItem("storeName");
   const addProductNameError = document.getElementById("addProductNameError");
   const userStoreName = document.getElementById("userStoreName");
+  const userEmailPrefix = document.getElementById("userEmailPrefix");
+  const userEmailSuffix = document.getElementById("userEmailSuffix");
 
   // Populate userStoreName
   if (userStoreName) {
@@ -759,6 +799,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   } else {
     console.warn("Element with id 'userStoreName' not found in DOM"); // Debug
+  }
+
+  // Populate userEmailPrefix and userEmailSuffix
+  if (userEmailPrefix && userEmailSuffix) {
+    const emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+    if (email && emailRegex.test(email)) {
+      const [prefix, suffix] = email.split("@");
+      const truncatedPrefix =
+        prefix.length > 10 ? prefix.slice(0, 10) + "..." : prefix;
+      userEmailPrefix.textContent = truncatedPrefix;
+      userEmailPrefix.setAttribute("title", email); // Tooltip with full email
+      userEmailSuffix.textContent = `@${suffix}`;
+      console.log("Email parsed:", {
+        prefix,
+        truncatedPrefix,
+        suffix: `@${suffix}`,
+      }); // Debug
+    } else {
+      userEmailPrefix.textContent = "User";
+      userEmailPrefix.setAttribute("title", email || "No email available");
+      userEmailSuffix.textContent = "";
+      console.warn("Invalid or missing email in sessionStorage:", email); // Debug
+    }
+  } else {
+    console.warn(
+      "Element(s) with id 'userEmailPrefix' or 'userEmailSuffix' not found in DOM"
+    ); // Debug
   }
 
   if (!email || !token) {
@@ -1026,18 +1093,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Sort products by filter
-  // function sortProducts(criterion) {
-  //   const sortedProducts = [...products];
-  //   if (criterion === "name") {
-  //     sortedProducts.sort((a, b) => b.name.localeCompare(a.name)); // Z–A
-  //   } else if (criterion === "price") {
-  //     sortedProducts.sort((b, a) => a.price - b.price); // High–low
-  //   } else if (criterion === "stock") {
-  //     sortedProducts.sort((b, a) => a.stock - b.stock); // High–low
-  //   }
-  //   renderProducts(sortedProducts);
-  // }
   // Store last sort directions
   const sortDirections = { name: true, price: true, stock: true };
   let lastCriterion = null;
