@@ -2,6 +2,9 @@
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   console.log("login.js loaded"); // Debug: Confirm script loads
+//   sessionStorage.clear();
+//   console.log(sessionStorage);
+//   console.log("removed token from ss");
 //   const loginForm = document.getElementById("login-form");
 //   const usernameInput = document.getElementById("username");
 //   const passwordInput = document.getElementById("password");
@@ -140,7 +143,8 @@
 //         }
 
 //         const data = await response.json();
-//         console.log("Login successful:", data); // Debug
+//         console.log("Login successful:", data); // Debug: Still logs to console
+//         sessionStorage.setItem("loginResponse", JSON.stringify(data)); // Store response for debugging
 
 //         // Store email, userId, and token in sessionStorage
 //         sessionStorage.setItem("email", data.email || username); // Use username if email not returned
@@ -208,9 +212,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("login.js loaded"); // Debug: Confirm script loads
-  sessionStorage.clear();
-  console.log(sessionStorage);
-  console.log("removed token from ss");
+
   const loginForm = document.getElementById("login-form");
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
@@ -342,20 +344,37 @@ document.addEventListener("DOMContentLoaded", () => {
         ]);
         console.timeEnd("loginRequest"); // Debug
 
+        const data = await response.json();
+        console.log("Login response:", data); // Debug
+
         if (!response.ok) {
-          const errorData = await response.json();
-          const errorMessage = errorData.message || "Invalid credentials";
+          const errorMessage = data.message || "Invalid credentials";
           throw new Error(errorMessage);
         }
 
-        const data = await response.json();
-        console.log("Login successful:", data); // Debug: Still logs to console
-        sessionStorage.setItem("loginResponse", JSON.stringify(data)); // Store response for debugging
+        // Validate response structure
+        if (
+          !data.userData ||
+          !data.userData.accessToken ||
+          !data.userData.user
+        ) {
+          throw new Error("Invalid login response: Missing required fields");
+        }
 
-        // Store email, userId, and token in sessionStorage
-        sessionStorage.setItem("email", data.email || username); // Use username if email not returned
-        sessionStorage.setItem("userId", data.userId);
-        sessionStorage.setItem("token", data.accessToken);
+        // Store required fields in sessionStorage
+        sessionStorage.setItem("token", data.userData.accessToken);
+        sessionStorage.setItem("userId", data.userData.user.id);
+        sessionStorage.setItem("email", data.userData.user.email || username);
+        sessionStorage.setItem("name", data.userData.user.name || "");
+        sessionStorage.setItem("storeName", data.userData.user.storeName || "");
+
+        console.log("Stored in sessionStorage:", {
+          token: sessionStorage.getItem("token"),
+          userId: sessionStorage.getItem("userId"),
+          email: sessionStorage.getItem("email"),
+          name: sessionStorage.getItem("name"),
+          storeName: sessionStorage.getItem("storeName"),
+        }); // Debug
 
         // Redirect to dashboard
         window.location.href = "../dashboard_profile/";
