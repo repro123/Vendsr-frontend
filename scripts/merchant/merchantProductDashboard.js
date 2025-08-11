@@ -1027,15 +1027,37 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Sort products by filter
+  // function sortProducts(criterion) {
+  //   const sortedProducts = [...products];
+  //   if (criterion === "name") {
+  //     sortedProducts.sort((a, b) => b.name.localeCompare(a.name)); // Z–A
+  //   } else if (criterion === "price") {
+  //     sortedProducts.sort((b, a) => a.price - b.price); // High–low
+  //   } else if (criterion === "stock") {
+  //     sortedProducts.sort((b, a) => a.stock - b.stock); // High–low
+  //   }
+  //   renderProducts(sortedProducts);
+  // }
+  // Store last sort directions
+  const sortDirections = { name: true, price: true, stock: true };
+  let lastCriterion = null;
+
   function sortProducts(criterion) {
     const sortedProducts = [...products];
-    if (criterion === "name") {
-      sortedProducts.sort((a, b) => b.name.localeCompare(a.name)); // Z–A
-    } else if (criterion === "price") {
-      sortedProducts.sort((b, a) => a.price - b.price); // High–low
-    } else if (criterion === "stock") {
-      sortedProducts.sort((b, a) => a.stock - b.stock); // High–low
+
+    // Reset direction to ascending if new criterion
+    if (criterion !== lastCriterion) {
+      sortDirections[criterion] = true;
     }
+
+    sortedProducts.sort((a, b) => {
+      const asc = sortDirections[criterion] ? 1 : -1;
+      if (criterion === "name") return asc * a.name.localeCompare(b.name);
+      return asc * (a[criterion] - b[criterion]);
+    });
+
+    sortDirections[criterion] = !sortDirections[criterion]; // toggle for next time
+    lastCriterion = criterion;
     renderProducts(sortedProducts);
   }
 
