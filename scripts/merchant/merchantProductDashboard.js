@@ -9,6 +9,8 @@
 //   const storeName = sessionStorage.getItem("storeName");
 //   const addProductNameError = document.getElementById("addProductNameError");
 //   const userStoreName = document.getElementById("userStoreName");
+//   const userEmailPrefix = document.getElementById("userEmailPrefix");
+//   const userEmailSuffix = document.getElementById("userEmailSuffix");
 
 //   // Populate userStoreName
 //   if (userStoreName) {
@@ -21,6 +23,33 @@
 //     }
 //   } else {
 //     console.warn("Element with id 'userStoreName' not found in DOM"); // Debug
+//   }
+
+//   // Populate userEmailPrefix and userEmailSuffix
+//   if (userEmailPrefix && userEmailSuffix) {
+//     const emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+//     if (email && emailRegex.test(email)) {
+//       const [prefix, suffix] = email.split("@");
+//       const truncatedPrefix =
+//         prefix.length > 10 ? prefix.slice(0, 10) + "..." : prefix;
+//       userEmailPrefix.textContent = truncatedPrefix;
+//       userEmailPrefix.setAttribute("title", email); // Tooltip with full email
+//       userEmailSuffix.textContent = `@${suffix}`;
+//       console.log("Email parsed:", {
+//         prefix,
+//         truncatedPrefix,
+//         suffix: `@${suffix}`,
+//       }); // Debug
+//     } else {
+//       userEmailPrefix.textContent = "User";
+//       userEmailPrefix.setAttribute("title", email || "No email available");
+//       userEmailSuffix.textContent = "";
+//       console.warn("Invalid or missing email in sessionStorage:", email); // Debug
+//     }
+//   } else {
+//     console.warn(
+//       "Element(s) with id 'userEmailPrefix' or 'userEmailSuffix' not found in DOM"
+//     ); // Debug
 //   }
 
 //   if (!email || !token) {
@@ -288,18 +317,6 @@
 //     }
 //   }
 
-//   // Sort products by filter
-//   // function sortProducts(criterion) {
-//   //   const sortedProducts = [...products];
-//   //   if (criterion === "name") {
-//   //     sortedProducts.sort((a, b) => b.name.localeCompare(a.name)); // Z–A
-//   //   } else if (criterion === "price") {
-//   //     sortedProducts.sort((b, a) => a.price - b.price); // High–low
-//   //   } else if (criterion === "stock") {
-//   //     sortedProducts.sort((b, a) => a.stock - b.stock); // High–low
-//   //   }
-//   //   renderProducts(sortedProducts);
-//   // }
 //   // Store last sort directions
 //   const sortDirections = { name: true, price: true, stock: true };
 //   let lastCriterion = null;
@@ -861,6 +878,17 @@ document.addEventListener("DOMContentLoaded", () => {
   closeMobileMenu.addEventListener("click", toggleMobileMenu);
   overlay.addEventListener("click", toggleMobileMenu);
 
+  // Search Elements
+  const searchInputDesktop = document.getElementById("searchInputDesktop");
+  const searchInputMobile = document.getElementById("searchInputMobile");
+  const cancelSearchBtnDesktop = document.getElementById(
+    "cancelSearchBtnDesktop"
+  );
+  const cancelSearchBtnMobile = document.getElementById(
+    "cancelSearchBtnMobile"
+  );
+  const mobileSearchIcon = document.getElementById("mobileSearchIcon");
+
   // Add Product Form Toggle Logic
   const openAddProductFormDesktop = document.getElementById(
     "openAddProductFormDesktop"
@@ -1000,7 +1028,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Product list state
   let products = JSON.parse(sessionStorage.getItem("products")) || [];
 
-  // Debounce function for real-time validation
+  // Debounce function for real-time validation and search
   function debounce(func, wait) {
     let timeout;
     return function (...args) {
@@ -1009,42 +1037,67 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+  // Current search query
+  let currentSearchQuery = "";
+
+  // Filter products by search query
+  function searchProducts(query) {
+    if (!query.trim()) {
+      return products;
+    }
+    const lowerQuery = query.trim().toLowerCase();
+    return products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(lowerQuery) ||
+        (product.description &&
+          product.description.toLowerCase().includes(lowerQuery))
+    );
+  }
+
   // Render product grid
   function renderProducts(productList = products) {
     productGrid.innerHTML = ""; // Clear grid
     const displayProducts = productList.slice(0, 20); // Limit to 20
-    displayProducts.forEach((product) => {
-      const productDiv = document.createElement("div");
-      productDiv.className = "rounded-lg text-sm";
-      productDiv.innerHTML = `
-        <img src="${product.imageUrl[0] || ""}" alt="${
-        product.name
-      }" class="rounded-lg mb-4 w-full aspect-square object-cover" />
-        <div class="flex items-start justify-between">
-          <p>${product.name}</p>
-          <button class="cursor-pointer">
-            <img src="../../assets/icons/vertical-dots-menu.png" class="w-4 h-4" />
-          </button>
-        </div>
-        <div class="flex flex-col mt-2">
-          <span>₦<span class="text-gray-400 mb-2">${product.price.toFixed(
-            2
-          )}</span></span>
-          <div class="flex flex-row gap-1 items-center">
-            <span class="w-2 h-2 rounded-full ${
-              product.stock > 0 ? "bg-green-500" : "bg-red-500"
-            }"></span>
-            <p class="text-gray-500">${product.stock} in stock</p>
-          </div>
+    if (displayProducts.length === 0 && currentSearchQuery) {
+      productGrid.innerHTML = `
+        <div class="col-span-full text-center text-gray-500 py-4">
+          No products found matching "${currentSearchQuery}".
         </div>
       `;
-      productGrid.appendChild(productDiv);
-    });
+    } else {
+      displayProducts.forEach((product) => {
+        const productDiv = document.createElement("div");
+        productDiv.className = "rounded-lg text-sm";
+        productDiv.innerHTML = `
+          <img src="${product.imageUrl[0] || ""}" alt="${
+          product.name
+        }" class="rounded-lg mb-4 w-full aspect-square object-cover" />
+          <div class="flex items-start justify-between">
+            <p>${product.name}</p>
+            <button class="cursor-pointer">
+              <img src="../../assets/icons/vertical-dots-menu.png" class="w-4 h-4" />
+            </button>
+          </div>
+          <div class="flex flex-col mt-2">
+            <span>₦<span class="text-gray-400 mb-2">${product.price.toFixed(
+              2
+            )}</span></span>
+            <div class="flex flex-row gap-1 items-center">
+              <span class="w-2 h-2 rounded-full ${
+                product.stock > 0 ? "bg-green-500" : "bg-red-500"
+              }"></span>
+              <p class="text-gray-500">${product.stock} in stock</p>
+            </div>
+          </div>
+        `;
+        productGrid.appendChild(productDiv);
+      });
+    }
 
     // Update counts
     const shownCount = displayProducts.length;
     numberOfCurrentProductsShown.textContent = `1–${shownCount}`;
-    totalNumberOfProducts.textContent = productList.length;
+    totalNumberOfProducts.textContent = products.length;
   }
 
   // Fetch products from backend API
@@ -1074,7 +1127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       products = data.store.products || [];
       sessionStorage.setItem("products", JSON.stringify(products));
-      renderProducts();
+      renderProducts(searchProducts(currentSearchQuery));
       console.log("Fetched products:", products); // Debug
     } catch (error) {
       console.error("Fetch products failed:", error.message); // Debug
@@ -1098,7 +1151,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let lastCriterion = null;
 
   function sortProducts(criterion) {
-    const sortedProducts = [...products];
+    const filteredProducts = searchProducts(currentSearchQuery);
+    const sortedProducts = [...filteredProducts];
 
     // Reset direction to ascending if new criterion
     if (criterion !== lastCriterion) {
@@ -1137,6 +1191,57 @@ document.addEventListener("DOMContentLoaded", () => {
     filterByInStockBtn.setAttribute("aria-expanded", "true");
     sortProducts("stock");
   });
+
+  // Search handlers
+  function handleSearchInput(event) {
+    currentSearchQuery = event.target.value;
+    const filteredProducts = searchProducts(currentSearchQuery);
+    if (lastCriterion) {
+      sortProducts(lastCriterion);
+    } else {
+      renderProducts(filteredProducts);
+    }
+    // Show/hide cancel buttons based on input
+    cancelSearchBtnDesktop.classList.toggle("hidden", !currentSearchQuery);
+    cancelSearchBtnMobile.classList.toggle("hidden", !currentSearchQuery);
+  }
+
+  function clearSearch(input, cancelBtn) {
+    input.value = "";
+    currentSearchQuery = "";
+    cancelBtn.classList.add("hidden");
+    if (input === searchInputMobile) {
+      searchInputMobile.classList.add("hidden");
+    }
+    if (lastCriterion) {
+      sortProducts(lastCriterion);
+    } else {
+      renderProducts(products);
+    }
+  }
+
+  // Toggle mobile search input
+  mobileSearchIcon.addEventListener("click", () => {
+    searchInputMobile.classList.toggle("hidden");
+    if (!searchInputMobile.classList.contains("hidden")) {
+      searchInputMobile.focus();
+    }
+  });
+
+  // Search input listeners
+  searchInputDesktop.addEventListener(
+    "input",
+    debounce(handleSearchInput, 300)
+  );
+  searchInputMobile.addEventListener("input", debounce(handleSearchInput, 300));
+
+  // Cancel search buttons
+  cancelSearchBtnDesktop.addEventListener("click", () =>
+    clearSearch(searchInputDesktop, cancelSearchBtnDesktop)
+  );
+  cancelSearchBtnMobile.addEventListener("click", () =>
+    clearSearch(searchInputMobile, cancelSearchBtnMobile)
+  );
 
   // Enable/disable preview button based on required fields
   function updatePreviewButtonState() {
@@ -1502,7 +1607,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add new product to list
       products.unshift(data.product);
       sessionStorage.setItem("products", JSON.stringify(products));
-      renderProducts();
+      renderProducts(searchProducts(currentSearchQuery));
 
       // Show confirmation dialog
       confirmedProductName.textContent =
@@ -1565,6 +1670,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (products.length === 0) {
     fetchProducts();
   } else {
-    renderProducts();
+    renderProducts(searchProducts(currentSearchQuery));
   }
 });
