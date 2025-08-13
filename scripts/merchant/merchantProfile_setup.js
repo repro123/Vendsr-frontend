@@ -31,8 +31,10 @@
 //     console.warn(
 //       "Missing email or token in sessionStorage, redirecting to signup"
 //     ); // Debug
-//     storeNameError.textContent =
-//       "Authentication required. Please sign up again.";
+//     if (storeNameError) {
+//       storeNameError.textContent =
+//         "Authentication required. Please sign up again.";
+//     }
 //     setTimeout(() => {
 //       window.location.href = "../sign-up/";
 //     }, 2000);
@@ -58,6 +60,23 @@
 //       timeout = setTimeout(() => func.apply(this, args), wait);
 //     };
 //   }
+
+//   // Auto-populate storeUrl based on storeName
+//   storeNameInput.addEventListener("input", () => {
+//     const storeName = storeNameInput.value.trim();
+//     if (storeName) {
+//       // Transform storeName: lowercase, replace spaces with hyphens, remove invalid chars
+//       const urlFriendlyName = storeName
+//         .toLowerCase()
+//         .replace(/\s+/g, "-")
+//         .replace(/[^a-z0-9-]/g, "");
+//       storeUrlInput.value = `${urlFriendlyName}.vendsr.com`;
+//       console.log("Auto-populated storeUrl:", storeUrlInput.value); // Debug
+//     } else {
+//       storeUrlInput.value = "";
+//     }
+//     validateForm();
+//   });
 
 //   // Update color picker button background
 //   storeColorInputs.forEach((input) => {
@@ -104,107 +123,141 @@
 //       storeColorError,
 //       storeUrlError,
 //     ].forEach((error) => {
-//       error.textContent = "";
+//       if (error) {
+//         error.textContent = "";
+//       }
 //     });
 
 //     let isValid = true;
 
 //     // Cover Photo
 //     if (!coverPhoto) {
-//       showError(coverPhotoInput, coverPhotoError, "Cover photo is required");
+//       if (coverPhotoError) {
+//         showError(coverPhotoInput, coverPhotoError, "Cover photo is required");
+//       }
 //       isValid = false;
 //     } else if (coverPhoto.size > rules.fileSize) {
-//       showError(
-//         coverPhotoInput,
-//         coverPhotoError,
-//         "Cover photo must be under 5MB"
-//       );
+//       if (coverPhotoError) {
+//         showError(
+//           coverPhotoInput,
+//           coverPhotoError,
+//           "Cover photo must be under 5MB"
+//         );
+//       }
 //       isValid = false;
 //     } else if (!coverPhoto.type.match(/^image\/.*$/)) {
-//       showError(
-//         coverPhotoInput,
-//         coverPhotoError,
-//         "Cover photo must be an image"
-//       );
+//       if (coverPhotoError) {
+//         showError(
+//           coverPhotoInput,
+//           coverPhotoError,
+//           "Cover photo must be an image"
+//         );
+//       }
 //       isValid = false;
 //     }
 
 //     // Profile Picture
 //     if (!profilePicture) {
-//       showError(
-//         profilePictureInput,
-//         profilePictureError,
-//         "Profile picture is required"
-//       );
+//       if (profilePictureError) {
+//         showError(
+//           profilePictureInput,
+//           profilePictureError,
+//           "Profile picture is required"
+//         );
+//       }
 //       isValid = false;
 //     } else if (profilePicture.size > rules.fileSize) {
-//       showError(
-//         profilePictureInput,
-//         profilePictureError,
-//         "Profile picture must be under 5MB"
-//       );
+//       if (profilePictureError) {
+//         showError(
+//           profilePictureInput,
+//           profilePictureError,
+//           "Profile picture must be under 5MB"
+//         );
+//       }
 //       isValid = false;
 //     } else if (!profilePicture.type.match(/^image\/.*$/)) {
-//       showError(
-//         profilePictureInput,
-//         profilePictureError,
-//         "Profile picture must be an image"
-//       );
+//       if (profilePictureError) {
+//         showError(
+//           profilePictureInput,
+//           profilePictureError,
+//           "Profile picture must be an image"
+//         );
+//       }
 //       isValid = false;
 //     }
 
 //     // Store Name
 //     if (!storeName) {
-//       showError(storeNameInput, storeNameError, "Store Name is required");
+//       if (storeNameError) {
+//         showError(storeNameInput, storeNameError, "Store Name is required");
+//       }
 //       isValid = false;
 //     } else if (!rules.storeName.test(storeName)) {
-//       showError(
-//         storeNameInput,
-//         storeNameError,
-//         "Store Name must be 2–50 characters, letters, spaces, or hyphens"
-//       );
+//       if (storeNameError) {
+//         showError(
+//           storeNameInput,
+//           storeNameError,
+//           "Store Name must be 2–50 characters, letters, spaces, or hyphens"
+//         );
+//       }
 //       isValid = false;
 //     }
 
 //     // Username
 //     if (!username) {
-//       showError(usernameInput, usernameError, "Username is required");
+//       if (usernameError) {
+//         showError(usernameInput, usernameError, "Username is required");
+//       }
 //       isValid = false;
 //     } else if (!rules.username.test(username)) {
-//       showError(
-//         usernameInput,
-//         usernameError,
-//         "Username must be 3–50 characters, alphanumeric or underscores"
-//       );
+//       if (usernameError) {
+//         showError(
+//           usernameInput,
+//           usernameError,
+//           "Username must be 3–50 characters, alphanumeric or underscores"
+//         );
+//       }
 //       isValid = false;
 //     }
 
 //     // Description (optional)
 //     if (description && !rules.description.test(description)) {
-//       showError(
-//         descriptionInput,
-//         descriptionError,
-//         "Description must be 500 characters or less"
-//       );
+//       if (descriptionError) {
+//         showError(
+//           descriptionInput,
+//           descriptionError,
+//           "Description must be 500 characters or less"
+//         );
+//       }
 //       isValid = false;
 //     }
 
 //     // Store Color
 //     if (!storeColor) {
-//       showError(colorPickerButton, storeColorError, "Store color is required");
+//       if (storeColorError) {
+//         showError(
+//           colorPickerButton,
+//           storeColorError,
+//           "Store color is required"
+//         );
+//       }
 //       isValid = false;
 //     }
 
 //     // Store URL
 //     if (!storeUrl) {
-//       showError(storeUrlInput, storeUrlError, "Store URL is required");
+//       if (storeUrlError) {
+//         showError(storeUrlInput, storeUrlError, "Store URL is required");
+//       }
 //       isValid = false;
 //     } else if (!rules.storeUrl.test(storeUrl)) {
-//       showError(
-//         storeUrlInput,
-//         storeUrlError,
-//         "Store URL must be in the format: mystore.vendsr.com or mystore.sub.vendsr.com"
-//       );
+//       if (storeUrlError) {
+//         showError(
+//           storeUrlInput,
+//           storeUrlError,
+//           "Store URL must be in the format: mystore.vendsr.com or mystore.sub.vendsr.com"
+//         );
+//       }
 //       isValid = false;
 //     }
 
@@ -223,8 +276,10 @@
 //   }
 
 //   function showError(input, errorElement, message) {
-//     input.classList.add("border-red-500");
-//     errorElement.textContent = message;
+//     if (input && errorElement) {
+//       input.classList.add("border-red-500");
+//       errorElement.textContent = message;
+//     }
 //   }
 
 //   // Form submission handler
@@ -662,7 +717,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await response.json();
         console.log("Store creation success:", data); // Debug
-        // Show confirmation dialog (no sessionStorage cleanup)
+
+        // Store response and storeName in sessionStorage
+        sessionStorage.setItem("signupResponse", JSON.stringify(data));
+        sessionStorage.setItem("storeName", storeNameInput.value.trim());
+        console.log("Stored signupResponse in sessionStorage:", data); // Debug
+
+        // Show confirmation dialog
         confirmationDialog.showModal();
       } catch (error) {
         console.error("Error:", error.message);
