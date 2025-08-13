@@ -50,6 +50,7 @@
     --font-weight-black: 900;
     --tracking-wider: 0.05em;
     --leading-tight: 1.25;
+    --radius-sm: 0.25rem;
     --radius-md: 0.375rem;
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
@@ -68,6 +69,7 @@
     --color-btnText: #b8b8b8;
     --color-footerLinksHeadingText: #a0a0a0;
     --color-disabledBtn: #757575;
+    --color-disabledBtnText: #ffffff;
     --font-inter: "Inter", sans-serif;
     --font-poppins: "Poppins", sans-serif;
     --text-primaryHeading: clamp(2rem, 1.286rem + 1.905vw, 3rem);
@@ -466,9 +468,6 @@
   .w-1 {
     width: calc(var(--spacing) * 1);
   }
-  .w-1\/2 {
-    width: calc(1/2 * 100%);
-  }
   .w-2 {
     width: calc(var(--spacing) * 2);
   }
@@ -702,6 +701,9 @@
   }
   .rounded-md {
     border-radius: var(--radius-md);
+  }
+  .rounded-sm {
+    border-radius: var(--radius-sm);
   }
   .rounded-xl {
     border-radius: var(--radius-xl);
@@ -1026,6 +1028,9 @@
   }
   .text-black {
     color: var(--color-black);
+  }
+  .text-disabledBtnText {
+    color: var(--color-disabledBtnText);
   }
   .text-footerLinksHeadingText {
     color: var(--color-footerLinksHeadingText);
