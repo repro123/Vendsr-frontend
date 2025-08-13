@@ -116,7 +116,7 @@
           >
             <span>
               <img
-                src="../../assets/images/Felicity.png"
+                src=""
                 alt="User"
                 id="userProfilePicture"
                 class="w-8 h-8 rounded-full object-cover"
@@ -495,6 +495,45 @@
             id="productDisplayContainerOfMaximumTwentyProducts"
             class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
           ></section>
+
+          <div id="paginations" class="flex items-center mt-8 text-xs">
+            <button
+              id="navigateToFirstPage"
+              class="border cursor-pointer p-4"
+              disabled
+              aria-label="navigate to first page"
+            >
+              First
+            </button>
+            <button
+              id="navigateToPreviousPage"
+              class="border cursor-pointer p-4"
+              disabled
+              aria-label="navigate to previous page"
+            >
+              Prev
+            </button>
+            <span id="currentPage"
+              >Page <span id="currentPageNumber"></span> of
+              <span id="totalPages"></span>
+            </span>
+            <button
+              id="navigateToNextPage"
+              class="border cursor-pointer p-4"
+              disabled
+              aria-label="navigate to next page"
+            >
+              Next
+            </button>
+            <button
+              id="navigateToLastPage"
+              class="border cursor-pointer p-4"
+              disabled
+              aria-label="navigate to last page"
+            >
+              Last
+            </button>
+          </div>
         </section>
 
         <section id="addProductsContainer" class="p-4 lg:p-8 w-full hidden">

@@ -362,6 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Store required fields in sessionStorage
+        sessionStorage.setItem("loginResponse", JSON.stringify(data)); // Store response for debugging
         sessionStorage.setItem("token", data.userData.accessToken);
         sessionStorage.setItem("userId", data.userData.user.id);
         sessionStorage.setItem("email", data.userData.user.email || username);
