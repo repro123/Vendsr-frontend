@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     setTimeout(() => {
       window.location.href = "../sign-up/";
-    }, 2000);
+    }, 20000);
     return;
   }
   console.log("Email from sessionStorage:", email); // Debug
