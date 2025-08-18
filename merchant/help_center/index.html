@@ -55,6 +55,7 @@
               />
             </div>
             <input
+              disabled
               type="text"
               placeholder="Search"
               id="searchInputDesktop"
@@ -63,7 +64,7 @@
             <button
               aria-label="Cancel Search"
               id="cancelSearchBtnDesktop"
-              class="absolute right-3 top-1/2 transform -translate-y-1/2"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 hidden"
             >
               <span aria-hidden="true">X</span>
             </button>
@@ -79,6 +80,7 @@
                 alt=""
             /></label>
             <input
+              disabled
               type="text"
               placeholder="Search"
               id="searchInputMobile"
@@ -172,7 +174,7 @@
             </div>
             <nav class="space-y-4">
               <ul class="space-y-2">
-                <li class="flex bg-gray-50 rounded-lg">
+                <li class="bg-gray-50 rounded-lg">
                   <a
                     href="#"
                     class="flex flex-row items-center gap-4 w-full p-2"
@@ -190,7 +192,7 @@
                   >
                 </li>
 
-                <li class="flex bg-gray-50 rounded-lg">
+                <li class="bg-gray-50 rounded-lg">
                   <a
                     href="../dashboard_profile/"
                     class="flex flex-row items-center gap-4 w-full p-2"
@@ -208,7 +210,7 @@
                   >
                 </li>
 
-                <li class="flex bg-gray-50 rounded-lg">
+                <li class="bg-gray-50 rounded-lg">
                   <a
                     href="#"
                     class="flex flex-row items-center gap-4 w-full p-2"
@@ -226,7 +228,7 @@
                   >
                 </li>
 
-                <li class="flex bg-gray-50 rounded-lg">
+                <li class="bg-gray-50 rounded-lg">
                   <a
                     href="#"
                     class="flex flex-row items-center gap-4 w-full p-2"
@@ -244,7 +246,7 @@
                   >
                 </li>
 
-                <li class="bg-primary text-white rounded-lg flex">
+                <li class="bg-primary text-white rounded-lg">
                   <a
                     href="#"
                     class="flex flex-row items-center gap-4 w-full p-2"
@@ -389,7 +391,7 @@
           </div>
 
           <section>
-            <div class="grid md:grid-cols-2 gap-4">
+            <div class="grid sm:grid-cols-2 gap-4">
               <div
                 class="flex flex-col space-y-12 border-1 border-primary p-6 px-4 rounded-3xl"
               >
