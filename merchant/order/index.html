@@ -471,304 +471,92 @@
               </div>
             </div>
 
-            <div class="md:border-1 border-primary/20 md:px-4 pt-4 rounded-3xl">
-              <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="md:border-1 border-primary/20 md:px-4 py-4 rounded-3xl">
+              <div class="flex items-center justify-between gap-4 mb-4">
                 <h2 class="font-semibold text-secondaryHeading">
                   Recent Orders
                 </h2>
 
                 <button
                   id="viewAllOrders"
-                  class="text-sm text-primary cursor-pointer"
+                  class="text-sm text-primary cursor-pointer hover:underline underline-offset-2"
                 >
                   View all >
                 </button>
               </div>
 
               <!--Mobile orders-->
-              <div class="md:hidden space-y-4">
-                <div class="border-1 border-gray-300 rounded-2xl">
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="text-yellow-400">•Pending</p>
-                    <p>⁎⁎⁎</p>
+              <div class="space-y-4 md:hidden" id="ordersListsMobile">
+                <div
+                  class="border border-primary/20 rounded-2xl space-y-4 p-2 md:px-4"
+                >
+                  <div class="flex justify-between items-center">
+                    <p class="" id="orderStatusMobile">
+                      • <span id="orderStatusValueMobile"></span>
+                    </p>
+                    <buttons
+                      id="expandOrderDetails"
+                      class="cursor-pointer"
+                      aria-expanded="false"
+                    >
+                      <span aria-hidden="true">•••</span>
+                    </buttons>
                   </div>
 
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Name</p>
-                    <p class="text-1xl">Aliyu Nuru</p>
+                  <div class="flex justify-between items-center">
+                    <p>Name</p>
+                    <p id="orderCustomerNameMobile"></p>
                   </div>
 
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Product</p>
-                    <p class="text-sm">Shein Trunks</p>
+                  <div class="flex justify-between items-center">
+                    <p>Product</p>
+                    <p id="orderProductNameMobile"></p>
                   </div>
 
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Date</p>
-                    <p class="text-sm">10:55 am July 21st</p>
-                  </div>
-                </div>
-
-                <div class="border-1 border-gray-300 rounded-2xl">
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="text-yellow-400">•Pending</p>
-                    <p>⁎⁎⁎</p>
-                  </div>
-
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Name</p>
-                    <p class="text-1xl">Aliyu Nuru</p>
-                  </div>
-
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Product</p>
-                    <p class="text-sm">Shein Trunks</p>
-                  </div>
-
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Date</p>
-                    <p class="text-sm">10:55 am July 21st</p>
-                  </div>
-                </div>
-
-                <div class="border-1 border-gray-300 rounded-2xl">
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="text-yellow-400">•Pending</p>
-                    <p>⁎⁎⁎</p>
-                  </div>
-
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Name</p>
-                    <p class="text-1xl">Aliyu Nuru</p>
-                  </div>
-
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Product</p>
-                    <p class="text-sm">Shein Trunks</p>
-                  </div>
-
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Date</p>
-                    <p class="text-sm">10:55 am July 21st</p>
-                  </div>
-                </div>
-
-                <div class="border-1 border-gray-300 rounded-2xl">
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="text-yellow-400">•Pending</p>
-                    <p>⁎⁎⁎</p>
-                  </div>
-
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Name</p>
-                    <p class="text-1xl">Aliyu Nuru</p>
-                  </div>
-
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Product</p>
-                    <p class="text-sm">Shein Trunks</p>
-                  </div>
-
-                  <div class="flex flex-row justify-between px-4 py-2">
-                    <p class="font-semibold text-gray-400">Date</p>
-                    <p class="text-sm">10:55 am July 21st</p>
+                  <div class="flex justify-between items-center">
+                    <p>Date</p>
+                    <p id="orderDateMobile"></p>
                   </div>
                 </div>
               </div>
 
               <!-- Desktop orders-->
-              <div class="hidden md:grid grid-cols-5 gap-5">
-                <!--- CUstomers Name Column-->
-                <div
-                  class="flex flex-col px-1 space-y-4 border-r border-gray-300 md:pl-4"
-                >
-                  <div class="ml-4">
-                    <h2 class="font-semibold text-gray-500 text-xl">
-                      Customers Name
-                    </h2>
-                  </div>
-                  <div class="flex flex-col space-y-3">
-                    <label
-                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
-                    >
-                      <input class="peer hidden" type="checkbox" />
-                      <span
-                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
-                      ></span>
-                      <span>Nkem Owoh</span>
-                    </label>
+              <table
+                class="hidden md:table w-full text-left table-auto border-collapse"
+              >
+                <thead>
+                  <tr>
+                    <th class="sr-only">Checkbox</th>
+                    <th>Customers names</th>
+                    <th class="">Product</th>
+                    <th class="">Status</th>
+                    <th class="">Date</th>
+                    <th>Expand</th>
+                  </tr>
+                </thead>
 
-                    <label
-                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
-                    >
-                      <input class="peer hidden" type="checkbox" />
-                      <span
-                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
-                      ></span>
-                      <span>Nkem Owoh</span>
-                    </label>
-
-                    <label
-                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
-                    >
-                      <input class="peer hidden" type="checkbox" />
-                      <span
-                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
-                      ></span>
-                      <span>Nkem Owoh</span>
-                    </label>
-
-                    <label
-                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
-                    >
-                      <input class="peer hidden" type="checkbox" />
-                      <span
-                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
-                      ></span>
-                      <span>Nkem Owoh</span>
-                    </label>
-
-                    <label
-                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
-                    >
-                      <input class="peer hidden" type="checkbox" />
-                      <span
-                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
-                      ></span>
-                      <span>Nkem Owoh</span>
-                    </label>
-
-                    <label
-                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
-                    >
-                      <input class="peer hidden" type="checkbox" />
-                      <span
-                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
-                      ></span>
-                      <span>Nkem Owoh</span>
-                    </label>
-
-                    <label
-                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
-                    >
-                      <input class="peer hidden" type="checkbox" />
-                      <span
-                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
-                      ></span>
-                      <span>Nkem Owoh</span>
-                    </label>
-
-                    <label
-                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
-                    >
-                      <input class="peer hidden" type="checkbox" />
-                      <span
-                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
-                      ></span>
-                      <span>Nkem Owoh</span>
-                    </label>
-
-                    <label
-                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
-                    >
-                      <input class="peer hidden" type="checkbox" />
-                      <span
-                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
-                      ></span>
-                      <span>Nkem Owoh</span>
-                    </label>
-
-                    <label
-                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
-                    >
-                      <input class="peer hidden" type="checkbox" />
-                      <span
-                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
-                      ></span>
-                      <span>Nkem Owoh</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div
-                  class="flex flex-col px-4 space-y-4 border-r border-gray-300"
-                >
-                  <div>
-                    <h2 class="font-semibold text-gray-500 text-xl">Product</h2>
-                  </div>
-                  <div class="flex flex-col space-y-3">
-                    <p class="text-base font-normal">Shein Trucks</p>
-                    <p class="text-base font-normal">Shein Trucks</p>
-                    <p class="text-base font-normal">Shein Trucks</p>
-                    <p class="text-base font-normal">Shein Trucks</p>
-                    <p class="text-base font-normal">Shein Trucks</p>
-                    <p class="text-base font-normal">Shein Trucks</p>
-                    <p class="text-base font-normal">Shein Trucks</p>
-                    <p class="text-base font-normal">Shein Trucks</p>
-                    <p class="text-base font-normal">Shein Trucks</p>
-                    <p class="text-base font-normal">Shein Trucks</p>
-                  </div>
-                </div>
-
-                <div
-                  class="flex flex-col px-4 space-y-4 border-r border-gray-300"
-                >
-                  <div>
-                    <h2 class="font-semibold text-gray-500 text-xl">Status</h2>
-                  </div>
-                  <div class="flex flex-col space-y-3">
-                    <p class="text-yellow-400 font-semibold">• pending</p>
-                    <p class="text-yellow-400 font-semibold">• pending</p>
-                    <p class="text-yellow-400 font-semibold">• pending</p>
-                    <p class="text-red-400 font-semibold">• cancelled</p>
-                    <p class="text-red-400 font-semibold">• cancelled</p>
-                    <p class="text-red-400 font-semibold">• cancelled</p>
-                    <p class="text-red-400 font-semibold">• cancelled</p>
-                    <p class="text-yellow-400 font-semibold">• pending</p>
-                    <p class="text-yellow-400 font-semibold">• pending</p>
-                    <p class="text-yellow-400 font-semibold">• pending</p>
-                  </div>
-                </div>
-
-                <div
-                  class="flex flex-col px-4 space-y-4 border-r border-gray-300"
-                >
-                  <div>
-                    <h2 class="font-semibold text-gray-500 text-xl">Date</h2>
-                  </div>
-                  <div class="flex flex-col space-y-3">
-                    <p>10:55am july 21st</p>
-                    <p>10:55am july 21st</p>
-                    <p>10:55am july 21st</p>
-                    <p>10:55am july 21st</p>
-                    <p>10:55am july 21st</p>
-                    <p>10:55am july 21st</p>
-                    <p>10:55am july 21st</p>
-                    <p>10:55am july 21st</p>
-                    <p>10:55am july 21st</p>
-                    <p>10:55am july 21st</p>
-                  </div>
-                </div>
-
-                <div class="flex flex-col px-4 space-y-4">
-                  <div>
-                    <h2 class="font-semibold text-gray-500"></h2>
-                  </div>
-                  <div class="flex flex-col space-y-3">
-                    <p>⁎⁎⁎</p>
-                    <p>⁎⁎⁎</p>
-                    <p>⁎⁎⁎</p>
-                    <p>⁎⁎⁎</p>
-                    <p>⁎⁎⁎</p>
-                    <p>⁎⁎⁎</p>
-                    <p>⁎⁎⁎</p>
-                    <p>⁎⁎⁎</p>
-                    <p>⁎⁎⁎</p>
-                    <p>⁎⁎⁎</p>
-                    <p>⁎⁎⁎</p>
-                  </div>
-                </div>
-              </div>
+                <tbody>
+                  <tr>
+                    <td class="pt-4"></td>
+                    <td class="pt-4">
+                      <span id="orderCustomerNameDesktop">Aliya Nuru</span>
+                    </td>
+                    <td class="pt-4">
+                      <span id="orderProductNameDesktop">Shein Trucks</span>
+                    </td>
+                    <td class="pt-4">
+                      <span id="orderStatusDesktop"
+                        >•
+                        <span id="orderStatusValueDesktop">Pending</span></span
+                      >
+                    </td>
+                    <td class="pt-4">
+                      <span id="orderDateDesktop">10:55am july 21st</span>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
