@@ -190,9 +190,9 @@
                   >
                 </li>
 
-                <li class="bg-primary text-white rounded-lg">
+                <li class="bg-gray-50 rounded-lg">
                   <a
-                    href="#"
+                    href="../dashboard_profile/"
                     class="flex flex-row items-center gap-4 w-full p-2"
                   >
                     <img
@@ -208,7 +208,7 @@
                   >
                 </li>
 
-                <li class="bg-gray-50 rounded-lg">
+                <li class="bg-primary text-white rounded-lg">
                   <a
                     href="#"
                     class="flex flex-row items-center gap-4 w-full p-2"
@@ -228,7 +228,7 @@
 
                 <li class="bg-gray-50 rounded-lg">
                   <a
-                    href="#"
+                    href="../settings"
                     class="flex flex-row items-center gap-4 w-full p-2"
                   >
                     <img
@@ -286,7 +286,7 @@
       </aside>
 
       <!-- Page Container -->
-      <div class="flex w-full bg-white text-gray-800 md:pr-8 min-h-dvh">
+      <section class="flex w-full bg-white text-gray-800 md:pr-8 min-h-dvh">
         <!-- Sticky Sidebar -->
         <aside
           class="w-[20%] bg-white border-1 border-gray-100 sticky top-16 h-[calc(100vh_-_4rem)] hidden md:block"
@@ -310,9 +310,9 @@
                   >
                 </li>
 
-                <li class="bg-primary text-white rounded-lg">
+                <li class="bg-gray-50 rounded-lg">
                   <a
-                    href="#"
+                    href="../dashboard_profile/"
                     class="flex flex-row gap-4 items-center font-semibold p-2"
                   >
                     <img
@@ -324,10 +324,10 @@
                   >
                 </li>
 
-                <li class="bg-gray-50 rounded-lg">
+                <li class="bg-primary text-white rounded-lg">
                   <a
                     href="#"
-                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold p-2"
+                    class="flex flex-row gap-4 items-center font-semibold p-2"
                   >
                     <img
                       src="../../assets/icons/exportIcon.png"
@@ -340,7 +340,7 @@
 
                 <li class="bg-gray-50 rounded-lg">
                   <a
-                    href="#"
+                    href="../settings"
                     class="flex flex-row gap-4 items-center hover:text-primary font-semibold p-2"
                   >
                     <img
@@ -379,72 +379,105 @@
         </aside>
 
         <!-- Main Content -->
-        <!-- Main Content -->
         <section class="flex flex-row gap-4 w-full">
-          <div class="md:w-[90%] w-full md:p-10 p-4 overflow-y-auto">
+          <div class="w-full p-4 overflow-y-auto">
             <!-- Welcome Message -->
-            <div class="mb-8 md:flex flex-row justify-between">
-              <div class="space-y-2 ">
-                <h1 class="md:text-4xl text-3xl font-bold">Order</h1>
-                <p class="text-gray-600 md:text-base text-sm">See your order here </p>
-              </div>
-              <button class="px-4 py-2 bg-primary text-white rounded-[13px] h-fit hidden md:block"><h3>+ Add Product</h3></button>
-            </div>
-
-            <div class=" hidden md:block mb-8 flex flex-row justify-between items-center md:hidden">
-              <button class="md:px-4 py-2 bg-primary text-white rounded-[13px] h-fit"><h3>Recent Orders</h3></button>
-              <button class="px-2 py- border-1 border-gray-300 rounded-lg flex flex-row items-center gap-2 h-8"> <img src="../../assets/icons/arrow-back.png"> <p>Select all</p></button>
+            <div class="mb-8">
+              <h1 class="text-primaryHeading font-bold">Orders</h1>
+              <p>See your orders here</p>
             </div>
 
             <!-- Filters + Add Product -->
-            <div class=" flex flex-row md:flex-col md:gap-4 mb-6 md:flex md:items-center justify-between md:flex-row">
-              <div class="flex flex-row flex-wrap md:justify-between md:gap-8 gap-2 w-full md:w-auto">
-                <!---Desktop filter-->
-                <button class="hidden md:flex items-center gap-1 px-2 py-1 border border-gray-300 rounded h-8 whitespace-nowrap">
-                  <img src="../../assets/icons/arrow-back.png" class="h-4 w-4" />
-                  <p class="text-[10px] md:text-sm">Filter by All Categories</p>
-                </button>
-                <button class="hidden md:flex items-center gap-1 px-2 py-1 border border-gray-300 rounded h-8 whitespace-nowrap">
-                  <img src="../../assets/icons/arrow-back.png" class="h-4 w-4" />
-                  <p class="text-[10px] md:text-sm">Filter by Price</p>
-                </button>
-                <button class="hidden md:flex items-center gap-1 px-2 py-1 border border-gray-300 rounded h-8 whitespace-nowrap">
-                  <img src="../../assets/icons/arrow-back.png" class="h-4 w-4" />
+            <div class="flex gap-4 mb-6 items-center justify-between">
+              <div
+                class="flex flex-row flex-wrap md:justify-between md:gap-8 gap-2 w-full md:w-auto"
+              >
+                <div>
+                  <button
+                    id="filterMobileDropdownBtn"
+                    aria-expanded="false"
+                    class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary md:hidden text-sm"
+                  >
+                    <img
+                      src="../../assets/icons/filterIcon.png"
+                      class="h-4 w-4"
+                      alt=""
+                    />
+                    <span>Filter</span>
+                  </button>
+
+                  <div id="filterBtnsDropdown" class="flex items-center gap-4">
+                    <button
+                      id="filterOrdersByProduct"
+                      aria-expanded="false"
+                      class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary text-sm"
+                    >
+                      <img
+                        src="../../assets/icons/filterIcon.png"
+                        class="h-4 w-4"
+                        alt=""
+                      />
+                      <span>Filter by Product</span>
+                    </button>
+
+                    <button
+                      id="filterOrdersByDate"
+                      aria-expanded="false"
+                      class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary text-sm"
+                    >
+                      <img
+                        src="../../assets/icons/filterIcon.png"
+                        class="h-4 w-4"
+                        alt=""
+                      />
+                      <span>Filter by Date</span>
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  class="hidden md:flex items-center gap-1 px-2 py-1 border border-gray-300 rounded h-8 whitespace-nowrap"
+                >
+                  <img
+                    src="../../assets/icons/arrow-back.png"
+                    class="h-4 w-4"
+                  />
                   <p class="text-[10px] md:text-sm">Sort by In Stock</p>
                 </button>
-
-                <!---Mobile filter-->
-                <button class="md:hidden flex items-center gap-1 px-2 py-1 border border-gray-300 rounded h-8 whitespace-nowrap">
-                  <img src="../../assets/icons/arrow-back.png" class="h-4 w-4" />
-                  <p class="text-[10px] md:text-sm">Filter</p>
-                </button>
-                <button class="md:hidden flex items-center gap-1 px-2 py-1 border border-gray-300 rounded h-8 whitespace-nowrap">
-                  <img src="../../assets/icons/arrow-back.png" class="h-4 w-4" />
-                  <p class="text-[10px] md:text-sm">Sort by status</p>
-                </button>
               </div>
-            
-              <!-- PC-only Select Button -->
-              <div class="items-center gap-4 flex flex-col w-full md:w-fit items-end">
-                <button class=" flex items-center gap-2 px-2 py-1 border border-gray-300 rounded h-8">
-                  <img src="../../assets/icons/arrow-back.png" class="h-4 w-4" />
-                  <p class="text-[10px] md:text-base whitespace-nowrap">Select all</p>
+
+              <!-- Select Button -->
+              <div>
+                <button
+                  id="selectAllOrders"
+                  aria-expanded="false"
+                  class="p-2 border-1 border-gray-300 rounded-lg flex items-center gap-2 group cursor-pointer hover:bg-white/80 aria-expanded:border-primary whitespace-nowrap text-sm"
+                >
+                  <span
+                    class="h-2 w-2 rounded-full border block group-aria-expanded:hidden"
+                  ></span>
+                  <span
+                    class="h-2 w-2 rounded-full border bg-primary hidden group-aria-expanded:block"
+                  ></span>
+                  <span>Select all</span>
                 </button>
               </div>
             </div>
-            
-            <div class=" md:border-1 border-gray-400 md:px-4 pt-4 rounded-3xl">
-              <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+
+            <div class="md:border-1 border-gray-400 md:px-4 pt-4 rounded-3xl">
+              <div
+                class="flex flex-wrap items-center justify-between gap-4 mb-6"
+              >
                 <div class="flex gap-2 flex-wrap">
                   <h2 class="font-bold text-3xl">Recent Orders</h2>
                 </div>
                 <div class="flex items-center gap-4">
-                  <div class=" hidden md:block text-sm text-gray-500">
+                  <div class="hidden md:block text-sm text-gray-500">
                     <p>View all ></p>
                   </div>
                 </div>
               </div>
-              
+
               <!--Mobile orders-->
               <div class="md:hidden space-y-4">
                 <div class="border-1 border-gray-300 rounded-2xl">
@@ -537,155 +570,204 @@
               </div>
 
               <!-- Desktop orders-->
-                <div class="hidden  md:grid grid-cols-5 gap-5"> 
-                  <!--- CUstomers Name Column-->                 
-                  <div class="flex flex-col px-1 space-y-4 border-r border-gray-300  md:pl-4">
-                    <div class="ml-4">
-                      <h2 class="font-semibold text-gray-500 text-xl">Customers Name</h2>
-                    </div>
-                    <div class="flex flex-col space-y-3">
-                      <label class="flex flex-row items-center peer-checked:bg-rimary space-x-2"> 
-                        <input class="peer hidden" type="checkbox"> 
-                        <span class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md" ></span>
-                        <span>Nkem Owoh</span>
-                      </label>
-
-                      <label class="flex flex-row items-center peer-checked:bg-rimary space-x-2"> 
-                        <input class="peer hidden" type="checkbox"> 
-                        <span class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md" ></span>
-                        <span>Nkem Owoh</span>
-                      </label>     
-
-                      <label class="flex flex-row items-center peer-checked:bg-rimary space-x-2"> 
-                        <input class="peer hidden" type="checkbox"> 
-                        <span class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md" ></span>
-                        <span>Nkem Owoh</span>
-                      </label>
-
-                      <label class="flex flex-row items-center peer-checked:bg-rimary space-x-2"> 
-                        <input class="peer hidden" type="checkbox"> 
-                        <span class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md" ></span>
-                        <span>Nkem Owoh</span>
-                      </label>
-
-                      <label class="flex flex-row items-center peer-checked:bg-rimary space-x-2"> 
-                        <input class="peer hidden" type="checkbox"> 
-                        <span class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md" ></span>
-                        <span>Nkem Owoh</span>
-                      </label>
-
-                      <label class="flex flex-row items-center peer-checked:bg-rimary space-x-2"> 
-                        <input class="peer hidden" type="checkbox"> 
-                        <span class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md" ></span>
-                        <span>Nkem Owoh</span>
-                      </label>
-
-                      <label class="flex flex-row items-center peer-checked:bg-rimary space-x-2"> 
-                        <input class="peer hidden" type="checkbox"> 
-                        <span class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md" ></span>
-                        <span>Nkem Owoh</span>
-                      </label>
-
-                      <label class="flex flex-row items-center peer-checked:bg-rimary space-x-2"> 
-                        <input class="peer hidden" type="checkbox"> 
-                        <span class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md" ></span>
-                        <span>Nkem Owoh</span>
-                      </label>
-
-                      <label class="flex flex-row items-center peer-checked:bg-rimary space-x-2"> 
-                        <input class="peer hidden" type="checkbox"> 
-                        <span class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md" ></span>
-                        <span>Nkem Owoh</span>
-                      </label>
-
-                      <label class="flex flex-row items-center peer-checked:bg-rimary space-x-2"> 
-                        <input class="peer hidden" type="checkbox"> 
-                        <span class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md" ></span>
-                        <span>Nkem Owoh</span>
-                      </label>
-                    </div>
+              <div class="hidden md:grid grid-cols-5 gap-5">
+                <!--- CUstomers Name Column-->
+                <div
+                  class="flex flex-col px-1 space-y-4 border-r border-gray-300 md:pl-4"
+                >
+                  <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500 text-xl">
+                      Customers Name
+                    </h2>
                   </div>
+                  <div class="flex flex-col space-y-3">
+                    <label
+                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
+                    >
+                      <input class="peer hidden" type="checkbox" />
+                      <span
+                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
+                      ></span>
+                      <span>Nkem Owoh</span>
+                    </label>
 
-                  <div class="flex flex-col px-4 space-y-4 border-r border-gray-300">
-                    <div>
-                      <h2 class="font-semibold text-gray-500 text-xl">Product</h2>
-                    </div>
-                    <div class="flex flex-col space-y-3">
-                      <p class="text-base font-normal">Shein Trucks</p>
-                      <p class="text-base font-normal">Shein Trucks</p>
-                      <p class="text-base font-normal">Shein Trucks</p>
-                      <p class="text-base font-normal">Shein Trucks</p>
-                      <p class="text-base font-normal">Shein Trucks</p>
-                      <p class="text-base font-normal">Shein Trucks</p>
-                      <p class="text-base font-normal">Shein Trucks</p>
-                      <p class="text-base font-normal">Shein Trucks</p>
-                      <p class="text-base font-normal">Shein Trucks</p>
-                      <p class="text-base font-normal">Shein Trucks</p>
-                    </div>
-                  </div>
+                    <label
+                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
+                    >
+                      <input class="peer hidden" type="checkbox" />
+                      <span
+                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
+                      ></span>
+                      <span>Nkem Owoh</span>
+                    </label>
 
-                  <div class="flex flex-col px-4 space-y-4 border-r border-gray-300">
-                    <div>
-                      <h2 class="font-semibold text-gray-500 text-xl">Status</h2>
-                    </div>
-                    <div class="flex flex-col space-y-3">
-                      <p class="text-yellow-400 font-semibold"> • pending</p>
-                      <p class="text-yellow-400 font-semibold"> • pending</p>
-                      <p class="text-yellow-400 font-semibold"> • pending</p>
-                      <p class="text-red-400 font-semibold"> • cancelled</p>
-                      <p class="text-red-400 font-semibold"> • cancelled</p>
-                      <p class="text-red-400 font-semibold"> • cancelled</p>
-                      <p class="text-red-400 font-semibold"> • cancelled</p>
-                      <p class="text-yellow-400 font-semibold"> • pending</p>
-                      <p class="text-yellow-400 font-semibold"> • pending</p>
-                      <p class="text-yellow-400 font-semibold"> • pending</p>
-                    </div>
-                  </div>
+                    <label
+                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
+                    >
+                      <input class="peer hidden" type="checkbox" />
+                      <span
+                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
+                      ></span>
+                      <span>Nkem Owoh</span>
+                    </label>
 
-                  <div class="flex flex-col px-4 space-y-4 border-r border-gray-300">
-                    <div>
-                      <h2 class="font-semibold text-gray-500 text-xl">Date</h2>
-                    </div>
-                    <div class="flex flex-col space-y-3">
-                      <p>10:55am july 21st</p>
-                      <p>10:55am july 21st</p>
-                      <p>10:55am july 21st</p>
-                      <p>10:55am july 21st</p>
-                      <p>10:55am july 21st</p>
-                      <p>10:55am july 21st</p>
-                      <p>10:55am july 21st</p>
-                      <p>10:55am july 21st</p>
-                      <p>10:55am july 21st</p>
-                      <p>10:55am july 21st</p>
-                    </div>
+                    <label
+                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
+                    >
+                      <input class="peer hidden" type="checkbox" />
+                      <span
+                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
+                      ></span>
+                      <span>Nkem Owoh</span>
+                    </label>
+
+                    <label
+                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
+                    >
+                      <input class="peer hidden" type="checkbox" />
+                      <span
+                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
+                      ></span>
+                      <span>Nkem Owoh</span>
+                    </label>
+
+                    <label
+                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
+                    >
+                      <input class="peer hidden" type="checkbox" />
+                      <span
+                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
+                      ></span>
+                      <span>Nkem Owoh</span>
+                    </label>
+
+                    <label
+                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
+                    >
+                      <input class="peer hidden" type="checkbox" />
+                      <span
+                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
+                      ></span>
+                      <span>Nkem Owoh</span>
+                    </label>
+
+                    <label
+                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
+                    >
+                      <input class="peer hidden" type="checkbox" />
+                      <span
+                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
+                      ></span>
+                      <span>Nkem Owoh</span>
+                    </label>
+
+                    <label
+                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
+                    >
+                      <input class="peer hidden" type="checkbox" />
+                      <span
+                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
+                      ></span>
+                      <span>Nkem Owoh</span>
+                    </label>
+
+                    <label
+                      class="flex flex-row items-center peer-checked:bg-rimary space-x-2"
+                    >
+                      <input class="peer hidden" type="checkbox" />
+                      <span
+                        class="peer-checked:bg-primary w-6 h-6 border-4 border-gray-100 p-1 rounded-md"
+                      ></span>
+                      <span>Nkem Owoh</span>
+                    </label>
                   </div>
-                  
-                  <div class="flex flex-col px-4 space-y-4">
-                    <div>
-                      <h2 class="font-semibold text-gray-500"></h2>
-                    </div>
-                    <div class="flex flex-col space-y-3">
-                      <p>⁎⁎⁎</p>
-                      <p>⁎⁎⁎</p>
-                      <p>⁎⁎⁎</p>
-                      <p>⁎⁎⁎</p>
-                      <p>⁎⁎⁎</p>
-                      <p>⁎⁎⁎</p>
-                      <p>⁎⁎⁎</p>
-                      <p>⁎⁎⁎</p>
-                      <p>⁎⁎⁎</p>
-                      <p>⁎⁎⁎</p>
-                      <p>⁎⁎⁎</p>
-                    </div>
-                  </div>            
                 </div>
-              </div>  
+
+                <div
+                  class="flex flex-col px-4 space-y-4 border-r border-gray-300"
+                >
+                  <div>
+                    <h2 class="font-semibold text-gray-500 text-xl">Product</h2>
+                  </div>
+                  <div class="flex flex-col space-y-3">
+                    <p class="text-base font-normal">Shein Trucks</p>
+                    <p class="text-base font-normal">Shein Trucks</p>
+                    <p class="text-base font-normal">Shein Trucks</p>
+                    <p class="text-base font-normal">Shein Trucks</p>
+                    <p class="text-base font-normal">Shein Trucks</p>
+                    <p class="text-base font-normal">Shein Trucks</p>
+                    <p class="text-base font-normal">Shein Trucks</p>
+                    <p class="text-base font-normal">Shein Trucks</p>
+                    <p class="text-base font-normal">Shein Trucks</p>
+                    <p class="text-base font-normal">Shein Trucks</p>
+                  </div>
+                </div>
+
+                <div
+                  class="flex flex-col px-4 space-y-4 border-r border-gray-300"
+                >
+                  <div>
+                    <h2 class="font-semibold text-gray-500 text-xl">Status</h2>
+                  </div>
+                  <div class="flex flex-col space-y-3">
+                    <p class="text-yellow-400 font-semibold">• pending</p>
+                    <p class="text-yellow-400 font-semibold">• pending</p>
+                    <p class="text-yellow-400 font-semibold">• pending</p>
+                    <p class="text-red-400 font-semibold">• cancelled</p>
+                    <p class="text-red-400 font-semibold">• cancelled</p>
+                    <p class="text-red-400 font-semibold">• cancelled</p>
+                    <p class="text-red-400 font-semibold">• cancelled</p>
+                    <p class="text-yellow-400 font-semibold">• pending</p>
+                    <p class="text-yellow-400 font-semibold">• pending</p>
+                    <p class="text-yellow-400 font-semibold">• pending</p>
+                  </div>
+                </div>
+
+                <div
+                  class="flex flex-col px-4 space-y-4 border-r border-gray-300"
+                >
+                  <div>
+                    <h2 class="font-semibold text-gray-500 text-xl">Date</h2>
+                  </div>
+                  <div class="flex flex-col space-y-3">
+                    <p>10:55am july 21st</p>
+                    <p>10:55am july 21st</p>
+                    <p>10:55am july 21st</p>
+                    <p>10:55am july 21st</p>
+                    <p>10:55am july 21st</p>
+                    <p>10:55am july 21st</p>
+                    <p>10:55am july 21st</p>
+                    <p>10:55am july 21st</p>
+                    <p>10:55am july 21st</p>
+                    <p>10:55am july 21st</p>
+                  </div>
+                </div>
+
+                <div class="flex flex-col px-4 space-y-4">
+                  <div>
+                    <h2 class="font-semibold text-gray-500"></h2>
+                  </div>
+                  <div class="flex flex-col space-y-3">
+                    <p>⁎⁎⁎</p>
+                    <p>⁎⁎⁎</p>
+                    <p>⁎⁎⁎</p>
+                    <p>⁎⁎⁎</p>
+                    <p>⁎⁎⁎</p>
+                    <p>⁎⁎⁎</p>
+                    <p>⁎⁎⁎</p>
+                    <p>⁎⁎⁎</p>
+                    <p>⁎⁎⁎</p>
+                    <p>⁎⁎⁎</p>
+                    <p>⁎⁎⁎</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-      </div>
+      </section>
     </main>
 
-    <script src="../../scripts/merchant/merchantProductDashboard.js"></script>
+    <!-- <script src="../../scripts/merchant/merchantProductDashboard.js"></script> -->
   </body>
 </html>
