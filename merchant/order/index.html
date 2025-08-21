@@ -494,13 +494,13 @@
                     <p class="" id="orderStatusMobile">
                       • <span id="orderStatusValueMobile"></span>
                     </p>
-                    <buttons
-                      id="expandOrderDetails"
+                    <button
+                      id="expandOrderDetailsMobile"
                       class="cursor-pointer"
                       aria-expanded="false"
                     >
                       <span aria-hidden="true">•••</span>
-                    </buttons>
+                    </button>
                   </div>
 
                   <div class="flex justify-between items-center">
@@ -522,38 +522,56 @@
 
               <!-- Desktop orders-->
               <table
-                class="hidden md:table w-full text-left table-auto border-collapse"
+                class="hidden md:table w-full table-auto text-left border-collapse"
               >
-                <thead>
+                <thead class="font-semibold">
                   <tr>
                     <th class="sr-only">Checkbox</th>
-                    <th>Customers names</th>
-                    <th class="">Product</th>
-                    <th class="">Status</th>
-                    <th class="">Date</th>
-                    <th>Expand</th>
+                    <th class="border-r border-r-primary/20 px-4">
+                      Customers names
+                    </th>
+                    <th class="border-r border-r-primary/20 px-4">Product</th>
+                    <th class="border-r border-r-primary/20 px-4">Status</th>
+                    <th class="border-r border-r-primary/20 px-4">Date</th>
+                    <th class="sr-only">Expand</th>
                   </tr>
                 </thead>
 
-                <tbody>
+                <tbody class="text-sm">
                   <tr>
-                    <td class="pt-4"></td>
                     <td class="pt-4">
+                      <label
+                        class="cursor-pointer group block w-4 h-4 border border-primary rounded-sm has-checked:bg-primary"
+                        ><input
+                          type="checkbox"
+                          class="sr-only"
+                          id="selectOrderDesktop"
+                      /></label>
+                    </td>
+                    <td class="pt-4 border-r border-r-primary/20 px-4">
                       <span id="orderCustomerNameDesktop">Aliya Nuru</span>
                     </td>
-                    <td class="pt-4">
+                    <td class="pt-4 border-r border-r-primary/20 px-4">
                       <span id="orderProductNameDesktop">Shein Trucks</span>
                     </td>
-                    <td class="pt-4">
+                    <td class="pt-4 border-r border-r-primary/20 px-4">
                       <span id="orderStatusDesktop"
                         >•
                         <span id="orderStatusValueDesktop">Pending</span></span
                       >
                     </td>
-                    <td class="pt-4">
+                    <td class="pt-4 border-r border-r-primary/20 px-4">
                       <span id="orderDateDesktop">10:55am july 21st</span>
                     </td>
-                    <td></td>
+                    <td class="text-center">
+                      <button
+                        id="expandOrderDetailsDesktop"
+                        class="cursor-pointer"
+                        aria-expanded="false"
+                      >
+                        <span aria-hidden="true">•••</span>
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
