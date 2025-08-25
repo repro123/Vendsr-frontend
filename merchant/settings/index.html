@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../src/output.css" />
+  </head>
+
+  <body
+    class="min-h-dvh antialiased bg-bodyBackground text-paragraphColor font-inter"
+    data-page="merchantSettings"
+  >
+    <header
+      class="bg-white sticky top-0 z-50 px-6 py-3 flex items-center justify-between"
+    >
+      <div
+        class="flex items-center gap-8 w-full mx-auto flex-row justify-between"
+      >
+        <div class="flex items-center gap-4">
+          <!-- Hamburger toggle for mobile --->
+          <div class="flex flex-col justify-center md:hidden">
+            <img
+              src="../../assets/icons/hamburger.png"
+              class="h-4 w-4 object-cover cursor-pointer"
+              id="mobileMenuToggle"
+            />
+          </div>
+          <!-- Logo -->
+          <a href="../../" aria-label="Vendsr Home Page" class="flex-shrink-0">
+            <img
+              src="../../assets/icons/vendsr-logo.png"
+              alt="Vendsr Logo"
+              class="h-8"
+            />
+          </a>
+        </div>
+
+        <div class="flex flex-row gap-8">
+          <!-- Search with icon -->
+          <div class="relative flex-1 max-w-md hidden md:block w-[50vw]">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <img
+                src="../../assets/icons/searchIcon.png"
+                alt="Search"
+                class="h-4 w-4"
+              />
+            </div>
+            <input
+              type="text"
+              disabled
+              placeholder="Search"
+              id="searchInputDesktop"
+              class="block w-full pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary cursor-not-allowed"
+            />
+            <button
+              aria-label="Cancel Search"
+              id="cancelSearchBtnDesktop"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2"
+            >
+              <span aria-hidden="true">X</span>
+            </button>
+          </div>
+
+          <!-- mobile variant -->
+          <div class="md:hidden flex items-center justify-end gap-2">
+            <label for="searchInputMobile" class="cursor-pointer">
+              <img
+                src="../../assets/icons/searchIcon.png"
+                id="mobileSearchIcon"
+                class="w-4 h-4"
+                alt=""
+            /></label>
+            <input
+              type="text"
+              disabled
+              placeholder="Search"
+              id="searchInputMobile"
+              class="hidden pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary absolute right-0 z-50"
+            />
+            <button
+              aria-label="Cancel Search"
+              id="cancelSearchBtnMobile"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 z-[51]"
+            >
+              <span aria-hidden="true" class="hidden">X</span>
+            </button>
+          </div>
+
+          <div class="flex justify-center">
+            <button type="button" class="relative" id="notificationsBtn">
+              <img
+                src="../../assets/icons/notification.png"
+                class="h-4 w-4"
+                alt="notifications"
+              />
+              <span
+                id="isNotificationsUnread"
+                class="absolute top-0 right-0 bg-red-500 rounded-full h-1 w-1"
+              ></span>
+            </button>
+          </div>
+
+          <!-- User profile -->
+          <button
+            type="button"
+            id="userProfileDetailsBtn"
+            aria-expanded="false"
+            class="flex items-center gap-1"
+          >
+            <span>
+              <img
+                src=""
+                alt="User"
+                id="userProfilePicture"
+                class="w-8 h-8 rounded-full object-cover"
+              />
+            </span>
+            <div class="flex flex-row">
+              <div class="flex-col items-start hidden md:flex">
+                <span class="text-xs font-semibold" id="userEmailPrefix"></span>
+                <span class="text-xs text-gray-700" id="userEmailSuffix"></span>
+              </div>
+              <div class="md:flex hidden justify-center">
+                <img src="../../assets/icons/arrow-down.png" class="h-4 w-4" />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex flex-row gap-4 w-full">
+      <!-- Mobile Sidebar Overlay -->
+      <div
+        class="fixed inset-0 bg-white/40 z-[51] hidden transition-opacity duration-300"
+        id="overlay"
+      ></div>
+
+      <!-- Mobile Sidebar -->
+      <aside
+        class="fixed top-0 left-0 w-full max-w-64 h-full bg-white z-[52] shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+        id="mobile-sidebar"
+      >
+        <div class="flex flex-col justify-between h-full p-6 overflow-y-auto">
+          <div>
+            <div class="flex justify-between items-center mb-8">
+              <a
+                href="../../"
+                aria-label="Vendsr Home Page"
+                class="flex-shrink-0"
+              >
+                <img
+                  src="../../assets/icons/vendsr-logo.png"
+                  alt="Vendsr Logo"
+                  class="h-8"
+                />
+              </a>
+              <button id="close-mobile-menu" aria-label="close navigation bar">
+                <img
+                  src="../../assets/icons/arrow-back.png"
+                  class="h-4 w-4"
+                  alt="close navigation bar"
+                />
+              </button>
+            </div>
+            <nav class="space-y-4">
+              <ul class="space-y-2">
+                <li class="bg-gray-50 rounded-lg">
+                  <a
+                    href="#"
+                    class="flex flex-row items-center gap-4 w-full p-2"
+                  >
+                    <img
+                      src="../../assets/icons/homeIcon.png"
+                      alt=""
+                      class="w-4 h-4"
+                    />
+                    <span
+                      class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                    >
+                      Home
+                    </span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg">
+                  <a
+                    href="../dashboard_profile/"
+                    class="flex flex-row items-center gap-4 w-full p-2"
+                  >
+                    <img
+                      src="../../assets/icons/shop.png"
+                      alt=""
+                      class="w-4 h-4"
+                    />
+                    <span
+                      class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                    >
+                      Product
+                    </span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg">
+                  <a
+                    href="../order/"
+                    class="flex flex-row items-center gap-4 w-full p-2"
+                  >
+                    <img
+                      src="../../assets/icons/exportIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span
+                      class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                    >
+                      Order
+                    </span></a
+                  >
+                </li>
+
+                <li class="bg-primary text-white rounded-lg">
+                  <a
+                    href="#"
+                    class="flex flex-row items-center gap-4 w-full p-2"
+                  >
+                    <img
+                      src="../../assets/icons/settingsIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span
+                      class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                    >
+                      Settings
+                    </span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg">
+                  <a
+                    href="../help_center/"
+                    class="flex flex-row items-center gap-4 w-full p-2"
+                  >
+                    <img
+                      src="../../assets/icons/helpCenterIcon.png"
+                      alt=""
+                      class="w-4 h-4"
+                    />
+                    <span
+                      class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                    >
+                      Help Center
+                    </span></a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="text-sm text-gray-500 flex flex-col gap-4 pt-4">
+            <a href="#" class="hover:text-primary">Terms and conditions</a>
+            <a href="#" class="hover:text-primary">Privacy Policy</a>
+            <a
+              class="flex items-center gap-4 bg-gray-50 rounded-lg hover:text-primary"
+            >
+              <img
+                src="../../assets/icons/logoutmain.png"
+                alt=""
+                class="w-4 h-4"
+              />
+              <span
+                class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+              >
+                Log out
+              </span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Page Container -->
+      <div class="flex w-full bg-white md:pr-8 min-h-dvh">
+        <!-- Sticky Sidebar -->
+        <aside
+          class="w-[20%] bg-white border-1 border-gray-100 sticky top-16 h-[calc(100vh_-_4rem)] hidden md:block"
+        >
+          <div
+            class="flex flex-col justify-between h-full px-4 py-2 overflow-y-auto"
+          >
+            <nav class="space-y-4" aria-label="desktop navigation">
+              <ul class="space-y-2">
+                <li class="bg-gray-50 rounded-lg">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold p-2"
+                  >
+                    <img
+                      src="../../assets/icons/homeIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Home</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg">
+                  <a
+                    href="../dashboard_profile/"
+                    class="flex flex-row gap-4 items-center font-semibold p-2"
+                  >
+                    <img
+                      src="../../assets/icons/shop.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Products</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg">
+                  <a
+                    href="../order/"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold p-2"
+                  >
+                    <img
+                      src="../../assets/icons/exportIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Order</span></a
+                  >
+                </li>
+
+                <li class="bg-primary text-white rounded-lg">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center font-semibold p-2"
+                  >
+                    <img
+                      src="../../assets/icons/settingsIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Settings</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg">
+                  <a
+                    href="../help_center/"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold p-2"
+                  >
+                    <img
+                      src="../../assets/icons/helpCenterIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Help Center</span></a
+                  >
+                </li>
+              </ul>
+            </nav>
+            <div class="text-sm text-gray-500 flex flex-col gap-4">
+              <a href="#" class="hover:text-primary">Terms and conditions</a>
+              <a href="#" class="hover:text-primary">Privacy Policy</a>
+              <a href="" class="flex items-center gap-2 bg-gray-50 rounded-lg">
+                <img src="../../assets/icons/logoutmain.png" class="w-4 h-4" />
+                <span> Log out </span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <section
+          id="settingsPageMainContent"
+          class="md:w-[80%] p-6 overflow-y-auto"
+        >
+          <h1 class="capitalize text-primaryHeading font-bold">settings</h1>
+
+          <div
+            class="w-full flex items-center gap-4 overflow-x-auto mt-4 scrollbar-hidden"
+          >
+            <button
+              id="profileSettingsBtn"
+              aria-expanded="false"
+              class="p-1 border border-primary/20 cursor-pointer hover:bg-black/10 rounded-md aria-expanded:bg-activeSettingsBtn"
+            >
+              Profile
+            </button>
+            <button
+              id="passwordSettingsBtn"
+              aria-expanded="false"
+              class="p-1 border border-primary/20 cursor-pointer hover:bg-black/10 rounded-md aria-expanded:bg-activeSettingsBtn"
+            >
+              Password
+            </button>
+            <button
+              id="securitySettingsBtn"
+              aria-expanded="false"
+              class="p-1 border border-primary/20 cursor-pointer hover:bg-black/10 rounded-md aria-expanded:bg-activeSettingsBtn"
+            >
+              Security
+            </button>
+            <button
+              id="notificationSettingsBtn"
+              aria-expanded="false"
+              class="p-1 border border-primary/20 cursor-pointer hover:bg-black/10 rounded-md aria-expanded:bg-activeSettingsBtn"
+            >
+              Notification
+            </button>
+          </div>
+
+          <!-- profile settings section -->
+          <div id="profileSettingsContainer" class="mt-6">
+            <h2 class="text-tertiaryHeading font-semibold capitalize">
+              my profile
+            </h2>
+            <p>Manage your account and store settings here</p>
+
+            <div></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
