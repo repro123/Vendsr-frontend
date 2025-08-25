@@ -541,7 +541,7 @@
                   <tr>
                     <td class="pt-4">
                       <label
-                        class="cursor-pointer group block w-4 h-4 border border-primary rounded-sm has-checked:bg-primary"
+                        class="hidden cursor-pointer group w-4 h-4 border border-primary rounded-sm has-checked:bg-primary"
                         ><input
                           type="checkbox"
                           class="sr-only"
@@ -549,19 +549,18 @@
                       /></label>
                     </td>
                     <td class="pt-4 border-r border-r-primary/20 px-4">
-                      <span id="orderCustomerNameDesktop">Aliya Nuru</span>
+                      <span id="orderCustomerNameDesktop"></span>
                     </td>
                     <td class="pt-4 border-r border-r-primary/20 px-4">
-                      <span id="orderProductNameDesktop">Shein Trucks</span>
+                      <span id="orderProductNameDesktop"></span>
                     </td>
                     <td class="pt-4 border-r border-r-primary/20 px-4">
                       <span id="orderStatusDesktop"
-                        >•
-                        <span id="orderStatusValueDesktop">Pending</span></span
-                      >
+                        >• <span id="orderStatusValueDesktop"></span
+                      ></span>
                     </td>
                     <td class="pt-4 border-r border-r-primary/20 px-4">
-                      <span id="orderDateDesktop">10:55am july 21st</span>
+                      <span id="orderDateDesktop"></span>
                     </td>
                     <td class="text-center">
                       <button
@@ -581,14 +580,14 @@
 
         <div
           id="viewOrderDetailsModal"
-          class="fixed inset-0 z-[52] w-full md:w-[30rem] h-full lg:h-[32rem] md:h-[25rem] md:mt-20 border md:m-auto bg-white rounded-xl p-4 overflow-auto"
+          class="hidden fixed inset-0 z-[52] w-full md:w-[30rem] h-full lg:h-[32rem] md:h-[25rem] md:mt-20 border md:m-auto bg-white rounded-xl p-4 overflow-auto"
         >
           <div
             class="flex justify-between items-start sticky top-0 bg-white z-10 pb-4 border-b border-b-primary/10"
           >
             <div>
               <p class="font-bold">Order Details</p>
-              <p id="orderId" class="font-medium">#1234565</p>
+              <p id="orderId" class="font-medium"></p>
             </div>
 
             <button
@@ -614,26 +613,127 @@
           </div>
 
           <div class="h-full">
-            <div id="orderedItems" class="grid gap-4 mt-4 text-sm">
+            <div
+              id="orderedItemsDetails"
+              class="grid gap-4 mt-4 text-sm pb-4 border-b border-b-primary/10"
+            >
               <div class="flex justify-between items-start">
                 <div class="flex items-center gap-4">
-                  <img
-                    src="../../assets/images/merchanthowitworksmobile.png"
-                    alt=""
-                    class="w-8 h-8 object-cover rounded"
-                  />
+                  <img src="" alt="" class="w-8 h-8 object-cover rounded" />
                   <div>
-                    <p id="orderedItemName" class="font-medium">
-                      Elegant's women dress
-                    </p>
-                    <p id="orderedItemCategory" class="text-xs text-gray-500">
-                      Clothing
-                    </p>
+                    <p id="orderedItemName" class="font-medium"></p>
+                    <p
+                      id="orderedItemCategory"
+                      class="text-xs text-gray-500"
+                    ></p>
                   </div>
                 </div>
-                <span id="orderedItemQuantity">2pcs</span>
-                <span id="orderedItemPrice" class="font-medium">$49.99</span>
+                <span id="orderedItemQuantity"></span>
+                <span id="orderedItemPrice" class="font-medium"></span>
               </div>
+            </div>
+
+            <ul
+              id="orderStatusDetails"
+              class="grid gap-4 mt-4 text-sm pb-4 border-b border-b-primary/10"
+            >
+              <li class="flex justify-between items-start">
+                <span>Order Created:</span>
+                <span id="orderCreatedDate" class="font-medium"></span>
+              </li>
+              <li class="flex justify-between items-start">
+                <span>Payment Method:</span>
+                <span id="orderPaymentMethod" class="font-medium"></span>
+              </li>
+              <li class="flex justify-between items-start">
+                <span>Delivery Status:</span>
+                <span id="orderDeliveryStatus" class="font-medium"></span>
+              </li>
+              <li class="flex justify-between items-start">
+                <span>Delivery Date:</span>
+                <span id="orderDeliveryDate" class="font-medium"></span>
+              </li>
+              <li class="flex justify-between items-start">
+                <span>Delivery Address:</span>
+                <span
+                  id="orderDeliveryAddress"
+                  class="font-medium text-right max-w-[30ch] capitalize"
+                ></span>
+              </li>
+            </ul>
+
+            <ul
+              id="orderingCustomerDetails"
+              class="grid gap-4 mt-4 text-sm pb-4 border-b border-b-primary/10"
+            >
+              <li class="flex justify-between items-start">
+                <span>Customer's Name:</span>
+                <span id="orderingCustomerName" class="font-medium"></span>
+              </li>
+              <li class="flex justify-between items-start">
+                <span>Email:</span>
+                <span
+                  id="orderingCustomerEmail"
+                  class="font-medium max-w-[30ch]"
+                ></span>
+              </li>
+              <li class="flex justify-between items-start">
+                <span>Contact Number:</span>
+                <span id="orderingCustomerPhone" class="font-medium"></span>
+              </li>
+            </ul>
+
+            <div class="grid gap-4 mt-4 text-sm pb-4" id="orderTimeline">
+              <p>Timeline</p>
+
+              <ul class="grid gap-4">
+                <li class="flex gap-4 items-center" id="timelineOrderCreated">
+                  <span class="size-2 rounded-full bg-primary"></span>
+                  <div class="grid">
+                    <p>Order Created</p>
+                    <p class="text-xs font-light">
+                      The order has been created. Make payment to confirm order.
+                    </p>
+                  </div>
+                </li>
+
+                <li
+                  class="flex gap-4 items-center"
+                  id="timelinePaymentConfirmed"
+                >
+                  <span class="size-2 rounded-full bg-primary"></span>
+                  <div class="grid">
+                    <p>Payment Confirmed</p>
+                    <p class="text-xs font-light">
+                      The payment has been confirmed. Your order is now being
+                      processed.
+                    </p>
+                  </div>
+                </li>
+
+                <li
+                  class="flex gap-4 items-center"
+                  id="timelineDeliverySentOut"
+                >
+                  <span class="size-2 rounded-full bg-primary"></span>
+                  <div class="grid">
+                    <p>Delivery Sent Out</p>
+                    <p class="text-xs font-light">
+                      The order has been sent out for delivery.
+                    </p>
+                  </div>
+                </li>
+
+                <li class="flex gap-4 items-center" id="timelineOrderReceived">
+                  <span class="size-2 rounded-full bg-primary"></span>
+                  <div class="grid">
+                    <p>Order Received</p>
+                    <p class="text-xs font-light">
+                      The order has arrived at your location.
+                    </p>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
