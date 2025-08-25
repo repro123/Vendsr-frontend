@@ -383,7 +383,7 @@
         <!-- Main Content -->
         <section
           id="settingsPageMainContent"
-          class="md:w-[80%] p-6 overflow-y-auto"
+          class="md:w-[80%] p-6 overflow-y-auto w-full"
         >
           <h1 class="capitalize text-primaryHeading font-bold">settings</h1>
 
@@ -427,7 +427,144 @@
             </h2>
             <p>Manage your account and store settings here</p>
 
-            <div></div>
+            <form enctype="multipart/form-data" class="mt-4">
+              <!-- logo and banner -->
+              <div class="h-52 md:h-96 overflow-hidden rounded-2xl relative">
+                <div class="w-full relative">
+                  <img
+                    src="../../assets/images/merchanthowitworksdesktop.png"
+                    alt=""
+                    class="w-full object-cover"
+                    id="storeBanner"
+                  />
+                  <label
+                    class="absolute rounded-full bg-white cursor-pointer top-6 right-6 p-2"
+                  >
+                    <input
+                      type="file"
+                      name="storeBanner"
+                      id="storeBannerInput"
+                      class="sr-only"
+                    /><img
+                      src="../../assets/icons/upload-photo.png"
+                      alt=""
+                      class="size-6"
+                    />
+                  </label>
+                </div>
+                <div
+                  class="absolute rounded-full w-24 h-24 md:h-48 md:w-48 border-white border-2 bottom-4 left-4 z-[9]"
+                >
+                  <img
+                    src="../../assets/images/merchanthowitworksmobile.png"
+                    alt=""
+                    class="w-full h-full rounded-full object-cover"
+                    id="userProfilePicture"
+                  />
+                  <label
+                    class="absolute rounded-full bg-white cursor-pointer top-12 md:top-24 right-0 transform translate-x-1/2 p-2 z-10"
+                  >
+                    <input
+                      type="file"
+                      name="profilePicture"
+                      id="profilePictureInput"
+                      class="sr-only"
+                    />
+                    <img
+                      src="../../assets/icons/upload-photo.png"
+                      alt=""
+                      class="size-6"
+                    />
+                  </label>
+                </div>
+              </div>
+
+              <!-- account information -->
+              <div class="mt-4">
+                <p class="font-medium">Account information</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                  <div class="flex flex-col gap-6">
+                    <div>
+                      <label for="fullName">Full Name</label>
+                      <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        autocomplete="name"
+                        value="Bello Ibrahim"
+                        readonly
+                        class="form-input"
+                        data-invalid="false"
+                      />
+                      <p
+                        id="fullNameError"
+                        class="text-red-500"
+                        aria-live="polite"
+                      ></p>
+                    </div>
+
+                    <div>
+                      <label for="email">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autocomplete="email"
+                        placeholder="abc@xyz.abc"
+                        readonly
+                        class="form-input"
+                        data-invalid="false"
+                      />
+                      <p
+                        id="emailError"
+                        class="text-red-500"
+                        aria-live="polite"
+                      ></p>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col gap-6">
+                    <div>
+                      <label for="username">Username</label>
+                      <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        autocomplete="username"
+                        placeholder="qwerty"
+                        readonly
+                        class="form-input"
+                        data-invalid="false"
+                      />
+                      <p
+                        id="usernameError"
+                        class="text-red-500"
+                        aria-live="polite"
+                      ></p>
+                    </div>
+
+                    <div>
+                      <label for="phoneNumber">Phone Number</label>
+                      <input
+                        type="text"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        autocomplete="tel"
+                        placeholder="09123456789"
+                        readonly
+                        class="form-input"
+                        data-invalid="false"
+                      />
+                      <p
+                        id="phoneNumberError"
+                        class="text-red-500"
+                        aria-live="polite"
+                      ></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
         </section>
       </div>
