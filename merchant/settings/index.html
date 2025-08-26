@@ -421,7 +421,7 @@
           </div>
 
           <!-- profile settings section -->
-          <div id="profileSettingsContainer" class="mt-6">
+          <div id="profileSettingsContainer" class="mt-6 hidden">
             <h2 class="text-tertiaryHeading font-semibold capitalize">
               my profile
             </h2>
@@ -480,8 +480,8 @@
               </div>
 
               <!-- account information -->
-              <div class="mt-4">
-                <p class="font-medium">Account information</p>
+              <div class="mt-6">
+                <p class="font-semibold">Account information</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                   <div class="flex flex-col gap-6">
                     <div>
@@ -493,7 +493,7 @@
                         autocomplete="name"
                         value="Bello Ibrahim"
                         readonly
-                        class="form-input"
+                        class="form-input text-black/60"
                         data-invalid="false"
                       />
                       <p
@@ -510,9 +510,9 @@
                         id="email"
                         name="email"
                         autocomplete="email"
-                        placeholder="abc@xyz.abc"
+                        value="abc@xyz.abc"
                         readonly
-                        class="form-input"
+                        class="form-input text-black/60"
                         data-invalid="false"
                       />
                       <p
@@ -531,9 +531,9 @@
                         id="username"
                         name="username"
                         autocomplete="username"
-                        placeholder="qwerty"
+                        value="qwerty"
                         readonly
-                        class="form-input"
+                        class="form-input text-black/60"
                         data-invalid="false"
                       />
                       <p
@@ -550,9 +550,9 @@
                         id="phoneNumber"
                         name="phoneNumber"
                         autocomplete="tel"
-                        placeholder="09123456789"
+                        value="09123456789"
                         readonly
-                        class="form-input"
+                        class="form-input text-black/60"
                         data-invalid="false"
                       />
                       <p
@@ -564,7 +564,291 @@
                   </div>
                 </div>
               </div>
+
+              <!-- store information -->
+              <div class="mt-6">
+                <p class="font-semibold">Store information</p>
+                <div class="grid grid-cols-1 w-full gap-6 mt-4">
+                  <div>
+                    <label for="storeName">Store Name</label>
+                    <input
+                      type="text"
+                      id="storeName"
+                      name="storeName"
+                      autocomplete="organization"
+                      value="My Store"
+                      readonly
+                      class="form-input text-black/60"
+                      data-invalid="false"
+                    />
+                    <p
+                      id="storeNameError"
+                      class="text-red-500"
+                      aria-live="polite"
+                    ></p>
+                  </div>
+
+                  <div>
+                    <label for="storeUrl">Store URL</label>
+                    <input
+                      type="text"
+                      id="storeUrle"
+                      name="storeUrle"
+                      autocomplete="organization"
+                      value="My-Store.vendsr.com"
+                      readonly
+                      class="form-input text-black/60"
+                      data-invalid="false"
+                    />
+                    <p
+                      id="storeUrleError"
+                      class="text-red-500"
+                      aria-live="polite"
+                    ></p>
+                  </div>
+
+                  <div>
+                    <label for="storeDescription">Store Description</label>
+                    <textarea
+                      id="storeDescription"
+                      name="storeDescription"
+                      rows="4"
+                      readonly
+                      class="form-input text-black/60 resize-none"
+                      data-invalid="false"
+                    >
+This is my store where I sell awesome products.</textarea
+                    >
+                    <p
+                      id="storeDescriptionError"
+                      class="text-red-500"
+                      aria-live="polite"
+                    ></p>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled
+                class="bg-disabledBtn text-white py-3 rounded-full w-full text-center mt-6 block md:w-fit mx-auto md:px-36 whitespace-nowrap cursor-not-allowed"
+              >
+                Save Changes
+              </button>
             </form>
+          </div>
+
+          <!-- password settings section -->
+          <div id="passwordSettingsContainer" class="mt-6 hidden">
+            <h2 class="text-tertiaryHeading font-semibold capitalize">
+              my password
+            </h2>
+            <p>Change your password here</p>
+            <form
+              id="resetPassword"
+              class="flex flex-col gap-8 mt-4"
+              novalidate
+            >
+              <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-2">
+                  <label for="currentPassword" class="font-semibold"
+                    >Current Password</label
+                  >
+                  <div class="relative">
+                    <input
+                      type="password"
+                      id="currentPassword"
+                      required
+                      name="currentPassword"
+                      placeholder="Enter your current password"
+                      class="form-input pl-10"
+                    />
+                    <img
+                      src="../../assets/icons/padlock.png"
+                      alt=""
+                      class="absolute left-3 top-1/2 -translate-y-1/2"
+                    />
+                    <button
+                      type="button"
+                      aria-label="Toggle password visibility"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer flex items-center justify-center group"
+                      data-state="hidden"
+                    >
+                      <img
+                        src="../../assets/icons/passwordeye.png"
+                        alt="Show password"
+                        class="group-data-[state='visible']:rotate-180 duration-300"
+                      />
+                    </button>
+                  </div>
+                  <span
+                    class="text-red-500"
+                    id="currentPasswordError"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <label for="password" class="font-semibold">Password</label>
+                  <div class="relative">
+                    <input
+                      type="password"
+                      id="password"
+                      required
+                      name="password"
+                      placeholder="Enter your password"
+                      class="form-input pl-10"
+                    />
+                    <img
+                      src="../../assets/icons/padlock.png"
+                      alt=""
+                      class="absolute left-3 top-1/2 -translate-y-1/2"
+                    />
+                    <button
+                      type="button"
+                      aria-label="Toggle password visibility"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer flex items-center justify-center group"
+                      data-state="hidden"
+                    >
+                      <img
+                        src="../../assets/icons/passwordeye.png"
+                        alt="Show password"
+                        class="group-data-[state='visible']:rotate-180 duration-300"
+                      />
+                    </button>
+                  </div>
+
+                  <ul id="passwordRules" class="space-y-2 text-sm pl-4">
+                    <li data-rule="length" class="flex items-center gap-2">
+                      <span class="icon">❌</span> At least 8 characters
+                    </li>
+                    <li data-rule="uppercase" class="flex items-center gap-2">
+                      <span class="icon">❌</span> One uppercase letter
+                    </li>
+                    <li data-rule="lowercase" class="flex items-center gap-2">
+                      <span class="icon">❌</span> One lowercase letter
+                    </li>
+                    <li data-rule="number" class="flex items-center gap-2">
+                      <span class="icon">❌</span> One number
+                    </li>
+                    <li data-rule="special" class="flex items-center gap-2">
+                      <span class="icon">❌</span> One special character
+                      (!@#$...)
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <label for="confirmPassword" class="font-semibold"
+                    >Confirm Password</label
+                  >
+                  <div class="relative">
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      required
+                      name="confirmPassword"
+                      placeholder="Confirm your new password"
+                      class="form-input pl-10"
+                    />
+                    <img
+                      src="../../assets/icons/padlock.png"
+                      alt=""
+                      class="absolute left-3 top-1/2 -translate-y-1/2"
+                    />
+                    <button
+                      type="button"
+                      aria-label="Toggle password visibility"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer flex items-center justify-center group"
+                      data-state="hidden"
+                    >
+                      <img
+                        src="../../assets/icons/passwordeye.png"
+                        alt="Show password"
+                        class="group-data-[state='visible']:rotate-180 duration-300"
+                      />
+                    </button>
+                  </div>
+                  <span
+                    class="text-red-500"
+                    id="confirmPasswordError"
+                    aria-live="polite"
+                  ></span>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled
+                class="rounded-full bg-disabledBtn text-white tracking-wider font-semibold cursor-pointer w-full py-3"
+              >
+                Reset Password
+              </button>
+            </form>
+            <p class="flex items-center gap-2 text-sm text-black/60 mt-6">
+              <img src="../../assets/icons/padlock.png" alt="" class="size-4" />
+              <span
+                >Last password change:
+                <span id="lastPasswordChange">25th August, 2025</span></span
+              >
+            </p>
+          </div>
+
+          <!-- security settings section -->
+          <div id="securitySettingsContainer" class="mt-6">
+            <h2 class="text-tertiaryHeading font-semibold capitalize">
+              security settings
+            </h2>
+            <p>Setup 2FA and manage your security preferences here</p>
+          </div>
+
+          <div class="mt-6">
+            <div class="pb-6 border-b border-b-primary/20">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="font-medium">Two-Factor Authentication</p>
+                  <p class="text-sm font-light">
+                    Add an extra layer of security to your account
+                  </p>
+                </div>
+                <label for=""></label>
+              </div>
+              <ul class="mt-4">
+                <li class="flex items-start gap-6">
+                  <img
+                    src="../../assets/icons/authenticatorApp.png"
+                    alt=""
+                    class="size-4 mt-2"
+                  />
+                  <div class="text-sm">
+                    <p class="text-base font-semibold">Authenticator App</p>
+                    <p>
+                      Use an app like Google Authenticator to get verification
+                      codes
+                    </p>
+                    <button class="cursor-pointer text-primary">
+                      Enable Authenticator
+                    </button>
+                  </div>
+                </li>
+                <li class="flex items-start gap-6 mt-4">
+                  <img
+                    src="../../assets/icons/emailAuthenticator.png"
+                    alt=""
+                    class="size-4 mt-2"
+                  />
+                  <div class="text-sm">
+                    <p class="text-base font-semibold">Email Authentication</p>
+                    <p>Receive verification codes via email</p>
+                    <button class="cursor-pointer text-primary">
+                      Enable Email Authentication
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div></div>
           </div>
         </section>
       </div>
