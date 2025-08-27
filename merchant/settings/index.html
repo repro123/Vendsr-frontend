@@ -392,8 +392,8 @@
           >
             <button
               id="profileSettingsBtn"
-              aria-expanded="false"
-              class="p-1 border border-primary/20 cursor-pointer hover:bg-black/10 rounded-md aria-expanded:bg-activeSettingsBtn"
+              aria-expanded="true"
+              class="p-1 border border-primary/20 cursor-pointer rounded-md hover:bg-black/10 aria-expanded:bg-activeSettingsBtn"
             >
               Profile
             </button>
@@ -421,7 +421,7 @@
           </div>
 
           <!-- profile settings section -->
-          <div id="profileSettingsContainer" class="mt-6 hidden">
+          <div id="profileSettingsContainer" class="mt-6">
             <h2 class="text-tertiaryHeading font-semibold capitalize">
               my profile
             </h2>
@@ -795,7 +795,7 @@ This is my store where I sell awesome products.</textarea
           </div>
 
           <!-- security settings section -->
-          <div id="securitySettingsContainer" class="mt-6">
+          <div id="securitySettingsContainer" class="mt-6 hidden">
             <h2 class="text-tertiaryHeading font-semibold capitalize">
               security settings
             </h2>
@@ -916,9 +916,222 @@ This is my store where I sell awesome products.</textarea
           </div>
 
           <!-- notification settings section -->
-           <div id="notificationSettingsSection"></div>
+          <div id="notificationSettingsSection" class="mt-6 hidden">
+            <h2 class="text-tertiaryHeading font-semibold capitalize">
+              notification settings
+            </h2>
+            <p>Manage your notification preferences here</p>
+
+            <form class="mt-6">
+              <div>
+                <p class="font-bold text-lg">Order Notifications</p>
+
+                <ul class="mt-4 grid gap-6">
+                  <li
+                    class="flex flex-col lg:flex-row gap-2 justify-between items-start"
+                  >
+                    <div>
+                      <p class="capitalize font-medium">new order</p>
+                      <p class="text-sm font-light">
+                        Reeive notifications when you get a new order
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveEmailNotifForNewOrder"
+                          class="accent-primary"
+                        />
+                        Email
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receivePushNotifForNewOrder"
+                          class="accent-primary"
+                        />
+                        Push
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveWhatsappNotifForNewOrder"
+                          class="accent-primary"
+                        />
+                        Whatsapp
+                      </label>
+                    </div>
+                  </li>
+
+                  <li
+                    class="flex flex-col lg:flex-row gap-2 justify-between items-start"
+                  >
+                    <div>
+                      <p class="capitalize font-medium">order status update</p>
+                      <p class="text-sm font-light">
+                        Receive notifications when your order status changes
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveEmailNotifForOrderStatusChange"
+                          class="accent-primary"
+                        />
+                        Email
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receivePushNotifForOrderStatusChange"
+                          class="accent-primary"
+                        />
+                        Push
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveWhatsappNotifForOrderStatusChange"
+                          class="accent-primary"
+                        />
+                        Whatsapp
+                      </label>
+                    </div>
+                  </li>
+
+                  <li
+                    class="flex flex-col lg:flex-row gap-2 justify-between items-start"
+                  >
+                    <div>
+                      <p class="capitalize font-medium">order cancellation</p>
+                      <p class="text-sm font-light">
+                        Receive notifications when your order is cancelled
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveEmailNotifForOrderCancellation"
+                          class="accent-primary"
+                        />
+                        Email
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receivePushNotifForOrderCancellation"
+                          class="accent-primary"
+                        />
+                        Push
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveWhatsappNotifForOrderCancellation"
+                          class="accent-primary"
+                        />
+                        Whatsapp
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mt-6">
+                <p class="font-bold text-lg">Product Notifications</p>
+
+                <ul class="mt-4 grid gap-6">
+                  <li
+                    class="flex flex-col lg:flex-row gap-2 justify-between items-start"
+                  >
+                    <div>
+                      <p class="capitalize font-medium">low stock alert</p>
+                      <p class="text-sm font-light">
+                        Reeive notifications when product stock is running low
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveEmailNotifForLowStock"
+                          class="accent-primary"
+                        />
+                        Email
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receivePushNotifForLowStock"
+                          class="accent-primary"
+                        />
+                        Push
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveWhatsappNotifForLowStock"
+                          class="accent-primary"
+                        />
+                        Whatsapp
+                      </label>
+                    </div>
+                  </li>
+
+                  <li
+                    class="flex flex-col lg:flex-row gap-2 justify-between items-start"
+                  >
+                    <div>
+                      <p class="capitalize font-medium">product reviews</p>
+                      <p class="text-sm font-light">
+                        Receive notifications when products get new reviews
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveEmailNotifForProductReview"
+                          class="accent-primary"
+                        />
+                        Email
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receivePushNotifForProductReview"
+                          class="accent-primary"
+                        />
+                        Push
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveWhatsappNotifForProductReview"
+                          class="accent-primary"
+                        />
+                        Whatsapp
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <button
+                type="submit"
+                class="bg-primary text-white py-3 rounded-full w-full text-center block md:w-fit mx-auto md:px-36 whitespace-nowrap cursor-pointer hover:bg-primary/90 mt-6"
+              >
+                Save Changes
+              </button>
+            </form>
+          </div>
         </section>
       </div>
     </main>
+
+    <script src="../../scripts/merchant/merchantSettings.js"></script>
   </body>
 </html>

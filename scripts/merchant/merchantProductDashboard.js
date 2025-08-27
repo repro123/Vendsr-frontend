@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.warn("Element with id 'userStoreName' not found in DOM"); // Debug
   }
-
   // Populate userEmailPrefix and userEmailSuffix
   if (userEmailPrefix && userEmailSuffix) {
     const emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
