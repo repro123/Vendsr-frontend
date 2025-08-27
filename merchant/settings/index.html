@@ -383,7 +383,7 @@
         <!-- Main Content -->
         <section
           id="settingsPageMainContent"
-          class="md:w-[80%] p-6 overflow-y-auto"
+          class="md:w-[80%] p-6 overflow-y-auto w-full"
         >
           <h1 class="capitalize text-primaryHeading font-bold">settings</h1>
 
@@ -392,8 +392,8 @@
           >
             <button
               id="profileSettingsBtn"
-              aria-expanded="false"
-              class="p-1 border border-primary/20 cursor-pointer hover:bg-black/10 rounded-md aria-expanded:bg-activeSettingsBtn"
+              aria-expanded="true"
+              class="p-1 border border-primary/20 cursor-pointer rounded-md hover:bg-black/10 aria-expanded:bg-activeSettingsBtn"
             >
               Profile
             </button>
@@ -427,10 +427,711 @@
             </h2>
             <p>Manage your account and store settings here</p>
 
-            <div></div>
+            <form enctype="multipart/form-data" class="mt-4">
+              <!-- logo and banner -->
+              <div class="h-52 md:h-96 overflow-hidden rounded-2xl relative">
+                <div class="w-full relative">
+                  <img
+                    src="../../assets/images/merchanthowitworksdesktop.png"
+                    alt=""
+                    class="w-full object-cover"
+                    id="storeBanner"
+                  />
+                  <label
+                    class="absolute rounded-full bg-white cursor-pointer top-6 right-6 p-2"
+                  >
+                    <input
+                      type="file"
+                      name="storeBanner"
+                      id="storeBannerInput"
+                      class="sr-only"
+                    /><img
+                      src="../../assets/icons/upload-photo.png"
+                      alt=""
+                      class="size-6"
+                    />
+                  </label>
+                </div>
+                <div
+                  class="absolute rounded-full w-24 h-24 md:h-48 md:w-48 border-white border-2 bottom-4 left-4 z-[9]"
+                >
+                  <img
+                    src="../../assets/images/merchanthowitworksmobile.png"
+                    alt=""
+                    class="w-full h-full rounded-full object-cover"
+                    id="userProfilePicture"
+                  />
+                  <label
+                    class="absolute rounded-full bg-white cursor-pointer top-12 md:top-24 right-0 transform translate-x-1/2 p-2 z-10"
+                  >
+                    <input
+                      type="file"
+                      name="profilePicture"
+                      id="profilePictureInput"
+                      class="sr-only"
+                    />
+                    <img
+                      src="../../assets/icons/upload-photo.png"
+                      alt=""
+                      class="size-6"
+                    />
+                  </label>
+                </div>
+              </div>
+
+              <!-- account information -->
+              <div class="mt-6">
+                <p class="font-semibold">Account information</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                  <div class="flex flex-col gap-6">
+                    <div>
+                      <label for="fullName">Full Name</label>
+                      <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        autocomplete="name"
+                        value="Bello Ibrahim"
+                        readonly
+                        class="form-input text-black/60"
+                        data-invalid="false"
+                      />
+                      <p
+                        id="fullNameError"
+                        class="text-red-500"
+                        aria-live="polite"
+                      ></p>
+                    </div>
+
+                    <div>
+                      <label for="email">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autocomplete="email"
+                        value="abc@xyz.abc"
+                        readonly
+                        class="form-input text-black/60"
+                        data-invalid="false"
+                      />
+                      <p
+                        id="emailError"
+                        class="text-red-500"
+                        aria-live="polite"
+                      ></p>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col gap-6">
+                    <div>
+                      <label for="username">Username</label>
+                      <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        autocomplete="username"
+                        value="qwerty"
+                        readonly
+                        class="form-input text-black/60"
+                        data-invalid="false"
+                      />
+                      <p
+                        id="usernameError"
+                        class="text-red-500"
+                        aria-live="polite"
+                      ></p>
+                    </div>
+
+                    <div>
+                      <label for="phoneNumber">Phone Number</label>
+                      <input
+                        type="text"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        autocomplete="tel"
+                        value="09123456789"
+                        readonly
+                        class="form-input text-black/60"
+                        data-invalid="false"
+                      />
+                      <p
+                        id="phoneNumberError"
+                        class="text-red-500"
+                        aria-live="polite"
+                      ></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- store information -->
+              <div class="mt-6">
+                <p class="font-semibold">Store information</p>
+                <div class="grid grid-cols-1 w-full gap-6 mt-4">
+                  <div>
+                    <label for="storeName">Store Name</label>
+                    <input
+                      type="text"
+                      id="storeName"
+                      name="storeName"
+                      autocomplete="organization"
+                      value="My Store"
+                      readonly
+                      class="form-input text-black/60"
+                      data-invalid="false"
+                    />
+                    <p
+                      id="storeNameError"
+                      class="text-red-500"
+                      aria-live="polite"
+                    ></p>
+                  </div>
+
+                  <div>
+                    <label for="storeUrl">Store URL</label>
+                    <input
+                      type="text"
+                      id="storeUrle"
+                      name="storeUrle"
+                      autocomplete="organization"
+                      value="My-Store.vendsr.com"
+                      readonly
+                      class="form-input text-black/60"
+                      data-invalid="false"
+                    />
+                    <p
+                      id="storeUrleError"
+                      class="text-red-500"
+                      aria-live="polite"
+                    ></p>
+                  </div>
+
+                  <div>
+                    <label for="storeDescription">Store Description</label>
+                    <textarea
+                      id="storeDescription"
+                      name="storeDescription"
+                      rows="4"
+                      readonly
+                      class="form-input text-black/60 resize-none"
+                      data-invalid="false"
+                    >
+This is my store where I sell awesome products.</textarea
+                    >
+                    <p
+                      id="storeDescriptionError"
+                      class="text-red-500"
+                      aria-live="polite"
+                    ></p>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled
+                class="bg-disabledBtn text-white py-3 rounded-full w-full text-center mt-6 block md:w-fit mx-auto md:px-36 whitespace-nowrap cursor-not-allowed"
+              >
+                Save Changes
+              </button>
+            </form>
+          </div>
+
+          <!-- password settings section -->
+          <div id="passwordSettingsContainer" class="mt-6 hidden">
+            <h2 class="text-tertiaryHeading font-semibold capitalize">
+              my password
+            </h2>
+            <p>Change your password here</p>
+            <form
+              id="resetPassword"
+              class="flex flex-col gap-8 mt-4"
+              novalidate
+            >
+              <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-2">
+                  <label for="currentPassword" class="font-semibold"
+                    >Current Password</label
+                  >
+                  <div class="relative">
+                    <input
+                      type="password"
+                      id="currentPassword"
+                      required
+                      name="currentPassword"
+                      placeholder="Enter your current password"
+                      class="form-input pl-10"
+                    />
+                    <img
+                      src="../../assets/icons/padlock.png"
+                      alt=""
+                      class="absolute left-3 top-1/2 -translate-y-1/2"
+                    />
+                    <button
+                      type="button"
+                      aria-label="Toggle password visibility"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer flex items-center justify-center group"
+                      data-state="hidden"
+                    >
+                      <img
+                        src="../../assets/icons/passwordeye.png"
+                        alt="Show password"
+                        class="group-data-[state='visible']:rotate-180 duration-300"
+                      />
+                    </button>
+                  </div>
+                  <span
+                    class="text-red-500"
+                    id="currentPasswordError"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <label for="password" class="font-semibold">Password</label>
+                  <div class="relative">
+                    <input
+                      type="password"
+                      id="password"
+                      required
+                      name="password"
+                      placeholder="Enter your password"
+                      class="form-input pl-10"
+                    />
+                    <img
+                      src="../../assets/icons/padlock.png"
+                      alt=""
+                      class="absolute left-3 top-1/2 -translate-y-1/2"
+                    />
+                    <button
+                      type="button"
+                      aria-label="Toggle password visibility"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer flex items-center justify-center group"
+                      data-state="hidden"
+                    >
+                      <img
+                        src="../../assets/icons/passwordeye.png"
+                        alt="Show password"
+                        class="group-data-[state='visible']:rotate-180 duration-300"
+                      />
+                    </button>
+                  </div>
+
+                  <ul id="passwordRules" class="space-y-2 text-sm pl-4">
+                    <li data-rule="length" class="flex items-center gap-2">
+                      <span class="icon">❌</span> At least 8 characters
+                    </li>
+                    <li data-rule="uppercase" class="flex items-center gap-2">
+                      <span class="icon">❌</span> One uppercase letter
+                    </li>
+                    <li data-rule="lowercase" class="flex items-center gap-2">
+                      <span class="icon">❌</span> One lowercase letter
+                    </li>
+                    <li data-rule="number" class="flex items-center gap-2">
+                      <span class="icon">❌</span> One number
+                    </li>
+                    <li data-rule="special" class="flex items-center gap-2">
+                      <span class="icon">❌</span> One special character
+                      (!@#$...)
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <label for="confirmPassword" class="font-semibold"
+                    >Confirm Password</label
+                  >
+                  <div class="relative">
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      required
+                      name="confirmPassword"
+                      placeholder="Confirm your new password"
+                      class="form-input pl-10"
+                    />
+                    <img
+                      src="../../assets/icons/padlock.png"
+                      alt=""
+                      class="absolute left-3 top-1/2 -translate-y-1/2"
+                    />
+                    <button
+                      type="button"
+                      aria-label="Toggle password visibility"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer flex items-center justify-center group"
+                      data-state="hidden"
+                    >
+                      <img
+                        src="../../assets/icons/passwordeye.png"
+                        alt="Show password"
+                        class="group-data-[state='visible']:rotate-180 duration-300"
+                      />
+                    </button>
+                  </div>
+                  <span
+                    class="text-red-500"
+                    id="confirmPasswordError"
+                    aria-live="polite"
+                  ></span>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled
+                class="rounded-full bg-disabledBtn text-white tracking-wider font-semibold cursor-pointer w-full py-3"
+              >
+                Reset Password
+              </button>
+            </form>
+            <p class="flex items-center gap-2 text-sm text-black/60 mt-6">
+              <img src="../../assets/icons/padlock.png" alt="" class="size-4" />
+              <span
+                >Last password change:
+                <span id="lastPasswordChange">25th August, 2025</span></span
+              >
+            </p>
+          </div>
+
+          <!-- security settings section -->
+          <div id="securitySettingsContainer" class="mt-6 hidden">
+            <h2 class="text-tertiaryHeading font-semibold capitalize">
+              security settings
+            </h2>
+            <p>Setup 2FA and manage your security preferences here</p>
+
+            <div class="mt-6">
+              <div class="pb-6 border-b border-b-primary/20">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <p class="font-medium">Two-Factor Authentication</p>
+                    <p class="text-sm font-light">
+                      Add an extra layer of security to your account
+                    </p>
+                  </div>
+                  <label
+                    class="cursor-pointer border border-primary w-14 h-6 rounded-full bg-disabledBtn has-checked:bg-primary relative transition-colors duration-300"
+                  >
+                    <input type="checkbox" class="sr-only peer" />
+                    <span
+                      class="h-full w-5 rounded-full bg-white inline-block absolute left-0.5 transition-transform duration-300 peer-checked:translate-x-[1.8rem]"
+                    ></span>
+                    <span class="sr-only"
+                      >Enable Two-Factor Authentication</span
+                    >
+                  </label>
+                </div>
+                <ul class="mt-4 relative" id="authenticationOptionsLists">
+                  <li class="flex items-start gap-6">
+                    <img
+                      src="../../assets/icons/authenticatorApp.png"
+                      alt=""
+                      class="size-4 mt-2"
+                    />
+                    <div class="text-sm">
+                      <p class="text-base font-semibold">Authenticator App</p>
+                      <p>
+                        Use an app like Google Authenticator to get verification
+                        codes
+                      </p>
+                      <button class="cursor-pointer text-primary mt-4">
+                        Enable Authenticator
+                      </button>
+                    </div>
+                  </li>
+                  <li class="flex items-start gap-6 mt-4">
+                    <img
+                      src="../../assets/icons/emailAuthenticator.png"
+                      alt=""
+                      class="size-4 mt-2"
+                    />
+                    <div class="text-sm">
+                      <p class="text-base font-semibold">
+                        Email Authentication
+                      </p>
+                      <p>Receive verification codes via email</p>
+                      <button class="cursor-pointer text-primary mt-4">
+                        Enable Email Authentication
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mt-6">
+                <p>Active Sessions</p>
+
+                <ul class="mt-4">
+                  <li class="flex items-start justify-between py-2">
+                    <div class="flex items-start gap-4">
+                      <img
+                        src="../../assets/icons/webBrowser.png"
+                        alt=""
+                        class="size-4 mt-2"
+                      />
+                      <div>
+                        <p class="font-medium">Chrome on Windows</p>
+                        <p
+                          class="text-sm text-black/60 flex gap-1 items-center"
+                        >
+                          <span>Lagos, Nigeria</span
+                          ><span>Current Session</span>
+                        </p>
+                      </div>
+                    </div>
+                    <button class="cursor-pointer text-red-500">
+                      Sign Out
+                    </button>
+                  </li>
+
+                  <li class="flex items-start justify-between py-2">
+                    <div class="flex items-start gap-4">
+                      <img
+                        src="../../assets/icons/webBrowser.png"
+                        alt=""
+                        class="size-4 mt-2"
+                      />
+                      <div>
+                        <p class="font-medium">Safari on iPhone</p>
+                        <p
+                          class="text-sm text-black/60 flex gap-1 items-center"
+                        >
+                          <span>Abuja, Nigeria</span
+                          ><span>Last active 2 hours ago</span>
+                        </p>
+                      </div>
+                    </div>
+                    <button class="cursor-pointer text-red-500">
+                      Sign Out
+                    </button>
+                  </li>
+                </ul>
+
+                <button class="cursor-pointer text-red-500 mt-6">
+                  Sign out from all devices
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- notification settings section -->
+          <div id="notificationSettingsSection" class="mt-6 hidden">
+            <h2 class="text-tertiaryHeading font-semibold capitalize">
+              notification settings
+            </h2>
+            <p>Manage your notification preferences here</p>
+
+            <form class="mt-6">
+              <div>
+                <p class="font-bold text-lg">Order Notifications</p>
+
+                <ul class="mt-4 grid gap-6">
+                  <li
+                    class="flex flex-col lg:flex-row gap-2 justify-between items-start"
+                  >
+                    <div>
+                      <p class="capitalize font-medium">new order</p>
+                      <p class="text-sm font-light">
+                        Reeive notifications when you get a new order
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveEmailNotifForNewOrder"
+                          class="accent-primary"
+                        />
+                        Email
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receivePushNotifForNewOrder"
+                          class="accent-primary"
+                        />
+                        Push
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveWhatsappNotifForNewOrder"
+                          class="accent-primary"
+                        />
+                        Whatsapp
+                      </label>
+                    </div>
+                  </li>
+
+                  <li
+                    class="flex flex-col lg:flex-row gap-2 justify-between items-start"
+                  >
+                    <div>
+                      <p class="capitalize font-medium">order status update</p>
+                      <p class="text-sm font-light">
+                        Receive notifications when your order status changes
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveEmailNotifForOrderStatusChange"
+                          class="accent-primary"
+                        />
+                        Email
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receivePushNotifForOrderStatusChange"
+                          class="accent-primary"
+                        />
+                        Push
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveWhatsappNotifForOrderStatusChange"
+                          class="accent-primary"
+                        />
+                        Whatsapp
+                      </label>
+                    </div>
+                  </li>
+
+                  <li
+                    class="flex flex-col lg:flex-row gap-2 justify-between items-start"
+                  >
+                    <div>
+                      <p class="capitalize font-medium">order cancellation</p>
+                      <p class="text-sm font-light">
+                        Receive notifications when your order is cancelled
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveEmailNotifForOrderCancellation"
+                          class="accent-primary"
+                        />
+                        Email
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receivePushNotifForOrderCancellation"
+                          class="accent-primary"
+                        />
+                        Push
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveWhatsappNotifForOrderCancellation"
+                          class="accent-primary"
+                        />
+                        Whatsapp
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mt-6">
+                <p class="font-bold text-lg">Product Notifications</p>
+
+                <ul class="mt-4 grid gap-6">
+                  <li
+                    class="flex flex-col lg:flex-row gap-2 justify-between items-start"
+                  >
+                    <div>
+                      <p class="capitalize font-medium">low stock alert</p>
+                      <p class="text-sm font-light">
+                        Reeive notifications when product stock is running low
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveEmailNotifForLowStock"
+                          class="accent-primary"
+                        />
+                        Email
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receivePushNotifForLowStock"
+                          class="accent-primary"
+                        />
+                        Push
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveWhatsappNotifForLowStock"
+                          class="accent-primary"
+                        />
+                        Whatsapp
+                      </label>
+                    </div>
+                  </li>
+
+                  <li
+                    class="flex flex-col lg:flex-row gap-2 justify-between items-start"
+                  >
+                    <div>
+                      <p class="capitalize font-medium">product reviews</p>
+                      <p class="text-sm font-light">
+                        Receive notifications when products get new reviews
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveEmailNotifForProductReview"
+                          class="accent-primary"
+                        />
+                        Email
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receivePushNotifForProductReview"
+                          class="accent-primary"
+                        />
+                        Push
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          id="receiveWhatsappNotifForProductReview"
+                          class="accent-primary"
+                        />
+                        Whatsapp
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <button
+                type="submit"
+                class="bg-primary text-white py-3 rounded-full w-full text-center block md:w-fit mx-auto md:px-36 whitespace-nowrap cursor-pointer hover:bg-primary/90 mt-6"
+              >
+                Save Changes
+              </button>
+            </form>
           </div>
         </section>
       </div>
     </main>
+
+    <script src="../../scripts/merchant/merchantSettings.js"></script>
   </body>
 </html>
