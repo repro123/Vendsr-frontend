@@ -800,95 +800,123 @@ This is my store where I sell awesome products.</textarea
               security settings
             </h2>
             <p>Setup 2FA and manage your security preferences here</p>
-          </div>
-
-          <div class="mt-6">
-            <div class="pb-6 border-b border-b-primary/20">
-              <div class="flex items-start justify-between">
-                <div>
-                  <p class="font-medium">Two-Factor Authentication</p>
-                  <p class="text-sm font-light">
-                    Add an extra layer of security to your account
-                  </p>
-                </div>
-                <label for=""></label>
-              </div>
-              <ul class="mt-4">
-                <li class="flex items-start gap-6">
-                  <img
-                    src="../../assets/icons/authenticatorApp.png"
-                    alt=""
-                    class="size-4 mt-2"
-                  />
-                  <div class="text-sm">
-                    <p class="text-base font-semibold">Authenticator App</p>
-                    <p>
-                      Use an app like Google Authenticator to get verification
-                      codes
-                    </p>
-                    <button class="cursor-pointer text-primary mt-4">
-                      Enable Authenticator
-                    </button>
-                  </div>
-                </li>
-                <li class="flex items-start gap-6 mt-4">
-                  <img
-                    src="../../assets/icons/emailAuthenticator.png"
-                    alt=""
-                    class="size-4 mt-2"
-                  />
-                  <div class="text-sm">
-                    <p class="text-base font-semibold">Email Authentication</p>
-                    <p>Receive verification codes via email</p>
-                    <button class="cursor-pointer text-primary mt-4">
-                      Enable Email Authentication
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </div>
 
             <div class="mt-6">
-              <p>Active Sessions</p>
-
-              <ul class="mt-4">
-                <li class="flex items-start justify-between py-2">
-                  <div class="flex items-start gap-4">
+              <div class="pb-6 border-b border-b-primary/20">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <p class="font-medium">Two-Factor Authentication</p>
+                    <p class="text-sm font-light">
+                      Add an extra layer of security to your account
+                    </p>
+                  </div>
+                  <label
+                    class="cursor-pointer border border-primary w-14 h-6 rounded-full bg-disabledBtn has-checked:bg-primary relative transition-colors duration-300"
+                  >
+                    <input type="checkbox" class="sr-only peer" />
+                    <span
+                      class="h-full w-5 rounded-full bg-white inline-block absolute left-0.5 transition-transform duration-300 peer-checked:translate-x-[1.8rem]"
+                    ></span>
+                    <span class="sr-only"
+                      >Enable Two-Factor Authentication</span
+                    >
+                  </label>
+                </div>
+                <ul class="mt-4 relative" id="authenticationOptionsLists">
+                  <li class="flex items-start gap-6">
                     <img
-                      src="../../assets/icons/webBrowser.png"
+                      src="../../assets/icons/authenticatorApp.png"
                       alt=""
                       class="size-4 mt-2"
                     />
-                    <div>
-                      <p class="font-medium">Chrome on Windows</p>
-                      <p class="text-sm text-black/60 flex gap-1 items-center">
-                        <span>Lagos, Nigeria</span><span>Current Session</span>
+                    <div class="text-sm">
+                      <p class="text-base font-semibold">Authenticator App</p>
+                      <p>
+                        Use an app like Google Authenticator to get verification
+                        codes
                       </p>
+                      <button class="cursor-pointer text-primary mt-4">
+                        Enable Authenticator
+                      </button>
                     </div>
-                  </div>
-                  <button class="cursor-pointer text-primary">Log Out</button>
-                </li>
-
-                <li class="flex items-start justify-between py-2">
-                  <div class="flex items-start gap-4">
+                  </li>
+                  <li class="flex items-start gap-6 mt-4">
                     <img
-                      src="../../assets/icons/webBrowser.png"
+                      src="../../assets/icons/emailAuthenticator.png"
                       alt=""
                       class="size-4 mt-2"
                     />
-                    <div>
-                      <p class="font-medium">Safari on iPhone</p>
-                      <p class="text-sm text-black/60 flex gap-1 items-center">
-                        <span>Abuja, Nigeria</span
-                        ><span>Last active 2 hours ago</span>
+                    <div class="text-sm">
+                      <p class="text-base font-semibold">
+                        Email Authentication
                       </p>
+                      <p>Receive verification codes via email</p>
+                      <button class="cursor-pointer text-primary mt-4">
+                        Enable Email Authentication
+                      </button>
                     </div>
-                  </div>
-                  <button class="cursor-pointer text-primary">Log Out</button>
-                </li>
-              </ul>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mt-6">
+                <p>Active Sessions</p>
+
+                <ul class="mt-4">
+                  <li class="flex items-start justify-between py-2">
+                    <div class="flex items-start gap-4">
+                      <img
+                        src="../../assets/icons/webBrowser.png"
+                        alt=""
+                        class="size-4 mt-2"
+                      />
+                      <div>
+                        <p class="font-medium">Chrome on Windows</p>
+                        <p
+                          class="text-sm text-black/60 flex gap-1 items-center"
+                        >
+                          <span>Lagos, Nigeria</span
+                          ><span>Current Session</span>
+                        </p>
+                      </div>
+                    </div>
+                    <button class="cursor-pointer text-red-500">
+                      Sign Out
+                    </button>
+                  </li>
+
+                  <li class="flex items-start justify-between py-2">
+                    <div class="flex items-start gap-4">
+                      <img
+                        src="../../assets/icons/webBrowser.png"
+                        alt=""
+                        class="size-4 mt-2"
+                      />
+                      <div>
+                        <p class="font-medium">Safari on iPhone</p>
+                        <p
+                          class="text-sm text-black/60 flex gap-1 items-center"
+                        >
+                          <span>Abuja, Nigeria</span
+                          ><span>Last active 2 hours ago</span>
+                        </p>
+                      </div>
+                    </div>
+                    <button class="cursor-pointer text-red-500">
+                      Sign Out
+                    </button>
+                  </li>
+                </ul>
+
+                <button class="cursor-pointer text-red-500 mt-6">
+                  Sign out from all devices
+                </button>
+              </div>
             </div>
           </div>
+
+          <!-- notification settings section -->
+           <div id="notificationSettingsSection"></div>
         </section>
       </div>
     </main>
