@@ -423,6 +423,11 @@
   .inline-block {
     display: inline-block;
   }
+  .table {
+    display: table;
+  .inline-block {
+    display: inline-block;
+  }
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
