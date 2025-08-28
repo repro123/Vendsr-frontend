@@ -423,11 +423,6 @@
   .inline-block {
     display: inline-block;
   }
-  .table {
-    display: table;
-  .inline-block {
-    display: inline-block;
-  }
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
@@ -877,9 +872,6 @@
   }
   .bg-\[\#EEECEC\] {
     background-color: #EEECEC;
-  }
-  .bg-activeSettingsBtn {
-    background-color: var(--color-activeSettingsBtn);
   }
   .bg-black {
     background-color: var(--color-black);
