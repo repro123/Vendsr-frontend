@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shopper All Products</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../src/output.css" />
+  </head>
+  <body
+    class="min-h-dvh antialiased bg-bodyBackground text-paragraphColor font-inter"
+    data-page="ShopperStore"
+  >
+    <header
+      class="bg-white sticky top-0 z-50 px-6 py-3 flex items-center justify-between"
+    >
+      <div
+        class="flex items-center gap-8 w-full mx-auto flex-row justify-between"
+      >
+        <div class="flex items-center gap-4">
+          <!-- Hamburger toggle for mobile --->
+          <div class="flex flex-col justify-center md:hidden">
+            <img
+              src="../../assets/icons/hamburger.png"
+              class="h-4 w-4 object-cover cursor-pointer"
+              id="mobileMenuToggle"
+            />
+          </div>
+          <!-- Logo -->
+          <a href="../../" aria-label="Vendsr Home Page" class="flex-shrink-0">
+            <img
+              src="../../assets/icons/vendsr-logo.png"
+              alt="Vendsr Logo"
+              class="h-8"
+            />
+          </a>
+        </div>
+
+        <div class="flex flex-row gap-8">
+          <!-- desktop variant -->
+          <div class="relative flex-1 max-w-md hidden md:block w-[50vw]">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <img
+                src="../../assets/icons/searchIcon.png"
+                alt="Search"
+                class="h-4 w-4"
+              />
+            </div>
+            <input
+              type="text"
+              placeholder="Search"
+              id="searchInputDesktop"
+              class="block w-full pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
+            />
+            <button
+              aria-label="Cancel Search"
+              id="cancelSearchBtnDesktop"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2"
+            >
+              <span aria-hidden="true">X</span>
+            </button>
+          </div>
+
+          <!-- mobile variant -->
+          <div class="md:hidden flex items-center justify-end gap-2">
+            <label for="searchInputMobile" class="cursor-pointer">
+              <img
+                src="../../assets/icons/searchIcon.png"
+                id="mobileSearchIcon"
+                class="w-4 h-4"
+                alt=""
+            /></label>
+            <input
+              type="text"
+              placeholder="Search"
+              id="searchInputMobile"
+              class="hidden pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary absolute right-0 z-50"
+            />
+            <button
+              aria-label="Cancel Search"
+              id="cancelSearchBtnMobile"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 z-[51]"
+            >
+              <span aria-hidden="true" class="hidden">X</span>
+            </button>
+          </div>
+
+          <div class="flex flex-col justify-center">
+            <button type="button" class="relative" id="notificationsBtn">
+              <img
+                src="../../assets/icons/notification.png"
+                class="h-4 w-4"
+                alt="notifications"
+              />
+              <span
+                id="isNotificationsUnread"
+                class="absolute top-0 right-0 bg-red-500 rounded-full h-1 w-1"
+              ></span>
+            </button>
+          </div>
+
+          <!-- User profile -->
+          <button
+            type="button"
+            id="userProfileDetailsBtn"
+            aria-expanded="false"
+            class="flex items-center gap-1"
+          >
+            <span>
+              <img
+                src=""
+                alt="User"
+                id="userProfilePicture"
+                class="w-8 h-8 rounded-full object-cover"
+              />
+            </span>
+            <div class="flex flex-row">
+              <div class="flex-col items-start hidden md:flex">
+                <span class="text-xs font-semibold" id="userEmailPrefix"></span>
+                <span class="text-xs text-gray-700" id="userEmailSuffix"></span>
+              </div>
+              <div class="md:flex flex-col hidden justify-center">
+                <img src="../../assets/icons/arrow-down.png" class="h-4 w-4" />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex flex-row gap-4 w-full">
+      <!-- Mobile Sidebar Overlay -->
+      <div
+        class="fixed inset-0 bg-white/40 z-[51] hidden transition-opacity duration-300"
+        id="overlay"
+      ></div>
+
+      <!-- Mobile Sidebar -->
+      <aside
+        class="fixed top-0 left-0 w-full max-w-64 h-full bg-white z-[52] shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+        id="mobile-sidebar"
+      >
+        <div class="flex flex-col justify-between h-full p-6 overflow-y-auto">
+          <div>
+            <div class="flex justify-between items-center mb-8">
+              <a
+                href="../../"
+                aria-label="Vendsr Home Page"
+                class="flex-shrink-0"
+              >
+                <img
+                  src="../../assets/icons/vendsr-logo.png"
+                  alt="Vendsr Logo"
+                  class="h-8"
+                />
+              </a>
+              <button id="close-mobile-menu" aria-label="close navigation bar">
+                <img
+                  src="../../assets/icons/arrow-back.png"
+                  class="h-4 w-4"
+                  alt="close navigation bar"
+                />
+              </button>
+            </div>
+            <nav class="space-y-4">
+              <ul class="space-y-2">
+                <li
+                  class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/homeIcon.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Shop
+                  </p>
+                </li>
+
+                <li
+                  class="bg-primary text-white p-3 rounded flex items-center gap-2 cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/shop.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    My Orders
+                  </p>
+                </li>
+
+                <li
+                  class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/exportIcon.png"
+                    class="w-4 h-4"
+                    alt=""
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Cart
+                  </p>
+                </li>
+
+                <li
+                  class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/settingsIcon.png"
+                    class="w-4 h-4"
+                    alt=""
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Wishlist
+                  </p>
+                </li>
+
+                <li
+                  class=" text-white flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/helpCenterIcon.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Help Center
+                  </p>
+                </li>
+                <li
+                  class=" text-white flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/helpCenterIcon.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Help Center
+                  </p>
+                </li>                
+              </ul>
+            </nav>
+          </div>
+          <div class="text-sm text-gray-500 flex flex-col gap-4 pt-4">
+            <a href="#" class="hover:text-primary">Terms and conditions</a>
+            <a href="#" class="hover:text-primary">Privacy Policy</a>
+            <a
+              class="flex items-center gap-4 bg-gray-50 rounded-lg hover:text-primary"
+            >
+              <img
+                src="../../assets/icons/logoutmain.png"
+                alt=""
+                class="w-4 h-4"
+              />
+              <p
+                class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+              >
+                Log out
+              </p>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Page Container -->
+      <div class="flex w-full bg-white text-gray-800 md:pr-8 min-h-dvh">
+        <!-- Sticky Sidebar -->
+        <aside
+          class="w-[20%] bg-white border-1 border-gray-100 sticky top-16 h-[calc(100vh_-_4rem)] hidden md:block"
+        >
+          <div
+            class="flex flex-col justify-between h-full px-4 py-2 overflow-y-auto"
+          >
+            <nav class="space-y-4" aria-label="desktop navigation">
+              <ul class="space-y-2">
+                <li class="bg-primary text-white font-semibold rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/homeIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Shop</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/shop.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>My Orders</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/exportIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Cart</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/settingsIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Wishlist</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/helpCenterIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Settings</span></a
+                  >
+                </li>
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/helpCenterIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Help Center</span></a
+                  >
+                </li>
+              </ul>
+            </nav>
+            <div class="text-sm text-gray-500 flex flex-col gap-4">
+              <a href="#" class="hover:text-primary">Terms and conditions</a>
+              <a href="#" class="hover:text-primary">Privacy Policy</a>
+              <a href="" class="flex items-center gap-2 bg-gray-50 rounded-lg">
+                <img src="../../assets/icons/logoutmain.png" class="w-4 h-4" />
+                <span> Log out </span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+          <div class="flex flex-col md:gap-4 w-full">
+
+            <div class="flex px-4 md:px-16">
+              <h2 class="hidden md:block text-gray-500"> Shop</h2>
+              <span class="px-2"> > </span>
+              <h2>all stores </h2>
+            </div>
+            <div class="md:w-[100%] w-full md:px-10 md:py-2 p-4 overflow-y-auto">
+              <!-- Welcome Message -->
+            <div
+            class="flex flex-col gap-4 mb-6 md:flex md:items-center md:justify-between md:flex-row"
+          >
+            <!-- Mobile Buttons Row -->
+            <div
+              class="flex flex-wrap justify-start jmd:ustify-between items-center gap-8 w-full md:w-auto md:px-6"
+            >
+              <button
+                id="filterProductsByName"
+                aria-expanded="false"
+                class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary"
+              >
+                <img
+                  src="../../assets/icons/filterIcon.png"
+                  class="h-4 w-4"
+                  alt=""
+                />
+                <span class="text-[0.8rem] md:text-sm">Filter by Categories</span>
+              </button>
+              <button
+                id="filterByPrice"
+                aria-expanded="false"
+                class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary"
+              >
+                <img
+                  src="../../assets/icons/filterIcon.png"
+                  alt=""
+                  class="h-4 w-4"
+                />
+                <span class="text-[0.8rem] md:text-sm">Filter by Ratings</span>
+              </button>
+            </div>
+
+            <!-- PC-only Select Button -->
+            <div class="hidden md:flex items-center gap-4">
+                <p class="text-sm text-gray-500">
+                  Showing <span id="numberOfCurrentProductsShown">0</span> of
+                  <span id="totalNumberOfProducts">0</span> products
+                </p>
+            </div>
+      
+          </div>
+
+          <!-- Sub Filters -->
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-6"> 
+            <div class=" hidden md:block mb-8 flex flex-row justify-between items-center md:hidden">
+              <button class="md:px-4 py-2 bg-primary text-white rounded-[13px] h-fit"><h3>Recent Orders</h3></button>
+              <button class="px-2 py- border-1 border-gray-300 rounded-lg flex flex-row items-center gap-2 h-8"> <img src="../../assets/icons/arrow-back.png"> <p>Select all</p></button>
+            </div>
+
+            <!-- Main content -->
+            <div class="pt-4">
+              <!-- All Available Stores-->
+              <ul 
+                id = "availableProducts" 
+                class="grid grid-cols-2 md:grid-cols-4 mx-[-2vw] md:mx-[-0.3rem]">
+              </ul>
+            </div>
+            <div class="w-full flex flex-row justify-center box-sizing">
+              <div class="flex flex-wrap text-[0.9rem] md:text-[1rem] justify-center w-fit rounded-[8px] border-1 border-gray-400 px-[1vw] py-0">
+                <button class="border-r-1 px-2 border-gray-400 md:min-w-24 py-1 text-center flex flex-row items-center justify-center gap-2"><img src="../../assets/icons/arrow-back.png" class="w-4 h-4"><span class="h-full"> Previous</span></button>
+                <p class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center"> 1 </p>
+                <p class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center"> 2  </p>
+                <p class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center"> 3 </p>
+                <p class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center">...</p>
+                <button class="border-gray-400 px-2 md:min-w-24 text-center py-1 flex flex-row items-center justify-center gap-2"><span class="h-full"> Next</span><img src="../../assets/icons/arrow-right.png" class="w-4 h-4"></button>
+              </div> 
+            </div> 
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="../../scripts/merchant/merchantProductDashboard.js"></script>
+    <script src="../../scripts/shopper/ShopperAvailableProducts.js"></script>
+  </body>
+</html>
