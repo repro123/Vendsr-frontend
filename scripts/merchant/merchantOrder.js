@@ -36,6 +36,23 @@ document.addEventListener("DOMContentLoaded", () => {
     ); // Debug
   }
 
+  if (!email || !token) {
+    console.warn(
+      "Missing email or token in sessionStorage, redirecting to signup"
+    ); // Debug
+    if (addProductNameError) {
+      addProductNameError.textContent =
+        "Authentication required. Please sign up or log in.";
+      addProductNameError.setAttribute("aria-live", "polite");
+    }
+    setTimeout(() => {
+      window.location.href = "../sign-up/";
+    }, 2000);
+    return;
+  }
+  console.log("Email from sessionStorage:", email); // Debug
+  console.log("Token from sessionStorage:", token); // Debug
+
   // Mobile Menu Toggle Logic
   const mobileMenuToggle = document.getElementById("mobileMenuToggle");
   const mobileSidebar = document.getElementById("mobile-sidebar");
