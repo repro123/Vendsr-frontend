@@ -538,7 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Register API call
         const registerResponse = await Promise.race([
           fetch(
-            "https://vendsr-backend.onrender.com/api/order/my-order/register-shopper",
+            "https://vendsr-backend.onrender.com/api/auth/register-shopper",
             {
               method: "POST",
               headers: {
