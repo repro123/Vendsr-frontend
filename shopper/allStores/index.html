@@ -27,6 +27,7 @@
           <div class="flex flex-col justify-center md:hidden">
             <img
               src="../../assets/icons/hamburger.png"
+              alt="mobile menu"
               class="h-4 w-4 object-cover cursor-pointer"
               id="mobileMenuToggle"
             />
@@ -75,7 +76,7 @@
                 src="../../assets/icons/searchIcon.png"
                 id="mobileSearchIcon"
                 class="w-4 h-4"
-                alt=""
+                alt="Search icon "
             /></label>
             <input
               type="text"
@@ -113,20 +114,12 @@
             aria-expanded="false"
             class="flex items-center gap-1"
           >
-            <span>
-              <img
-                src=""
-                alt="User"
-                id="userProfilePicture"
-                class="w-8 h-8 rounded-full object-cover"
-              />
-            </span>
             <div class="flex flex-row">
               <div class="flex-col items-start hidden md:flex">
                 <span class="text-xs font-semibold" id="userEmailPrefix"></span>
                 <span class="text-xs text-gray-700" id="userEmailSuffix"></span>
               </div>
-              <div class="md:flex flex-col hidden justify-center">
+              <div class="md:flex md:flex-col hidden justify-center">
                 <img src="../../assets/icons/arrow-down.png" class="h-4 w-4" />
               </div>
             </div>
@@ -176,7 +169,7 @@
                 >
                   <img
                     src="../../assets/icons/homeIcon.png"
-                    alt=""
+                    alt="Home icon"
                     class="w-4 h-4"
                   />
                   <p
@@ -191,7 +184,7 @@
                 >
                   <img
                     src="../../assets/icons/shop.png"
-                    alt=""
+                    alt="Shop icon"
                     class="w-4 h-4"
                   />
                   <p
@@ -207,7 +200,7 @@
                   <img
                     src="../../assets/icons/exportIcon.png"
                     class="w-4 h-4"
-                    alt=""
+                    alt="Export icon"
                   />
                   <p
                     class="hover:text-blue-500 cursor-pointer font-semibold text-base"
@@ -222,7 +215,7 @@
                   <img
                     src="../../assets/icons/settingsIcon.png"
                     class="w-4 h-4"
-                    alt=""
+                    alt="Settings icon"
                   />
                   <p
                     class="hover:text-blue-500 cursor-pointer font-semibold text-base"
@@ -232,11 +225,11 @@
                 </li>
 
                 <li
-                  class=" text-white flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                  class="text-white flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
                 >
                   <img
                     src="../../assets/icons/helpCenterIcon.png"
-                    alt=""
+                    alt="Help center icon"
                     class="w-4 h-4"
                   />
                   <p
@@ -246,11 +239,11 @@
                   </p>
                 </li>
                 <li
-                  class=" text-white flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                  class="text-white flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
                 >
                   <img
                     src="../../assets/icons/helpCenterIcon.png"
-                    alt=""
+                    alt="Help center icon"
                     class="w-4 h-4"
                   />
                   <p
@@ -258,7 +251,7 @@
                   >
                     Help Center
                   </p>
-                </li>                
+                </li>
               </ul>
             </nav>
           </div>
@@ -270,7 +263,7 @@
             >
               <img
                 src="../../assets/icons/logoutmain.png"
-                alt=""
+                alt="Logout icon"
                 class="w-4 h-4"
               />
               <p
@@ -302,7 +295,7 @@
                     <img
                       src="../../assets/icons/homeIcon.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="Home icon"
                     />
                     <span>Shop</span></a
                   >
@@ -316,7 +309,7 @@
                     <img
                       src="../../assets/icons/shop.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="Shop icon"
                     />
                     <span>My Orders</span></a
                   >
@@ -330,7 +323,7 @@
                     <img
                       src="../../assets/icons/exportIcon.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="Export icon"
                     />
                     <span>Cart</span></a
                   >
@@ -344,7 +337,7 @@
                     <img
                       src="../../assets/icons/settingsIcon.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="wish list icon"
                     />
                     <span>Wishlist</span></a
                   >
@@ -358,7 +351,7 @@
                     <img
                       src="../../assets/icons/helpCenterIcon.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="settings icon"
                     />
                     <span>Settings</span></a
                   >
@@ -371,7 +364,7 @@
                     <img
                       src="../../assets/icons/helpCenterIcon.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt=" help center icon"
                     />
                     <span>Help Center</span></a
                   >
@@ -382,7 +375,11 @@
               <a href="#" class="hover:text-primary">Terms and conditions</a>
               <a href="#" class="hover:text-primary">Privacy Policy</a>
               <a href="" class="flex items-center gap-2 bg-gray-50 rounded-lg">
-                <img src="../../assets/icons/logoutmain.png" class="w-4 h-4" />
+                <img
+                  src="../../assets/icons/logoutmain.png"
+                  alt="log out icon"
+                  class="w-4 h-4"
+                />
                 <span> Log out </span>
               </a>
             </div>
@@ -390,88 +387,127 @@
         </aside>
 
         <!-- Main Content -->
-          <div class="flex flex-col md:gap-4 w-full">
-
-            <div class="flex px-4 md:px-16">
-              <h2 class="hidden md:block text-gray-500"> Shop</h2>
-              <span class="px-2"> > </span>
-              <h2>all stores </h2>
-            </div>
-            <div class="md:w-[100%] w-full md:px-10 md:py-2 p-4 overflow-y-auto">
-              <!-- Welcome Message -->
+        <div class="flex flex-col md:gap-4 w-full">
+          <div class="flex px-4 md:px-16">
+            <img
+              src="../../assets/icons/arrow-right.png"
+              class="md:hidden text-gray-500"
+            />
+            <h2 class="hidden md:block text-gray-500">Shop</h2>
+            <img
+              src="../../assets/icons/arrow-right.png"
+              class="hidden md:block text-gray-500"
+            />
+            <h2>all stores</h2>
+          </div>
+          <div class="md:w-[100%] w-full md:px-10 md:py-2 p-4 overflow-y-auto">
+            <!-- Welcome Message -->
             <div
-            class="flex flex-col gap-4 mb-6 md:flex md:items-center md:justify-between md:flex-row"
-          >
-            <!-- Mobile Buttons Row -->
-            <div
-              class="flex flex-wrap justify-start jmd:ustify-between items-center gap-8 w-full md:w-auto md:px-6"
+              class="flex flex-col gap-4 mb-6 md:flex md:items-center md:justify-between md:flex-row"
             >
-              <button
-                id="filterProductsByName"
-                aria-expanded="false"
-                class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary"
+              <!-- Mobile Buttons Row -->
+              <div
+                class="flex flex-wrap justify-start jmd:ustify-between items-center gap-8 w-full md:w-auto md:px-6"
               >
-                <img
-                  src="../../assets/icons/filterIcon.png"
-                  class="h-4 w-4"
-                  alt=""
-                />
-                <span class="text-[0.8rem] md:text-sm">Filter by Categories</span>
-              </button>
-              <button
-                id="filterByPrice"
-                aria-expanded="false"
-                class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary"
-              >
-                <img
-                  src="../../assets/icons/filterIcon.png"
-                  alt=""
-                  class="h-4 w-4"
-                />
-                <span class="text-[0.8rem] md:text-sm">Filter by Ratings</span>
-              </button>
-            </div>
+                <button
+                  id="filterProductsByName"
+                  aria-expanded="false"
+                  class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary"
+                >
+                  <img
+                    src="../../assets/icons/filterIcon.png"
+                    class="h-4 w-4"
+                    alt=" Filter by Categories Icon"
+                  />
+                  <span class="text-[0.8rem] md:text-sm"
+                    >Filter by Categories</span
+                  >
+                </button>
+                <button
+                  id="filterByPrice"
+                  aria-expanded="false"
+                  class="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded whitespace-nowrap cursor-pointer aria-expanded:border-primary"
+                >
+                  <img
+                    src="../../assets/icons/filterIcon.png"
+                    alt="Filter by ratings icon"
+                    class="h-4 w-4"
+                  />
+                  <span class="text-[0.8rem] md:text-sm"
+                    >Filter by Ratings</span
+                  >
+                </button>
+              </div>
 
-            <!-- PC-only Select Button -->
-            <div class="hidden md:flex items-center gap-4">
+              <!-- PC-only Select Button -->
+              <div class="hidden md:flex items-center gap-4">
                 <p class="text-sm text-gray-500">
                   Showing <span id="numberOfCurrentProductsShown">0</span> of
                   <span id="totalNumberOfProducts">0</span> products
                 </p>
-            </div>
-      
-          </div>
-
-          <!-- Sub Filters -->
-          <div class="flex flex-wrap items-center justify-between gap-4 mb-6"> 
-            <div class=" hidden md:block mb-8 flex flex-row justify-between items-center md:hidden">
-              <button class="md:px-4 py-2 bg-primary text-white rounded-[13px] h-fit"><h3>Recent Orders</h3></button>
-              <button class="px-2 py- border-1 border-gray-300 rounded-lg flex flex-row items-center gap-2 h-8"> <img src="../../assets/icons/arrow-back.png"> <p>Select all</p></button>
+              </div>
             </div>
 
-            <!-- Main content -->
-            <div class="pt-4">
-              <!-- All Available Stores-->
-              <ul 
-                id = "availableProducts" 
-                class="grid grid-cols-2 md:grid-cols-4 mx-[-2vw] md:mx-[-0.3rem]">
-              </ul>
+            <!-- Sub Filters -->
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+              <!-- Main content -->
+              <div class="pt-4">
+                <!-- All Available Stores-->
+                <ul
+                  id="availableProducts"
+                  class="grid grid-cols-2 md:grid-cols-4 mx-[-2vw] md:mx-[-0.3rem]"
+                ></ul>
+              </div>
+              <div class="w-full flex flex-row justify-center box-sizing">
+                <div
+                  class="flex flex-wrap text-[0.9rem] md:text-[1rem] justify-center w-fit rounded-[8px] border-1 border-gray-400 px-[1vw] py-0"
+                >
+                  <button
+                    class="border-r-1 px-2 border-gray-400 md:min-w-24 py-1 text-center flex flex-row items-center justify-center gap-2"
+                  >
+                    <img
+                      src="../../assets/icons/arrow-back.png"
+                      class="w-4 h-4"
+                    /><span class="h-full"> Previous</span>
+                  </button>
+                  <p
+                    class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center"
+                  >
+                    1
+                  </p>
+                  <p
+                    class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center"
+                  >
+                    2
+                  </p>
+                  <p
+                    class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center"
+                  >
+                    3
+                  </p>
+                  <p
+                    class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center"
+                  >
+                    ...
+                  </p>
+                  <button
+                    class="border-gray-400 px-2 md:min-w-24 text-center py-1 flex flex-row items-center justify-center gap-2"
+                  >
+                    <span class="h-full"> Next</span
+                    ><img
+                      src="../../assets/icons/arrow-right.png"
+                      class="w-4 h-4"
+                    />
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="w-full flex flex-row justify-center box-sizing">
-              <div class="flex flex-wrap text-[0.9rem] md:text-[1rem] justify-center w-fit rounded-[8px] border-1 border-gray-400 px-[1vw] py-0">
-                <button class="border-r-1 px-2 border-gray-400 md:min-w-24 py-1 text-center flex flex-row items-center justify-center gap-2"><img src="../../assets/icons/arrow-back.png" class="w-4 h-4"><span class="h-full"> Previous</span></button>
-                <p class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center"> 1 </p>
-                <p class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center"> 2  </p>
-                <p class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center"> 3 </p>
-                <p class="border-r-1 border-gray-400 px-2 py-1 md:min-w-8 text-center">...</p>
-                <button class="border-gray-400 px-2 md:min-w-24 text-center py-1 flex flex-row items-center justify-center gap-2"><span class="h-full"> Next</span><img src="../../assets/icons/arrow-right.png" class="w-4 h-4"></button>
-              </div> 
-            </div> 
           </div>
         </div>
       </div>
     </main>
-    <script src="../../scripts/merchant/merchantProductDashboard.js"></script>
+
+    <script src="../../scripts/merchant/merchantProductDashboard.jS"></script>
     <script src="../../scripts/shopper/ShopperAvailableProducts.js"></script>
   </body>
 </html>
