@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }); // Debug
 
         // Redirect to dashboard
-        window.location.href = "../dashboard_profile/";
+        window.location.href = "../dashboard/";
       } catch (error) {
         console.error("Login failed:", error.message);
         showError(usernameInput, usernameError, error.message);
