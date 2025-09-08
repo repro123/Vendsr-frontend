@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shopper Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../src/output.css" />
+  </head>
+  <body
+    class="min-h-dvh antialiased bg-bodyBackground text-paragraphColor font-inter"
+    data-page="ShopperReview"
+  >
+    <header
+      class="bg-white sticky top-0 z-50 px-6 py-3 flex items-center justify-between"
+    >
+      <div
+        class="flex items-center gap-8 w-full mx-auto flex-row justify-between"
+      >
+        <div class="flex items-center gap-4">
+          <!-- Hamburger toggle for mobile --->
+          <div class="flex flex-col justify-center md:hidden">
+            <img
+              src="../../assets/icons/hamburger.png"
+              class="h-4 w-4 object-cover cursor-pointer"
+              id="mobileMenuToggle"
+            />
+          </div>
+          <!-- Logo -->
+          <a href="../../" aria-label="Vendsr Home Page" class="flex-shrink-0">
+            <img
+              src="../../assets/icons/vendsr-logo.png"
+              alt="Vendsr Logo"
+              class="h-8"
+            />
+          </a>
+        </div>
+
+        <div class="flex flex-row gap-8">
+          <!-- desktop variant -->
+          <div class="relative flex-1 max-w-md hidden md:block w-[50vw]">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <img
+                src="../../assets/icons/searchIcon.png"
+                alt="Search"
+                class="h-4 w-4"
+              />
+            </div>
+            <input
+              type="text"
+              placeholder="Search"
+              id="searchInputDesktop"
+              class="block w-full pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
+            />
+            <button
+              aria-label="Cancel Search"
+              id="cancelSearchBtnDesktop"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2"
+            >
+              <span aria-hidden="true">X</span>
+            </button>
+          </div>
+
+          <!-- mobile variant -->
+          <div class="md:hidden flex items-center justify-end gap-2">
+            <label for="searchInputMobile" class="cursor-pointer">
+              <img
+                src="../../assets/icons/searchIcon.png"
+                id="mobileSearchIcon"
+                class="w-4 h-4"
+                alt=""
+            /></label>
+            <input
+              type="text"
+              placeholder="Search"
+              id="searchInputMobile"
+              class="hidden pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary absolute right-0 z-50"
+            />
+            <button
+              aria-label="Cancel Search"
+              id="cancelSearchBtnMobile"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 z-[51]"
+            >
+              <span aria-hidden="true" class="hidden">X</span>
+            </button>
+          </div>
+
+          <div class="flex flex-col justify-center">
+            <button type="button" class="relative" id="notificationsBtn">
+              <img
+                src="../../assets/icons/notification.png"
+                class="h-4 w-4"
+                alt="notifications"
+              />
+              <span
+                id="isNotificationsUnread"
+                class="absolute top-0 right-0 bg-red-500 rounded-full h-1 w-1"
+              ></span>
+            </button>
+          </div>
+
+          <!-- User profile -->
+          <button
+            type="button"
+            id="userProfileDetailsBtn"
+            aria-expanded="false"
+            class="flex items-center gap-1"
+          >
+            <div class="flex flex-row">
+              <div class="flex-col items-start hidden md:flex">
+                <span class="text-xs font-semibold" id="userEmailPrefix"></span>
+                <span class="text-xs text-gray-700" id="userEmailSuffix"></span>
+              </div>
+              <div class="md:flex flex-col hidden justify-center">
+                <img src="../../assets/icons/arrow-down.png" class="h-4 w-4" />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex flex-row gap-4 w-full">
+      <!-- Mobile Sidebar Overlay -->
+      <div
+        class="fixed inset-0 bg-white/40 z-[51] hidden transition-opacity duration-300"
+        id="overlay"
+      ></div>
+
+      <!-- Mobile Sidebar -->
+      <aside
+        class="fixed top-0 left-0 w-full max-w-64 h-full bg-white z-[52] shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+        id="mobile-sidebar"
+      >
+        <div class="flex flex-col justify-between h-full p-6 overflow-y-auto">
+          <div>
+            <div class="flex justify-between items-center mb-8">
+              <a
+                href="../../"
+                aria-label="Vendsr Home Page"
+                class="flex-shrink-0"
+              >
+                <img
+                  src="../../assets/icons/vendsr-logo.png"
+                  alt="Vendsr Logo"
+                  class="h-8"
+                />
+              </a>
+              <button id="close-mobile-menu" aria-label="close navigation bar">
+                <img
+                  src="../../assets/icons/arrow-back.png"
+                  class="h-4 w-4"
+                  alt="close navigation bar"
+                />
+              </button>
+            </div>
+            <nav class="space-y-4">
+              <ul class="space-y-2">
+                <li
+                  class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/homeIcon.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Shop
+                  </p>
+                </li>
+
+                <li
+                  class="bg-primary text-white p-3 rounded flex items-center gap-2 cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/shop.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    My Orders
+                  </p>
+                </li>
+
+                <li
+                  class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/exportIcon.png"
+                    class="w-4 h-4"
+                    alt=""
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Cart
+                  </p>
+                </li>
+
+                <li
+                  class="flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/settingsIcon.png"
+                    class="w-4 h-4"
+                    alt=""
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Wishlist
+                  </p>
+                </li>
+
+                <li
+                  class="text-white flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/helpCenterIcon.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Help Center
+                  </p>
+                </li>
+                <li
+                  class="text-white flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
+                >
+                  <img
+                    src="../../assets/icons/helpCenterIcon.png"
+                    alt=""
+                    class="w-4 h-4"
+                  />
+                  <p
+                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+                  >
+                    Help Center
+                  </p>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="text-sm text-gray-500 flex flex-col gap-4 pt-4">
+            <a href="#" class="hover:text-primary">Terms and conditions</a>
+            <a href="#" class="hover:text-primary">Privacy Policy</a>
+            <a
+              class="flex items-center gap-4 bg-gray-50 rounded-lg hover:text-primary"
+            >
+              <img
+                src="../../assets/icons/logoutmain.png"
+                alt=""
+                class="w-4 h-4"
+              />
+              <p
+                class="hover:text-blue-500 cursor-pointer font-semibold text-base"
+              >
+                Log out
+              </p>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Page Container -->
+      <div class="flex w-full bg-white text-gray-800 md:pr-8 min-h-dvh">
+        <!-- Sticky Sidebar -->
+        <aside
+          class="w-[20%] bg-white border-1 border-gray-100 sticky top-16 h-[calc(100vh_-_4rem)] hidden md:block"
+        >
+          <div
+            class="flex flex-col justify-between h-full px-4 py-2 overflow-y-auto"
+          >
+            <nav class="space-y-4" aria-label="desktop navigation">
+              <ul class="space-y-2">
+                <li class="bg-primary text-white font-semibold rounded-lg p-2">
+                  <a href="#" class="flex flex-row gap-4 items-center">
+                    <img
+                      src="../../assets/icons/homeIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Shop</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/shop.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>My Orders</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/exportIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Cart</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/settingsIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Wishlist</span></a
+                  >
+                </li>
+
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/helpCenterIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Settings</span></a
+                  >
+                </li>
+                <li class="bg-gray-50 rounded-lg p-2">
+                  <a
+                    href="#"
+                    class="flex flex-row gap-4 items-center hover:text-primary font-semibold"
+                  >
+                    <img
+                      src="../../assets/icons/helpCenterIcon.png"
+                      class="w-4 h-4"
+                      alt=""
+                    />
+                    <span>Help Center</span></a
+                  >
+                </li>
+              </ul>
+            </nav>
+            <div class="text-sm text-gray-500 flex flex-col gap-4">
+              <a href="#" class="hover:text-primary">Terms and conditions</a>
+              <a href="#" class="hover:text-primary">Privacy Policy</a>
+              <a href="" class="flex items-center gap-2 bg-gray-50 rounded-lg">
+                <img src="../../assets/icons/logoutmain.png" class="w-4 h-4" />
+                <span> Log out </span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex flex-row gap-4 w-full">
+          <div class="md:w-[100%] w-full md:p-10 p-4 overflow-y-auto">
+
+            <!-- Mobile: Avaialable/time PC:Breadcrum/time -->
+             <!--Mobiel version-->
+
+              <div class=" md:hidden flex flex-row min-w-full justify-between mb-2 px-4">
+
+              <div class="flex flex-row text-sm text-gray-600">
+                <span class="flex flex-row">
+                  <img src="../../assets/icons/arrow-right.png">
+                  <p>
+                  All Stores
+                  </p>
+                </span>
+              </div>
+            </div>
+
+            <!--PC version-->
+            <div class="hidden md:flex flex-row min-w-full justify-between mb-10">
+
+              <div class="flex flex-row">
+                <h2> shop</h2>
+                <img src = "../../assets/icons/arrow-right.png">
+                <p>chic Boutique</p> 
+                <img src = "../../assets/icons/arrow-right.png">
+                <p id = "itemsname">Elgegant Women's Dress</p> 
+              </div>
+            </div>
+            <!-- Welcome Message -->
+            <div class="flex flex-col md:flex-row md:gap-4 w-full md:mb-36">
+              <div class="md:w-1/2 relative">
+                <img src="../../assets/images/smiley-african-woman-working-market.png">
+                <img src="../../assets/icons/shop.png" class=" absolute bottom-[90%] left-[5%] cursor-pointer">
+                <p class="absolute bottom-[5%] left-[3%] bg-white rounded-full px-4 py-1 cursor-pointer text-sm">In Stock</p>
+              </div>
+
+              <div class="md:w-1/2 ">
+                <div class="md:w-[80%] md:h-[100%] gap-4 flex flex-col justify-between" >
+                  <h1 class="font-bold text-2xl md:pb-2 pt-4 md:pt-0 "> Elegant Women's Dress</h1>
+                  <p class="text-gray-600 md:text-xl">A stylish and comfortable dress, perfect for any occasion. Made with high-quality fabric, it offers a flattering fit and timeless elegance.</p>
+                  <span class="flex flex-row" > <img src="../../assets/icons/Verified.png"><p>4.5</p></span>
+                  <div>
+                    <p class="py-2 text-gray-700">size</p>
+                    <form class="space-x-1 text-sm md:text-base">
+                      <label class="cursor-pointer">
+                        <input type="radio" name = "Size" value="small" class="hidden peer">
+                        <span class="px-[0.3rem] py-[0.1] border-1 border-gray-400 rounded-md peer-checked:bg-bodyBackground peer-checked:text-primary">small</span>
+                      </label>
+
+                      <label class="cursor-pointer">
+                        <input type="radio" name = "Size" value="small" class="hidden peer">
+                        <span class="px-[0.3rem] py-[0.1] border-1 border-gray-400 rounded-md peer-checked:bg-bodyBackground peer-checked:text-primary">Medium</span>
+                      </label>
+
+                      <label class="cursor-pointer">
+                        <input type="radio" name = "Size" value="small" class="hidden peer">
+                        <span class="px-[0.3rem] py-[0.1] border-1 border-gray-400 rounded-md peer-checked:bg-bodyBackground peer-checked:text-primary">Large</span>
+                      </label>
+                    </form>
+                  </div>
+                  <div>
+                    <p class="text-gray-500 py-2"> color</p>
+                    <form id = "colorselection" class="flex flex-row gap-2 md:w-[50%]">
+                      <label class="">
+                        <input type="radio" name = "Size" value="small" class="hidden peer">
+                        <span class="bg-red-500 w-6 h-6 block rounded-full peer-checked:border-primary peer-checked:border-2"></span>
+                      </label>
+
+                      <label class="">
+                        <input type="radio" name = "Size" value="small" class="hidden peer">
+                        <span class="bg-yellow-500 w-6 h-6 block rounded-full peer-checked:border-primary peer-checked:border-2"></span>
+                      </label>
+
+                      <label class="">
+                        <input type="radio" name = "Size" value="small" class="hidden peer">
+                        <span class="bg-blue-500 w-6 h-6 block rounded-full peer-checked:border-primary peer-checked:border-2"></span>
+                      </label>
+
+                      <label class="">
+                        <input type="radio" name = "Size" value="small" class="hidden peer">
+                        <span class="bg-green-500 w-6 h-6 block rounded-full peer-checked:border-primary peer-checked:border-2"></span>
+                      </label>
+
+                      <label class="">
+                        <input type="radio" name = "Size" value="small" class="hidden peer">
+                        <span class="bg-orange-500 w-6 h-6 block rounded-full peer-checked:border-primary peer-checked:border-2"></span>
+                      </label>
+                    </form>
+                  </div>
+
+                <!--Quantity Adjuster-->
+                <div class="flex flex-col gap-2">
+                  <p class="text-gray-500">Quantity</p>
+                  <div class="flex flex-row gap-4">
+                    <button class="rounded-md w-6 h-6 bg-gray-300 text-white cursor-pointer" >-</button>
+                    <p> 1 </p>
+                    <button class="rounded-md w-6 h-6 bg-primary text-white cursor-pointer" >+</button>
+                  </div>
+                  <h3 class="text-2xl font-bold my-2"> N180,000</h3>
+                </div>
+                <div class="flex flex-row justify-between md:justify-start gap-4">
+                  <button class="bg-primary py-2 md:py-4 w-[50%] md:w-[40%] rounded-full text-white font-semibold cursor-pointer">Add to Cart</button>
+                  <button class="w-[50%] md:w-[40%] py-2 md:py-4 rounded-full border-1 border-primary font-semibold cursor-pointer">Buy Now</button>
+                </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Main content -->
+            <div class="pt-4">
+                <button class="flex flex-row pt-5 pb-2">
+                <p class="text-[16px] font-bold m-0">Popular stores</p>
+                <img src="../../assets/icons/arrow-right.png" class="h-4 w-4" />
+              </button>
+              <!-- All Available Stores-->
+              <ul
+                id="availableProducts"
+                class="grid grid-cols-2 md:grid-cols-5 mx-[-2vw] md:mx-[-0.3rem]"
+              ></ul>
+
+              <button class="flex flex-row pt-5 pb-2">
+                <p class="text-[16px] font-bold m-0">Review</p>
+                <img src="../../assets/icons/arrow-right.png" class="h-4 w-4" />
+              </button>
+
+              <!--Popular Stores-->
+
+              <ul
+                id=""
+                class="grid grid-cols-1 md:grid-cols-3 mx-[-2vw] md:mx-[-0.3rem]"
+                
+              >
+                <li class="w-full md:w-[75%]">
+                  <div>
+                    <div class="flex flex-row gap-2">
+                      <img class="w-11 h-11 rounded-full" src="../../assets/images/Felicity.png">
+                      <div class="flex flex-col">
+                        <p class="text-gray-900">Sophia Carter</p>
+                        <p class="text-sm py-[5px] text-gray-600">2 weeks ago</p>
+                      </div>
+                    </div>
+                    <div class="flex flex-col">
+                      <p class="text-gray-600 "> Some random text... long random text, random long text, random long tet, random long text.</p>
+                    </div>
+                    <div class="flex flex-row py-2">
+                      <p> ⭐⭐⭐⭐⭐</p>
+                    </div>
+                  </div>
+                </li>
+            </ul>
+            </div>
+            <!--Pc content-->
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="../../scripts/merchant/merchantProductDashboard.j"></script>
+    <script src="../../scripts/shopper/ShopperDashboard.js"></script>
+  </body>
+</html>
