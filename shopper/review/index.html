@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>shopper Review</title>
+    <title>Shopper Review</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,11 +23,12 @@
         class="flex items-center gap-8 w-full mx-auto flex-row justify-between"
       >
         <div class="flex items-center gap-4">
-          <!-- Hamburger toggle for mobile --->
+          <!-- Hamburger toggle for mobile -->
           <div class="flex flex-col justify-center md:hidden">
             <img
               src="../../assets/icons/hamburger.png"
               class="h-4 w-4 object-cover cursor-pointer"
+              alt="Open menu"
               id="mobileMenuToggle"
             />
           </div>
@@ -75,7 +76,7 @@
                 src="../../assets/icons/searchIcon.png"
                 id="mobileSearchIcon"
                 class="w-4 h-4"
-                alt=""
+                alt="Search"
             /></label>
             <input
               type="text"
@@ -97,7 +98,7 @@
               <img
                 src="../../assets/icons/notification.png"
                 class="h-4 w-4"
-                alt="notifications"
+                alt="Notifications"
               />
               <span
                 id="isNotificationsUnread"
@@ -119,7 +120,11 @@
                 <span class="text-xs text-gray-700" id="userEmailSuffix"></span>
               </div>
               <div class="md:flex flex-col hidden justify-center">
-                <img src="../../assets/icons/arrow-down.png" class="h-4 w-4" />
+                <img
+                  src="../../assets/icons/arrow-down.png"
+                  class="h-4 w-4"
+                  alt="Expand profile menu"
+                />
               </div>
             </div>
           </button>
@@ -153,11 +158,11 @@
                   class="h-8"
                 />
               </a>
-              <button id="close-mobile-menu" aria-label="close navigation bar">
+              <button id="close-mobile-menu" aria-label="Close navigation bar">
                 <img
                   src="../../assets/icons/arrow-back.png"
                   class="h-4 w-4"
-                  alt="close navigation bar"
+                  alt="Close navigation bar"
                 />
               </button>
             </div>
@@ -168,7 +173,7 @@
                 >
                   <img
                     src="../../assets/icons/homeIcon.png"
-                    alt=""
+                    alt="Shop"
                     class="w-4 h-4"
                   />
                   <p
@@ -183,7 +188,7 @@
                 >
                   <img
                     src="../../assets/icons/shop.png"
-                    alt=""
+                    alt="My Orders"
                     class="w-4 h-4"
                   />
                   <p
@@ -199,7 +204,7 @@
                   <img
                     src="../../assets/icons/exportIcon.png"
                     class="w-4 h-4"
-                    alt=""
+                    alt="Cart"
                   />
                   <p
                     class="hover:text-blue-500 cursor-pointer font-semibold text-base"
@@ -214,7 +219,7 @@
                   <img
                     src="../../assets/icons/settingsIcon.png"
                     class="w-4 h-4"
-                    alt=""
+                    alt="Wishlist"
                   />
                   <p
                     class="hover:text-blue-500 cursor-pointer font-semibold text-base"
@@ -228,21 +233,7 @@
                 >
                   <img
                     src="../../assets/icons/helpCenterIcon.png"
-                    alt=""
-                    class="w-4 h-4"
-                  />
-                  <p
-                    class="hover:text-blue-500 cursor-pointer font-semibold text-base"
-                  >
-                    Help Center
-                  </p>
-                </li>
-                <li
-                  class="text-white flex flex-row gap-4 bg-gray-50 rounded-lg p-3 items-center cursor-pointer"
-                >
-                  <img
-                    src="../../assets/icons/helpCenterIcon.png"
-                    alt=""
+                    alt="Help Center"
                     class="w-4 h-4"
                   />
                   <p
@@ -258,11 +249,12 @@
             <a href="#" class="hover:text-primary">Terms and conditions</a>
             <a href="#" class="hover:text-primary">Privacy Policy</a>
             <a
+              href="#"
               class="flex items-center gap-4 bg-gray-50 rounded-lg hover:text-primary"
             >
               <img
                 src="../../assets/icons/logoutmain.png"
-                alt=""
+                alt="Log out"
                 class="w-4 h-4"
               />
               <p
@@ -279,19 +271,19 @@
       <div class="flex w-full bg-white text-gray-800 md:pr-8 min-h-dvh">
         <!-- Sticky Sidebar -->
         <aside
-          class="w-[20%] bg-white border-1 border-gray-100 sticky top-16 h-[calc(100vh_-_4rem)] hidden md:block"
+          class="w-[20%] bg-white border border-gray-100 sticky top-16 h-[calc(100vh_-_4rem)] hidden md:block"
         >
           <div
             class="flex flex-col justify-between h-full px-4 py-2 overflow-y-auto"
           >
-            <nav class="space-y-4" aria-label="desktop navigation">
+            <nav class="space-y-4" aria-label="Desktop navigation">
               <ul class="space-y-2">
                 <li class="bg-primary text-white font-semibold rounded-lg p-2">
                   <a href="#" class="flex flex-row gap-4 items-center">
                     <img
                       src="../../assets/icons/homeIcon.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="Shop"
                     />
                     <span>Shop</span></a
                   >
@@ -305,7 +297,7 @@
                     <img
                       src="../../assets/icons/shop.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="My Orders"
                     />
                     <span>My Orders</span></a
                   >
@@ -319,7 +311,7 @@
                     <img
                       src="../../assets/icons/exportIcon.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="Cart"
                     />
                     <span>Cart</span></a
                   >
@@ -333,7 +325,7 @@
                     <img
                       src="../../assets/icons/settingsIcon.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="Wishlist"
                     />
                     <span>Wishlist</span></a
                   >
@@ -347,7 +339,7 @@
                     <img
                       src="../../assets/icons/helpCenterIcon.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="Settings"
                     />
                     <span>Settings</span></a
                   >
@@ -360,7 +352,7 @@
                     <img
                       src="../../assets/icons/helpCenterIcon.png"
                       class="w-4 h-4"
-                      alt=""
+                      alt="Help Center"
                     />
                     <span>Help Center</span></a
                   >
@@ -370,8 +362,12 @@
             <div class="text-sm text-gray-500 flex flex-col gap-4">
               <a href="#" class="hover:text-primary">Terms and conditions</a>
               <a href="#" class="hover:text-primary">Privacy Policy</a>
-              <a href="" class="flex items-center gap-2 bg-gray-50 rounded-lg">
-                <img src="../../assets/icons/logoutmain.png" class="w-4 h-4" />
+              <a href="#" class="flex items-center gap-2 bg-gray-50 rounded-lg">
+                <img
+                  src="../../assets/icons/logoutmain.png"
+                  class="w-4 h-4"
+                  alt="Log out"
+                />
                 <span> Log out </span>
               </a>
             </div>
@@ -381,163 +377,82 @@
         <!-- Main Content -->
         <div class="flex flex-row gap-4 w-full">
           <div class="md:w-[100%] w-full md:p-10 p-4 overflow-y-auto">
-
-            <!-- Mobile: Avaialable/time PC:Breadcrum/time -->
-             <!--Mobiel version-->
-
-              <div class=" md:hidden flex flex-row min-w-full justify-between mb-2 px-4">
-
+            <!-- Mobile: Available/time PC:Breadcrumb/time -->
+            <!-- Mobile version-->
+            <div
+              class="md:hidden flex flex-row min-w-full justify-between mb-2 px-4"
+            >
               <div class="flex flex-row text-sm text-gray-600">
-                <span class="flex flex-row">
-                  <img src="../../assets/icons/arrow-right.png">
-                  <p>
-                  All Stores
-                  </p>
+                <span class="flex flex-row items-center">
+                  <img
+                    src="../../assets/icons/arrow-right.png"
+                    alt=""
+                    class="h-4 w-4"
+                  />
+                  <p>All Stores</p>
                 </span>
               </div>
             </div>
 
-            <!--PC version-->
-            <div class="hidden md:flex flex-row min-w-full justify-between mb-10">
-
-              <div class="flex flex-row">
-                <h2> shop</h2>
-                <img src = "../../assets/icons/arrow-right.png">
-                <p>chic Boutique</p> 
-                <img src = "../../assets/icons/arrow-right.png">
-                <p id = "itemsname">Elgegant Women's Dress</p> 
+            <!-- PC version -->
+            <div
+              class="hidden md:flex flex-row min-w-full justify-between mb-10 items-center"
+            >
+              <div class="flex flex-row items-center gap-2">
+                <h2 class="text-sm">Shop</h2>
+                <img
+                  src="../../assets/icons/arrow-right.png"
+                  alt=""
+                  class="h-4 w-4"
+                />
+                <p class="text-sm">Chic Boutique</p>
+                <img
+                  src="../../assets/icons/arrow-right.png"
+                  alt=""
+                  class="h-4 w-4"
+                />
+                <p id="itemName" class="text-sm">Elegant Women's Dress</p>
               </div>
             </div>
-            <!-- Welcome Message -->
-            <div class="flex flex-col md:flex-row md:gap-4 w-full md:mb-36">
-              <div class="md:w-1/2 relative">
-                <img src="../../assets/images/smiley-african-woman-working-market.png">
-                <img src="../../assets/icons/shop.png" class=" absolute bottom-[90%] left-[5%] cursor-pointer">
-                <p class="absolute bottom-[5%] left-[3%] bg-white rounded-full px-4 py-1 cursor-pointer text-sm">In Stock</p>
-              </div>
 
-              <div class="md:w-1/2 ">
-                <div class="md:w-[80%] md:h-[100%] gap-4 flex flex-col justify-between" >
-                  <h1 class="font-bold text-2xl md:pb-2 pt-4 md:pt-0 "> Elegant Women's Dress</h1>
-                  <p class="text-gray-600 md:text-xl">A stylish and comfortable dress, perfect for any occasion. Made with high-quality fabric, it offers a flattering fit and timeless elegance.</p>
-                  <span class="flex flex-row" > <img src="../../assets/icons/Verified.png"><p>4.5</p></span>
-                  <div>
-                    <p class="py-2 text-gray-700">size</p>
-                    <form class="space-x-1 text-sm md:text-base">
-                      <label class="cursor-pointer">
-                        <input type="radio" name = "Size" value="small" class="hidden peer">
-                        <span class="px-[0.3rem] py-[0.1] border-1 border-gray-400 rounded-md peer-checked:bg-bodyBackground peer-checked:text-primary">small</span>
-                      </label>
-
-                      <label class="cursor-pointer">
-                        <input type="radio" name = "Size" value="small" class="hidden peer">
-                        <span class="px-[0.3rem] py-[0.1] border-1 border-gray-400 rounded-md peer-checked:bg-bodyBackground peer-checked:text-primary">Medium</span>
-                      </label>
-
-                      <label class="cursor-pointer">
-                        <input type="radio" name = "Size" value="small" class="hidden peer">
-                        <span class="px-[0.3rem] py-[0.1] border-1 border-gray-400 rounded-md peer-checked:bg-bodyBackground peer-checked:text-primary">Large</span>
-                      </label>
-                    </form>
-                  </div>
-                  <div>
-                    <p class="text-gray-500 py-2"> color</p>
-                    <form id = "colorselection" class="flex flex-row gap-2 md:w-[50%]">
-                      <label class="">
-                        <input type="radio" name = "Size" value="small" class="hidden peer">
-                        <span class="bg-red-500 w-6 h-6 block rounded-full peer-checked:border-primary peer-checked:border-2"></span>
-                      </label>
-
-                      <label class="">
-                        <input type="radio" name = "Size" value="small" class="hidden peer">
-                        <span class="bg-yellow-500 w-6 h-6 block rounded-full peer-checked:border-primary peer-checked:border-2"></span>
-                      </label>
-
-                      <label class="">
-                        <input type="radio" name = "Size" value="small" class="hidden peer">
-                        <span class="bg-blue-500 w-6 h-6 block rounded-full peer-checked:border-primary peer-checked:border-2"></span>
-                      </label>
-
-                      <label class="">
-                        <input type="radio" name = "Size" value="small" class="hidden peer">
-                        <span class="bg-green-500 w-6 h-6 block rounded-full peer-checked:border-primary peer-checked:border-2"></span>
-                      </label>
-
-                      <label class="">
-                        <input type="radio" name = "Size" value="small" class="hidden peer">
-                        <span class="bg-orange-500 w-6 h-6 block rounded-full peer-checked:border-primary peer-checked:border-2"></span>
-                      </label>
-                    </form>
-                  </div>
-
-                <!--Quantity Adjuster-->
-                <div class="flex flex-col gap-2">
-                  <p class="text-gray-500">Quantity</p>
-                  <div class="flex flex-row gap-4">
-                    <button class="rounded-md w-6 h-6 bg-gray-300 text-white cursor-pointer" >-</button>
-                    <p> 1 </p>
-                    <button class="rounded-md w-6 h-6 bg-primary text-white cursor-pointer" >+</button>
-                  </div>
-                  <h3 class="text-2xl font-bold my-2"> N180,000</h3>
-                </div>
-                <div class="flex flex-row justify-between md:justify-start gap-4">
-                  <button class="bg-primary py-2 md:py-4 w-[50%] md:w-[40%] rounded-full text-white font-semibold cursor-pointer">Add to Cart</button>
-                  <button class="w-[50%] md:w-[40%] py-2 md:py-4 rounded-full border-1 border-primary font-semibold cursor-pointer">Buy Now</button>
-                </div>
-                </div>
-              </div>
-
+            <div id="productSection">
+              <!-- your section code here (exactly as you posted) -->
             </div>
-
-            <!-- Main content -->
-            <div class="pt-4">
-                <button class="flex flex-row pt-5 pb-2">
-                <p class="text-[16px] font-bold m-0">Popular stores</p>
-                <img src="../../assets/icons/arrow-right.png" class="h-4 w-4" />
+            <!-- Additional content -->
+            <div class="pt-8">
+              <button class="flex flex-row items-center pt-5 pb-4 gap-1">
+                <p class="text-lg font-bold m-0">Popular stores</p>
+                <img
+                  src="../../assets/icons/arrow-right.png"
+                  class="h-4 w-4"
+                  alt=""
+                />
               </button>
+
               <!-- All Available Stores-->
               <ul
                 id="availableProducts"
-                class="grid grid-cols-2 md:grid-cols-5 mx-[-2vw] md:mx-[-0.3rem]"
+                class="grid grid-cols-2 md:grid-cols-5 gap-4"
               ></ul>
 
-              <button class="flex flex-row pt-5 pb-2">
-                <p class="text-[16px] font-bold m-0">Review</p>
-                <img src="../../assets/icons/arrow-right.png" class="h-4 w-4" />
+              <button class="flex flex-row items-center pt-8 pb-4 gap-1">
+                <p class="text-lg font-bold m-0">Reviews</p>
+                <img
+                  src="../../assets/icons/arrow-right.png"
+                  class="h-4 w-4"
+                  alt=""
+                />
               </button>
 
-              <!--Popular Stores-->
-
               <ul
-                id=""
-                class="grid grid-cols-1 md:grid-cols-3 mx-[-2vw] md:mx-[-0.3rem]"
-                
-              >
-                <li class="w-full md:w-[75%]">
-                  <div>
-                    <div class="flex flex-row gap-2">
-                      <img class="w-11 h-11 rounded-full" src="../../assets/images/Felicity.png">
-                      <div class="flex flex-col">
-                        <p class="text-gray-900">Sophia Carter</p>
-                        <p class="text-sm py-[5px] text-gray-600">2 weeks ago</p>
-                      </div>
-                    </div>
-                    <div class="flex flex-col">
-                      <p class="text-gray-600 "> Some random text... long random text, random long text, random long tet, random long text.</p>
-                    </div>
-                    <div class="flex flex-row py-2">
-                      <p> ⭐⭐⭐⭐⭐</p>
-                    </div>
-                  </div>
-                </li>
-            </ul>
+                id="productReviews"
+                class="grid grid-cols-1 md:grid-cols-3 gap-6"
+              ></ul>
             </div>
-            <!--Pc content-->
           </div>
         </div>
       </div>
     </main>
-    <script src="../../scripts/merchant/merchantProductDashboard.j"></script>
-    <script src="../../scripts/shopper/ShopperDashboard.js"></script>
+    <script src="../../scripts/shopper/shopperReview.js"></script>
   </body>
 </html>
