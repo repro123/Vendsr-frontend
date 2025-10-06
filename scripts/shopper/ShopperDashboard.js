@@ -1,11 +1,25 @@
 
 
 document.addEventListener("DOMContentLoaded", ()=>{
+
+  let data = []
+
+  fetch("https://github.com/repro123/Vendsr-frontend", {
+    method: "POST",
+  }
+  .then(res => res.son())
+  .then(res => {
+    data  = res
+  })
+)
+
           
   const availpro = document.querySelector("#availableProducts")
   const popularstores = document.querySelector("#popularstores")
-  
+  console.log(data)
 
+
+  
   //Remember to  Replace dummy holder data below with the API
   let availlist = [
     {name: "first item", src: "../../assets/images/smiley-african-woman-working-market.png"},
